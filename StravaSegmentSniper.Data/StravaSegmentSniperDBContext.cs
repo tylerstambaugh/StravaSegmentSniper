@@ -16,7 +16,6 @@ namespace StravaSegmentSniper.Data
         }
      
         public DbSet<DetailedAthlete> DetailedAthletes { get; set; }
-        public DbSet<Activity> Activities { get; set; }
         public DbSet<SummaryActivity> SummaryActivities { get; set; }
         public DbSet<DetailedActivity> DetailedActivities { get; set; }
         public DbSet<Bike> Bikes { get; set; }
@@ -35,7 +34,7 @@ namespace StravaSegmentSniper.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|StravaDataEF.mdf;Initial Catalog=StravaDataEF;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|StravaSegmentSniperData.mdf;Initial Catalog=StravaSegmentSniperData;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }
 }

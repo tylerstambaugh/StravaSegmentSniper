@@ -7,7 +7,6 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("DetailedAthlete")]
         public long AthleteId { get; set; }
         public string Title { get; set; }
         public string Profile { get; set; }

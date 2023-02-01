@@ -8,36 +8,37 @@ namespace StravaSegmentSniper.ConsoleUI.UI
     {
         private readonly ITokenService _tokenService;
         private readonly IAthleteService _athleteService;
+        private readonly IUserService _userService;
 
-
-        public CheckTokenUI(ITokenService tokenService, IAthleteService athleteService)
+        public CheckTokenUI(ITokenService tokenService, IAthleteService athleteService, IUserService userService)
         {
             _tokenService = tokenService;
             _athleteService = athleteService;
+            _userService = userService;
         }
         public void ViewTokenMenu()
         {
             bool runMenu = true;
             Console.Clear();
-            List<User> athletes = _athleteService.GetAllUsers();
+            List<User> users = _userService.GetAllUsers();
             while (runMenu)
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to the token menu \n");
-                foreach (var athlete in athletes)
+                foreach (var athlete in users)
                 {
-                    Console.WriteLine($"User Id: {athlete.Id}, Strava AthleteId {athlete.StravaAthleteId}, {athlete.FirstName} {athlete.LastName}\n" +
+                    Console.WriteLine($"User Id: {athlete.Id}, Strava AthleteId {athlete.Athlete.StravaAthleteId}, {athlete.FirstName} {athlete.LastName}\n" +
                                       "-------------------------");
                 }
                 Console.WriteLine("Please enter a User ID and press enter (99 to exit):");
                 var userInput = Console.ReadLine();
                 long userInputInt = long.Parse(userInput);
 
-                foreach (var athlete in athletes)
+                foreach (var athlete in users)
                 {
                     if (userInputInt == athlete.Id)
                     {
-                        ViewTokenForAthlete(athlete.StravaAthleteId);
+                        ViewTokenForAthlete(athlete.Athlete.StravaAthleteId);
                     }
                     else
                     {
@@ -58,9 +59,9 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             bool runMenu = true;
             Console.Clear();
             Token athleteToken = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId);
-            User athlete = _athleteService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByStravaId(stravaAthleteId);
 
-            Console.WriteLine($"You are viewing the token for {athlete.FirstName} {athlete.LastName}. \n" +
+            Console.WriteLine($"You are viewing the token for {user.FirstName} {user.LastName}. \n" +
                 $"Token: {athleteToken.AuthorizationToken} \n" +
                 $"-----------" +
                 "Please select an option: \n" +
@@ -74,7 +75,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             switch (userInput)
             {
                 case "1":
-                    RefreshToken(athleteToken.RefreshToken, athleteToken.StravaAthleteId);
+                    RefreshToken(athleteToken.RefreshToken, athleteToken.User.Athlete.StravaAthleteId);
                     break;
                 case "2":
                     CheckTokenExpiration(athleteToken);
@@ -92,7 +93,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             Console.WriteLine($"Checking Token {token.AuthorizationToken} Expiration... \n" +
                 $"Current time is: {DateTimeOffset.UtcNow} \n" +
                 $"Token expires at: {DateTimeOffset.FromUnixTimeSeconds(token.ExpiresAt)} \n" +
-                $"The token is expired: {_tokenService.TokenIsExpired(token.StravaAthleteId)} \n" +
+                $"The token is expired: {_tokenService.TokenIsExpired(token.User.Athlete.StravaAthleteId)} \n" +
                 "Press any key to return.");
             Console.ReadLine();
         }

@@ -1,6 +1,6 @@
-﻿namespace StravaSegmentSniper.Services.Internal.Models.Token
+﻿namespace StravaSegmentSniper.Services.StravaAPI.Models.Token
 {
-    public class RefreshTokenModel
+    public class RefreshTokenAPIModel
     {
         public string TokenType { get; set; }
         public string AccessToken { get; set; }

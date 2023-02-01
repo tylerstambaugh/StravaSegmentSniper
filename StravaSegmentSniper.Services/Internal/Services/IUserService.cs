@@ -2,8 +2,9 @@
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
-    public interface IAthleteService
+    public interface IUserService
     {
-       
+        List<User> GetAllUsers();
+        User GetUserByStravaId(long stravaAthleteId);
     }
 }

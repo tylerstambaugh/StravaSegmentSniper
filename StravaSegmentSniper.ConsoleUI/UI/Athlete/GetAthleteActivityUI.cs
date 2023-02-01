@@ -9,11 +9,13 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
     {
         private readonly IAthleteService _athleteService;
         private readonly IAthleteActivityService _athleteActivityService;
+        private readonly IUserService _userService;
 
-        public GetAthleteActivityUI(IAthleteService athleteService, IAthleteActivityService athleteActivityService)
+        public GetAthleteActivityUI(IAthleteService athleteService, IAthleteActivityService athleteActivityService, IUserService userService)
         {
             _athleteService = athleteService;
             _athleteActivityService = athleteActivityService;
+            _userService = userService;
         }
 
         public void GetAthleteActivityMenu(long stravaAthleteId)
@@ -23,9 +25,9 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             {
                 Console.Clear();
 
-                User athlete = _athleteService.GetUserByStravaId(stravaAthleteId);
+                User user = _userService.GetUserByStravaId(stravaAthleteId);
 
-                Console.WriteLine($"You are viewing the activity for {athlete.FirstName} {athlete.LastName}, Strava ID= {athlete.StravaAthleteId} \n" +
+                Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID = {user.Athlete.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +
                     $"1. Get all athlete activity for a date range \n" +
                     $"2. Get athlete activity by Activity ID \n" +
@@ -65,7 +67,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void GetSummaryActivityForATimeRange(long stravaAthleteId)
         {
             Console.Clear();
-            User athlete = _athleteService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByStravaId(stravaAthleteId);
 
             Console.WriteLine("Enter the start date in epoch time:");
             string startDateInput = Console.ReadLine();
@@ -78,7 +80,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             List<SummaryActivityModel> listOfActivities = _athleteActivityService
                 .GetSummaryActivityForATimeRange(stravaAthleteId, startDate, endDate).ToList();
 
-            Console.WriteLine($"You are viewing the activity for {athlete.FirstName} {athlete.LastName}, Strava ID= {athlete.StravaAthleteId}");
+            Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID= {user.Athlete.StravaAthleteId}");
 
             foreach (SummaryActivityModel activities in listOfActivities)
             {
@@ -93,11 +95,11 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             Console.Clear();
             bool run = true;
-            User athlete = _athleteService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByStravaId(stravaAthleteId);
             while (run)
             {
                 Console.Clear();
-                Console.WriteLine($"Enter the activity ID for {athlete.FirstName} {athlete.LastName} (99 to exit)");
+                Console.WriteLine($"Enter the activity ID for {user.FirstName} {user.LastName} (99 to exit)");
                 var input = Console.ReadLine();
                 if (input == "99")
                 {
@@ -108,7 +110,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 long activityId = Int64.Parse(input);
                 DetailedActivityModel activity = _athleteActivityService.GetDetailedActivityByActivityId(stravaAthleteId, activityId);
 
-                Console.WriteLine($"You are viewing the activity {activityId} for Strava ID= {athlete.StravaAthleteId}");
+                Console.WriteLine($"You are viewing the activity {activityId} for Strava ID= {user.Athlete.StravaAthleteId}");
                 Console.WriteLine($"Name: {activity.Name} Id:{activityId}");
                 if (activity.SegmentEfforts != null)
                 {
