@@ -20,8 +20,8 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
         public int EffortCount { get; set; }
         public int AthleteCount { get; set; }
         public int StarCount { get; set; }
-        public virtual AthleteSegmentStat AthleteSegmentStats { get; set; }
-        public virtual Xom Xoms { get; set; }
+        public virtual List<AthleteSegmentStat> AthleteSegmentStats { get; set; }
+        public virtual List<Xom> Xoms { get; set; }
         public virtual LocalLegend LocalLegend { get; set; }
     }
 }

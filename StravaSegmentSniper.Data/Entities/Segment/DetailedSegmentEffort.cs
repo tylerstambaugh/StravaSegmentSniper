@@ -1,4 +1,5 @@
 ﻿using StravaSegmentSniper.Data.Entities.Activity;
+using StravaSegmentSniper.Data.Entities.Athlete;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,13 +9,15 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
     {
         [Key]
         public long Id { get; set; }
-        public string Name { get; set; }
-        [ForeignKey("Activity")]
-        public long ActivityId { get; set; }
+        //public string Name { get; set; }
 
-        [ForeignKey("User")]
-        public int StravaAthleteId { get; set; }
-        public virtual Activity Activity { get; set; }
+        //[ForeignKey("DetailedActivity")]
+        //public long DetailedActivityId { get; set; }
+
+        //[ForeignKey("DetailedAthlete")]
+        //public int AthleteId { get; set; }
+        public virtual DetailedAthlete DetailedAthlete { get; set; }
+        public virtual DetailedActivity Activity { get; set; }
         public int ElapsedTime { get; set; }
         public int MovingTime { get; set; }
         public DateTime StartDateLocal { get; set; }

@@ -13,12 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StravaDataAnalyzerDataEF\StravaSegmentSniper.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="StravaAPI\Models\Token\" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
         }
         public Token GetTokenByStravaAthleteId(long stravaAthleteId)
         {
-            return _context.Tokens.Where(x => x.StravaAthleteId == stravaAthleteId).First();
+            return _context.Tokens.Where(x => x.User.Athlete.StravaAthleteId == stravaAthleteId).First();
         }
 
         public Token RefreshToken(string refreshToken, long athleteId)

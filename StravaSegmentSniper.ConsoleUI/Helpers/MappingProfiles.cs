@@ -48,7 +48,6 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<StatsVisibilityAPIModel, StatsVisibilityModel>();
 
             //map service models to Entities. 
-            CreateMap<ActivityModel, Activity>();
             CreateMap<DetailedActivityModel, DetailedActivity>();
             CreateMap<SummaryActivityModel, SummaryActivity>();
             CreateMap<DetailedAthleteModel, DetailedAthlete>();

@@ -7,27 +7,29 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
     {
         private readonly IAthleteService _athleteService;
         private readonly IViewLocalAthleteActivityUI _viewLocalAthleteActivityUI;
+        private readonly IUserService _userService;
 
-        public ViewLocalAthleteInfoUI(IAthleteService athleteService, IViewLocalAthleteActivityUI viewLocalAthleteActivityUI)
+        public ViewLocalAthleteInfoUI(IAthleteService athleteService, IViewLocalAthleteActivityUI viewLocalAthleteActivityUI, IUserService userService)
         {
             _athleteService = athleteService;
             _viewLocalAthleteActivityUI = viewLocalAthleteActivityUI;
+            _userService = userService;
         }
         public void ViewLocalAthleteMenu()
         {
             bool runMenu = true;
             Console.Clear();
-            List<User> athletes = _athleteService.GetAllUsers();
+            List<User> users = _userService.GetAllUsers();
             while (runMenu)
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to View Athlete \n");
-                foreach (var athlete in athletes)
+                foreach (var user in users)
                 {
-                    Console.WriteLine($"Athlete Id: {athlete.Id}  \n" +
-                                      $"First Name: {athlete.FirstName} \n" +
-                                      $"Last Name: {athlete.LastName} \n" +
-                                      $"Strava Id: {athlete.StravaAthleteId} \n" +
+                    Console.WriteLine($"Athlete Id: {user.Id}  \n" +
+                                      $"First Name: {user.FirstName} \n" +
+                                      $"Last Name: {user.LastName} \n" +
+                                      $"Strava Id: {user.Athlete.StravaAthleteId} \n" +
                                       "-------------------------"
                                       );
                 }
@@ -41,7 +43,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
                     break;
                 }
 
-                var selection = athletes.Where(x => x.Id == userInputInt).ToList();
+                var selection = users.Where(x => x.Id == userInputInt).ToList();
                 if (selection != null)
                 {
                     ViewAthleteDetailsMenu(userInputInt);
@@ -56,11 +58,11 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
         public void ViewAthleteDetailsMenu(int stravaAthleteId)
         {
             bool runMenu = true;
-            User athlete = _athleteService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByStravaId(stravaAthleteId);
             while (runMenu)
             {
                 Console.Clear();
-                Console.WriteLine($"You are viewing the details of {athlete.FirstName} {athlete.LastName} \n" +
+                Console.WriteLine($"You are viewing the details of {user.FirstName} {user.LastName} \n" +
                     $"1. View Athlete Activity \n" +
                     $"2. View Athlete Trophy Case \n" +
                     $"99: Exit.");

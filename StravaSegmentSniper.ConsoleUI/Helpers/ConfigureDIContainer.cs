@@ -32,6 +32,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IAthleteService, AthleteService>();
                       services.AddScoped<IStravaAPIService, StravaAPIService>();
                       services.AddScoped<ITokenService, TokenService>();
+                      services.AddScoped<IUserService, UserService>();
 
                       //register types for local EF data
                       services.AddScoped<IViewLocalDataUI, ViewLocalDataUI>();
