@@ -9,13 +9,13 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
     {
         [Key]
         public long Id { get; set; }
-        //public string Name { get; set; }
+        public string Name { get; set; }
 
-        //[ForeignKey("DetailedActivity")]
-        //public long DetailedActivityId { get; set; }
+        [ForeignKey("DetailedActivity")]
+        public long DetailedActivityId { get; set; }
 
-        //[ForeignKey("DetailedAthlete")]
-        //public int AthleteId { get; set; }
+        [ForeignKey("DetailedAthlete")]
+        public int AthleteId { get; set; }
         public virtual DetailedAthlete DetailedAthlete { get; set; }
         public virtual DetailedActivity Activity { get; set; }
         public int ElapsedTime { get; set; }
