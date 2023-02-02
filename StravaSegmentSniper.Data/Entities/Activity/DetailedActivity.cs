@@ -16,6 +16,8 @@ namespace StravaSegmentSniper.Data.Entities.Activity
         public int DetailedAthleteId { get; set; }
         public virtual DetailedAthlete Athlete { get; set; }
 
+        public long StravaAthleteId { get; set; }
+
         public string Name { get; set; }
 
         public double? Distance { get; set; }
