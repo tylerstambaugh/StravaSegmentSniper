@@ -8,25 +8,44 @@ namespace StravaSegmentSniper.Data.Entities.Athlete
     {
         [Key]
         public int Id { get; set; }
+
         public long StravaAthleteId { get; set; }
+
         public string Username { get; set; }
+
         public string Firstname { get; set; }
+
         public string Lastname { get; set; }
+
         public string Bio { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Sex { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public double Weight { get; set; }
-        public string ProfileMedium { get; set; }
-        public string Profile { get; set; }
-        public int FollowerCount { get; set; }
-        public int FriendCount { get; set; }
-        public int MutualFriendCount { get; set; }
-        public int AthleteType { get; set; }
-        public string DatePreference { get; set; }
-        public string MeasurementPreference { get; set; }
-        public List<Bike> Bikes { get; set; }
+
+        public string? City { get; set; }
+
+        public string? State { get; set; }
+
+        public string? Sex { get; set; }
+
+        public DateTime? CreatedAt { get; set; }
+
+        public double? Weight { get; set; }
+
+        public string? ProfileMedium { get; set; }
+
+        public string? Profile { get; set; }
+
+        public int? FollowerCount { get; set; }
+
+        public int? FriendCount { get; set; }
+
+        public int? MutualFriendCount { get; set; }
+
+        public int? AthleteType { get; set; }
+
+        public string? DatePreference { get; set; }
+
+        public string? MeasurementPreference { get; set; }
+
+        public List<Bike>? Bikes { get; set; }
     }
 }
 

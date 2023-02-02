@@ -9,25 +9,39 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
     {
         [Key]
         public long Id { get; set; }
+
         public string Name { get; set; }
+
+        [ForeignKey("SummarySegment")]
+        public int SummarySegmentId { get; set; }
+        public virtual SummarySegment Segment { get; set; }
 
         [ForeignKey("DetailedActivity")]
         public long DetailedActivityId { get; set; }
+        public virtual DetailedActivity Activity { get; set; }
+
 
         [ForeignKey("DetailedAthlete")]
         public int AthleteId { get; set; }
         public virtual DetailedAthlete DetailedAthlete { get; set; }
-        public virtual DetailedActivity Activity { get; set; }
-        public int ElapsedTime { get; set; }
-        public int MovingTime { get; set; }
-        public DateTime StartDateLocal { get; set; }
-        public double Distance { get; set; }
-        public double AverageWatts { get; set; }
-        public double AverageHeartrate { get; set; }
-        public double MaxHeartrate { get; set; }
-        public virtual SummarySegment Segment { get; set; }
-        public int? PrRank { get; set; }
+
         public virtual List<Achievement> Achievements { get; set; }
+        public int ElapsedTime { get; set; }
+
+        public int MovingTime { get; set; }
+
+        public DateTime StartDateLocal { get; set; }
+
+        public double Distance { get; set; }
+
+        public double AverageWatts { get; set; }
+
+        public double AverageHeartrate { get; set; }
+
+        public double MaxHeartrate { get; set; }
+
+        public int? PrRank { get; set; }
+
     }
 }
 

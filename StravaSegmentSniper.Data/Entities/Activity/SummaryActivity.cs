@@ -8,10 +8,15 @@ namespace StravaSegmentSniper.Data.Entities.Activity
     {
         [Key]
         public int Id { get; set; }
-        public long StravaActivityId { get; set; }
+
+        [ForeignKey("DetailedActivity")]
+        public long DetailedActivityId { get; set; }
+        public DetailedActivity DetailedActivity { get; set; }
+
         [ForeignKey("DetailedAthlete")]
         public int StravaAthleteId { get; set; }
         public virtual DetailedAthlete Athlete { get; set; }
+
         public string? Name { get; set; }
         public double? Distance { get; set; }
         public int? MovingTime { get; set; }
