@@ -9,33 +9,52 @@ namespace StravaSegmentSniper.Data.Entities.Activity
     {
         [Key]
         public int Id { get; set; }
+
         public long StravaActivityId { get; set; }
+
         [ForeignKey("DetailedAthlete")]
         public int DetailedAthleteId { get; set; }
         public virtual DetailedAthlete Athlete { get; set; }
+
         public string Name { get; set; }
+
         public double? Distance { get; set; }
+
         public int? MovingTime { get; set; }
+
         public int? ElapsedTime { get; set; }
+
         public double? TotalElevationGain { get; set; }
+
         public string? Type { get; set; }
+
         public string? SportType { get; set; }
+
         public DateTime? StartDate { get; set; }
+
         public int? AchievementCount { get; set; }
+
         public double? AverageSpeed { get; set; }
+
         public double? MaxSpeed { get; set; }
+
         public double? ElevHigh { get; set; }
+
         public double? ElevLow { get; set; }
+
         public int? PrCount { get; set; }
+
         public bool? HasKudoed { get; set; }
+
         public string? Description { get; set; }
-        public virtual List<DetailedSegmentEffort>? SegmentEfforts { get; set; }   
-        // public virtual Gear? Gear { get; set; }
+
+        public virtual List<DetailedSegmentEffort>? SegmentEfforts { get; set; }
     }
 }
 
 
 //[Key]
+// public virtual Gear? Gear { get; set; }
 //public long Id { get; set; }
 //[ForeignKey("User")]
 //public int StravaAthleteId { get; set; }

@@ -11,10 +11,14 @@ namespace StravaSegmentSniper.Data.Entities.Token
 
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
+
         public string? AuthorizationToken { get; set; }
+
         public string? RefreshToken { get; set; }
+
         public long ExpiresAt { get; set; }
+
         public long ExpiresIn { get; set; }
     }
 }
