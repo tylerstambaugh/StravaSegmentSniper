@@ -4,6 +4,7 @@
     {
         void ViewAthleteMenu();
         void ViewAthleteDetailsMenu(long stravaAthleteId);
+        void ViewAthleteDetails(int userId);
         void InvalidSelection();
     }
 }
