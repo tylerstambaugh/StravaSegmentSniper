@@ -5,9 +5,11 @@ using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Models.Token;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
+using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
 using System.Configuration;
 using System.Net.Http.Headers;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace StravaSegmentSniper.Services.StravaAPI
 {
@@ -25,6 +27,40 @@ namespace StravaSegmentSniper.Services.StravaAPI
             // _configuration = configuration;
         }
 
+        public async Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token)
+        {
+            var builder = new UriBuilder()
+            {
+                Scheme = "https",
+                Host = "www.strava.com",
+                Path = "api/v3/athlete"
+            };
+
+            _httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+
+            var url = builder.ToString();
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode && response != null)
+                {
+                    DetailedAthleteAPIModel detailedAthleteFromApi = await response.Content.ReadAsAsync<DetailedAthleteAPIModel>();
+                    return detailedAthleteFromApi;
+                }
+                else
+                {
+                    throw new Exception(response.Content.ToString());
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+                return null;
+            }
+        }
         public async Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token)
         {
             string query = $"before={before}&after={after}&per_page=200";

@@ -2,12 +2,14 @@
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Models.Token;
+using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.StravaAPI
 {
     public interface IStravaAPIService
     {
         Task<Token> GetAthleteToken();
+        Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token);
         Task<DetailedActivityModel> GetDetailedActivityById(long activityId, string token);
         Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token);
         Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId);

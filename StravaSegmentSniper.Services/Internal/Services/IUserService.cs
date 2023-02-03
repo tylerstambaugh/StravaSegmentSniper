@@ -6,5 +6,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         List<User> GetAllUsers();
         User GetUserByStravaId(long stravaAthleteId);
+        User GetUserByUserId(int userId);
     }
 }

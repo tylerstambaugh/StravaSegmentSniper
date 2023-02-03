@@ -21,8 +21,17 @@ namespace StravaSegmentSniper.Services.Internal.Services
         public User GetUserByStravaId(long stravaAthleteId)
         {
             var query = _context.Users
-                .Where(x => x.Athlete.StravaAthleteId == stravaAthleteId)
+                .Where(x => x.StravaAthleteId == stravaAthleteId)
                 .First();
+
+            return query;
+        }
+
+        public User GetUserByUserId(int userId)
+        {
+            var query = _context.Users
+                 .Where(x => x.Id == userId)
+                 .First();
 
             return query;
         }

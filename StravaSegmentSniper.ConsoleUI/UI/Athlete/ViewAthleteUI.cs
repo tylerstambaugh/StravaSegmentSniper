@@ -29,7 +29,9 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 Console.WriteLine("Welcome to View Users \n");
                 if (users.Count == 0)
                 {
-                    Console.WriteLine("No athlete exist in the DB yet. Yeet!");
+                    Console.WriteLine("No athlete exist in the DB yet. Press any key to return. Yeet!");
+                    Console.ReadLine();
+                    runMenu = false;
                 }
                 else
                 {
@@ -38,7 +40,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                         Console.WriteLine($"Athlete Id: {user.Id}  \n" +
                                           $"First Name: {user.FirstName} \n" +
                                           $"Last Name: {user.LastName} \n" +
-                                          $"Strava Id: {user.Athlete.StravaAthleteId} \n" +
+                                          $"Strava Id: {user.StravaAthleteId} \n" +
                                           "-------------------------"
                                           );
                     }
@@ -55,7 +57,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                     User selection = (User)users.Where(x => x.Id == userInputInt).First();
                     if (selection != null)
                     {
-                        ViewAthleteDetailsMenu(selection.Athlete.StravaAthleteId);
+                        ViewAthleteDetailsMenu(selection.Id);
                     }
                     else
                     {
@@ -65,10 +67,10 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             }
             return;
         }
-        public void ViewAthleteDetailsMenu(long stravaAthleteId)
+        public void ViewAthleteDetailsMenu(int userId)
         {
             bool runMenu = true;
-            User user = _userService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByUserId(userId);
             while (runMenu)
             {
                 Console.Clear();
@@ -84,7 +86,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 switch (userInput)
                 {
                     case "1":
-                        throw new NotImplementedException();
+                        ViewAthleteDetails(userId);
                         break;            
                     case "2":
                         _getAthleteActivityUI.GetAthleteActivityMenu(user.Athlete.StravaAthleteId);
@@ -101,6 +103,20 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 }
             }
         }
+
+        public void ViewAthleteDetails(int userId)
+        {
+            User user = _userService.GetUserByUserId(userId);
+            DetailedAthlete athlete = _athleteService.
+            if(user != null)
+            {
+                Console.WriteLine($"Athlete Details Retreived from Strava for {user.StravaAthleteId}, ({user.FirstName} {user.LastName})");
+
+                Console.ReadLine();
+            }
+        }
+
+
         public void InvalidSelection()
         {
             Console.WriteLine("Please make a valid selection.");
