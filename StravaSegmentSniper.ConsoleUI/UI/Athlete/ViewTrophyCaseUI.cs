@@ -17,16 +17,16 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             _userService = userService;
         }
 
-        public void ViewTrophyCase(long stravaAthleteId)
+        public void ViewTrophyCase(int userId)
         {
             bool runMenu = true;
             while (runMenu)
             {
                 Console.Clear();
 
-                User user = _userService.GetUserByStravaId(stravaAthleteId);
+                User user = _userService.GetUserByStravaId(userId);
 
-                Console.WriteLine($"You are viewing the trophy case for {user.FirstName} {user.LastName}, Strava ID= {user.Athlete.StravaAthleteId} \n" +
+                Console.WriteLine($"You are viewing the trophy case for {user.FirstName} {user.LastName}, Strava ID= {user.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +
                     $"1. View all detailed segments \n" +
                     $"2. View all crowns on segments \n" +
@@ -43,8 +43,8 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 switch (userInput)
                 {
                     case "1":
-                        ViewAllDetailedSegments(stravaAthleteId);
-                        break; 
+                        ViewAllDetailedSegments(userId);
+                        break;
                     case "2":
                         throw new NotImplementedException();
                     default:
@@ -54,15 +54,15 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             }
         }
 
-        public void ViewAllDetailedSegments(long stravaAthleteId)
+        public void ViewAllDetailedSegments(int userId)
         {
             Console.Clear();
-            User user = _userService.GetUserByStravaId(stravaAthleteId);
+            User user = _userService.GetUserByUserId(userId);
 
-            List<DetailedSegmentModel> segments = _athleteActivityService.GetAllDetailedSegments(stravaAthleteId);
+            List<DetailedSegmentModel> segments = _athleteActivityService.GetAllDetailedSegments(userId);
 
 
-            Console.WriteLine($"You are viewing the top ten segment results for {user.FirstName} {user.LastName}, Strava ID = {user.Athlete.StravaAthleteId}");
+            Console.WriteLine($"You are viewing the top ten segment results for {user.FirstName} {user.LastName}, Strava ID = {user.StravaAthleteId}");
 
             foreach (DetailedSegmentModel segment in segments)
             {

@@ -2,8 +2,11 @@
 using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
+using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.StravaAPI;
+using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
+using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
@@ -22,35 +25,46 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _tokenService = tokenService;
             _dataAccessEF = dataAccessEF;
         }
-        public List<SummaryActivityModel> GetSummaryActivityForATimeRange(long stravaAthleteId, int after, int before)
+        public List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before)
         {
             List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             returnList = _stravaAPIService.ViewAthleteActivity(after, before, token).Result;
 
             return returnList;
         }
 
-        public DetailedActivityModel GetDetailedActivityByActivityId(long stravaAthleteId, long activityId)
+        public DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId)
         {
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
-            return _stravaAPIService.GetDetailedActivityById(activityId, token).Result;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+
+            var activityToReturn = _stravaAPIService.GetDetailedActivityById(activityId, token).Result;
+
+            DetailedActivityModel model = _mapper
+                                .Map<DetailedActivityAPIModel, DetailedActivityModel>(activityToReturn);
+
+            return model;
         }
 
-        public List<DetailedSegmentModel> GetAllDetailedSegments(long stravaAthleteId)
+        public List<DetailedSegmentModel> GetAllDetailedSegments(int userId)
         {
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             //Get ist of activities for the athlete
             List<DetailedActivityModel> detailedActivites = new List<DetailedActivityModel>();
             // after 12/30/2022 = 1672426441
             // after 1/1/2020 = 1577904841
-            List<SummaryActivityModel> summaryActivites = GetSummaryActivityForATimeRange(stravaAthleteId, 1672426441, 1673791441);
+            List<SummaryActivityModel> summaryActivites = GetSummaryActivityForATimeRange(userId, 1672426441, 1673791441);
 
-            //Get details of each activity for the athlete
+            //Get details of each activity in the list of SummaryActivities
             foreach (SummaryActivityModel activity in summaryActivites)
             {
                 var activityToAdd = _stravaAPIService.GetDetailedActivityById(activity.Id, token).Result;
-                detailedActivites.Add(activityToAdd);
+
+
+                DetailedActivityModel model = _mapper
+                    .Map<DetailedActivityAPIModel, DetailedActivityModel>(activityToAdd);
+
+                detailedActivites.Add(model);
             }
 
             //Get list of segment efforts for each activity
@@ -113,10 +127,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
                     break;
                 default:
                     return "This app needs A LOT of work";
-
             }
         }
-
-
     }
 }

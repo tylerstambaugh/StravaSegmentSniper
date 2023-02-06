@@ -5,9 +5,9 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public interface IAthleteActivityService
     {
-        List<DetailedSegmentModel> GetAllDetailedSegments(long stravaAthleteId);
-        DetailedActivityModel GetDetailedActivityByActivityId(long stravaAthleteId, long activityId);
-        List<SummaryActivityModel> GetSummaryActivityForATimeRange(long stravaAthleteId, int after, int before);
+        List<DetailedSegmentModel> GetAllDetailedSegments(int userId);
+        DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId);
+        List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before);
         string SaveDetailedActivityToDB(DetailedActivityModel model);
     }
 }

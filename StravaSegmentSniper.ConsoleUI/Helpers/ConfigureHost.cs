@@ -11,12 +11,12 @@ using StravaSegmentSniper.Services.StravaAPI;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers
 {
-    public class ConfigureDIContainer
+    public class ConfigureHost
     {
         public static IHost Configure()
         {
-            var builder = new ConfigurationBuilder();
-            BuildConfig(builder);
+            //var builder = new ConfigurationBuilder();
+            //BuildConfig(builder);
 
             var host = Host.CreateDefaultBuilder()
                   .ConfigureServices((context, services) =>
@@ -45,15 +45,23 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddDbContext<StravaSegmentSniperDBContext>();
                   });
 
-            return host.Build();
-        }
-
-        static void BuildConfig(IConfigurationBuilder builder)
-        {
-            builder.SetBasePath(Directory.GetCurrentDirectory())
+            host.ConfigureHostConfiguration(configHost =>
+            {
+                configHost.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsetting.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
                 .AddEnvironmentVariables();
+            });
+
+            return host.Build();
         }
+
+        //static void BuildConfig(IConfigurationBuilder builder)
+        //{
+        //    builder.SetBasePath(Directory.GetCurrentDirectory())
+        //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        //        .AddJsonFile($"appsetting.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+        //        .AddEnvironmentVariables();
+        //}
     }
 }

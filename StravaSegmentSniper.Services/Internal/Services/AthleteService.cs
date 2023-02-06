@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using StravaSegmentSniper.Data;
-using StravaSegmentSniper.Data.Entities.Athlete;
-using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.Internal.Services
@@ -22,21 +18,21 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _mapper = mapper;
         }
 
-        public DetailedAthleteModel GetDetailedAthlete(long stravaAthleteId)
-        {           
-            var token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId);
+        public DetailedAthleteModel GetDetailedAthlete(int userId)
+        {
+            var token = _tokenService.GetTokenByUserId(userId);
             if (token != null)
             {
                 try
                 {
-                    DetailedAthleteModel athleteToReturn = new DetailedAthleteModel();
                     DetailedAthleteAPIModel athleteFromApi = _stravaAPIService.GetDetailedAthlete(token.AuthorizationToken).Result;
 
                     DetailedAthleteModel model = _mapper
                             .Map<DetailedAthleteAPIModel, DetailedAthleteModel>(athleteFromApi);
-                    return athleteToReturn;
+
+                    return model;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Exception Source{ex.Source}, \n +" +
                         $"Exception Message {ex.Message}");
@@ -45,11 +41,8 @@ namespace StravaSegmentSniper.Services.Internal.Services
             }
             else
             {
-                throw new ArgumentNullException(nameof(stravaAthleteId));
+                throw new ArgumentNullException(nameof(userId));
             }
-
-
         }
-
     }
 }
