@@ -5,9 +5,9 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly StravaSegmentSniperDBContext _context;
+        private readonly IStravaSegmentSniperDBContext _context;
 
-        public TokenService(StravaSegmentSniperDBContext context)
+        public TokenService(IStravaSegmentSniperDBContext context)
         {
             _context = context;
         }

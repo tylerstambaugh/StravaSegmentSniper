@@ -5,9 +5,9 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class UserService : IUserService
     {
-        private readonly StravaSegmentSniperDBContext _context;
+        private readonly IStravaSegmentSniperDBContext _context;
 
-        public UserService(StravaSegmentSniperDBContext context)
+        public UserService(IStravaSegmentSniperDBContext context)
         {
             _context = context;
         }

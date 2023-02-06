@@ -88,7 +88,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 {
                     case "1":
                         ViewAthleteDetails(userId);
-                        break;            
+                        break;
                     case "2":
                         _getAthleteActivityUI.GetAthleteActivityMenu(user.Id);
                         break;
@@ -109,7 +109,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             User user = _userService.GetUserByUserId(userId);
             DetailedAthleteModel athlete = _athleteService.GetDetailedAthlete(user.Id);
-            if(user != null)
+            if (user != null)
             {
                 Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");
                 Console.WriteLine($"DetailedAthleteModel: {athlete.Username}");
@@ -125,7 +125,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 
             Console.WriteLine("Enter 123 to commit Athlete to Database, or anythingelse to return");
             string input = Console.ReadLine();
-            if(input == "123")
+            if (input == "123")
             {
                 //commit the athlete to the DB
             }

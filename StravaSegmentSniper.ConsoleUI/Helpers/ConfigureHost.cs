@@ -21,7 +21,12 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             var host = Host.CreateDefaultBuilder()
                   .ConfigureServices((context, services) =>
                   {
+                      services.AddAutoMapper(typeof(Program));
+
+                      services.AddDbContext<StravaSegmentSniperDBContext>();
+
                       //register types for legacy app
+                      services.AddScoped<IStravaSegmentSniperDBContext, StravaSegmentSniperDBContext>();
                       services.AddScoped<IStravaConsoleUIMain, StravaConsoleUIMain>();
                       services.AddScoped<IApplication, Application>();
                       services.AddScoped<IViewAthleteUI, ViewAthleteUI>();
@@ -40,9 +45,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IViewLocalAthleteActivityUI, ViewLocalAthleteActivityUI>();
                       services.AddScoped<IDataAccessEF, DataAccessEF>();
 
-                      services.AddAutoMapper(typeof(Program));
-
-                      services.AddDbContext<StravaSegmentSniperDBContext>();
+                      
                   });
 
             host.ConfigureHostConfiguration(configHost =>
