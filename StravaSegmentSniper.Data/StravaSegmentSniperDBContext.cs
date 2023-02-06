@@ -7,14 +7,14 @@ using StravaSegmentSniper.Data.Entities.Token;
 
 namespace StravaSegmentSniper.Data
 {
-    public class StravaSegmentSniperDBContext : DbContext
+    public class StravaSegmentSniperDBContext : DbContext, IStravaSegmentSniperDBContext
     {
 
-        public StravaSegmentSniperDBContext()
+        public StravaSegmentSniperDBContext(DbContextOptions<StravaSegmentSniperDBContext> options) : base(options)
         {
 
         }
-     
+
         public DbSet<DetailedAthlete> DetailedAthletes { get; set; }
         public DbSet<SummaryActivity> SummaryActivities { get; set; }
         public DbSet<DetailedActivity> DetailedActivities { get; set; }

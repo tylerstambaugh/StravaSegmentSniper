@@ -2,9 +2,9 @@
 {
     public interface IViewAthleteUI
     {
-        void ViewAthleteMenu();
-        void ViewAthleteDetailsMenu(int userId);
-        void ViewAthleteDetails(int userId);
         void InvalidSelection();
+        void ViewAthleteDetails(int userId);
+        void ViewAthleteDetailsMenu(int userId);
+        void ViewAthleteMenu();
     }
 }

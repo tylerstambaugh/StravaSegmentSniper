@@ -8,12 +8,13 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
     {
         private readonly IAthleteService _athleteService;
         private readonly IUserService _userService;
-        private readonly StravaSegmentSniperDBContext _context = new StravaSegmentSniperDBContext();
+        private readonly IStravaSegmentSniperDBContext _context;
 
-        public ViewLocalAthleteActivityUI(IAthleteService athleteService, IUserService userService)
+        public ViewLocalAthleteActivityUI(IAthleteService athleteService, IUserService userService, IStravaSegmentSniperDBContext context)
         {
             _athleteService = athleteService;
             _userService = userService;
+            _context = context;
         }
 
         public void ViewLocalAthleteActivity(int stravaAthleteId)
