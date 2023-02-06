@@ -8,7 +8,7 @@ namespace StravaSegmentSniper.ConsoleUI
         static void Main(string[] args)
         {
 
-            var host = ConfigureDIContainer.Configure();
+            var host = ConfigureHost.Configure();
 
             var svc = ActivatorUtilities.CreateInstance<Application>(host.Services);
 

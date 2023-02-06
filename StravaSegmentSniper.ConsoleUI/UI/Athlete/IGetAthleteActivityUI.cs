@@ -2,10 +2,10 @@
 {
     public interface IGetAthleteActivityUI
     {
-        void GetAllSegmentEffortsByActivityId(long stravaAthleteId);
-        void GetAthleteActivityMenu(long stravaAthleteId);
-        void GetDetailedActivityById(long stravaAthleteId);
-        void GetSummaryActivityForATimeRange(long stravaAthleteId);
+        void GetAllSegmentEffortsByActivityId(int userId);
+        void GetAthleteActivityMenu(int userId);
+        void GetDetailedActivityById(int userId);
+        void GetSummaryActivityForATimeRange(int userId);
         void InvalidSelection();
     }
 }

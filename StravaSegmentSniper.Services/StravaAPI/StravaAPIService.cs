@@ -57,7 +57,7 @@ namespace StravaSegmentSniper.Services.StravaAPI
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+                Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
                 return null;
             }
         }
@@ -109,7 +109,7 @@ namespace StravaSegmentSniper.Services.StravaAPI
             }
         }
 
-        public async Task<DetailedActivityModel> GetDetailedActivityById(long activityId, string token)
+        public async Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token)
         {
             var builder = new UriBuilder()
             {
@@ -129,11 +129,8 @@ namespace StravaSegmentSniper.Services.StravaAPI
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    DetailedActivityAPIModel apiResponseContent = await response.Content
-                        .ReadAsAsync<DetailedActivityAPIModel>();
-
-                    DetailedActivityModel model = _mapper
-                        .Map<DetailedActivityAPIModel, DetailedActivityModel>(apiResponseContent);
+                    DetailedActivityAPIModel model = await response.Content
+                        .ReadAsAsync<DetailedActivityAPIModel>();                   
 
                     return model;
                 }

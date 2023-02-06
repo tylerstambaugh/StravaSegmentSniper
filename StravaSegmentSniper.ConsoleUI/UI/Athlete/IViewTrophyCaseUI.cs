@@ -3,7 +3,7 @@
     public interface IViewTrophyCaseUI
     {
         void InvalidSelection();
-        void ViewAllDetailedSegments(long stravaAthleteId);
-        void ViewTrophyCase(long stravaAthleteId);
+        void ViewAllDetailedSegments(int userId);
+        void ViewTrophyCase(int userId);
     }
 }

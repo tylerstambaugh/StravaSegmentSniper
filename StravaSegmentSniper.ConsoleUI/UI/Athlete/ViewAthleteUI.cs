@@ -1,4 +1,5 @@
 ﻿using StravaSegmentSniper.Data.Entities.Athlete;
+using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 
 namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
@@ -89,10 +90,10 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                         ViewAthleteDetails(userId);
                         break;            
                     case "2":
-                        _getAthleteActivityUI.GetAthleteActivityMenu(user.Athlete.StravaAthleteId);
+                        _getAthleteActivityUI.GetAthleteActivityMenu(user.Id);
                         break;
                     case "3":
-                        _viewTrophyCaseUI.ViewTrophyCase(user.Athlete.StravaAthleteId);
+                        _viewTrophyCaseUI.ViewTrophyCase(user.Id);
                         break;
                     case "99":
                         runMenu = false;
@@ -107,13 +108,32 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void ViewAthleteDetails(int userId)
         {
             User user = _userService.GetUserByUserId(userId);
-            DetailedAthlete athlete = _athleteService.
+            DetailedAthleteModel athlete = _athleteService.GetDetailedAthlete(user.Id);
             if(user != null)
             {
-                Console.WriteLine($"Athlete Details Retreived from Strava for {user.StravaAthleteId}, ({user.FirstName} {user.LastName})");
-
-                Console.ReadLine();
+                Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Username}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Id}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Sex}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Lastname}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Firstname}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.FriendCount}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Weight}");
+                Console.WriteLine($"DetailedAthleteModel: {athlete.Bio}");
+                Console.WriteLine($"DetailedAthleteModel: ...");
             }
+
+            Console.WriteLine("Enter 123 to commit Athlete to Database, or anythingelse to return");
+            string input = Console.ReadLine();
+            if(input == "123")
+            {
+                //commit the athlete to the DB
+            }
+            else
+            {
+                return;
+            }
+
         }
 
 
