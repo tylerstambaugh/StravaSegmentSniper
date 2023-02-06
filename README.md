@@ -25,6 +25,10 @@ _Information about the [Stava API](https://developers.strava.com/)_
 Table of Contents
 ------
 
+Project Structure
+------
+
+
 How to install and run the project
 ------
 
