@@ -26,7 +26,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddDbContext<StravaSegmentSniperDBContext>();
 
                       //register types for legacy app
-                      services.AddScoped<IStravaSegmentSniperDBContext, StravaSegmentSniperDBContext>();
+                      services.AddScoped<IStravaSegmentSniperDBContext>(provider => provider.GetService<StravaSegmentSniperDBContext>());
                       services.AddScoped<IStravaConsoleUIMain, StravaConsoleUIMain>();
                       services.AddScoped<IApplication, Application>();
                       services.AddScoped<IViewAthleteUI, ViewAthleteUI>();
