@@ -26,7 +26,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             {
                 Console.Clear();
 
-                User user = _userService.GetUserByStravaId(userId);
+                User user = _userService.GetUserByUserId(userId);
 
                 Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID = {user.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +
@@ -96,7 +96,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             Console.Clear();
             bool run = true;
-            User user = _userService.GetUserByStravaId(userId);
+            User user = _userService.GetUserByUserId(userId);
             while (run)
             {
                 Console.Clear();
@@ -111,7 +111,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 long activityId = Int64.Parse(input);
                 DetailedActivityModel activity = _athleteActivityService.GetDetailedActivityByActivityId(userId, activityId);
 
-                Console.WriteLine($"You are viewing the activity {activityId} for Strava ID= {user.Athlete.StravaAthleteId}");
+                Console.WriteLine($"You are viewing the activity {activityId} for Strava ID= {user.StravaAthleteId}");
                 Console.WriteLine($"Name: {activity.Name} Id:{activityId}");
                 if (activity.SegmentEfforts != null)
                 {
