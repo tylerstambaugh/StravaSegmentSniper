@@ -44,6 +44,8 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<LapAPIModel, LapModel>();
             CreateMap<DestinationAPIModel, DestinationModel>();
             CreateMap<GearAPIModel, GearModel>();
+            CreateMap<ClubAPIModel, ClubModel>();
+            CreateMap<BikeAPIModel, BikeModel>();
             CreateMap<PhotosAPIModel, PhotosModel>();
             CreateMap<StatsVisibilityAPIModel, StatsVisibilityModel>();
 
@@ -54,6 +56,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<AchievementModel, Achievement>();
             CreateMap<PolylineMapModel, Map>();
             CreateMap<GearModel, Gear>();
+            CreateMap<BikeModel, Bike>();
             CreateMap<AthleteSegmentStatsModel, AthleteSegmentStat>();
             CreateMap<DetailedSegmentModel, DetailedSegment>();
             CreateMap<DetailedSegmentEffortModel, DetailedSegmentEffort>();
