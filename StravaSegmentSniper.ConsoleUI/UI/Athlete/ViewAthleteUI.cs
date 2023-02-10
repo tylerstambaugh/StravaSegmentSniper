@@ -112,18 +112,18 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             if (user != null)
             {
                 Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Username}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Id}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Sex}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Lastname}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Firstname}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.FriendCount}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Weight}");
-                Console.WriteLine($"DetailedAthleteModel: {athlete.Bio}");
+                Console.WriteLine($"DetailedAthleteModel Username: {athlete.Username}");
+                Console.WriteLine($"DetailedAthleteModel Id: {athlete.Id}");
+                Console.WriteLine($"DetailedAthleteModel Sex: {athlete.Sex}");
+                Console.WriteLine($"DetailedAthleteModel LastName: {athlete.Lastname}");
+                Console.WriteLine($"DetailedAthleteModel FirstName: {athlete.Firstname}");
+                Console.WriteLine($"DetailedAthleteModel FriendCount: {athlete.FriendCount}");
+                Console.WriteLine($"DetailedAthleteModel Weight: {athlete.Weight}");
+                Console.WriteLine($"DetailedAthleteModel Bio: {athlete.Bio}");
                 Console.WriteLine($"DetailedAthleteModel: ...");
             }
 
-            Console.WriteLine("Enter 123 to commit Athlete to Database, or anythingelse to return");
+            Console.WriteLine("Enter 123 to commit Athlete to Database, or anythin else to return");
             string input = Console.ReadLine();
             if (input == "123")
             {
