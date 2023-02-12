@@ -137,7 +137,6 @@ namespace StravaSegmentSniper.Services.StravaAPI
                 else
                 {
                     throw new HttpRequestException(response.Content.ToString());
-
                 }
             }
 

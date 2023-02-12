@@ -1,6 +1,7 @@
 ﻿using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
+using System.Diagnostics;
 
 namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 {
@@ -123,17 +124,35 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 Console.WriteLine($"DetailedAthleteModel: ...");
             }
 
-            Console.WriteLine("Enter 123 to commit Athlete to Database, or anythin else to return");
+            Console.WriteLine("Enter 333 to commit Athlete to Database, or anythin else to return");
             string input = Console.ReadLine();
-            if (input == "123")
+            if (input == "333")
             {
-                //commit the athlete to the DB
+               int response = _athleteService.SavedDetailedAtheleteToDb(athlete);
+
+                switch (response)
+                {
+                    case 1:
+                        Console.WriteLine($"DetailedAthlete Id {athlete.Id} was saved to the DB successfully");
+                        break;
+                    case -1:
+                        Console.WriteLine($"Some shit went wrong saving DetailedAthlete Id {athlete.Id} to the database. Please contact support");
+                        break;
+                    case -2:
+                        Console.WriteLine($"DetailedAthlete Id {athlete.Id} already exists and was not updated.");
+                        break;
+                    default:
+                        Console.WriteLine("This app needs A LOT of work");
+                        return;
+                }
+
+                Console.WriteLine("Press any key to return to the menu.");
+                Console.ReadLine();
             }
             else
             {
                 return;
             }
-
         }
 
 

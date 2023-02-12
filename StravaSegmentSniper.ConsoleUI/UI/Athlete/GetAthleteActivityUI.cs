@@ -126,7 +126,24 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 string endInput = Console.ReadLine();
                 if (endInput == "69")
                 {
-                    Console.WriteLine(_athleteActivityService.SaveDetailedActivityToDB(activity));
+                    int response = _athleteActivityService.SaveDetailedActivityToDB(activity);
+
+                    switch (response)
+                    {
+                        case 1:
+                            Console.WriteLine($"DetailedActivity Id {activity.Id} was saved to the DB successfully");
+                            break;
+                        case -1:
+                            Console.WriteLine($"Some shit went wrong saving DeatiledActivity Id {activity.Id} to the database. Please contact support");
+                            break;
+                        case -2:
+                            Console.WriteLine($"DetailedActivity Id {activity.Id} already exists and was not updated.");
+                            break;
+                        default:
+                            Console.WriteLine("This app needs A LOT of work");
+                            return;
+                    }
+
                     Console.WriteLine("Press any key to return to the menu.");
                     Console.ReadLine();
                 }

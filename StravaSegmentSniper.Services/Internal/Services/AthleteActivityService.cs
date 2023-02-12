@@ -88,7 +88,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             return segments;
         }
 
-        public string SaveDetailedActivityToDB(DetailedActivityModel model)
+        public int SaveDetailedActivityToDB(DetailedActivityModel model)
         {
             DetailedActivity activityToSave = new DetailedActivity
             {
@@ -112,22 +112,8 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 Description = model.Description
             };
 
-            int returnNum = _dataAccessEF.SaveDetailedActivity(activityToSave);
-
-            switch (returnNum)
-            {
-                case 1:
-                    return $"DetailedActivity Id {activityToSave.Id} was saved to the DB successfully";
-                    break;
-                case -1:
-                    return $"Some shit went wrong saving DeatiledActivity Id {activityToSave.Id} to the database. Please contact support";
-                    break;
-                case -2:
-                    return $"DetailedActivity Id {activityToSave.Id} already exists and was not updated.";
-                    break;
-                default:
-                    return "This app needs A LOT of work";
-            }
+            return _dataAccessEF.SaveDetailedActivity(activityToSave);
+            
         }
     }
 }
