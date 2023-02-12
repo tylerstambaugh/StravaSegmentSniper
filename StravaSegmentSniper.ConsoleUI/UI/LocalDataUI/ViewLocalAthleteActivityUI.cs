@@ -1,4 +1,4 @@
-﻿using StravaSegmentSniper.Data;
+﻿using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 
