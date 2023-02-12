@@ -1,4 +1,4 @@
-﻿using StravaSegmentSniper.Data;
+﻿using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Data.Entities.Token;
 
 namespace StravaSegmentSniper.Services.Internal.Services

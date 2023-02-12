@@ -5,7 +5,7 @@ using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
 
-namespace StravaSegmentSniper.Data
+namespace StravaSegmentSniper.Data.Entities
 {
     public class StravaSegmentSniperDBContext : DbContext, IStravaSegmentSniperDBContext
     {
@@ -29,7 +29,7 @@ namespace StravaSegmentSniper.Data
         public DbSet<LocalLegend> LocalLegends { get; set; }
         public DbSet<SummarySegment> SummarySegments { get; set; }
         public DbSet<Xom> Xoms { get; set; }
-        public DbSet<Token> Tokens { get; set; }
+        public DbSet<Token.Token> Tokens { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
