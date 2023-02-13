@@ -126,8 +126,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 string endInput = Console.ReadLine();
                 if (endInput == "69")
                 {
-                    int response = _athleteActivityService.SaveDetailedActivityToDB(activity);
-
+                    int response = _athleteActivityService.SaveDetailedActivityToDB(activity, (int)user.DetailedAthleteId);
                     switch (response)
                     {
                         case 1:

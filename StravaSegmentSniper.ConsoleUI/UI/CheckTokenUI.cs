@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Data.Entities.Athlete;
+﻿using Azure;
+using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.Internal.Services;
 
@@ -25,20 +26,20 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to the token menu \n");
-                foreach (var athlete in users)
+                foreach (var user in users)
                 {
-                    Console.WriteLine($"User Id: {athlete.Id}, Strava AthleteId {athlete.Athlete.StravaAthleteId}, {athlete.FirstName} {athlete.LastName}\n" +
+                    Console.WriteLine($"User Id: {user.Id}, Strava AthleteId {user.StravaAthleteId}, {user.FirstName} {user.LastName}\n" +
                                       "-------------------------");
                 }
                 Console.WriteLine("Please enter a User ID and press enter (99 to exit):");
                 var userInput = Console.ReadLine();
                 long userInputInt = long.Parse(userInput);
 
-                foreach (var athlete in users)
+                foreach (var user in users)
                 {
-                    if (userInputInt == athlete.Id)
+                    if (userInputInt == user.Id)
                     {
-                        ViewTokenForAthlete(athlete.Athlete.StravaAthleteId);
+                        ViewTokenForAthlete(user.Id);
                     }
                     else
                     {
@@ -54,31 +55,30 @@ namespace StravaSegmentSniper.ConsoleUI.UI
         }
 
         //display the token for an athlete
-        public void ViewTokenForAthlete(long stravaAthleteId)
+        public void ViewTokenForAthlete(int userId)
         {
             bool runMenu = true;
             Console.Clear();
-            Token athleteToken = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId);
-            User user = _userService.GetUserByStravaId(stravaAthleteId);
+            Token token = _tokenService.GetTokenByUserId(userId);
+            User user = _userService.GetUserByUserId(userId);
 
             Console.WriteLine($"You are viewing the token for {user.FirstName} {user.LastName}. \n" +
-                $"Token: {athleteToken.AuthorizationToken} \n" +
+                $"Token: {token.AuthorizationToken} \n" +
                 $"-----------" +
                 "Please select an option: \n" +
                 "1. Refresh Token \n" +
                 "2. View Token Expiration Date \n" +
                 "3. Exit");
 
-
             var userInput = Console.ReadLine();
 
             switch (userInput)
             {
                 case "1":
-                    RefreshToken(athleteToken.RefreshToken, athleteToken.User.Athlete.StravaAthleteId);
+                    RefreshToken(userId);
                     break;
                 case "2":
-                    CheckTokenExpiration(athleteToken);
+                    CheckTokenExpiration(token);
                     break;
                 default:
                     InvalidSelection();
@@ -93,15 +93,22 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             Console.WriteLine($"Checking Token {token.AuthorizationToken} Expiration... \n" +
                 $"Current time is: {DateTimeOffset.UtcNow} \n" +
                 $"Token expires at: {DateTimeOffset.FromUnixTimeSeconds(token.ExpiresAt)} \n" +
-                $"The token is expired: {_tokenService.TokenIsExpired(token.User.Athlete.StravaAthleteId)} \n" +
+                $"The token is expired: {_tokenService.TokenIsExpired(token.UserId)} \n" +
                 "Press any key to return.");
             Console.ReadLine();
         }
 
         //refresh the token for an athlete
-        public void RefreshToken(string refreshToken, long stravaAthleteId)
+        public void RefreshToken(int userId)
         {
-            Token refreshedToken = _tokenService.RefreshToken(refreshToken, stravaAthleteId);
+            int response = _tokenService.RefreshToken(userId);
+            if (response == 1)
+                Console.WriteLine($"Token updated successfuly. Press enter to continue");
+            else
+            {
+                Console.WriteLine($"The token was not updated and someone should figure out why. Press enter to continue");
+            }
+            Console.ReadLine();
         }
 
         private void InvalidSelection()
