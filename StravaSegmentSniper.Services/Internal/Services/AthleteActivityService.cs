@@ -36,7 +36,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token =  _tokenService.GetTokenByUserId(userId).AuthorizationToken;
 
             var activityToReturn = _stravaAPIService.GetDetailedActivityById(activityId, token).Result;
 
@@ -88,11 +88,12 @@ namespace StravaSegmentSniper.Services.Internal.Services
             return segments;
         }
 
-        public int SaveDetailedActivityToDB(DetailedActivityModel model)
+        public int SaveDetailedActivityToDB(DetailedActivityModel model, int detailedAthleteId)
         {
             DetailedActivity activityToSave = new DetailedActivity
             {
                 StravaActivityId = model.Id,
+                DetailedAthleteId = detailedAthleteId,
                 StravaAthleteId = model.Athlete.Id,
                 Name = model.Name,
                 Distance = model.Distance,
@@ -113,7 +114,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             };
 
             return _dataAccessEF.SaveDetailedActivity(activityToSave);
-            
+
         }
     }
 }

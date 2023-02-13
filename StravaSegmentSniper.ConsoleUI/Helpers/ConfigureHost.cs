@@ -8,6 +8,7 @@ using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
+using AutoMapper;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers
 {

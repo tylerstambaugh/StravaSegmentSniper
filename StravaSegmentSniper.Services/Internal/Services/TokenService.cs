@@ -1,15 +1,19 @@
 ﻿using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Services.StravaAPI;
+using StravaSegmentSniper.Services.StravaAPI.Models.Token;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly IStravaSegmentSniperDBContext _context;
+        private readonly StravaSegmentSniperDBContext _context;
+        private readonly IStravaAPIService _stravaAPIService;
 
-        public TokenService(IStravaSegmentSniperDBContext context)
+        public TokenService(StravaSegmentSniperDBContext context, IStravaAPIService stravaAPIService)
         {
             _context = context;
+            _stravaAPIService = stravaAPIService;
         }
         public Token GetTokenByStravaAthleteId(long stravaAthleteId)
         {
@@ -18,41 +22,51 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public Token GetTokenByUserId(int userId)
         {
+            if (TokenIsExpired(userId))
+                RefreshToken(userId);            
+            
             return _context.Tokens.Where(x => x.UserId == userId).First();
         }
 
-        public Token RefreshToken(string refreshToken, long athleteId)
+        public bool TokenIsExpired(int userId)
         {
-            Token newToken = new Token();
-            // RefreshTokenModel refreshedToken = _stravaAPIService.RefreshToken(refreshToken).Result;
-
-            //newToken.RefreshToken = refreshedToken.RefreshToken;
-            //newToken.Token = refreshedToken.AccessToken;
-            //newToken.AthleteId = athleteId;
-            //newToken.ExpiresIn = refreshedToken.ExpiresIn;
-            //newToken.ExpiresAt = refreshedToken.ExpiresAt;
-
-            //var result = _tokenData.UpdateToken(newToken);
-
-            //if(result == 1)
-            //{
-            //    return GetTokenByAthleteId(athleteId);
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-            return null;
-
-        }
-
-        public bool TokenIsExpired(long stravaAthleteId)
-        {
-            Token tokenToCheck = GetTokenByStravaAthleteId(stravaAthleteId);
+            Token tokenToCheck = _context.Tokens.Where(x => x.UserId == userId).First();
             DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(tokenToCheck.ExpiresAt);
 
             return expirationDate < DateTimeOffset.UtcNow;
         }
+
+        public int RefreshToken(int userId)
+        {
+            var tokenToUpdate = _context.Tokens
+                        .Where(x => x.UserId == userId).First();
+
+            RefreshTokenAPIModel refreshedToken = _stravaAPIService.RefreshToken(tokenToUpdate.RefreshToken).Result;
+
+            if (refreshedToken.AccessToken != null)
+            {
+                try
+                {
+                    tokenToUpdate.RefreshToken = refreshedToken.RefreshToken;
+                    tokenToUpdate.AuthorizationToken = refreshedToken.AccessToken;
+                    tokenToUpdate.ExpiresIn = refreshedToken.ExpiresIn;
+                    tokenToUpdate.ExpiresAt = refreshedToken.ExpiresAt;
+
+                    return _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"an error occurred trying to update the token. {ex.Message} ");
+                    return -1;
+                }
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+
 
     }
 }

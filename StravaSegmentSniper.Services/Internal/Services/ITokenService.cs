@@ -6,7 +6,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         Token GetTokenByStravaAthleteId(long stravaAthleteId);
         Token GetTokenByUserId(int userId);
-        Token RefreshToken(string refreshToken, long athleteId);
-        bool TokenIsExpired(long stravaAthleteId);
+        int RefreshToken(int userId);
+        bool TokenIsExpired(int userId);
     }
 }

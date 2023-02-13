@@ -1,30 +1,27 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
-using StravaSegmentSniper.Services.Internal.Models.Token;
-using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
+using StravaSegmentSniper.Services.StravaAPI.Models.Token;
 using System.Configuration;
 using System.Net.Http.Headers;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace StravaSegmentSniper.Services.StravaAPI
 {
     public class StravaAPIService : IStravaAPIService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
-        // private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
-        public StravaAPIService(ITokenService tokenService, IMapper mapper)
+        public StravaAPIService(IMapper mapper, IConfiguration configuration)
         {
-            _tokenService = tokenService;
             _mapper = mapper;
-            // _configuration = configuration;
+            _configuration = configuration;
         }
 
         public async Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token)
@@ -130,7 +127,7 @@ namespace StravaSegmentSniper.Services.StravaAPI
                 if (response.IsSuccessStatusCode)
                 {
                     DetailedActivityAPIModel model = await response.Content
-                        .ReadAsAsync<DetailedActivityAPIModel>();                   
+                        .ReadAsAsync<DetailedActivityAPIModel>();
 
                     return model;
                 }
@@ -142,7 +139,7 @@ namespace StravaSegmentSniper.Services.StravaAPI
 
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+                Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
                 return null;
             }
         }
@@ -287,15 +284,14 @@ namespace StravaSegmentSniper.Services.StravaAPI
 
             throw new NotImplementedException();
         }
-        public async Task<RefreshTokenModel> RefreshToken(string refreshToken)
+        public async Task<RefreshTokenAPIModel> RefreshToken(string refreshToken)
         {
             //refresh token
             //grant_type "refresh_token"
-            string clientId = ConfigurationManager.AppSettings["StravaAPICodes:ClientId"];
-            string clientSecret = ConfigurationManager.AppSettings["StravaAPICodes:ClientSecret"];
+            var clientId = _configuration.GetSection("StravaAPICodes:ClientId");
+            var clientSecret = _configuration.GetSection("StravaAPICodes:ClientSecret");
 
-
-            string query = $"client_id={clientId}&client_secret={clientSecret}&refresh_token={refreshToken}&grant_type=refresh_token";
+            string query = $"client_id={clientId.Value}&client_secret={clientSecret.Value}&refresh_token={refreshToken}&grant_type=refresh_token";
             var builder = new UriBuilder()
             {
                 Scheme = "https",
@@ -306,11 +302,24 @@ namespace StravaSegmentSniper.Services.StravaAPI
 
             var url = builder.ToString();
 
-            HttpResponseMessage response = await _httpClient.PostAsync(url, null);
-
-            var output = await response.Content.ReadAsAsync<RefreshTokenModel>();
-
-            return output;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.PostAsync(url, null);
+                if (response.IsSuccessStatusCode)
+                {
+                    var output = await response.Content.ReadAsAsync<RefreshTokenAPIModel>();
+                    return output;
+                }
+                else
+                {
+                    throw new HttpRequestException(response.Content.ToString());
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
+                return null;
+            }
         }
 
 

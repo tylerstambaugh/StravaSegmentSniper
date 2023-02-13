@@ -8,6 +8,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
         List<DetailedSegmentModel> GetAllDetailedSegments(int userId);
         DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId);
         List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before);
-        int SaveDetailedActivityToDB(DetailedActivityModel model);
+        int SaveDetailedActivityToDB(DetailedActivityModel model, int detailedAthleteId);
     }
 }
