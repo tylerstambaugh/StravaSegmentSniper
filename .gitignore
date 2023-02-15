@@ -5,6 +5,7 @@
 
 # EF Migrations
 ./StravaSegmentSniper.Data/Migrations
+./Authorization.Data/Migrations
 
 # User-specific files
 *.rsuser
