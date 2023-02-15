@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StravaSegmentSniper.Data.Entities;
+using StravaSegmentSniperReact.Data;
 
 #nullable disable
 
 namespace StravaSegmentSniper.Data.Migrations
 {
-    [DbContext(typeof(StravaSegmentSniperDBContext))]
-    [Migration("20230209222709_initialMigration")]
+    [DbContext(typeof(StravaSegmentSniperDbContext))]
+    [Migration("20230214234213_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -582,39 +582,6 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.ToTable("DetailedAthletes");
                 });
 
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Athlete.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("DetailedAthleteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("StravaAthleteId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DetailedAthleteId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Misc.Bike", b =>
                 {
                     b.Property<string>("Id")
@@ -726,6 +693,39 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tokens");
+                });
+
+            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("DetailedAthleteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("StravaAthleteId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DetailedAthleteId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("StravaDataAnalyzerDataEF.Entities.Segment.Achievement", b =>
@@ -856,15 +856,6 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.Navigation("DetailedActivity");
                 });
 
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Athlete.User", b =>
-                {
-                    b.HasOne("StravaSegmentSniper.Data.Entities.Athlete.DetailedAthlete", "Athlete")
-                        .WithMany()
-                        .HasForeignKey("DetailedAthleteId");
-
-                    b.Navigation("Athlete");
-                });
-
             modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Misc.Bike", b =>
                 {
                     b.HasOne("StravaSegmentSniper.Data.Entities.Athlete.DetailedAthlete", "DetailedAthlete")
@@ -878,13 +869,22 @@ namespace StravaSegmentSniper.Data.Migrations
 
             modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Token.Token", b =>
                 {
-                    b.HasOne("StravaSegmentSniper.Data.Entities.Athlete.User", "User")
+                    b.HasOne("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", b =>
+                {
+                    b.HasOne("StravaSegmentSniper.Data.Entities.Athlete.DetailedAthlete", "Athlete")
+                        .WithMany()
+                        .HasForeignKey("DetailedAthleteId");
+
+                    b.Navigation("Athlete");
                 });
 
             modelBuilder.Entity("StravaDataAnalyzerDataEF.Entities.Segment.DetailedSegment", b =>

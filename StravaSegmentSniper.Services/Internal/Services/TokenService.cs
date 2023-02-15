@@ -2,15 +2,16 @@
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniper.Services.StravaAPI.Models.Token;
+using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly StravaSegmentSniperDBContext _context;
+        private readonly StravaSegmentSniperDbContext _context;
         private readonly IStravaAPIService _stravaAPIService;
 
-        public TokenService(StravaSegmentSniperDBContext context, IStravaAPIService stravaAPIService)
+        public TokenService(StravaSegmentSniperDbContext context, IStravaAPIService stravaAPIService)
         {
             _context = context;
             _stravaAPIService = stravaAPIService;

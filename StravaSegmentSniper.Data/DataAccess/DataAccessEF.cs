@@ -1,13 +1,14 @@
 ﻿using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
+using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Data.DataAccess
 {
     public class DataAccessEF : IDataAccessEF
     {
-        private readonly StravaSegmentSniperDBContext _context;
-        public DataAccessEF(StravaSegmentSniperDBContext context)
+        private readonly StravaSegmentSniperDbContext _context;
+        public DataAccessEF(StravaSegmentSniperDbContext context)
         {
             _context = context;
         }

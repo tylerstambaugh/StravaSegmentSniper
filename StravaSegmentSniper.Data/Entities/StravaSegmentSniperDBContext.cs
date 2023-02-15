@@ -4,16 +4,12 @@ using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Data.Entities.User;
 
-namespace StravaSegmentSniper.Data.Entities
+namespace StravaSegmentSniperReact.Data
 {
-    public class StravaSegmentSniperDBContext : DbContext, IStravaSegmentSniperDBContext
-    {
-
-        public StravaSegmentSniperDBContext(DbContextOptions<StravaSegmentSniperDBContext> options) : base(options)
-        {
-
-        }
+    public class StravaSegmentSniperDbContext : DbContext, IStravaSegmentSniperDbContext
+    {     
 
         public DbSet<DetailedAthlete> DetailedAthletes { get; set; }
         public DbSet<SummaryActivity> SummaryActivities { get; set; }
@@ -29,13 +25,18 @@ namespace StravaSegmentSniper.Data.Entities
         public DbSet<LocalLegend> LocalLegends { get; set; }
         public DbSet<SummarySegment> SummarySegments { get; set; }
         public DbSet<Xom> Xoms { get; set; }
-        public DbSet<Token.Token> Tokens { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Token> Tokens { get; set; }
+        public DbSet<ConsoleAppUser> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|StravaSegmentSniperData.mdf;Initial Catalog=StravaSegmentSniperData;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //    builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value);
+        //}
     }
 }

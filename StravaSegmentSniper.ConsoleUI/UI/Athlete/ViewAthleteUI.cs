@@ -1,4 +1,4 @@
-﻿using StravaSegmentSniper.Data.Entities.Athlete;
+﻿using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 using System.Diagnostics;
@@ -24,7 +24,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             bool runMenu = true;
             Console.Clear();
-            List<User> users = _userService.GetAllUsers();
+            List<ConsoleAppUser> users = _userService.GetAllUsers();
             while (runMenu)
             {
                 Console.Clear();
@@ -56,7 +56,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                         break;
                     }
 
-                    User selection = (User)users.Where(x => x.Id == userInputInt).First();
+                    ConsoleAppUser selection = (ConsoleAppUser)users.Where(x => x.Id == userInputInt).First();
                     if (selection != null)
                     {
                         ViewAthleteDetailsMenu(selection.Id);
@@ -72,7 +72,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void ViewAthleteDetailsMenu(int userId)
         {
             bool runMenu = true;
-            User user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetUserByUserId(userId);
             while (runMenu)
             {
                 Console.Clear();
@@ -108,7 +108,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 
         public void ViewAthleteDetails(int userId)
         {
-            User user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetUserByUserId(userId);
             DetailedAthleteModel athlete = _athleteService.GetDetailedAthlete(user.Id);
             if (user != null)
             {

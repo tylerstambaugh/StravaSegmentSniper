@@ -1,4 +1,4 @@
-﻿using StravaSegmentSniper.Data.Entities.Athlete;
+﻿using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
@@ -26,7 +26,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             {
                 Console.Clear();
 
-                User user = _userService.GetUserByUserId(userId);
+                ConsoleAppUser user = _userService.GetUserByUserId(userId);
 
                 Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID = {user.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +
@@ -68,7 +68,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void GetSummaryActivityForATimeRange(int userId)
         {
             Console.Clear();
-            User user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetUserByUserId(userId);
 
             Console.WriteLine("Enter the start date in epoch time:");
             string startDateInput = Console.ReadLine();
@@ -96,7 +96,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             Console.Clear();
             bool run = true;
-            User user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetUserByUserId(userId);
             while (run)
             {
                 Console.Clear();

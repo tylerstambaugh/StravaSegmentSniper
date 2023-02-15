@@ -1,6 +1,6 @@
 ﻿using Azure;
-using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Services;
 
 namespace StravaSegmentSniper.ConsoleUI.UI
@@ -21,7 +21,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
         {
             bool runMenu = true;
             Console.Clear();
-            List<User> users = _userService.GetAllUsers();
+            List<ConsoleAppUser> users = _userService.GetAllUsers();
             while (runMenu)
             {
                 Console.Clear();
@@ -60,7 +60,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             bool runMenu = true;
             Console.Clear();
             Token token = _tokenService.GetTokenByUserId(userId);
-            User user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetUserByUserId(userId);
 
             Console.WriteLine($"You are viewing the token for {user.FirstName} {user.LastName}. \n" +
                 $"Token: {token.AuthorizationToken} \n" +

@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using StravaSegmentSniper.Data.Entities.Athlete;
 
-namespace StravaSegmentSniper.Data.Entities.Athlete
+namespace StravaSegmentSniper.Data.Entities.User
 {
-    public class User
+    public class ConsoleAppUser
     {
         [Key]
         public int Id { get; set; }

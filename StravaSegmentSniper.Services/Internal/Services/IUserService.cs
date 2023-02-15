@@ -1,11 +1,11 @@
-﻿using StravaSegmentSniper.Data.Entities.Athlete;
+﻿using StravaSegmentSniper.Data.Entities.User;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public interface IUserService
     {
-        List<User> GetAllUsers();
-        User GetUserByStravaId(long stravaAthleteId);
-        User GetUserByUserId(int userId);
+        List<ConsoleAppUser> GetAllUsers();
+        ConsoleAppUser GetUserByStravaId(long stravaAthleteId);
+        ConsoleAppUser GetUserByUserId(int userId);
     }
 }

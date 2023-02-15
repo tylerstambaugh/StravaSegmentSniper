@@ -1,24 +1,25 @@
 ﻿using StravaSegmentSniper.Data.Entities;
-using StravaSegmentSniper.Data.Entities.Athlete;
+using StravaSegmentSniper.Data.Entities.User;
+using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class UserService : IUserService
     {
-        private readonly IStravaSegmentSniperDBContext _context;
+        private readonly StravaSegmentSniperDbContext _context;
 
-        public UserService(IStravaSegmentSniperDBContext context)
+        public UserService(StravaSegmentSniperDbContext context)
         {
             _context = context;
         }
 
-        public List<User> GetAllUsers()
+        public List<ConsoleAppUser> GetAllUsers()
         {
             var query = _context.Users;
 
             return query.ToList();
         }
-        public User GetUserByStravaId(long stravaAthleteId)
+        public ConsoleAppUser GetUserByStravaId(long stravaAthleteId)
         {
             var query = _context.Users
                 .Where(x => x.StravaAthleteId == stravaAthleteId)
@@ -27,7 +28,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             return query;
         }
 
-        public User GetUserByUserId(int userId)
+        public ConsoleAppUser GetUserByUserId(int userId)
         {
             var query = _context.Users
                  .Where(x => x.Id == userId)

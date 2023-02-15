@@ -224,19 +224,19 @@ namespace StravaSegmentSniper.Data.Migrations
                         column: x => x.ActivityId,
                         principalTable: "DetailedActivities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DetailedSegmentEfforts_DetailedAthletes_AthleteId",
                         column: x => x.AthleteId,
                         principalTable: "DetailedAthletes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_DetailedSegmentEfforts_SummarySegments_SummarySegmentId",
                         column: x => x.SummarySegmentId,
                         principalTable: "SummarySegments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -267,13 +267,13 @@ namespace StravaSegmentSniper.Data.Migrations
                         column: x => x.DetailedActivityId,
                         principalTable: "DetailedActivities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SummaryActivities_DetailedAthletes_AthleteId",
                         column: x => x.AthleteId,
                         principalTable: "DetailedAthletes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
