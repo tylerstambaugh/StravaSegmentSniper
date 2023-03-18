@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Services.Internal.Models.Athlete;
+﻿using StravaSegmentSniper.Data.Entities.Athlete;
+using StravaSegmentSniper.Services.Internal.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
@@ -6,5 +7,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         DetailedAthleteModel GetDetailedAthlete(int userId);
         int SavedDetailedAtheleteToDb(DetailedAthleteModel model);
+        List<DetailedAthlete> GetDetailedAthletes()
     }
 }
