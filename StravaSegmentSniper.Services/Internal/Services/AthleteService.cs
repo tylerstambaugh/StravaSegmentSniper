@@ -22,7 +22,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _dataAccessEF = dataAccessEF;
         }
 
-        public DetailedAthleteModel GetDetailedAthlete(int userId)
+        public DetailedAthleteModel GetDetailedAthleteModel(int userId)
         {
             var token = _tokenService.GetTokenByUserId(userId);
             if (token != null)
@@ -48,6 +48,8 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 throw new ArgumentNullException(nameof(userId));
             }
         }
+
+
 
         public int SavedDetailedAtheleteToDb(DetailedAthleteModel model)
         {
