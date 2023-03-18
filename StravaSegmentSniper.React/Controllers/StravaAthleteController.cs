@@ -18,7 +18,7 @@ namespace StravaSegmentSniper.React.Controllers
         }
         public IEnumerable<DetailedAthlete> GetDetailedAthletes()
         {
-            return _athleteService.GetDetailedAthlete
+            return _athleteService.GetDetailedAthletes();
         }
     }
 }
