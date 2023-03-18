@@ -5,6 +5,7 @@ using StravaSegmentSniper.ConsoleUI.UI;
 using StravaSegmentSniper.ConsoleUI.UI.Athlete;
 using StravaSegmentSniper.ConsoleUI.UI.LocalDataUI;
 using StravaSegmentSniper.Data.DataAccess;
+using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniperReact.Data;
@@ -34,7 +35,6 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
 
                       services.AddDbContext<StravaSegmentSniperDbContext>();
 
-
                       //register types for legacy app
                       services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
                       services.AddScoped<IStravaConsoleUIMain, StravaConsoleUIMain>();
@@ -54,6 +54,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IViewLocalAthleteInfoUI, ViewLocalAthleteInfoUI>();
                       services.AddScoped<IViewLocalAthleteActivityUI, ViewLocalAthleteActivityUI>();
                       services.AddScoped<IDataAccessEF, DataAccessEF>();
+                      services.AddScoped<IAthleteData, AthleteData>();
                   });
 
             return host.Build();

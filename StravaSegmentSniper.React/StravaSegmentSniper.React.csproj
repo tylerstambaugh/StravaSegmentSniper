@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\MappingProfiles.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Services\StravaSegmentSniper.Services.csproj" />
@@ -46,6 +50,10 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\components\segmentSniper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Helpers\MappingProfiles.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

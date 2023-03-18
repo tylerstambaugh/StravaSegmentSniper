@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StravaSegmentSniper.Data.DataAccess;
+using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI;
@@ -14,15 +15,15 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly IDataAccessEF _dataAccessEF;
-        private readonly IStravaSegmentSniperDbContext _stravaSegmentSniperDbContext;
+        private readonly IAthleteData _athleteData;
 
-        public AthleteService(IStravaAPIService stravaAPIService, ITokenService tokenService, IMapper mapper, IDataAccessEF dataAccessEF, IStravaSegmentSniperDbContext stravaSegmentSniperDbContext)
+        public AthleteService(IStravaAPIService stravaAPIService, ITokenService tokenService, IMapper mapper, IDataAccessEF dataAccessEF, IAthleteData athleteData)
         {
             _stravaAPIService = stravaAPIService;
             _tokenService = tokenService;
             _mapper = mapper;
             _dataAccessEF = dataAccessEF;
-            _stravaSegmentSniperDbContext = stravaSegmentSniperDbContext;
+            _athleteData = athleteData;
         }
 
         public DetailedAthleteModel GetDetailedAthleteModel(int userId)
@@ -54,7 +55,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public List<DetailedAthlete> GetDetailedAthletes()
         {
-            return _stravaSegmentSniperDbContext.DetailedAthletes.ToList();
+            return _athleteData.GetDetailedAthletes();
         }
 
         public int SavedDetailedAtheleteToDb(DetailedAthleteModel model)
