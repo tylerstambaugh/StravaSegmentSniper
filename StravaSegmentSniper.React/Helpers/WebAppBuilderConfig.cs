@@ -1,13 +1,15 @@
 ﻿using Authorization.Data.Data;
 using Authorization.Data.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.React.Helpers
 {
     public class WebAppBuilderConfig
     {
-        public static WebApplicationBuilder Builder()
+        public static WebApplicationBuilder ConfigureBuilder()
         {
             var builder = WebApplication.CreateBuilder();
 
@@ -32,6 +34,12 @@ namespace StravaSegmentSniper.React.Helpers
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
+            //add automapper
+            builder.Services.AddAutoMapper(typeof(Program));
+
+            //add DI services to the container
+            builder.Services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
 
             // var app = builder.Build();
 
