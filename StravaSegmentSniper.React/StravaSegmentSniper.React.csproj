@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj" />
+    <ProjectReference Include="..\StravaSegmentSniper.ConsoleUI\StravaSegmentSniper.ConsoleUI.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Services\StravaSegmentSniper.Services.csproj" />
   </ItemGroup>

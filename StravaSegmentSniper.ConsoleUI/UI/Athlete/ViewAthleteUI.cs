@@ -109,7 +109,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void ViewAthleteDetails(int userId)
         {
             ConsoleAppUser user = _userService.GetUserByUserId(userId);
-            DetailedAthleteModel athlete = _athleteService.GetDetailedAthlete(user.Id);
+            DetailedAthleteModel athlete = _athleteService.GetDetailedAthleteModel(user.Id);
             if (user != null)
             {
                 Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");

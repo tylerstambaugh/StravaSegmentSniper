@@ -3,7 +3,12 @@ using Authorization.Data.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using StravaSegmentSniper.Data.DataAccess.Athlete;
+using StravaSegmentSniper.Data.DataAccess;
+using StravaSegmentSniper.Services.Internal.Services;
+using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniperReact.Data;
+using StravaSegmentSniper.ConsoleUI.UI;
 
 namespace StravaSegmentSniper.React.Helpers
 {
@@ -39,7 +44,21 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddAutoMapper(typeof(Program));
 
             //add DI services to the container
-            builder.Services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
+
+            var connectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
+            builder.Services.AddDbContext<StravaSegmentSniperDbContext>();
+
+            //builder.Services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
+
+            builder.Services.AddScoped<IAthleteActivityService, AthleteActivityService>();
+            builder.Services.AddScoped<IAthleteService, AthleteService>();
+            builder.Services.AddScoped<IStravaAPIService, StravaAPIService>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
+            //register types for local EF data
+            builder.Services.AddScoped<IDataAccessEF, DataAccessEF>();
+            builder.Services.AddScoped<IAthleteData, AthleteData>();
 
             // var app = builder.Build();
 
