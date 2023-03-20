@@ -5,7 +5,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public interface IAthleteService
     {
-        DetailedAthleteModel GetDetailedAthlete(int userId);
+        DetailedAthleteModel GetDetailedAthleteModel(int userId);
         int SavedDetailedAtheleteToDb(DetailedAthleteModel model);
 
         List<DetailedAthlete> GetDetailedAthletes();

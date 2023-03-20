@@ -8,7 +8,7 @@ namespace Authorization.Data.Data
 {
     public class AuthDbContext : ApiAuthorizationDbContext<WebAppUser>
     {
-        public AuthDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+        public AuthDbContext(DbContextOptions<AuthDbContext> options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
         {
 

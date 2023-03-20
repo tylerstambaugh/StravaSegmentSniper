@@ -32,14 +32,16 @@ namespace StravaSegmentSniper.Data.DataAccess
 
         public int SaveDetailedAthlete(DetailedAthlete detailedAthlete)
         {
-            var existingActivityCount = _context.DetailedAthletes.Where(x => x.Id == detailedAthlete.Id).Count();
-            if (existingActivityCount > 0)
+            var existingAthleteCount = _context.DetailedAthletes.Where(x => x.Id == detailedAthlete.Id).Count();
+            if (existingAthleteCount > 0)
             {
                 return -2;
             }
             else
             {
                 _context.DetailedAthletes.Add(detailedAthlete);
+
+                //need to get the detailedAthlete ID and write it back to the user record
 
                 if (_context.SaveChanges() == 1)
                     return 1;

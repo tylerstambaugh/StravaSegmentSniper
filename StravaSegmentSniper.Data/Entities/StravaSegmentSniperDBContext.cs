@@ -9,7 +9,11 @@ using StravaSegmentSniper.Data.Entities.User;
 namespace StravaSegmentSniperReact.Data
 {
     public class StravaSegmentSniperDbContext : DbContext, IStravaSegmentSniperDbContext
-    {     
+    {
+        public StravaSegmentSniperDbContext(DbContextOptions<StravaSegmentSniperDbContext> options)
+        : base(options)
+        { 
+        }
 
         public DbSet<DetailedAthlete> DetailedAthletes { get; set; }
         public DbSet<SummaryActivity> SummaryActivities { get; set; }

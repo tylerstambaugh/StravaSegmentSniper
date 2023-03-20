@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StravaSegmentSniper.Data.Entities.Athlete
 {
-    public  class DetailedAthlete
+    public class DetailedAthlete
     {
         [Key]
         public int Id { get; set; }
