@@ -5,11 +5,11 @@ using Microsoft.Extensions.Hosting;
 using StravaSegmentSniper.ConsoleUI.UI;
 using StravaSegmentSniper.ConsoleUI.UI.Athlete;
 using StravaSegmentSniper.ConsoleUI.UI.LocalDataUI;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniperReact.Data;
 using System.Configuration;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers

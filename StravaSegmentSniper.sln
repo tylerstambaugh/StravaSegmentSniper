@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization.Data", "Autho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSegmentSniper.React", "StravaSegmentSniper.React\StravaSegmentSniper.React.csproj", "{758102C6-EDB0-40A4-B41E-2E0467B20160}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSegmentSniperUIModels", "StravaSegmentSniperUIModels\StravaSegmentSniperUIModels.csproj", "{4FBF6DF0-7121-4E16-9337-A69EF416EC00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{758102C6-EDB0-40A4-B41E-2E0467B20160}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{758102C6-EDB0-40A4-B41E-2E0467B20160}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{758102C6-EDB0-40A4-B41E-2E0467B20160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FBF6DF0-7121-4E16-9337-A69EF416EC00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FBF6DF0-7121-4E16-9337-A69EF416EC00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FBF6DF0-7121-4E16-9337-A69EF416EC00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FBF6DF0-7121-4E16-9337-A69EF416EC00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

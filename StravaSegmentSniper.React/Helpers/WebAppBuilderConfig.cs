@@ -18,7 +18,7 @@ namespace StravaSegmentSniper.React.Helpers
         {
             var builder = WebApplication.CreateBuilder();
 
-            // Add services to the container.
+
             var authConnectionString = builder.Configuration.GetConnectionString("AuthorizationData");
             builder.Services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(authConnectionString));
@@ -34,7 +34,7 @@ namespace StravaSegmentSniper.React.Helpers
                 .AddIdentityServerJwt();
 
             var appDataConnectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
-            builder.Services.AddDbContext<AuthDbContext>(options =>
+            builder.Services.AddDbContext<StravaSegmentSniperDbContext>(options =>
                 options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
 
             builder.Services.AddControllersWithViews();
@@ -43,13 +43,9 @@ namespace StravaSegmentSniper.React.Helpers
             //add automapper
             builder.Services.AddAutoMapper(typeof(Program));
 
-            //add DI services to the container
-
-            var connectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
-            builder.Services.AddDbContext<StravaSegmentSniperDbContext>();
-
             //builder.Services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
 
+            //add DI services to the container
             builder.Services.AddScoped<IAthleteActivityService, AthleteActivityService>();
             builder.Services.AddScoped<IAthleteService, AthleteService>();
             builder.Services.AddScoped<IStravaAPIService, StravaAPIService>();
@@ -61,7 +57,6 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IDataAccessEF, DataAccessEF>();
             builder.Services.AddScoped<IAthleteData, AthleteData>();
 
-            // var app = builder.Build();
 
             return builder;
         }
