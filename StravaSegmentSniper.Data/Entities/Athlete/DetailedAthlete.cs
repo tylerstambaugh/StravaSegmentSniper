@@ -45,7 +45,7 @@ namespace StravaSegmentSniper.Data.Entities.Athlete
 
         public string? MeasurementPreference { get; set; }
 
-        public List<Bike>? Bikes { get; set; }
+        public virtual List<Bike>? Bikes { get; set; }
     }
 }
 

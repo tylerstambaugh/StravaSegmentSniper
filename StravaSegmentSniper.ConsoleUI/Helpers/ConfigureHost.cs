@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StravaSegmentSniper.ConsoleUI.UI;
@@ -9,6 +10,7 @@ using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniperReact.Data;
+using System.Configuration;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers
 {
@@ -33,10 +35,11 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                   {
                       services.AddAutoMapper(typeof(Program));
 
-                      services.AddDbContext<StravaSegmentSniperDbContext>();
+                      services.AddDbContext<StravaSegmentSniperDbContext>(
+                        options => options.UseLazyLoadingProxies());
 
                       //register types for legacy app
-                      services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
+                      //services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
                       services.AddScoped<IStravaConsoleUIMain, StravaConsoleUIMain>();
                       services.AddScoped<IApplication, Application>();
                       services.AddScoped<IViewAthleteUI, ViewAthleteUI>();
