@@ -23,7 +23,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
             {
                 Console.Clear();
 
-                ConsoleAppUser user = _userService.GetUserByStravaId(stravaAthleteId);
+                ConsoleAppUser user = _userService.GetConsoleAppUserByStravaId(stravaAthleteId);
 
                 Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID= {user.Athlete.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +

@@ -13,38 +13,29 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _context = context;
         }
 
-        public List<ConsoleAppUser> GetAllUsers()
+        public List<ConsoleAppUser> GetAllConsoleAppUsers()
         {
 
-            using (_context)
-            {
-                var query = _context.Users;
+                var query = _context.ConsoleAppUsers;
 
                 return query.ToList();
-            }
         }
-        public ConsoleAppUser GetUserByStravaId(long stravaAthleteId)
+        public ConsoleAppUser GetConsoleAppUserByStravaId(long stravaAthleteId)
         {
-            using (_context)
-            {
-                var query = _context.Users
+                var query = _context.ConsoleAppUsers
                     .Where(x => x.StravaAthleteId == stravaAthleteId)
                     .First();
 
                 return query;
-            }
         }
 
-        public ConsoleAppUser GetUserByUserId(int userId)
+        public ConsoleAppUser GetConsoleAppUserByUserId(int userId)
         {
-            using (_context)
-            {
-                var query = _context.Users
+                var query = _context.ConsoleAppUsers
                  .Where(x => x.Id == userId)
                  .First();
 
                 return query;
-            }
         }
     }
 }

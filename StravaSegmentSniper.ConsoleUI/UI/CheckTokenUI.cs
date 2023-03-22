@@ -21,7 +21,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
         {
             bool runMenu = true;
             Console.Clear();
-            List<ConsoleAppUser> users = _userService.GetAllUsers();
+            List<ConsoleAppUser> users = _userService.GetAllConsoleAppUsers();
             while (runMenu)
             {
                 Console.Clear();
@@ -60,7 +60,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
             bool runMenu = true;
             Console.Clear();
             Token token = _tokenService.GetTokenByUserId(userId);
-            ConsoleAppUser user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
 
             Console.WriteLine($"You are viewing the token for {user.FirstName} {user.LastName}. \n" +
                 $"Token: {token.AuthorizationToken} \n" +

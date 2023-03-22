@@ -24,7 +24,7 @@ namespace StravaSegmentSniperReact.Data
         DbSet<SummaryActivity> SummaryActivities { get; set; }
         DbSet<SummarySegment> SummarySegments { get; set; }
         DbSet<Token> Tokens { get; set; }
-        DbSet<ConsoleAppUser> Users { get; set; }
+        DbSet<ConsoleAppUser> ConsoleAppUsers { get; set; }
         DbSet<Xom> Xoms { get; set; }
     }
 }

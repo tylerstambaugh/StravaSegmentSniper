@@ -19,7 +19,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
         {
             bool runMenu = true;
             Console.Clear();
-            List<ConsoleAppUser> users = _userService.GetAllUsers();
+            List<ConsoleAppUser> users = _userService.GetAllConsoleAppUsers();
             while (runMenu)
             {
                 Console.Clear();
@@ -58,7 +58,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
         public void ViewAthleteDetailsMenu(int stravaAthleteId)
         {
             bool runMenu = true;
-            ConsoleAppUser user = _userService.GetUserByStravaId(stravaAthleteId);
+            ConsoleAppUser user = _userService.GetConsoleAppUserByStravaId(stravaAthleteId);
             while (runMenu)
             {
                 Console.Clear();

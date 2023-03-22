@@ -24,7 +24,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             {
                 Console.Clear();
 
-                ConsoleAppUser user = _userService.GetUserByStravaId(userId);
+                ConsoleAppUser user = _userService.GetConsoleAppUserByStravaId(userId);
 
                 Console.WriteLine($"You are viewing the trophy case for {user.FirstName} {user.LastName}, Strava ID= {user.StravaAthleteId} \n" +
                     $"Please type an option and press enter: \n" +
@@ -57,7 +57,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void ViewAllDetailedSegments(int userId)
         {
             Console.Clear();
-            ConsoleAppUser user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
 
             List<DetailedSegmentModel> segments = _athleteActivityService.GetAllDetailedSegments(userId);
 

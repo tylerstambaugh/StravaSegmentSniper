@@ -16,7 +16,7 @@ namespace StravaDataAnalyzerDataEF.Entities.Segment
 
         [ForeignKey("EffortCount")]
         public int EffortCountId { get; set; }
-        public EffortCount EffortCounts { get; set; }
+        public virtual EffortCount EffortCounts { get; set; }
 
         public string Title { get; set; }
 

@@ -24,7 +24,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         {
             bool runMenu = true;
             Console.Clear();
-            List<ConsoleAppUser> users = _userService.GetAllUsers();
+            List<ConsoleAppUser> users = _userService.GetAllConsoleAppUsers();
             while (runMenu)
             {
                 Console.Clear();
@@ -72,7 +72,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         public void ViewAthleteDetailsMenu(int userId)
         {
             bool runMenu = true;
-            ConsoleAppUser user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
             while (runMenu)
             {
                 Console.Clear();
@@ -108,7 +108,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 
         public void ViewAthleteDetails(int userId)
         {
-            ConsoleAppUser user = _userService.GetUserByUserId(userId);
+            ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
             DetailedAthleteModel athlete = _athleteService.GetDetailedAthleteModel(user.Id);
             if (user != null)
             {

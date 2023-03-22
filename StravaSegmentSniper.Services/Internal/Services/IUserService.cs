@@ -4,8 +4,8 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public interface IUserService
     {
-        List<ConsoleAppUser> GetAllUsers();
-        ConsoleAppUser GetUserByStravaId(long stravaAthleteId);
-        ConsoleAppUser GetUserByUserId(int userId);
+        List<ConsoleAppUser> GetAllConsoleAppUsers();
+        ConsoleAppUser GetConsoleAppUserByStravaId(long stravaAthleteId);
+        ConsoleAppUser GetConsoleAppUserByUserId(int userId);
     }
 }
