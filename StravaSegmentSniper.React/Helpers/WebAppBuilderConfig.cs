@@ -35,7 +35,7 @@ namespace StravaSegmentSniper.React.Helpers
 
             var appDataConnectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
             builder.Services.AddDbContext<AuthDbContext>(options =>
-                options.UseSqlServer(appDataConnectionString));
+                options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
@@ -55,6 +55,7 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IStravaAPIService, StravaAPIService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IWebAppUserService, WebAppUserService>();
 
             //register types for local EF data
             builder.Services.AddScoped<IDataAccessEF, DataAccessEF>();

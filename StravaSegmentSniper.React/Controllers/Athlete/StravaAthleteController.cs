@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 
-namespace StravaSegmentSniper.React.Controllers
+namespace StravaSegmentSniper.React.Controllers.Athlete
 {
     [Authorize]
     [ApiController]
@@ -19,6 +19,12 @@ namespace StravaSegmentSniper.React.Controllers
         public IEnumerable<DetailedAthlete> GetDetailedAthletes()
         {
             return _athleteService.GetDetailedAthletes();
+        }
+
+        [HttpGet("{itemType:int}")]
+        public DetailedAthlete GetDetailedAthlete()
+        {
+            throw new NotImplementedException();
         }
     }
 }
