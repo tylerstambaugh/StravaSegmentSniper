@@ -4,6 +4,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public interface IWebAppUserService
     {
-        WebAppUser GetLoggedInUser(string userId);
+        WebAppUser GetLoggedInUserById(string userId);
     }
 }

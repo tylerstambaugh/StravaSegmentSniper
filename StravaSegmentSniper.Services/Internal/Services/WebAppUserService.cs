@@ -12,7 +12,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _authDbContext = authDbContext;
         }
 
-        public WebAppUser GetLoggedInUser(string userId)
+        public WebAppUser GetLoggedInUserById(string userId)
         {
             var userToReturn = _authDbContext.Users.Where(x => x.Id == userId).First();
 
