@@ -6,7 +6,7 @@ using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Data.Entities.User;
 
-namespace StravaSegmentSniperReact.Data
+namespace StravaSegmentSniper.Data
 {
     public interface IStravaSegmentSniperDbContext
     {

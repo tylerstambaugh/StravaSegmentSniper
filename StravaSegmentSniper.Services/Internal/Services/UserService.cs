@@ -1,6 +1,6 @@
-﻿using StravaSegmentSniper.Data.Entities;
+﻿using StravaSegmentSniper.Data;
+using StravaSegmentSniper.Data.Entities;
 using StravaSegmentSniper.Data.Entities.User;
-using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
