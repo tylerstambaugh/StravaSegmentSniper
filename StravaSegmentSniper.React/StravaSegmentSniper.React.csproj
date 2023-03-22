@@ -52,7 +52,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\segmentSniper\" />
+    <Folder Include="ClientApp\src\components\segmentSniper\athlete\" />
+    <Folder Include="Controllers\Activity\" />
+    <Folder Include="Controllers\Token\" />
+    <Folder Include="Controllers\Segment\" />
   </ItemGroup>
 
   <ItemGroup>
