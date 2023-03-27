@@ -1,7 +1,5 @@
-﻿using StravaSegmentSniper.Data.Entities;
-using StravaSegmentSniper.Data.Entities.User;
+﻿using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Services;
-using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
 {

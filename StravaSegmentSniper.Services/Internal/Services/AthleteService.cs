@@ -5,7 +5,6 @@ using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
-using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
