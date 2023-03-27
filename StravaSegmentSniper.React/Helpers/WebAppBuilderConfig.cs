@@ -1,14 +1,12 @@
 ﻿using Authorization.Data.Data;
 using Authorization.Data.Models;
-using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
-using StravaSegmentSniper.Data.DataAccess.Athlete;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.DataAccess;
+using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniperReact.Data;
-using StravaSegmentSniper.ConsoleUI.UI;
 
 namespace StravaSegmentSniper.React.Helpers
 {

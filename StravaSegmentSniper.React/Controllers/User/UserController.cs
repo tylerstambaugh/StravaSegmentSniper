@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Services;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,19 +17,23 @@ namespace StravaSegmentSniper.React.Controllers.User
     public class UserController : ControllerBase
     {
         private readonly IWebAppUserService _webAppUserService;
+        private readonly UserManager<WebAppUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(IWebAppUserService webAppUserService)
+        public UserController(IWebAppUserService webAppUserService, UserManager<WebAppUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _webAppUserService = webAppUserService;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
-        [HttpGet("{userId:string}")]
-        public WebAppUser GetWebAppUserById(string userId)
+        //[HttpGet("{userId:string}")]
+        public WebAppUser GetWebAppUserById()
         {
-            string id;
-            //id = User.Identity.;
-            return _webAppUserService.GetLoggedInUser(userId);
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+           // var user = await _userManager.GetUserIdAsync(User)
+            return _webAppUserService.GetLoggedInUserById(userId);
         }
 
         //// GET: api/<UserController>

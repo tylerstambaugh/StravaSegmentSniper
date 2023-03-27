@@ -1,7 +1,5 @@
-﻿using StravaSegmentSniper.Data.Entities;
-using StravaSegmentSniper.Data.Entities.Activity;
+﻿using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
-using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Data.DataAccess
 {

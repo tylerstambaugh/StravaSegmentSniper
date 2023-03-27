@@ -1,8 +1,7 @@
-﻿using StravaSegmentSniper.Data.Entities;
+﻿using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniper.Services.StravaAPI.Models.Token;
-using StravaSegmentSniperReact.Data;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
