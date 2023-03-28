@@ -11,7 +11,8 @@ const context =  [
   "/Identity",
   "/connect",
   "/ApplyDatabaseMigrations",
-  "/_framework"
+    "/_framework",
+  "/segmentSniper/SegmentSniper"
 ];
 
 module.exports = function(app) {
