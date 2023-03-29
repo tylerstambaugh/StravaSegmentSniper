@@ -17,4 +17,10 @@
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StravaAPI\Athlete\" />
+    <Folder Include="StravaAPI\Token\" />
+    <Folder Include="StravaAPI\Segment\" />
+  </ItemGroup>
+
 </Project>

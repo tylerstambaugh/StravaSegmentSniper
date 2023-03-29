@@ -28,7 +28,7 @@ namespace StravaSegmentSniper.React.Controllers.User
         }
 
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public WebAppUser GetWebAppUserById()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();

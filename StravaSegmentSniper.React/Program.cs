@@ -3,6 +3,7 @@ using Authorization.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using StravaSegmentSniper.React.Helpers;
+using StravaSegmentSniper.React.Controllers.Athlete;
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = WebAppBuilderConfig.ConfigureBuilder();
@@ -36,5 +37,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.MapFallbackToFile("index.html"); ;
+
 
 app.Run();

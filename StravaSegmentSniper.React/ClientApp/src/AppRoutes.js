@@ -2,7 +2,7 @@ import ApiAuthorzationRoutes from './components/api-authorization/ApiAuthorizati
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { SegmentSniper } from "./components/segmentSniper/segment-sniper.js";
+import  SegmentSniper from "./components/segment-sniper/main.js";
 
 const AppRoutes = [
     {
@@ -19,7 +19,7 @@ const AppRoutes = [
         element: <FetchData />
     },
     {
-        path: '/segmentSniper/segment-sniper',
+        path: '/segment-sniper/main',
         requireAuth: true,
         element: <SegmentSniper />
     },
