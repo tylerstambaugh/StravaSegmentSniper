@@ -31,6 +31,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,9 +54,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Activity\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\" />
     <Folder Include="Controllers\Token\" />
-    <Folder Include="Controllers\Segment\" />
   </ItemGroup>
 
   <ItemGroup>

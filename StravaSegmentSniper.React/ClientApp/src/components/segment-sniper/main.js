@@ -2,24 +2,25 @@ import React, { Component, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../api-authorization/AuthorizeService';
 
-const SegmentSniper = () => { 
+export class SegmentSniper extends Component {
 
-    const user = authService.getUser();
-         // const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
-        //this.setState({
-        //    isAuthenticated,
-        //    userName: user && user.name
+    const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+    // const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+    //this.setState({
+    //    isAuthenticated,
+    //    userName: user && user.name
     //    });
-    
 
-    return (
-        (user != null) ?            
+
+render(){
+
+        (user != null) ?
             <main>
-                <p>this is the segment sniper homepage: { user }</p>
+                <p>this is the segment sniper homepage: {user} is { isAuthenticated}</p>
             </main>
 
             : <main>Loading...</main>
-    )
+    }
 }
 
 export default SegmentSniper;
