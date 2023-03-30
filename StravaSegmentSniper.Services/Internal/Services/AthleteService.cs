@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using StravaSegmentSniper.Data;
-using StravaSegmentSniper.Data.DataAccess;
-using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
@@ -16,8 +12,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly StravaSegmentSniperDbContext _context;
-        private readonly IDataAccessEF _dataAccessEF;
-        private readonly IAthleteData _athleteData;
 
         public AthleteService(IStravaAPIService stravaAPIService,
                                 ITokenService tokenService, 
@@ -30,32 +24,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _context = context;
         }
 
-        public DetailedAthleteModel GetDetailedAthleteModel(int userId)
-        {
-            var token = _tokenService.GetTokenByUserId(userId);
-            if (token != null)
-            {
-                try
-                {
-                    DetailedAthleteAPIModel athleteFromApi = _stravaAPIService.GetDetailedAthlete(token.AuthorizationToken).Result;
-
-                    DetailedAthleteModel model = _mapper
-                            .Map<DetailedAthleteAPIModel, DetailedAthleteModel>(athleteFromApi);
-
-                    return model;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception Source{ex.Source}, \n +" +
-                        $"Exception Message {ex.Message}");
-                    return null;
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException(nameof(userId));
-            }
-        }
 
         public List<DetailedAthlete> GetDetailedAthletes()
         {
@@ -76,7 +44,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 Profile = model.Profile
             };
 
-            var existingAthleteCount = _context.DetailedAthletes.Where(x => x.Id == detailedAthlete.Id).Count();
+            var existingAthleteCount = _context.DetailedAthletes.Where(x => x.Id == athleteToSave.Id).Count();
             if (existingAthleteCount > 0)
             {
                 return -2;
