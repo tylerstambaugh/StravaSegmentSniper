@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
+using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Athlete;
 
 namespace StravaSegmentSniper.React.Helpers
@@ -50,6 +51,7 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IWebAppUserService, WebAppUserService>();
             builder.Services.AddScoped<IStravaAPIAthlete, StravaAPIAthlete>();
+            builder.Services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();
 
             //register types for local EF data
             

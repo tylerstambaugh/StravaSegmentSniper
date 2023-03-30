@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
+using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,21 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Activity
 {
-    public class StravaAPIActivity
+    public class StravaAPIActivity : IStravaAPIActivity
     {
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public StravaAPIActivity(IMapper mapper)
+        public StravaAPIActivity(IMapper mapper, ITokenService tokenService)
         {
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
-        public async Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token)
+        public async Task<List<SummaryActivityModel>> ViewAthleteActivityForTimeRange(int after, int before, int userId)
         {
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             string query = $"before={before}&after={after}&per_page=200";
             var builder = new UriBuilder()
             {
@@ -68,8 +72,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             }
         }
 
-        public async Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token)
+        public async Task<DetailedActivityModel> GetDetailedActivityById(long activityId, int userId)
         {
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
@@ -88,8 +93,11 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    DetailedActivityAPIModel model = await response.Content
+                    DetailedActivityAPIModel apiModel = await response.Content
                         .ReadAsAsync<DetailedActivityAPIModel>();
+
+                    DetailedActivityModel model = _mapper
+                               .Map<DetailedActivityAPIModel, DetailedActivityModel>(apiModel);
 
                     return model;
                 }
