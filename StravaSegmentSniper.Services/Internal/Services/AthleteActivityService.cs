@@ -34,7 +34,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId)
         {
-            string token =  _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
 
             var activityToReturn = _stravaAPIService.GetDetailedActivityById(activityId, token).Result;
 

@@ -8,6 +8,7 @@ using StravaSegmentSniper.ConsoleUI.UI.LocalDataUI;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI;
+using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Athlete;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers
@@ -53,7 +54,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       //services that call Strava
                       services.AddScoped<IStravaAPIService, StravaAPIService>();
                       services.AddScoped<IStravaAPIAthlete, StravaAPIAthlete>();
-
+                      services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();
                       //register types for local console views
                       services.AddScoped<IViewLocalDataUI, ViewLocalDataUI>();
                       services.AddScoped<IViewLocalAthleteInfoUI, ViewLocalAthleteInfoUI>();
