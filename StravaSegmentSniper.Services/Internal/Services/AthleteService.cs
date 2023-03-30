@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.DataAccess.Athlete;
 using StravaSegmentSniper.Data.Entities.Athlete;
@@ -13,16 +15,19 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly IStravaAPIService _stravaAPIService;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly StravaSegmentSniperDbContext _context;
         private readonly IDataAccessEF _dataAccessEF;
         private readonly IAthleteData _athleteData;
 
-        public AthleteService(IStravaAPIService stravaAPIService, ITokenService tokenService, IMapper mapper, IDataAccessEF dataAccessEF, IAthleteData athleteData)
+        public AthleteService(IStravaAPIService stravaAPIService,
+                                ITokenService tokenService, 
+                                IMapper mapper,
+                                StravaSegmentSniperDbContext context)
         {
             _stravaAPIService = stravaAPIService;
             _tokenService = tokenService;
             _mapper = mapper;
-            _dataAccessEF = dataAccessEF;
-            _athleteData = athleteData;
+            _context = context;
         }
 
         public DetailedAthleteModel GetDetailedAthleteModel(int userId)
@@ -54,7 +59,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public List<DetailedAthlete> GetDetailedAthletes()
         {
-            return _athleteData.GetDetailedAthletes();
+            return _context.DetailedAthletes.ToList();
         }
 
         public int SavedDetailedAtheleteToDb(DetailedAthleteModel model)
@@ -71,7 +76,21 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 Profile = model.Profile
             };
 
-            return _dataAccessEF.SaveDetailedAthlete(athleteToSave);
+            var existingAthleteCount = _context.DetailedAthletes.Where(x => x.Id == detailedAthlete.Id).Count();
+            if (existingAthleteCount > 0)
+            {
+                return -2;
+            }
+            else
+            {
+                _context.DetailedAthletes.Add(athleteToSave);
+
+                //need to get the detailedAthlete ID and write it back to the user record
+
+                if (_context.SaveChanges() == 1)
+                    return 1;
+                return -1;
+            }
         }
     }
 }

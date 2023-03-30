@@ -56,8 +56,6 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IViewLocalDataUI, ViewLocalDataUI>();
                       services.AddScoped<IViewLocalAthleteInfoUI, ViewLocalAthleteInfoUI>();
                       services.AddScoped<IViewLocalAthleteActivityUI, ViewLocalAthleteActivityUI>();
-                      services.AddScoped<IDataAccessEF, DataAccessEF>();
-                      services.AddScoped<IAthleteData, AthleteData>();
                   });
 
             return host.Build();

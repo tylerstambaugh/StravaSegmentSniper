@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
@@ -15,15 +16,15 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly IStravaAPIService _stravaAPIService;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
-        private readonly IDataAccessEF _dataAccessEF;
+        private readonly StravaSegmentSniperDbContext _context;
 
-        public AthleteActivityService(IStravaAPIService stravaAPIService, IMapper mapper, ITokenService tokenService,
-            IDataAccessEF dataAccessEF)
+        public AthleteActivityService(IStravaAPIService stravaAPIService, IMapper mapper, ITokenService tokenService, StravaSegmentSniperDbContext context
+           )
         {
             _stravaAPIService = stravaAPIService;
             _mapper = mapper;
             _tokenService = tokenService;
-            _dataAccessEF = dataAccessEF;
+            _context = context;
         }
         public List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before)
         {
@@ -113,7 +114,20 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 Description = model.Description
             };
 
-            return _dataAccessEF.SaveDetailedActivity(activityToSave);
+            var existingActivityCount = _context.DetailedActivities.Where(x => x.Id == detailedActivity.Id).Count();
+            if (existingActivityCount > 0)
+            {
+                return -2;
+            }
+            else
+            {
+                _context.DetailedActivities.Add(activityToSave);
+
+                if (_context.SaveChanges() == 1)
+                    return 1;
+                return -1;
+            }
+
 
         }
     }

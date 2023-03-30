@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="StravaAPI\Athlete\**" />
+    <Compile Remove="StravaAPI\Segment\**" />
+    <Compile Remove="StravaAPI\Token\**" />
+    <EmbeddedResource Remove="StravaAPI\Athlete\**" />
+    <EmbeddedResource Remove="StravaAPI\Segment\**" />
+    <EmbeddedResource Remove="StravaAPI\Token\**" />
+    <None Remove="StravaAPI\Athlete\**" />
+    <None Remove="StravaAPI\Segment\**" />
+    <None Remove="StravaAPI\Token\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
@@ -15,12 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="StravaAPI\Athlete\" />
-    <Folder Include="StravaAPI\Token\" />
-    <Folder Include="StravaAPI\Segment\" />
   </ItemGroup>
 
 </Project>
