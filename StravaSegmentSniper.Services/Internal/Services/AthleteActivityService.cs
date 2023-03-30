@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using StravaSegmentSniper.Data;
-using StravaSegmentSniper.Data.DataAccess;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
-using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
-using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
@@ -114,7 +111,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 Description = model.Description
             };
 
-            var existingActivityCount = _context.DetailedActivities.Where(x => x.Id == detailedActivity.Id).Count();
+            var existingActivityCount = _context.DetailedActivities.Where(x => x.Id == activityToSave.Id).Count();
             if (existingActivityCount > 0)
             {
                 return -2;

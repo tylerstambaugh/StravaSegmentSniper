@@ -7,13 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="StravaAPI\Athlete\**" />
     <Compile Remove="StravaAPI\Segment\**" />
     <Compile Remove="StravaAPI\Token\**" />
-    <EmbeddedResource Remove="StravaAPI\Athlete\**" />
     <EmbeddedResource Remove="StravaAPI\Segment\**" />
     <EmbeddedResource Remove="StravaAPI\Token\**" />
-    <None Remove="StravaAPI\Athlete\**" />
     <None Remove="StravaAPI\Segment\**" />
     <None Remove="StravaAPI\Token\**" />
   </ItemGroup>

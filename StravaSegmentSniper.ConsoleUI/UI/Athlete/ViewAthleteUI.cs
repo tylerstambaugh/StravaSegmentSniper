@@ -1,6 +1,7 @@
 ﻿using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Models.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
+using StravaSegmentSniper.Services.StravaAPI.Athlete;
 using System.Diagnostics;
 
 namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
@@ -11,13 +12,19 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
         private readonly IGetAthleteActivityUI _getAthleteActivityUI;
         private readonly IViewTrophyCaseUI _viewTrophyCaseUI;
         private readonly IUserService _userService;
+        private readonly IStravaAPIAthlete _stravaAPIAthlete;
 
-        public ViewAthleteUI(IAthleteService athleteService, IGetAthleteActivityUI getAthleteActivityUI, IViewTrophyCaseUI viewTrophyCaseUI, IUserService userService)
+        public ViewAthleteUI(IAthleteService athleteService, 
+                                IGetAthleteActivityUI getAthleteActivityUI, 
+                                IViewTrophyCaseUI viewTrophyCaseUI, 
+                                IUserService userService, 
+                                IStravaAPIAthlete stravaAPIAthlete)
         {
             _athleteService = athleteService;
             _getAthleteActivityUI = getAthleteActivityUI;
             _viewTrophyCaseUI = viewTrophyCaseUI;
             _userService = userService;
+            _stravaAPIAthlete = stravaAPIAthlete;
         }
 
         public void ViewAthleteMenu()
@@ -106,10 +113,10 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             }
         }
 
-        public void ViewAthleteDetails(int userId)
+        public async void ViewAthleteDetails(int userId)
         {
             ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
-            DetailedAthleteModel athlete = _athleteService.GetDetailedAthleteModel(user.Id);
+            DetailedAthleteModel athlete = await _stravaAPIAthlete.GetDetailedAthleteFromStrava(user.Id);
             if (user != null)
             {
                 Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");

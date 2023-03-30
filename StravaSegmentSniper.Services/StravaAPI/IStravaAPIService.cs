@@ -10,7 +10,7 @@ namespace StravaSegmentSniper.Services.StravaAPI
     public interface IStravaAPIService
     {
         Task<Token> GetAthleteToken();
-        Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token);
+       //Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token);
         Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token);
         Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token);
         Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId);
