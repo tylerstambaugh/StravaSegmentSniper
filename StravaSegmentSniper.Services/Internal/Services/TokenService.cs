@@ -1,19 +1,21 @@
 ﻿using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Services.Internal.Models.Token;
 using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniper.Services.StravaAPI.Models.Token;
+using StravaSegmentSniper.Services.StravaAPI.TokenService;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class TokenService : ITokenService
     {
         private readonly StravaSegmentSniperDbContext _context;
-        private readonly IStravaAPIService _stravaAPIService;
+        private readonly IStravaAPIToken _stravaAPIToken;
 
-        public TokenService(StravaSegmentSniperDbContext context, IStravaAPIService stravaAPIService)
+        public TokenService(StravaSegmentSniperDbContext context,
+                            IStravaAPIToken stravaAPIToken)
         {
             _context = context;
-            _stravaAPIService = stravaAPIService;
+            _stravaAPIToken = stravaAPIToken;
         }
         public Token GetTokenByStravaAthleteId(long stravaAthleteId)
         {
@@ -41,7 +43,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             var tokenToUpdate = _context.Tokens
                         .Where(x => x.UserId == userId).First();
 
-            RefreshTokenAPIModel refreshedToken = _stravaAPIService.RefreshToken(tokenToUpdate.RefreshToken).Result;
+            RefreshTokenModel refreshedToken = _stravaAPIToken.RefreshToken(tokenToUpdate.RefreshToken).Result;
 
             if (refreshedToken.AccessToken != null)
             {

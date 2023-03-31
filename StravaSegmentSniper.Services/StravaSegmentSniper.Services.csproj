@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="StravaAPI\Token\**" />
-    <EmbeddedResource Remove="StravaAPI\Token\**" />
-    <None Remove="StravaAPI\Token\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />

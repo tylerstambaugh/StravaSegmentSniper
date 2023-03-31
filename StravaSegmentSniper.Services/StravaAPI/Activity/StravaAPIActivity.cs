@@ -114,6 +114,11 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             }
         }
 
+        public async Task<ActivityStatsModel> ViewAthleteStats(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

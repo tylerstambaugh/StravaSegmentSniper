@@ -6,13 +6,12 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 {
     public class ViewTrophyCaseUI : IViewTrophyCaseUI
     {
-        private readonly IAthleteService _athleteService;
         private readonly IAthleteActivityService _athleteActivityService;
         private readonly IUserService _userService;
 
-        public ViewTrophyCaseUI(IAthleteService athleteService, IAthleteActivityService athleteActivityService, IUserService userService)
+        public ViewTrophyCaseUI(IAthleteActivityService athleteActivityService, 
+                                IUserService userService)
         {
-            _athleteService = athleteService;
             _athleteActivityService = athleteActivityService;
             _userService = userService;
         }

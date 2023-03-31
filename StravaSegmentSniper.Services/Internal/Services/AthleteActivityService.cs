@@ -6,44 +6,24 @@ using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.StravaAPI;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
+using StravaSegmentSniper.Services.StravaAPI.Segment;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class AthleteActivityService : IAthleteActivityService
     {
-        private readonly IStravaAPIService _stravaAPIService;
-        private readonly IMapper _mapper;
         private readonly IStravaAPIActivity _stravaAPIActivity;
+        private readonly IStravaAPISegment _stravaAPISegment;
         private readonly StravaSegmentSniperDbContext _context;
 
-        public AthleteActivityService(IStravaAPIService stravaAPIService,
-                                      IMapper mapper,
-                                      IStravaAPIActivity stravaAPIActivity,
-                                      StravaSegmentSniperDbContext context
-           )
-        {
-            _stravaAPIService = stravaAPIService;
-            _mapper = mapper;
+        public AthleteActivityService(IStravaAPIActivity stravaAPIActivity,
+                                      IStravaAPISegment stravaAPISegment,
+                                      StravaSegmentSniperDbContext context)
+        {            
             _stravaAPIActivity = stravaAPIActivity;
+            _stravaAPISegment = stravaAPISegment;
             _context = context;
-        }
-        //public List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before)
-        //{
-        //    List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
-        //    //string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
-        //    returnList = _stravaAPIActivity.GetSummaryActivityForTimeRange(after, before, userId).Result;
-
-        //    return returnList;
-        //}
-
-        //public DetailedActivityModel GetDetailedActivityByActivityId(int userId, long activityId)
-        //{
-        //   // string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
-
-        //    var activityToReturn = _stravaAPIActivity.GetDetailedActivityById(activityId, userId).Result;
-
-        //    return activityToReturn;
-        //}
+        }  
 
         public List<DetailedSegmentModel> GetAllDetailedSegments(int userId)
         {
@@ -76,11 +56,19 @@ namespace StravaSegmentSniper.Services.Internal.Services
             List<DetailedSegmentModel> segments = new List<DetailedSegmentModel>();
             foreach (DetailedSegmentEffortModel dsem in segmentEffortsList)
             {
-                DetailedSegmentModel segment = _stravaAPIService.GetDetailedSegmentById(dsem.Segment.Id, token).Result;
+                DetailedSegmentModel segment = _stravaAPISegment.GetDetailedSegmentById(dsem.Segment.Id, userId).Result;
                 segments.Add(segment);
             }
 
             return segments;
+        }
+        public List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before)
+        {
+            List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
+            //string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            returnList = _stravaAPIActivity.GetSummaryActivityForTimeRange(after, before, userId).Result;
+
+            return returnList;
         }
 
         public int SaveDetailedActivityToDB(DetailedActivityModel model, int detailedAthleteId)

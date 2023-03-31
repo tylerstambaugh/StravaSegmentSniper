@@ -2,18 +2,24 @@
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Services;
+using StravaSegmentSniper.Services.StravaAPI.TokenService;
 
 namespace StravaSegmentSniper.ConsoleUI.UI
 {
     public class CheckTokenUI : ICheckTokenUI
     {
         private readonly ITokenService _tokenService;
+        private readonly IStravaAPIToken _stravaAPIToken;
         private readonly IAthleteService _athleteService;
         private readonly IUserService _userService;
 
-        public CheckTokenUI(ITokenService tokenService, IAthleteService athleteService, IUserService userService)
+        public CheckTokenUI(ITokenService tokenService, 
+                            IStravaAPIToken stravaAPIToken,
+                            IAthleteService athleteService,
+                            IUserService userService)
         {
             _tokenService = tokenService;
+            _stravaAPIToken = stravaAPIToken;
             _athleteService = athleteService;
             _userService = userService;
         }
