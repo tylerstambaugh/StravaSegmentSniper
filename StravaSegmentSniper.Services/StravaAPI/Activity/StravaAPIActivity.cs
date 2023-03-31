@@ -23,7 +23,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             _tokenService = tokenService;
         }
 
-        public async Task<List<SummaryActivityModel>> ViewAthleteActivityForTimeRange(int after, int before, int userId)
+        public async Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, int userId)
         {
             string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             string query = $"before={before}&after={after}&per_page=200";
@@ -113,5 +113,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
                 return null;
             }
         }
+
+
     }
 }
