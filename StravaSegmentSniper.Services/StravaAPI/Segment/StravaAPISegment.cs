@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Segment
 {
-    public class StravaAPISegment
+    public class StravaAPISegment : IStravaAPISegment
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly IMapper _mapper;

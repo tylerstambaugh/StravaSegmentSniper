@@ -13,6 +13,7 @@ using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 using StravaSegmentSniper.Services.StravaAPI.Models.Misc;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
+using StravaSegmentSniper.Services.StravaAPI.Models.Token;
 
 namespace StravaSegmentSniper.ConsoleUI.Helpers
 {
@@ -48,6 +49,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<BikeAPIModel, BikeModel>();
             CreateMap<PhotosAPIModel, PhotosModel>();
             CreateMap<StatsVisibilityAPIModel, StatsVisibilityModel>();
+            CreateMap<RefreshTokenAPIModel, RefreshTokenModel>();
 
             //map service models to Entities. 
             CreateMap<DetailedActivityModel, DetailedActivity>();

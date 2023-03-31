@@ -113,10 +113,10 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
             }
         }
 
-        public async void ViewAthleteDetails(int userId)
+        public void ViewAthleteDetails(int userId)
         {
             ConsoleAppUser user = _userService.GetConsoleAppUserByUserId(userId);
-            DetailedAthleteModel athlete = await _stravaAPIAthlete.GetDetailedAthleteFromStrava(user.Id);
+            DetailedAthleteModel athlete = _stravaAPIAthlete.GetDetailedAthleteFromStrava(user.Id).Result;
             if (user != null)
             {
                 Console.WriteLine($"Athlete Details Retreived from Strava for {user.Id}, ({user.FirstName} {user.LastName})");
