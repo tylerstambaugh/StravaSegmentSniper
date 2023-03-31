@@ -8,19 +8,11 @@ namespace StravaSegmentSniper.Services.Internal.Services
 {
     public class AthleteService : IAthleteService
     {
-        private readonly IStravaAPIService _stravaAPIService;
-        private readonly ITokenService _tokenService;
-        private readonly IMapper _mapper;
         private readonly StravaSegmentSniperDbContext _context;
 
-        public AthleteService(IStravaAPIService stravaAPIService,
-                                ITokenService tokenService, 
-                                IMapper mapper,
-                                StravaSegmentSniperDbContext context)
+        public AthleteService(StravaSegmentSniperDbContext context)
         {
-            _stravaAPIService = stravaAPIService;
-            _tokenService = tokenService;
-            _mapper = mapper;
+            
             _context = context;
         }
 
