@@ -5,6 +5,6 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
     public interface IStravaAPIActivity
     {
         Task<DetailedActivityModel> GetDetailedActivityById(long activityId, int userId);
-        Task<List<SummaryActivityModel>> ViewAthleteActivityForTimeRange(int after, int before, int userId);
+        Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, int userId);
     }
 }

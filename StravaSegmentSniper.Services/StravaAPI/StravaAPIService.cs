@@ -58,220 +58,220 @@ namespace StravaSegmentSniper.Services.StravaAPI
         //        return null;
         //    }
         //}
-        public async Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token)
-        {
-            string query = $"before={before}&after={after}&per_page=200";
-            var builder = new UriBuilder()
-            {
-                Scheme = "https",
-                Host = "www.strava.com",
-                Path = "api/v3/athlete/activities",
-                Query = query,
-            };
+        //public async Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token)
+        //{
+        //    string query = $"before={before}&after={after}&per_page=200";
+        //    var builder = new UriBuilder()
+        //    {
+        //        Scheme = "https",
+        //        Host = "www.strava.com",
+        //        Path = "api/v3/athlete/activities",
+        //        Query = query,
+        //    };
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", token);
+        //    _httpClient.DefaultRequestHeaders.Authorization =
+        //    new AuthenticationHeaderValue("Bearer", token);
 
-            var url = builder.ToString();
+        //    var url = builder.ToString();
 
-            try
-            {
+        //    try
+        //    {
 
-                HttpResponseMessage response = await _httpClient.GetAsync(url);
+        //        HttpResponseMessage response = await _httpClient.GetAsync(url);
 
-                if (response.IsSuccessStatusCode && response != null)
-                {
-                    var apiResponseContent = await response.Content.ReadAsAsync<List<SummaryActivityAPIModel>>();
+        //        if (response.IsSuccessStatusCode && response != null)
+        //        {
+        //            var apiResponseContent = await response.Content.ReadAsAsync<List<SummaryActivityAPIModel>>();
 
-                    List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
-                    foreach (SummaryActivityAPIModel s in apiResponseContent)
-                    {
-                        SummaryActivityModel model = _mapper
-                            .Map<SummaryActivityAPIModel, SummaryActivityModel>(s);
+        //            List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
+        //            foreach (SummaryActivityAPIModel s in apiResponseContent)
+        //            {
+        //                SummaryActivityModel model = _mapper
+        //                    .Map<SummaryActivityAPIModel, SummaryActivityModel>(s);
 
-                        returnList.Add(model);
-                    }
-                    return returnList;
-                }
-                else
-                {
-                    throw new Exception(response.Content.ToString());
+        //                returnList.Add(model);
+        //            }
+        //            return returnList;
+        //        }
+        //        else
+        //        {
+        //            throw new Exception(response.Content.ToString());
 
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
-        }
+        //        }
+        //    }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+        //        return null;
+        //    }
+        //}
 
-        public async Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token)
-        {
-            var builder = new UriBuilder()
-            {
-                Scheme = "https",
-                Host = "www.strava.com",
-                Path = $"api/v3/activities/{activityId}",
-                Query = "include_all_efforts=true"
-            };
+        //public async Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token)
+        //{
+        //    var builder = new UriBuilder()
+        //    {
+        //        Scheme = "https",
+        //        Host = "www.strava.com",
+        //        Path = $"api/v3/activities/{activityId}",
+        //        Query = "include_all_efforts=true"
+        //    };
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-           new AuthenticationHeaderValue("Bearer", token);
+        //    _httpClient.DefaultRequestHeaders.Authorization =
+        //   new AuthenticationHeaderValue("Bearer", token);
 
-            var uri = builder.ToString();
+        //    var uri = builder.ToString();
 
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    DetailedActivityAPIModel model = await response.Content
-                        .ReadAsAsync<DetailedActivityAPIModel>();
+        //    try
+        //    {
+        //        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            DetailedActivityAPIModel model = await response.Content
+        //                .ReadAsAsync<DetailedActivityAPIModel>();
 
-                    return model;
-                }
-                else
-                {
-                    throw new HttpRequestException(response.Content.ToString());
-                }
-            }
+        //            return model;
+        //        }
+        //        else
+        //        {
+        //            throw new HttpRequestException(response.Content.ToString());
+        //        }
+        //    }
 
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
-        }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
+        //        return null;
+        //    }
+        //}
 
-        public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, string token)
-        {
-            var returnList = new List<DetailedSegmentEffortModel>();
+        //public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, string token)
+        //{
+        //    var returnList = new List<DetailedSegmentEffortModel>();
 
-            string query = $"segment_id={segmentId}&start_date_local={startDate}&end_date_local={endDate}";
-            var builder = new UriBuilder()
-            {
-                Scheme = "https",
-                Host = "www.strava.com",
-                Path = $"api/v3/segment_efforts/",
-                Query = query
-            };
+        //    string query = $"segment_id={segmentId}&start_date_local={startDate}&end_date_local={endDate}";
+        //    var builder = new UriBuilder()
+        //    {
+        //        Scheme = "https",
+        //        Host = "www.strava.com",
+        //        Path = $"api/v3/segment_efforts/",
+        //        Query = query
+        //    };
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", token);
+        //    _httpClient.DefaultRequestHeaders.Authorization =
+        //    new AuthenticationHeaderValue("Bearer", token);
 
-            var uri = builder.ToString();
+        //    var uri = builder.ToString();
 
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    List<DetailedSegmentEffortAPIModel> apiResponseContent = await response.Content
-                        .ReadAsAsync<List<DetailedSegmentEffortAPIModel>>();
+        //    try
+        //    {
+        //        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            List<DetailedSegmentEffortAPIModel> apiResponseContent = await response.Content
+        //                .ReadAsAsync<List<DetailedSegmentEffortAPIModel>>();
 
-                    foreach (DetailedSegmentEffortAPIModel daam in apiResponseContent)
-                    {
-                        DetailedSegmentEffortModel model = _mapper
-                            .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(daam);
-                        returnList.Add(model);
-                    }
-                    return returnList;
-                }
+        //            foreach (DetailedSegmentEffortAPIModel daam in apiResponseContent)
+        //            {
+        //                DetailedSegmentEffortModel model = _mapper
+        //                    .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(daam);
+        //                returnList.Add(model);
+        //            }
+        //            return returnList;
+        //        }
 
-                else
-                {
-                    throw new HttpRequestException(response.Content.ToString());
-                }
-            }
+        //        else
+        //        {
+        //            throw new HttpRequestException(response.Content.ToString());
+        //        }
+        //    }
 
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
-        }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+        //        return null;
+        //    }
+        //}
 
-        public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId)
-        {
-            var builder = new UriBuilder()
-            {
-                Scheme = "https",
-                Host = "www.strava.com",
-                Path = $"api/v3/segment_efforts/{segmentEffortId}"
-            };
+        //public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId)
+        //{
+        //    var builder = new UriBuilder()
+        //    {
+        //        Scheme = "https",
+        //        Host = "www.strava.com",
+        //        Path = $"api/v3/segment_efforts/{segmentEffortId}"
+        //    };
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-           new AuthenticationHeaderValue("Bearer", token);
+        //    _httpClient.DefaultRequestHeaders.Authorization =
+        //   new AuthenticationHeaderValue("Bearer", token);
 
-            var uri = builder.ToString();
+        //    var uri = builder.ToString();
 
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    DetailedSegmentEffortAPIModel apiResponseContent = await response.Content
-                        .ReadAsAsync<DetailedSegmentEffortAPIModel>();
+        //    try
+        //    {
+        //        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            DetailedSegmentEffortAPIModel apiResponseContent = await response.Content
+        //                .ReadAsAsync<DetailedSegmentEffortAPIModel>();
 
-                    DetailedSegmentEffortModel model = _mapper
-                        .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(apiResponseContent);
+        //            DetailedSegmentEffortModel model = _mapper
+        //                .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(apiResponseContent);
 
-                    return model;
-                }
-                else
-                {
-                    throw new HttpRequestException(response.Content.ToString());
+        //            return model;
+        //        }
+        //        else
+        //        {
+        //            throw new HttpRequestException(response.Content.ToString());
 
-                }
-            }
+        //        }
+        //    }
 
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
-        }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+        //        return null;
+        //    }
+        //}
 
-        public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token)
-        {
-            var builder = new UriBuilder()
-            {
-                Scheme = "https",
-                Host = "www.strava.com",
-                Path = $"api/v3/segments/{segmentId}"
-            };
+        //public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token)
+        //{
+        //    var builder = new UriBuilder()
+        //    {
+        //        Scheme = "https",
+        //        Host = "www.strava.com",
+        //        Path = $"api/v3/segments/{segmentId}"
+        //    };
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-           new AuthenticationHeaderValue("Bearer", token);
+        //    _httpClient.DefaultRequestHeaders.Authorization =
+        //   new AuthenticationHeaderValue("Bearer", token);
 
-            var uri = builder.ToString();
+        //    var uri = builder.ToString();
 
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    DetailedSegmentAPIModel apiResponseContent = await response.Content
-                        .ReadAsAsync<DetailedSegmentAPIModel>();
+        //    try
+        //    {
+        //        HttpResponseMessage response = await _httpClient.GetAsync(uri);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            DetailedSegmentAPIModel apiResponseContent = await response.Content
+        //                .ReadAsAsync<DetailedSegmentAPIModel>();
 
-                    DetailedSegmentModel model = _mapper
-                        .Map<DetailedSegmentAPIModel, DetailedSegmentModel>(apiResponseContent);
-                    return model;
-                }
+        //            DetailedSegmentModel model = _mapper
+        //                .Map<DetailedSegmentAPIModel, DetailedSegmentModel>(apiResponseContent);
+        //            return model;
+        //        }
 
-                else
-                {
-                    throw new HttpRequestException(response.Content.ToString());
-                }
-            }
+        //        else
+        //        {
+        //            throw new HttpRequestException(response.Content.ToString());
+        //        }
+        //    }
 
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
-        }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+        //        return null;
+        //    }
+        //}
 
 
         public async Task<ActivityStatsModel> ViewAthleteStats(string token)

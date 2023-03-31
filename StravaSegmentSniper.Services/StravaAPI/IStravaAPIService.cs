@@ -11,12 +11,12 @@ namespace StravaSegmentSniper.Services.StravaAPI
     {
         Task<Token> GetAthleteToken();
        //Task<DetailedAthleteAPIModel> GetDetailedAthlete(string token);
-        Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token);
-        Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token);
-        Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId);
+     //   Task<DetailedActivityAPIModel> GetDetailedActivityById(long activityId, string token);
+        //Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, string token);
+      //  Task<DetailedSegmentEffortModel> GetSegmentEffortById(string token, int segmentEffortId);
         Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, string token);
         Task<RefreshTokenAPIModel> RefreshToken(string refreshToken);
-        Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token);
+       // Task<List<SummaryActivityModel>> ViewAthleteActivity(int after, int before, string token);
         Task<ActivityStatsModel> ViewAthleteStats(string token);
     }
 }

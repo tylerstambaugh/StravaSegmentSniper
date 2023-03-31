@@ -85,7 +85,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
 
             //
             List<SummaryActivityModel> listOfActivities = await _stravaAPIActivity
-                .ViewAthleteActivityForTimeRange(startDate, endDate, userId);
+                .GetSummaryActivityForTimeRange(startDate, endDate, userId);
 
             Console.WriteLine($"You are viewing the activity for {user.FirstName} {user.LastName}, Strava ID= {user.Athlete.StravaAthleteId}");
 
@@ -115,8 +115,8 @@ namespace StravaSegmentSniper.ConsoleUI.UI.Athlete
                 }
 
                 long activityId = Int64.Parse(input);
-                //
-                DetailedActivityModel activity = _athleteActivityService.GetDetailedActivityByActivityId(userId, activityId);
+                
+                DetailedActivityModel activity =  _stravaAPIActivity.GetDetailedActivityById(activityId, userId).Result;
 
                 Console.WriteLine($"You are viewing the activity {activityId} for Strava ID= {user.StravaAthleteId}");
                 Console.WriteLine($"Name: {activity.Name} Id:{activityId}");
