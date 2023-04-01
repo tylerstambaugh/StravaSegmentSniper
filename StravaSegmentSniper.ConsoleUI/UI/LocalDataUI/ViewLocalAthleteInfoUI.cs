@@ -43,10 +43,10 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
                     break;
                 }
 
-                var selection = users.Where(x => x.Id == userInputInt).ToList();
+                var selection = users.Where(x => x.Id == userInputInt).First();
                 if (selection != null)
                 {
-                    ViewAthleteDetailsMenu(userInputInt);
+                    ViewAthleteDetailsMenu(selection.StravaAthleteId);
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI.LocalDataUI
             }
             return;
         }
-        public void ViewAthleteDetailsMenu(int stravaAthleteId)
+        public void ViewAthleteDetailsMenu(long stravaAthleteId)
         {
             bool runMenu = true;
             ConsoleAppUser user = _userService.GetConsoleAppUserByStravaId(stravaAthleteId);
