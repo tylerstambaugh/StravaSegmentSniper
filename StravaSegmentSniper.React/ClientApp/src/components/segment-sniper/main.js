@@ -9,21 +9,20 @@ function SegmentSniper() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() =>{
-        const _subscription = authService.subscribe(() => this.populateState());
+        const _subscription = authService.subscribe(() => populateState());
         populateState();
 
         return () => {
             authService.unsubscribe(_subscription);
           };
-    });
+    },[userName]);
 
     async function populateState() {
     const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
-    this.setState({
-      isAuthenticated,
-      userName: user && user.name
-    });
-  }
+    setIsAuthenticated(isAuthenticated);
+      setUsername(user && user.name)
+    }
+  
 
   if(isAuthenticated) {
   return (
