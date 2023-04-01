@@ -54,7 +54,6 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
                               .Map<RefreshTokenAPIModel, RefreshTokenModel>(model);
 
                     return returnToken;
-
                 }
                 else
                 {

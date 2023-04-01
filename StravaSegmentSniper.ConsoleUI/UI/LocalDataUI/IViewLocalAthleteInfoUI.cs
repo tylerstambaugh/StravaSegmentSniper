@@ -3,7 +3,7 @@
     public interface IViewLocalAthleteInfoUI
     {
         void InvalidSelection();
-        void ViewAthleteDetailsMenu(int athleteId);
+        void ViewAthleteDetailsMenu(long stravaAthleteId);
         void ViewLocalAthleteMenu();
     }
 }
