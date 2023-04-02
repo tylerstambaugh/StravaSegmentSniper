@@ -54,7 +54,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\segment-sniper\" />
+	 <Folder Include="ClientApp\src\components\segment-sniper\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\athlete\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\token\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\segment\" />
     <Folder Include="Controllers\Token\" />
   </ItemGroup>
 
