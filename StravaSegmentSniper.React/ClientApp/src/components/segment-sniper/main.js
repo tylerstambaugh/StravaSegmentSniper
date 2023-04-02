@@ -28,6 +28,7 @@ function SegmentSniper() {
 
   }
 
+
   if (isAuthenticated) {
     return (
       <main className="container">
