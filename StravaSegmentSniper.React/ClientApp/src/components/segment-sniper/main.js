@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from 'react-router-dom';
 import authService from "../api-authorization/AuthorizeService";
+import Activity  from "./activity/Activity";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -31,13 +32,17 @@ function SegmentSniper() {
 
   if (isAuthenticated) {
     return (
+        
       <main className="container">
+        <Routes>
+            <Route path="/activity/Activity" element={< Activity />}/>
+        </Routes>
         <div className="row justify-content-center mt-3 mb-3">
           <div className="col-6">{userName} is authenticated</div>
           <div className="main-tile">
             <ul>
-              <li onClick={handleTileClick} style={{ cursor: "pointer" }}>View Athlete Details</li>
-              <li onClick={handleTileClick} style={{ cursor: "pointer" }}>View Activities and Segments</li>
+              <li style={{ cursor: "pointer" }}><Link to="/athlete">View Athlete Details</Link></li>
+              <li style={{ cursor: "pointer" }}><Link to="/activity/Activity">Activities and Segment</Link></li>
               <li onClick={handleTileClick} style={{ cursor: "pointer" }}>Token Maintenance</li>
             </ul>
           </div>
@@ -56,6 +61,18 @@ function SegmentSniper() {
 }
 
 export default SegmentSniper;
+
+//       <nav className='nav'>
+//         <Link to="/" className="nav-item">Homepage</Link>
+//         <Link to="/about-me" className='nav-item'>About Me</Link>
+//         <Link to="/contact" className='nav-item'>Contact</Link>
+//       </nav>
+//       <Routes>
+//       <Route path="/" element={<Homepage />} />
+//       <Route path="/about-me" element={<AboutMe />} />
+//       <Route path="/contact" element={<Contact />} />
+//       </Routes>
+
 
 // function MyComponent() {
 //     const [error, setError] = useState(null);
