@@ -33,16 +33,13 @@ function SegmentSniper() {
   if (isAuthenticated) {
     return (
         
-      <main className="container">
-        <Routes>
-            <Route path="/activity/Activity" element={< Activity />}/>
-        </Routes>
+      <main className="container">     
         <div className="row justify-content-center mt-3 mb-3">
           <div className="col-6">{userName} is authenticated</div>
           <div className="main-tile">
             <ul>
-              <li style={{ cursor: "pointer" }}><Link to="/athlete">View Athlete Details</Link></li>
-              <li style={{ cursor: "pointer" }}><Link to="/activity/Activity">Activities and Segment</Link></li>
+              <li style={{ cursor: "pointer" }}><Link to="./athlete">View Athlete Details</Link></li>
+              <li style={{ cursor: "pointer" }}><Link to="./activity">Activities and Segment</Link></li>
               <li onClick={handleTileClick} style={{ cursor: "pointer" }}>Token Maintenance</li>
             </ul>
           </div>
