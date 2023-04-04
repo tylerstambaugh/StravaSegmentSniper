@@ -1,11 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
-import Activity  from "./activity/Activity";
+import Activity from "./activity/Activity";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [stravaId, setStravaId] = useState(null);
+  const [webAppUser, setWebAppUser] = useState(null);
 
   useEffect(() => {
     const _subscription = authService.subscribe(() => this.populateState());
@@ -23,24 +25,62 @@ function SegmentSniper() {
     ]);
     setIsAuthenticated(isAuthenticated);
     setUsername(user && user.name);
+    setStravaId(user.stravaId);
+    //getUserDataFromApi();
   }
 
-  function handleTileClick(event) {
+  function handleTileClick(event) {}
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
-  }
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch("/api/UserController/")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
 
+  //   function getUserDataFromApi() {
+  //     fetch(`user/`)
+  //         .then((results) => {
+  //             return results.json();
+  //         })
+  //         .then(data => {
+  //             setWebAppUser(data);
+  //         })
+  //     }
 
   if (isAuthenticated) {
     return (
-        
-      <main className="container">     
+      <main className="container">
         <div className="row justify-content-center mt-3 mb-3">
           <div className="col-6">{userName} is authenticated</div>
           <div className="main-tile">
             <ul>
-              <li style={{ cursor: "pointer" }}><Link to="./athlete">View Athlete Details</Link></li>
-              <li style={{ cursor: "pointer" }}><Link to="./activity">Activities and Segment</Link></li>
-              <li onClick={handleTileClick} style={{ cursor: "pointer" }}>Token Maintenance</li>
+              <li style={{ cursor: "pointer" }}>
+                <Link to="./athlete">View Athlete Details</Link>
+              </li>
+              <li style={{ cursor: "pointer" }}>
+                <Link to="./activity">Activities and Segment</Link>
+              </li>
+              <li onClick={handleTileClick} style={{ cursor: "pointer" }}>
+                Token Maintenance
+              </li>
             </ul>
           </div>
         </div>
@@ -69,7 +109,6 @@ export default SegmentSniper;
 //       <Route path="/about-me" element={<AboutMe />} />
 //       <Route path="/contact" element={<Contact />} />
 //       </Routes>
-
 
 // function MyComponent() {
 //     const [error, setError] = useState(null);
