@@ -14,6 +14,8 @@ namespace Authorization.Data.Data
 
         }
 
+        //  public DbSet<WebAppUser> WebAppUsers { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder
