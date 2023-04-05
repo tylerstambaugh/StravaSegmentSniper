@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace StravaSegmentSniper.React.Controllers.Segment
+namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
     [ApiController]
@@ -10,7 +10,7 @@ namespace StravaSegmentSniper.React.Controllers.Segment
     {
         public Segment()
         {
-            
+
         }
 
         // GET api/<Segment>/5

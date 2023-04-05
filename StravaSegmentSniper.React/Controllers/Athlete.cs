@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Services.Internal.Services;
 
-namespace StravaSegmentSniper.React.Controllers.Athlete
+namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
     [ApiController]

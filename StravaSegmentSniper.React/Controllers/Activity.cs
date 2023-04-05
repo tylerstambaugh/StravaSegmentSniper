@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.Services.Internal.Services;
 
-namespace StravaSegmentSniper.React.Controllers.Activity
+namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
     [ApiController]

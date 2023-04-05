@@ -10,7 +10,7 @@ using NuGet.Protocol;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace StravaSegmentSniper.React.Controllers.User
+namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
@@ -33,7 +33,7 @@ namespace StravaSegmentSniper.React.Controllers.User
         public WebAppUser GetUser()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
-           // var user = await _userManager.GetUserIdAsync(User)
+            // var user = await _userManager.GetUserIdAsync(User)
             return _webAppUserService.GetLoggedInUserById(userId);
         }
 
