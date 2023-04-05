@@ -30,6 +30,8 @@ function SegmentSniper() {
   }
 
   function handleTileClick(event) {}
+  
+  
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -38,7 +40,7 @@ function SegmentSniper() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("/api/UserController/")
+    fetch("/api/User/UserController/")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -55,15 +57,27 @@ function SegmentSniper() {
       );
   }, []);
 
-  //   function getUserDataFromApi() {
-  //     fetch(`user/`)
-  //         .then((results) => {
-  //             return results.json();
-  //         })
-  //         .then(data => {
-  //             setWebAppUser(data);
-  //         })
-  //     }
+    function getUserDataFromApi() {
+      fetch(`user/`)
+          .then((results) => {
+               results.json();
+              console.log(results);
+          })
+          .then(data => {
+              setWebAppUser(data);
+              console.log(webAppUser);
+          })
+      }
+
+      async function callAPI() {
+        const token = await authService.getAccessToken();
+        console.log(token);
+        const response = await fetch('/api/user/user', {
+          headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        setWebAppUser(data);
+      }
 
   if (isAuthenticated) {
     return (
@@ -82,6 +96,12 @@ function SegmentSniper() {
                 Token Maintenance
               </li>
             </ul>
+          </div>
+          <div>
+            <p>testing button:</p>
+            <button onClick={callAPI}>Call API</button>
+                <h3>webappuser: {webAppUser}</h3>
+                <h3>stravaAthleteId: {stravaId}</h3>
           </div>
         </div>
       </main>
