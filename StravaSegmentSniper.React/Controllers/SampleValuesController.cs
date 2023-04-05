@@ -2,7 +2,7 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace StravaSegmentSniper.React.Controllers.Athlete
+namespace StravaSegmentSniper.React.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -37,8 +37,12 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Controllers\Token\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Controllers\Token\**" />
+    <EmbeddedResource Remove="Controllers\Token\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Controllers\Token\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -59,7 +63,6 @@
     <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
     <Folder Include="ClientApp\src\components\segment-sniper\token\" />
     <Folder Include="ClientApp\src\components\segment-sniper\segment\" />
-    <Folder Include="Controllers\Token\" />
   </ItemGroup>
 
   <ItemGroup>

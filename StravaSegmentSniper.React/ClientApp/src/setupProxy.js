@@ -13,7 +13,7 @@ const context =  [
   "/ApplyDatabaseMigrations",
     "/_framework",
     "/segmentSniper/SegmentSniper",
-  "/user/user"
+  "/user"
 ];
 
 module.exports = function(app) {

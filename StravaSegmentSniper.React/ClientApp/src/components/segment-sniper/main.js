@@ -6,8 +6,8 @@ import Activity from "./activity/Activity";
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [stravaId, setStravaId] = useState(null);
-  const [webAppUser, setWebAppUser] = useState(null);
+  const [stravaId, setStravaId] = useState([]);
+  const [webAppUser, setWebAppUser] = useState([]);
 
   useEffect(() => {
     const _subscription = authService.subscribe(() => this.populateState());
@@ -25,8 +25,8 @@ function SegmentSniper() {
     ]);
     setIsAuthenticated(isAuthenticated);
     setUsername(user && user.name);
-    setStravaId(user.stravaId);
-    //getUserDataFromApi();
+    console.log(`user from populate state = ${console.log(JSON.stringify(user, null, 4))}`);
+   // setStravaId(user);
   }
 
   function handleTileClick(event) {}
@@ -39,45 +39,35 @@ function SegmentSniper() {
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
-  useEffect(() => {
-    fetch("/api/User/UserController/")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
+  // useEffect(() => {
+  //   fetch("user")
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result);
+  //         console.log(`use effect result ${result}`);
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     );
+  // }, []);
 
-    function getUserDataFromApi() {
-      fetch(`user/`)
-          .then((results) => {
-               results.json();
-              console.log(results);
-          })
-          .then(data => {
-              setWebAppUser(data);
-              console.log(webAppUser);
-          })
-      }
 
-      async function callAPI() {
-        const token = await authService.getAccessToken();
-        console.log(token);
-        const response = await fetch('/api/user/user', {
-          headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-        });
-        const data = await response.json();
-        setWebAppUser(data);
-      }
+  async function callAPI() {
+    const token = await authService.getAccessToken();
+    console.log(token);
+    const response = await fetch('user', {
+      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await response.json();
+    setWebAppUser(data);
+  }
 
   if (isAuthenticated) {
     return (
