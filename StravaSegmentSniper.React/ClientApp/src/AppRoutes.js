@@ -2,8 +2,8 @@ import ApiAuthorzationRoutes from "./components/api-authorization/ApiAuthorizati
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import SegmentSniper from "./components/segment-sniper/main.ts";
-import Activity from "./components/segment-sniper/activity/Activity.js";
+import SegmentSniper from "./components/segment-sniper/main";
+import Activity from "./components/segment-sniper/activity/Activity";
 import Athlete from "./components/segment-sniper/athlete/Athlete";
 
 const AppRoutes = [
