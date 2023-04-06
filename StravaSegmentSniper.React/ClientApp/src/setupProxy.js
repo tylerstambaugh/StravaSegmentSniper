@@ -11,8 +11,8 @@ const context =  [
   "/Identity",
   "/connect",
   "/ApplyDatabaseMigrations",
-    "/_framework",
-    "/segmentSniper/SegmentSniper",
+  "/_framework",
+  "/segmentSniper/SegmentSniper",
   "/user"
 ];
 
