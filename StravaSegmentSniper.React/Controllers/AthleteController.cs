@@ -8,11 +8,11 @@ namespace StravaSegmentSniper.React.Controllers
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class Athlete : ControllerBase
+    public class AthleteController : ControllerBase
     {
         private readonly IAthleteService _athleteService;
 
-        public Athlete(IAthleteService athleteService)
+        public AthleteController(IAthleteService athleteService)
         {
             _athleteService = athleteService;
         }
@@ -21,10 +21,10 @@ namespace StravaSegmentSniper.React.Controllers
             return _athleteService.GetDetailedAthletes();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public DetailedAthlete GetDetailedAthleteById(int id)
         {
-            throw new NotImplementedException();
+            return _athleteService.GetDetailedAthleteById(id);
         }
     }
 }

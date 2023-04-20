@@ -22,6 +22,14 @@ namespace StravaSegmentSniper.Services.Internal.Services
             return _context.DetailedAthletes.ToList();
         }
 
+        public DetailedAthlete GetDetailedAthleteById(int id)
+        {
+           var detailedAthleteToReturn = _context.DetailedAthletes.Where(x => x.Id == id).First();
+            if (detailedAthleteToReturn != null)
+                return detailedAthleteToReturn;
+            throw new ArgumentNullException("athleteId", "The provided Id was not found in the database");
+        }
+
         public int SavedDetailedAtheleteToDb(DetailedAthleteModel model)
         {
             DetailedAthlete athleteToSave = new DetailedAthlete
