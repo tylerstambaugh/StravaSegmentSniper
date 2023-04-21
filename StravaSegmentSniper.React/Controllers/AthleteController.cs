@@ -21,7 +21,7 @@ namespace StravaSegmentSniper.React.Controllers
             return _athleteService.GetDetailedAthletes();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public DetailedAthlete GetDetailedAthleteById(int id)
         {
             return _athleteService.GetDetailedAthleteById(id);
