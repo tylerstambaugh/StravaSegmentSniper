@@ -13,7 +13,7 @@ using NuGet.Protocol;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
