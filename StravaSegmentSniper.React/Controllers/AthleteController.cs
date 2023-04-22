@@ -7,7 +7,7 @@ namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AthleteController : ControllerBase
     {
         private readonly IAthleteService _athleteService;
@@ -16,6 +16,8 @@ namespace StravaSegmentSniper.React.Controllers
         {
             _athleteService = athleteService;
         }
+
+        [HttpGet]
         public IEnumerable<DetailedAthlete> GetDetailedAthletes()
         {
             return _athleteService.GetDetailedAthletes();
