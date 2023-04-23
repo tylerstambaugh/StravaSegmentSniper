@@ -7,7 +7,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         int SavedDetailedAtheleteToDb(DetailedAthleteModel model);
 
-        DetailedAthlete GetDetailedAthleteById(int id);
+        DetailedAthlete GetDetailedAthleteById(long stravaAthleteId);
 
         List<DetailedAthlete> GetDetailedAthletes();
     }

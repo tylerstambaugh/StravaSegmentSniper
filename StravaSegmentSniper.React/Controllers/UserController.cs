@@ -1,12 +1,9 @@
 ﻿using Authorization.Data.Models;
-using Azure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using StravaSegmentSniper.Data.Entities.User;
 using StravaSegmentSniper.Services.Internal.Services;
 using System.Security.Claims;
-using NuGet.Protocol;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
