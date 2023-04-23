@@ -25,15 +25,17 @@ function SegmentSniper() {
     ]);
     setIsAuthenticated(isAuthenticated);
     setUsername(user && user.name);
-    console.log(`user from populate state = ${console.log(JSON.stringify(user, null, 4))}`);
-   // setStravaId(user);
+    console.log(
+      `user from populate state = ${console.log(JSON.stringify(user, null, 4))}`
+    );
+    //setStravaId(user);
   }
 
   async function callAPI() {
     const token = await authService.getAccessToken();
     console.log(token);
-    const response = await fetch('/user', {
-      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+    const response = await fetch("/user", {
+      headers: !token ? {} : { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
     setWebAppUser(data);
@@ -52,16 +54,14 @@ function SegmentSniper() {
               <li style={{ cursor: "pointer" }}>
                 <Link to="./activity">Activities and Segment</Link>
               </li>
-              <li style={{ cursor: "pointer" }}>
-                Token Maintenance
-              </li>
+              <li style={{ cursor: "pointer" }}>Token Maintenance</li>
             </ul>
           </div>
           <div>
             <p>testing button:</p>
             <button onClick={callAPI}>Call API</button>
-                <h3>webappuser: {webAppUser}</h3>
-                <h3>stravaAthleteId: {stravaId}</h3>
+            <h3>webappuser: {webAppUser}</h3>
+            <h3>stravaAthleteId: {stravaId}</h3>
           </div>
         </div>
       </main>
@@ -79,32 +79,31 @@ function SegmentSniper() {
 
 export default SegmentSniper;
 
-  
-  // const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // const [items, setItems] = useState([]);
+// const [error, setError] = useState(null);
+// const [isLoaded, setIsLoaded] = useState(false);
+// const [items, setItems] = useState([]);
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
-  // useEffect(() => {
-  //   fetch("user")
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setIsLoaded(true);
-  //         setItems(result);
-  //         console.log(`use effect result ${result}`);
-  //       },
-  //       // Note: it's important to handle errors here
-  //       // instead of a catch() block so that we don't swallow
-  //       // exceptions from actual bugs in components.
-  //       (error) => {
-  //         setIsLoaded(true);
-  //         setError(error);
-  //       }
-  //     );
-  // }, []);
+// Note: the empty deps array [] means
+// this useEffect will run once
+// similar to componentDidMount()
+// useEffect(() => {
+//   fetch("user")
+//     .then((res) => res.json())
+//     .then(
+//       (result) => {
+//         setIsLoaded(true);
+//         setItems(result);
+//         console.log(`use effect result ${result}`);
+//       },
+//       // Note: it's important to handle errors here
+//       // instead of a catch() block so that we don't swallow
+//       // exceptions from actual bugs in components.
+//       (error) => {
+//         setIsLoaded(true);
+//         setError(error);
+//       }
+//     );
+// }, []);
 // function MyComponent() {
 //     const [error, setError] = useState(null);
 //     const [isLoaded, setIsLoaded] = useState(false);
