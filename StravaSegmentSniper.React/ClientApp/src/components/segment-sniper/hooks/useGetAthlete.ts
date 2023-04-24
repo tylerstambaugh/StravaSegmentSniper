@@ -1,23 +1,32 @@
-//this will be the hook for calling the athlete API endpoint
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
- 
-const useGetAthleteDetails = () => {
-  const [data, setdata] = useState(null);
-  const [loading, setloading] = useState(true);
-  const [error, seterror] = useState("");
- 
-function get() {
-    fetch('./athlete')
-    .then((res) => res.json())
-    .then((data) => {
-        seterror(data.error)
-        setdata(data.joke)
-        setloading(false)
-    })
-}
- 
-  return { data, loading, error };
-};
- 
-export default useGetAthleteDetails;
+// export default getAthleteDetails(apiFunc) => {
+//   const [data, setData] = useState(null);
+//   const [error, setError] = useState("");
+//   const [loading, setLoading] = useState(false);
+
+//   const request = async (...args) => {
+//     setLoading(true);
+//     try {
+//       const result = await apiFunc(...args);
+//       setData(result.data);
+//     } catch (err: Error) {
+//       setError(err.message || "Unexpected Error!");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return {
+//     data,
+//     error,
+//     loading,
+//     request
+//   };
+// };
+
+// function getAthleteDetails(apiFunc: any) {
+//     throw new Error("Function not implemented.");
+// }
+
+
