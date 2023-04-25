@@ -1,5 +1,5 @@
 import React from "react";
-import useGetAthleteDetails from "../hooks/useGetAthlete";
+import useGetAthleteDetails from "../hooks/useGetAthleteDetails";
 
 import authService from "../../api-authorization/AuthorizeService";
 
