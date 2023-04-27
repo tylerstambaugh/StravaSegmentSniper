@@ -4,7 +4,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
 {
     public interface IStravaAPIActivity
     {
-        Task<DetailedActivityModel> GetDetailedActivityById(long activityId, int userId);
-        Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, int userId);
+        Task<DetailedActivityModel> GetDetailedActivityById(long activityId, long stravaAthleteId);
+        Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, long stravaAthleteId);
     }
 }

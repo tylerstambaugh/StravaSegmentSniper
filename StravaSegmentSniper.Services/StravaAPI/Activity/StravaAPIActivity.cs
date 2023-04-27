@@ -23,9 +23,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             _tokenService = tokenService;
         }
 
-        public async Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, int userId)
+        public async Task<List<SummaryActivityModel>> GetSummaryActivityForTimeRange(int after, int before, long stravaAthleteId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
             string query = $"before={before}&after={after}&per_page=200";
             var builder = new UriBuilder()
             {
@@ -72,9 +72,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             }
         }
 
-        public async Task<DetailedActivityModel> GetDetailedActivityById(long activityId, int userId)
+        public async Task<DetailedActivityModel> GetDetailedActivityById(long activityId, long stravaAthleteId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
