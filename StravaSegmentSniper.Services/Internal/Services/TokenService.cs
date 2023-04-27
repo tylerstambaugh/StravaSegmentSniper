@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Data;
+﻿using Authorization.Data.Data;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.Internal.Models.Token;
 using StravaSegmentSniper.Services.StravaAPI;
@@ -9,64 +10,66 @@ namespace StravaSegmentSniper.Services.Internal.Services
     public class TokenService : ITokenService
     {
         private readonly StravaSegmentSniperDbContext _context;
+        private readonly AuthDbContext _authDbContext;
         private readonly IStravaAPIToken _stravaAPIToken;
 
         public TokenService(StravaSegmentSniperDbContext context,
-                            IStravaAPIToken stravaAPIToken)
+                            IStravaAPIToken stravaAPIToken, AuthDbContext authDbContext)
         {
             _context = context;
             _stravaAPIToken = stravaAPIToken;
+            _authDbContext = authDbContext;
         }
         public Token GetTokenByStravaAthleteId(long stravaAthleteId)
         {
-            return _context.Tokens.Where(x => x.User.Athlete.StravaAthleteId == stravaAthleteId).First();
+            return _context.Tokens.Where(x => x.Athlete.StravaAthleteId == stravaAthleteId).First();
         }
 
-        public Token GetTokenByUserId(int userId)
-        {
-            if (TokenIsExpired(userId))
-                RefreshToken(userId);            
+        //public Token GetTokenByUserId(string userId)
+        //{
+        //    if (TokenIsExpired(userId))
+        //        RefreshToken(userId);            
             
-            return _context.Tokens.Where(x => x.UserId == userId).First();
-        }
+        //    return _context.Tokens.Where(x => x.UserId == userId).First();
+        //}
 
-        public bool TokenIsExpired(int userId)
-        {
-            Token tokenToCheck = _context.Tokens.Where(x => x.UserId == userId).First();
-            DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(tokenToCheck.ExpiresAt);
+        //public bool TokenIsExpired(string userId)
+        //{
+        //    Token tokenToCheck = _context.Tokens.Where(x => x.UserId == userId).First();
+        //    DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(tokenToCheck.ExpiresAt);
 
-            return expirationDate < DateTimeOffset.UtcNow;
-        }
+        //    return expirationDate < DateTimeOffset.UtcNow;
+        //}
 
-        public int RefreshToken(int userId)
-        {
-            var tokenToUpdate = _context.Tokens
-                        .Where(x => x.UserId == userId).First();
+        //public int RefreshToken(string userId)
+        //{
+        //    var tokenToUpdate = _context.Tokens
+        //                .Where(x => x.UserId == userId).First();
 
-            RefreshTokenModel refreshedToken = _stravaAPIToken.RefreshToken(tokenToUpdate.RefreshToken).Result;
+        //    RefreshTokenModel refreshedToken = _stravaAPIToken.RefreshToken(tokenToUpdate.RefreshToken).Result;
 
-            if (refreshedToken.AccessToken != null)
-            {
-                try
-                {
-                    tokenToUpdate.RefreshToken = refreshedToken.RefreshToken;
-                    tokenToUpdate.AuthorizationToken = refreshedToken.AccessToken;
-                    tokenToUpdate.ExpiresIn = refreshedToken.ExpiresIn;
-                    tokenToUpdate.ExpiresAt = refreshedToken.ExpiresAt;
+        //    if (refreshedToken.AccessToken != null)
+        //    {
+        //        try
+        //        {
+        //            tokenToUpdate.RefreshToken = refreshedToken.RefreshToken;
+        //            tokenToUpdate.AuthorizationToken = refreshedToken.AccessToken;
+        //            tokenToUpdate.ExpiresIn = refreshedToken.ExpiresIn;
+        //            tokenToUpdate.ExpiresAt = refreshedToken.ExpiresAt;
 
-                    return _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"an error occurred trying to update the token. {ex.Message} ");
-                    return -1;
-                }
-            }
-            else
-            {
-                return -1;
-            }
-        }
+        //            return _context.SaveChanges();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine($"an error occurred trying to update the token. {ex.Message} ");
+        //            return -1;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return -1;
+        //    }
+        //}
 
 
 
