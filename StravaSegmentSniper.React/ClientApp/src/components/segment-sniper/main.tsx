@@ -2,12 +2,13 @@ import React, { Component, useEffect, useState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import Activity from "./activity/Activity";
+import { WebAppUser } from "./models/webAppUser";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [stravaId, setStravaId] = useState([]);
-  const [webAppUser, setWebAppUser] = useState([]);
+  const [appUser, setAppUser] = useState<WebAppUser>();
 
   useEffect(() => {
     const _subscription = authService.subscribe(() => populateState());
@@ -38,7 +39,7 @@ function SegmentSniper() {
       headers: !token ? {} : { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    setWebAppUser(data);
+    setAppUser(data);
   }
 
   if (isAuthenticated) {
@@ -60,8 +61,8 @@ function SegmentSniper() {
           <div>
             <p>testing button:</p>
             <button onClick={callAPI}>Call API</button>
-            <h3>webappuser: {webAppUser}</h3>
-            <h3>stravaAthleteId: {stravaId}</h3>
+            <h3>webappuser: {appUser?.id}</h3>
+            <h3>stravaAthleteId: {appUser?.stravaAthleteId}</h3>
           </div>
         </div>
       </main>
