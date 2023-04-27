@@ -1,13 +1,12 @@
-import React, { Component, useEffect, useState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
-import Activity from "./activity/Activity";
 import { WebAppUser } from "./models/webAppUser";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [stravaId, setStravaId] = useState([]);
+  //const [stravaId, setStravaId] = useState([]);
   const [appUser, setAppUser] = useState<WebAppUser>();
 
   useEffect(() => {
