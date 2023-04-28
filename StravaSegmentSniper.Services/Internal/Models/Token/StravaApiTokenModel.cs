@@ -1,6 +1,6 @@
 ﻿namespace StravaSegmentSniper.Services.Internal.Models.Token
 {
-    public class TokenModel
+    public class StravaApiTokenModel
     {
         public int Id { get; set; }
         public int AthleteId { get; set; }

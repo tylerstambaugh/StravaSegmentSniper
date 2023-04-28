@@ -22,9 +22,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             _mapper = mapper;
             _tokenService = tokenService;
         }
-        public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, int userId)
+        public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, long stravaAthleteId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
@@ -63,9 +63,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             }
         }
 
-        public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, int userId)
+        public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, long stravaAthleteId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
             var returnList = new List<DetailedSegmentEffortModel>();
 
             string query = $"segment_id={segmentId}&start_date_local={startDate}&end_date_local={endDate}";
@@ -112,9 +112,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             }
         }
 
-        public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(int userId, int segmentEffortId)
+        public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(long stravaAthleteId, int segmentEffortId)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
