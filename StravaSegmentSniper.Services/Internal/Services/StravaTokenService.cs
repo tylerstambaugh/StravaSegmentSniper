@@ -7,13 +7,13 @@ using StravaSegmentSniper.Services.StravaAPI.TokenService;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
-    public class TokenService : ITokenService
+    public class StravaTokenService : IStravaToken
     {
         private readonly StravaSegmentSniperDbContext _context;
         private readonly AuthDbContext _authDbContext;
         private readonly IStravaAPIToken _stravaAPIToken;
 
-        public TokenService(StravaSegmentSniperDbContext context,
+        public StravaTokenService(StravaSegmentSniperDbContext context,
                             IStravaAPIToken stravaAPIToken, AuthDbContext authDbContext)
         {
             _context = context;
@@ -25,13 +25,13 @@ namespace StravaSegmentSniper.Services.Internal.Services
             return _context.Tokens.Where(x => x.Athlete.StravaAthleteId == stravaAthleteId).First();
         }
 
-        //public Token GetTokenByUserId(string userId)
-        //{
-        //    if (TokenIsExpired(userId))
-        //        RefreshToken(userId);            
-            
-        //    return _context.Tokens.Where(x => x.UserId == userId).First();
-        //}
+        public Token GetTokenByUserId(string userId)
+        {
+            if (TokenIsExpired(userId))
+                RefreshToken(userId);
+
+            return _context.Tokens.Where(x => x.UserId == userId).First();
+        }
 
         //public bool TokenIsExpired(string userId)
         //{
