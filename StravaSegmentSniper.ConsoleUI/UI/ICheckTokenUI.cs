@@ -4,7 +4,7 @@ namespace StravaSegmentSniper.ConsoleUI.UI
 {
     public interface ICheckTokenUI
     {
-        void CheckTokenExpiration(Token token);
+        void CheckTokenExpiration(StravaApiToken token);
         void RefreshToken(int userId);
         void ViewTokenForAthlete(int userId);
         void ViewTokenMenu();
