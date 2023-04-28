@@ -4,6 +4,7 @@ using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Data.Entities.User;
 
 namespace StravaSegmentSniper.Data
 {
@@ -22,7 +23,8 @@ namespace StravaSegmentSniper.Data
         DbSet<Map> Maps { get; set; }
         DbSet<SummaryActivity> SummaryActivities { get; set; }
         DbSet<SummarySegment> SummarySegments { get; set; }
-        DbSet<Token> Tokens { get; set; }
+        DbSet<StravaApiToken> Tokens { get; set; }
+        DbSet<ConsoleAppUser> ConsoleAppUsers { get; set; }
         DbSet<Xom> Xoms { get; set; }
     }
 }

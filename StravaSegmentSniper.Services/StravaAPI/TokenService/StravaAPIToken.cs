@@ -19,7 +19,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
             _configuration = configuration;
         }
 
-        public async Task<Token> GetAthleteToken()
+        public async Task<StravaApiToken> GetAthleteToken()
         {
             //https://www.strava.com/oauth/authorize?client_id=93654&redirect_uri=http://localhost&response_type=code&scope=activity:read_all&scope=read_all
 

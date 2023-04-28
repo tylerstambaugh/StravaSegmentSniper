@@ -20,7 +20,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _stravaAPIToken = stravaAPIToken;
             _authDbContext = authDbContext;
         }
-        public Token GetTokenByStravaAthleteId(long stravaAthleteId)
+        public StravaApiToken GetTokenByStravaAthleteId(long stravaAthleteId)
         {
             return _context.Tokens.Where(x => x.Athlete.StravaAthleteId == stravaAthleteId).First();
         }

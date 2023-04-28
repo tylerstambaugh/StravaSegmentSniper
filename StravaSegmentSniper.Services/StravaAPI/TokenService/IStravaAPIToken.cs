@@ -5,7 +5,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
 {
     public interface IStravaAPIToken
     {
-        Task<Token> GetAthleteToken();
+        Task<StravaApiToken> GetAthleteToken();
         Task<RefreshTokenModel> RefreshToken(string refreshToken);
     }
 }

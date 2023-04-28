@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using StravaDataAnalyzerDataEF.Entities.Segment;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Data.Entities.User;
 
 namespace StravaSegmentSniper.Data
 {
@@ -28,7 +30,8 @@ namespace StravaSegmentSniper.Data
         public DbSet<LocalLegend> LocalLegends { get; set; }
         public DbSet<SummarySegment> SummarySegments { get; set; }
         public DbSet<Xom> Xoms { get; set; }
-        public DbSet<Token> Tokens { get; set; }
+        public DbSet<StravaApiToken> Tokens { get; set; }
+        public DbSet<ConsoleAppUser> ConsoleAppUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
