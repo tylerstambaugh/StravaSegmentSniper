@@ -31,7 +31,7 @@ function SegmentSniper() {
     //setStravaId(user);
   }
 
-  async function callAPI() {
+  async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const token = await authService.getAccessToken();
     console.log(token);
     const response = await fetch("/user", {
@@ -59,7 +59,7 @@ function SegmentSniper() {
           </div>
           <div>
             <p>testing button:</p>
-            <button onClick={callAPI}>Call API</button>
+            <button onClick={(e) => callAPI(e)}>Call API</button>
             <h3>webappuser: {appUser?.id}</h3>
             <h3>stravaAthleteId: {appUser?.stravaAthleteId}</h3>
           </div>
