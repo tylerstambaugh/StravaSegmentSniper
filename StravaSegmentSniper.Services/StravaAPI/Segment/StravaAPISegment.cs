@@ -15,16 +15,16 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly IMapper _mapper;
-        private readonly ITokenService _tokenService;
+        private readonly IStravaToken _tokenService;
 
-        public StravaAPISegment(IMapper mapper, ITokenService tokenService)
+        public StravaAPISegment(IMapper mapper, IStravaToken tokenService)
         {
             _mapper = mapper;
             _tokenService = tokenService;
         }
-        public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, long stravaAthleteId)
+        public async Task<DetailedSegmentModel> GetDetailedSegmentById(long segmentId, int userId)
         {
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
@@ -63,9 +63,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             }
         }
 
-        public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, long stravaAthleteId)
+        public async Task<List<DetailedSegmentEffortModel>> GetSegmentEffortsBySegmentId(int segmentId, DateTime startDate, DateTime endDate, int userId)
         {
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             var returnList = new List<DetailedSegmentEffortModel>();
 
             string query = $"segment_id={segmentId}&start_date_local={startDate}&end_date_local={endDate}";
@@ -112,9 +112,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             }
         }
 
-        public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(long stravaAthleteId, int segmentEffortId)
+        public async Task<DetailedSegmentEffortModel> GetSegmentEffortById(int userId, int segmentEffortId)
         {
-            string token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",

@@ -30,8 +30,7 @@ namespace StravaSegmentSniper.Data
         public DbSet<LocalLegend> LocalLegends { get; set; }
         public DbSet<SummarySegment> SummarySegments { get; set; }
         public DbSet<Xom> Xoms { get; set; }
-        public DbSet<StravaApiToken> Tokens { get; set; }
-        public DbSet<ConsoleAppUser> ConsoleAppUsers { get; set; }
+        public DbSet<StravaApiToken> StravaApiTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

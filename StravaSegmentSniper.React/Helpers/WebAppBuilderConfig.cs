@@ -47,7 +47,8 @@ namespace StravaSegmentSniper.React.Helpers
             //add DI services to the container
             builder.Services.AddScoped<IAthleteActivityService, AthleteActivityService>();
             builder.Services.AddScoped<IAthleteService, AthleteService>();
-            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IStravaToken, StravaTokenService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IWebAppUserService, WebAppUserService>();
             builder.Services.AddScoped<IStravaAPIAthlete, StravaAPIAthlete>();
             builder.Services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();

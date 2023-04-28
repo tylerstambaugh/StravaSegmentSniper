@@ -8,12 +8,12 @@ namespace StravaSegmentSniper.ConsoleUI.UI
 {
     public class CheckTokenUI : ICheckTokenUI
     {
-        private readonly ITokenService _tokenService;
+        private readonly IStravaToken _tokenService;
         private readonly IStravaAPIToken _stravaAPIToken;
         private readonly IAthleteService _athleteService;
         private readonly IUserService _userService;
 
-        public CheckTokenUI(ITokenService tokenService, 
+        public CheckTokenUI(IStravaToken tokenService, 
                             IStravaAPIToken stravaAPIToken,
                             IAthleteService athleteService,
                             IUserService userService)

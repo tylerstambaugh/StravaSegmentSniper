@@ -2,7 +2,7 @@
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
-    public interface ITokenService
+    public interface IStravaToken
     {
         StravaApiToken GetTokenByStravaAthleteId(long stravaAthleteId);
         StravaApiToken GetTokenByUserId(int userId);
