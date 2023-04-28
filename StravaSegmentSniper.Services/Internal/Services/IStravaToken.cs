@@ -5,8 +5,8 @@ namespace StravaSegmentSniper.Services.Internal.Services
     public interface IStravaToken
     {
         StravaApiToken GetTokenByStravaAthleteId(long stravaAthleteId);
-        StravaApiToken GetTokenByUserId(int userId);
-        int RefreshToken(int userId);
-        bool TokenIsExpired(int userId);
+        StravaApiToken GetTokenByUserId(string userId);
+        int RefreshToken(string userId);
+        bool TokenIsExpired(string userId);
     }
 }

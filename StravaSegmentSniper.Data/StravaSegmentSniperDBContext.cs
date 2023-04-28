@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using StravaDataAnalyzerDataEF.Entities.Segment;
 using StravaSegmentSniper.Data.Entities.Activity;
 using StravaSegmentSniper.Data.Entities.Athlete;
 using StravaSegmentSniper.Data.Entities.Misc;
 using StravaSegmentSniper.Data.Entities.Token;
-using StravaSegmentSniper.Data.Entities.User;
 
 namespace StravaSegmentSniper.Data
 {
