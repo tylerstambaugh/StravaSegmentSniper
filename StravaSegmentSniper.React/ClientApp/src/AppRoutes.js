@@ -6,6 +6,7 @@ import Athlete from "./components/segment-sniper/athlete/Athlete";
 const AppRoutes = [
   {
     index: true,
+    requireAuth: false,
     path: "/segment-sniper",
     element: <SegmentSniper />,
   },

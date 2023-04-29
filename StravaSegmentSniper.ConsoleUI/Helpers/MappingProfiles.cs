@@ -66,7 +66,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<LocalLegendModel, LocalLegend>();
             CreateMap<SummarySegmentModel, SummarySegment>();
             CreateMap<XomsModel, Xom>();
-            CreateMap<StravaApiTokenModel, Token>();
+            CreateMap<StravaApiTokenModel, StravaApiToken>();
 
         }
     }

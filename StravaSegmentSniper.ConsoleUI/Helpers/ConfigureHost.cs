@@ -40,16 +40,10 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
 
                       //register types for legacy app
                       //services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
-                      services.AddScoped<IStravaConsoleUIMain, StravaConsoleUIMain>();
                       services.AddScoped<IApplication, Application>();
-                      services.AddScoped<IViewAthleteUI, ViewAthleteUI>();
-                      services.AddScoped<IGetAthleteActivityUI, GetAthleteActivityUI>();
-                      services.AddScoped<IViewTrophyCaseUI, ViewTrophyCaseUI>();
-                      services.AddScoped<ICheckTokenUI, CheckTokenUI>();
                       services.AddScoped<IAthleteActivityService, AthleteActivityService>();
                       services.AddScoped<IAthleteService, AthleteService>();
                       services.AddScoped<IStravaToken, StravaTokenService>();
-                      services.AddScoped<IUserService, UserService>();
 
 
                       //services that call Strava
@@ -57,10 +51,6 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();
                       services.AddScoped<IStravaAPISegment, StravaAPISegment>();
                       services.AddScoped<IStravaAPIToken, StravaAPIToken>();
-                      //register types for local console views
-                      services.AddScoped<IViewLocalDataUI, ViewLocalDataUI>();
-                      services.AddScoped<IViewLocalAthleteInfoUI, ViewLocalAthleteInfoUI>();
-                      services.AddScoped<IViewLocalAthleteActivityUI, ViewLocalAthleteActivityUI>();
                   });
 
             return host.Build();
