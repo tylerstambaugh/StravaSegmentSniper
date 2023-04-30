@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
+import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const loginPath = `${ApplicationPaths.Login}`;
   //const [stravaId, setStravaId] = useState([]);
   const [appUser, setAppUser] = useState<WebAppUser>();
 
@@ -70,7 +73,14 @@ function SegmentSniper() {
     return (
       <main className="container">
         <div className="row justify-content-center mt-3 mb-3">
-          <div className="col-6">Loading...</div>
+          <div className="col-6">
+            <p>You must be logged in to access this app.</p>
+            <p>
+              Click
+              <Link to={loginPath}> here </Link>
+              to login.
+            </p>
+          </div>
         </div>
       </main>
     );

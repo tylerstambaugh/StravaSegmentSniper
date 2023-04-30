@@ -11,6 +11,12 @@ const AppRoutes = [
     element: <SegmentSniper />,
   },
   {
+    index: true,
+    requireAuth: false,
+    path: "/",
+    element: <SegmentSniper />,
+  },
+  {
     path: "/segment-sniper/activity/",
     requireAuth: true,
     element: <Activity />,
