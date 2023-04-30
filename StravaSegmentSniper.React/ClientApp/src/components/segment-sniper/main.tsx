@@ -28,9 +28,7 @@ function SegmentSniper() {
     ]);
     setIsAuthenticated(isAuthenticated);
     setUsername(user && user.name);
-    console.log(
-      `user from populate state = ${console.log(JSON.stringify(user, null, 4))}`
-    );
+    console.log(`user from populate state = ${JSON.stringify(user, null, 4)}`);
     //setStravaId(user);
   }
 
