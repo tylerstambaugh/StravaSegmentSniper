@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StravaSegmentSniper.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class initialSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -175,22 +175,23 @@ namespace StravaSegmentSniper.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "StravaApiTokens",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StravaAthleteId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DetailedAthleteId = table.Column<int>(type: "int", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AuthorizationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExpiresAt = table.Column<long>(type: "bigint", nullable: false),
+                    ExpiresIn = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_StravaApiTokens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_DetailedAthletes_DetailedAthleteId",
+                        name: "FK_StravaApiTokens_DetailedAthletes_DetailedAthleteId",
                         column: x => x.DetailedAthleteId,
                         principalTable: "DetailedAthletes",
                         principalColumn: "Id");
@@ -274,29 +275,6 @@ namespace StravaSegmentSniper.Data.Migrations
                         principalTable: "DetailedAthletes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tokens",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    AuthorizationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExpiresAt = table.Column<long>(type: "bigint", nullable: false),
-                    ExpiresIn = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tokens", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tokens_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -500,6 +478,11 @@ namespace StravaSegmentSniper.Data.Migrations
                 column: "EffortCountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StravaApiTokens_DetailedAthleteId",
+                table: "StravaApiTokens",
+                column: "DetailedAthleteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SummaryActivities_AthleteId",
                 table: "SummaryActivities",
                 column: "AthleteId");
@@ -508,16 +491,6 @@ namespace StravaSegmentSniper.Data.Migrations
                 name: "IX_SummaryActivities_DetailedActivityId",
                 table: "SummaryActivities",
                 column: "DetailedActivityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tokens_UserId",
-                table: "Tokens",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_DetailedAthleteId",
-                table: "Users",
-                column: "DetailedAthleteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Xoms_DetailedSegmentEffortId",
@@ -549,16 +522,13 @@ namespace StravaSegmentSniper.Data.Migrations
                 name: "Maps");
 
             migrationBuilder.DropTable(
+                name: "StravaApiTokens");
+
+            migrationBuilder.DropTable(
                 name: "SummaryActivities");
 
             migrationBuilder.DropTable(
-                name: "Tokens");
-
-            migrationBuilder.DropTable(
                 name: "Xoms");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "DetailedSegments");

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import DatePicker from "react-date-picker";
+import DatePicker from "react-datepicker";
 
-const ActivityListLookup = () => {
-  const [lookupStartDate, setLookupStartDate] = useState("");
-  const [lookupEndDate, setLookupEndDate] = useState("");
+function ActivityListLookup(props) {
+  const [lookupStartDate, setLookupStartDate] = useState(new Date());
+  const [lookupEndDate, setLookupEndDate] = useState(new Date());
   const [lookupActivityId, setLookupActivityId] = useState<number>();
 
   function handleLookupActivityChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -25,23 +25,26 @@ const ActivityListLookup = () => {
           </p>
         </div>
         <div>
-          <p>
+          <div>
             or look up a list of rides with a date range:
             <p>start date:</p>
             <DatePicker
+              selected={lookupStartDate}
               onChange={(date) => setLookupStartDate(date?.toString() ?? "")}
             />
-          </p>
-
-          <p>end date:</p>
-          <DatePicker
-            onChange={(date) => setLookupEndDate(date?.toString() ?? "")}
-          />
+          </div>
+          <div>
+            <p>end date:</p>
+            <DatePicker
+              selected={lookupEndDate}
+              onChange={(date) => setLookupEndDate(date?.toString() ?? "")}
+            />
+          </div>
         </div>
         <input type="submit" value="Lookup" />
       </form>
     </>
   );
-};
+}
 
 export default ActivityListLookup;

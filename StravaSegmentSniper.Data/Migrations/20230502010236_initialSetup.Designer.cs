@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using StravaSegmentSniper.Data;
 
 #nullable disable
 
 namespace StravaSegmentSniper.Data.Migrations
 {
     [DbContext(typeof(StravaSegmentSniperDbContext))]
-    [Migration("20230214234213_initialMigration")]
-    partial class initialMigration
+    [Migration("20230502010236_initialSetup")]
+    partial class initialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +21,9 @@ namespace StravaSegmentSniper.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -664,7 +668,7 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.ToTable("Maps");
                 });
 
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Token.Token", b =>
+            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Token.StravaApiToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -675,6 +679,9 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.Property<string>("AuthorizationToken")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DetailedAthleteId")
+                        .HasColumnType("int");
+
                     b.Property<long>("ExpiresAt")
                         .HasColumnType("bigint");
 
@@ -684,47 +691,15 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Tokens");
-                });
-
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("DetailedAthleteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmailAddress")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("StravaAthleteId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DetailedAthleteId");
 
-                    b.ToTable("Users");
+                    b.ToTable("StravaApiTokens");
                 });
 
             modelBuilder.Entity("StravaDataAnalyzerDataEF.Entities.Segment.Achievement", b =>
@@ -866,18 +841,7 @@ namespace StravaSegmentSniper.Data.Migrations
                     b.Navigation("DetailedAthlete");
                 });
 
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Token.Token", b =>
-                {
-                    b.HasOne("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.User.ConsoleAppUser", b =>
+            modelBuilder.Entity("StravaSegmentSniper.Data.Entities.Token.StravaApiToken", b =>
                 {
                     b.HasOne("StravaSegmentSniper.Data.Entities.Athlete.DetailedAthlete", "Athlete")
                         .WithMany()
