@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode, useState } from "react";
 import DatePicker from "react-datepicker";
+import "bootstrap/dist/css/bootstrap.css";
 
 function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState(new Date());
