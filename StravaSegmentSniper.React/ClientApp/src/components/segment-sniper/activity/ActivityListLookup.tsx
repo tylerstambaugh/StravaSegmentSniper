@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -7,10 +7,10 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
   const [lookupEndDate, setLookupEndDate] = useState<Date>(new Date());
-  const [lookupActivityId, setLookupActivityId] = useState<number>();
+  const activityIdRef = useRef<number>();
 
   function handleActivityIdChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setLookupActivityId(e.target.valueAsNumber);
+    console.log({ activityId: activityIdRef.current!.valueOf() });
   }
 
   function handleStartDateChange(e: Date) {
@@ -43,6 +43,7 @@ function ActivityListLookup() {
                     Enter an activity Id to look up:
                     <input
                       type="number"
+                      ref="activityIdRef"
                       onChange={(e) => handleActivityIdChange(e)}
                     />
                   </Col>
@@ -53,6 +54,7 @@ function ActivityListLookup() {
                     start date:
                     <DatePicker
                       selected={lookupStartDate}
+                      ref="startDateRef"
                       onChange={(date: Date | null) =>
                         handleStartDateChange(date!)
                       }
@@ -60,6 +62,7 @@ function ActivityListLookup() {
                     end date:
                     <DatePicker
                       selected={lookupEndDate}
+                      ref="endDateRef"
                       onChange={(date: Date | null) =>
                         handleEndDateChange(date!)
                       }
