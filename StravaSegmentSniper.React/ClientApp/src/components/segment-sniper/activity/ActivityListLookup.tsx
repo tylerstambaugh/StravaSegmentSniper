@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
@@ -9,9 +10,7 @@ function ActivityListLookup() {
   const [lookupActivityId, setLookupActivityId] = useState<number>();
 
   function handleActivityIdChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(
-      `do validation that this is a positive number ${e.target.value}`
-    );
+    setLookupActivityId(e.target.valueAsNumber);
   }
 
   function handleStartDateChange(e: Date) {
@@ -22,35 +21,64 @@ function ActivityListLookup() {
     setLookupEndDate(e);
   }
 
+  function handleSearchClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    console.log();
+  }
+
   return (
     <>
-      <h3>Activity List Lookup</h3>
-      <form>
-        <div>
-          <p>
-            Enter an activity Id to look up:
-            <input type="text" onChange={(e) => handleActivityIdChange(e)} />
-          </p>
-        </div>
-        <div>
-          <div>
-            or look up a list of rides with a date range:
-            <p>start date:</p>
-            <DatePicker
-              selected={lookupStartDate}
-              onChange={(date: Date | null) => handleStartDateChange(date!)}
-            />
-          </div>
-          <div>
-            <p>end date:</p>
-            <DatePicker
-              selected={lookupEndDate}
-              onChange={(date: Date | null) => handleEndDateChange(date!)}
-            />
-          </div>
-        </div>
-        <input type="submit" value="Lookup" />
-      </form>
+      <Container
+        fluid="md"
+        className="md-auto p-3 mb-2 bg-light text-dark border rounded"
+      >
+        <Row>
+          <Col>
+            <h3>Activity List Lookup</h3>
+            <form>
+              <div>
+                <Row className="md-auto p-3 mb-2">
+                  <Col>
+                    Enter an activity Id to look up:
+                    <input
+                      type="number"
+                      onChange={(e) => handleActivityIdChange(e)}
+                    />
+                  </Col>
+                </Row>
+                <Row>or look up a list of rides with a date range:</Row>
+                <Row>
+                  <Col>
+                    start date:
+                    <DatePicker
+                      selected={lookupStartDate}
+                      onChange={(date: Date | null) =>
+                        handleStartDateChange(date!)
+                      }
+                    />
+                    end date:
+                    <DatePicker
+                      selected={lookupEndDate}
+                      onChange={(date: Date | null) =>
+                        handleEndDateChange(date!)
+                      }
+                    />
+                  </Col>
+                </Row>
+              </div>
+              <Button
+                as="input"
+                type="submit"
+                value="Search"
+                variant="primary"
+                className={"me-1"}
+                onClick={(e) => handleSearchClick(e)}
+              />
+            </form>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }
