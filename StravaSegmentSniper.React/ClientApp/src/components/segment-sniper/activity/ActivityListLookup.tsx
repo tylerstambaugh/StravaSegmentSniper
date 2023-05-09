@@ -7,7 +7,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
   const [lookupEndDate, setLookupEndDate] = useState<Date>(new Date());
-  const activityIdRef = useRef<number>();
+  const activityIdRef = useRef<HTMLInputElement>(null);
 
   function handleActivityIdChange(e: React.ChangeEvent<HTMLInputElement>) {
     console.log({ activityId: activityIdRef.current!.valueOf() });
@@ -43,7 +43,7 @@ function ActivityListLookup() {
                     Enter an activity Id to look up:
                     <input
                       type="number"
-                      ref="activityIdRef"
+                      ref={activityIdRef}
                       onChange={(e) => handleActivityIdChange(e)}
                     />
                   </Col>
@@ -51,22 +51,30 @@ function ActivityListLookup() {
                 <Row>or look up a list of rides with a date range:</Row>
                 <Row>
                   <Col>
-                    start date:
-                    <DatePicker
-                      selected={lookupStartDate}
-                      ref="startDateRef"
-                      onChange={(date: Date | null) =>
-                        handleStartDateChange(date!)
-                      }
-                    />
-                    end date:
-                    <DatePicker
-                      selected={lookupEndDate}
-                      ref="endDateRef"
-                      onChange={(date: Date | null) =>
-                        handleEndDateChange(date!)
-                      }
-                    />
+                    <label style={{ display: "inline-flex" }}>
+                      <span style={{ marginRight: "1rem" }}>Start date:</span>
+                      <DatePicker
+                        selected={lookupStartDate}
+                        //ref={startDateRef}
+                        onChange={(date: Date | null) =>
+                          handleStartDateChange(date!)
+                        }
+                      />
+                    </label>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label style={{ display: "flex" }}>
+                      <span style={{ marginRight: "1rem" }}>End date:</span>
+                      <DatePicker
+                        selected={lookupEndDate}
+                        //ref={endDateRef}
+                        onChange={(date: Date | null) =>
+                          handleEndDateChange(date!)
+                        }
+                      />
+                    </label>
                   </Col>
                 </Row>
               </div>
