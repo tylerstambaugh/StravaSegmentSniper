@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
+import { Container, Row } from "react-bootstrap";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -44,28 +45,36 @@ function SegmentSniper() {
 
   if (isAuthenticated) {
     return (
-      <main className="container">
-        <div className="row justify-content-center mt-3 mb-3">
+      <Container>
+        <Row>
           <div className="col-6">{userName} is authenticated</div>
           <div className="main-tile">
-            <ul>
-              <li style={{ cursor: "pointer" }}>
-                <Link to="./athlete">View Athlete Details</Link>
-              </li>
-              <li style={{ cursor: "pointer" }}>
-                <Link to="./activity">Activities and Segment</Link>
-              </li>
-              <li style={{ cursor: "pointer" }}>Token Maintenance</li>
-            </ul>
+            <Row>
+              <ul>
+                <li style={{ cursor: "pointer" }}>
+                  <Link to="./athlete">View Athlete Details</Link>
+                </li>
+                <li style={{ cursor: "pointer" }}>
+                  <Link to="./activity">Activities and Segment</Link>
+                </li>
+                <li style={{ cursor: "pointer" }}>Token Maintenance</li>
+              </ul>
+            </Row>
           </div>
-          <div>
-            <p>testing button:</p>
-            <button onClick={(e) => callAPI(e)}>Call API</button>
-            <h3>webappuser: {appUser?.id}</h3>
-            <h3>stravaAthleteId: {appUser?.stravaAthleteId}</h3>
-          </div>
-        </div>
-      </main>
+          <Row>
+            <label style={{ display: "inline-flex" }}>
+              testing button:
+              <button onClick={(e) => callAPI(e)}>Call API</button>
+              <h3>webappuser: {appUser?.id}</h3>
+            </label>
+          </Row>
+          <Row>
+            <button>
+              <img src={"./assets/btn_strava_connectwith_orange.png"} />
+            </button>
+          </Row>
+        </Row>
+      </Container>
     );
   } else {
     return (
