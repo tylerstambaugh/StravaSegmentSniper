@@ -37,7 +37,7 @@ export class NavMenu extends Component {
           container
           light
         >
-          <NavbarBrand tag={Link} to="/">
+          <NavbarBrand tag={Link} to="/segment-sniper">
             Strava Segment Sniper
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
