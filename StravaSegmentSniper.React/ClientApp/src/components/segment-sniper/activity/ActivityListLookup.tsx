@@ -21,18 +21,15 @@ function ActivityListLookup() {
     setLookupEndDate(e);
   }
 
-  function handleSearchClick(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    console.log();
-  }
+  // function handleSearchClick(
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) {
+  //   console.log();
+  // }
 
   return (
     <>
-      <Container
-        fluid="md"
-        className="md-auto p-3 mb-2 bg-light text-dark border rounded"
-      >
+      <Container className="md-auto p-3 mb-2 bg-light text-dark border rounded">
         <Row>
           <Col>
             <h3>Activity List Lookup</h3>
@@ -84,7 +81,7 @@ function ActivityListLookup() {
                 value="Search"
                 variant="primary"
                 className={"me-1"}
-                onClick={(e) => handleSearchClick(e)}
+                //onClick={(e) => handleSearchClick(e)}
               />
             </form>
           </Col>
