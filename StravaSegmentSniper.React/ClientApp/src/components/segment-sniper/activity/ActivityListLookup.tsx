@@ -17,6 +17,7 @@ function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
   const [lookupEndDate, setLookupEndDate] = useState<Date>(new Date());
   const activityIdRef = useRef<HTMLInputElement>(null);
+  const today = new Date();
 
   function handleActivityIdChange(e: React.ChangeEvent<HTMLInputElement>) {
     console.log({ activityId: activityIdRef.current!.valueOf() });
@@ -33,6 +34,7 @@ function ActivityListLookup() {
   function handleSearchClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
+    e.preventDefault();
     console.log();
   }
 
@@ -66,6 +68,7 @@ function ActivityListLookup() {
                     <label style={{ display: "inline-flex" }}>
                       <span style={{ marginRight: "1rem" }}>Start Date:</span>
                       <DatePicker
+                        disableFuture
                         onChange={(date: Date | null) =>
                           handleStartDateChange(date!)
                         }
@@ -76,6 +79,7 @@ function ActivityListLookup() {
                     <label style={{ display: "flex" }}>
                       <span style={{ marginRight: "1rem" }}>End Date:</span>
                       <DatePicker
+                        disableFuture
                         onChange={(date: Date | null) =>
                           handleEndDateChange(date!)
                         }

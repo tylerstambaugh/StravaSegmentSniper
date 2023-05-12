@@ -1,84 +1,89 @@
-// import React from "react";
-// import {
-//   DatatableWrapper,
-//   Filter,
-//   Pagination,
-//   PaginationOptions,
-//   TableBody,
-//   TableColumnType,
-//   TableHeader,
-// } from "react-bs-datatable";
-// import { Col, Container, Row, Table } from "react-bootstrap";
+import React from "react";
+import {
+  DatatableWrapper,
+  Filter,
+  Pagination,
+  PaginationOptions,
+  TableBody,
+  TableColumnType,
+  TableHeader,
+} from "react-bs-datatable";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { randomInt } from "crypto";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// import ActivityListItem from "./mockData/mockActivities.json";
+import ActivityList from "./mockData/mockActivities.json";
 
-// type ArrayElementType = (typeof ActivityListItem)[number] & {
-//   button: any;
-// };
+const tableBody = ActivityList as ArrayElementType[];
 
-// // Create table headers consisting of 4 columns.
-// const header: TableColumnType<ArrayElementType>[] = [
-//   { title: "Name", prop: "name" },
-//   { title: "Id", prop: "id" },
-//   { title: "Location", prop: "location" },
-// ];
+type ArrayElementType = (typeof ActivityList)[number] & {
+  button: any;
+};
 
-// // Randomize data of the table columns.
-// // Note that the fields are all using the `prop` field of the headers.
-// const body = Array.from(new Array(57), () => {
-//   const rd: number = randomInt(0, 1);
+const header: TableColumnType<ArrayElementType>[] = [
+  { title: "Name", prop: "name" },
+  { title: "Id", prop: "id" },
+  { title: "Date", prop: "startDate", isSortable: true },
+  { title: "Distance", prop: "distance" },
+  { title: "Achievements", prop: "achievementCount" },
+  { title: "Max Speed", prop: "maxSpeed" },
+  { title: "Gear", prop: "gearId" },
+  {
+    prop: "button",
+    cell: (row) => (
+      <Button
+        variant="outline-primary"
+        size="sm"
+        onClick={() => {
+          alert(`${row.id}'s achievement count is ${row.achievementCount}`);
+        }}
+      >
+        Click me
+      </Button>
+    ),
+  },
+];
 
-//   if (rd > 0.5) {
-//     return {
-//       username: "i-am-billy",
-//       realname: `Billy ${rd}`,
-//       location: "Mars",
-//     };
-//   }
-
-//   return {
-//     username: "john-nhoj",
-//     realname: `John ${rd}`,
-//     location: "Saturn",
-//   };
-// });
-
-// // Then, use it in a component.
-// export function DetailedActivityList() {
-//   return (
-//     <DatatableWrapper body={body} headers={header}>
-//       <Row className="mb-4">
-//         <Col
-//           xs={12}
-//           lg={4}
-//           className="d-flex flex-col justify-content-end align-items-end"
-//         >
-//           <Filter />
-//         </Col>
-//         <Col
-//           xs={12}
-//           sm={6}
-//           lg={4}
-//           className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
-//         >
-//           <PaginationOpts />
-//         </Col>
-//         <Col
-//           xs={12}
-//           sm={6}
-//           lg={4}
-//           className="d-flex flex-col justify-content-end align-items-end"
-//         >
-//           <Pagination />
-//         </Col>
-//       </Row>
-//       <Table>
-//         <TableHeader />
-//         <TableBody />
-//       </Table>
-//     </DatatableWrapper>
-//   );
-// }
+function DisplayActivityList() {
+  return (
+    <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+      <DatatableWrapper body={tableBody} headers={header}>
+        <Row>
+          <Col>
+            <h3>Activity Serach Results</h3>
+          </Col>
+        </Row>
+        <Row className="mb-4">
+          <Col
+            xs={12}
+            lg={4}
+            className="d-flex flex-col justify-content-end align-items-end"
+          >
+            <Filter />
+          </Col>
+          <Col
+            xs={12}
+            sm={6}
+            lg={4}
+            className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
+          >
+            <PaginationOptions />
+          </Col>
+          <Col
+            xs={12}
+            sm={6}
+            lg={4}
+            className="d-flex flex-col justify-content-end align-items-end"
+          >
+            <Pagination />
+          </Col>
+        </Row>
+        <Table>
+          <TableHeader />
+          <TableBody />
+        </Table>
+      </DatatableWrapper>
+    </Container>
+  );
+}
+export default DisplayActivityList;
