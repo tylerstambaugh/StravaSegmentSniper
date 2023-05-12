@@ -4,15 +4,29 @@
     {
       "name": "Life, the Universe, and Everything",
       "id": 8429615608,
-      "type": "ride",
+      "type": "Ride",
       "startDate":"2023-01-21T16:24:59Z",
       "distance": 123,
       "achievementCount": 3,
       "maxSpeed":  14.45,
-      "geardId": "b8538322",
+      "gearId": "b8538322",
       "stravaMap": {
         "id": "a8318111913",
         "summaryPolyline": "_njrFnttlObOEzC^hQAJ|\\Uph@PdMpk@Urd@_@d`@ALUS}AmAyBGcBSimDU{@oAeAKy@@mb@Iy@Fy@fAsBbAi@c@eC@sA`@iBCwIP{EAyA]cBCwByA}EkAgB]aEF}Aa@gBqEsHyGeIkBkDy@w@e@eCAiHMcCp@wCBwAg@eC}C_EmFwBmCYeARM~Be@jAiAr@s@@mAuLo@cKh@kSGuCJkBSsAc@q@uBsAyCTyJCwAOmAq@_BgCWuCwAgE_D}Hk@_Ag@sBeAaAmCg@}AcAu@y@q@kBSqD`@cCnBkFdGgN|B}GNcD_BkDqDaMa@qIS_NVkCU_Ao@_AaEaPEiDw@_DUgGaA_AeAoDyBkFQqBi@kBmDuIsD_IYaAbBgIKmCi@gEcCkDmAgEOuAOcI[iDJkOJu@Y}BAeCx@gHjAiD^sCwAiHw@eHi@}A{@kA}A{A_Bo@Uo@cDwBu@}@i@aCmAmB[iBu@_CwBsCi@sAiAuHw@_EMsFZeGm@aGaAuSNePX]tDQzEkBfC_@X@L\\HtN~AnFNlCu@r^I~Yj@|ApFjHx@`C`@rDMnA]^q@L{B{@K\\JT~Aj@vBxBh@`AZvA`CpOOvCJf@|ATlOo@bAWzBwA|CJzBW|FuBrCgCpA_@hI?f@l@XLZIF]c@[kKByAp@yA`ByB`AsD~@kFF}BjAiAR_S`Aq@j@q@|AkAtJ^tEOlDGxIr@|PxApF~BvDx@fImB`IVbA|ArCvGfPb@~AJrAdDhK~AzAZzCt@pCDbHtDfPdApBShCJ|Ij@zMhD`MbBhD?tBK`A_C~GyCpG_FhMWfCPzC^nAId@sCh@sCAsClAc@a@qCoIqAwAw@[gKa@iHReG[oIVaCUOa@CkBSqBgBcEGyMQq@m@e@ma@@e@n@It@DzNf@fAt@PzDOv]Pd@N^`CLxCtBTRXD~i@Fp@\\TfPJ|UdC|JCnBWXq@AaAi@gBcBoDcAgLu@cF\\]hCgAtBB|Da@`BxAfDpBhCtC`IfVpArBfAr@`ATnNRxAp@zAlBh@lBN|Bi@jQ?nCvArOZjA\\xCv@?hAq@f@}AEiBxAUzBTdFnBtD`F^tCIdAg@rBRnJGfA^vBx@dAnAjCfHrIdFfI\\fBG~A^pDlAhBhAjDTrD\\bB@fCQrP_@bAD~@KASk@d@fDeA~AIxA]VKhAAj\\KfGN^|ArALdAHtkDFlBpA|BTzA]LupBt@QkAOoKRcr@IyR_@OwOBiC[oP?"
       }
-    }    
+    },
+    {
+      "name": "Team ICE Trainer",
+      "id": 9055139385,
+      "type": "Ride",
+      "startDate":"2023-05-11T21:07:30Z",
+      "distance": 86967.5,
+      "achievementCount": 29,
+      "maxSpeed":  17.444,
+      "gearId": "b11809995",
+      "stravaMap": {
+        "id": "a9055139385",
+        "summaryPolyline": "}mjrFfttlOlP?l@H^h@Frg@ExAkEl[K~MOl@_DdAQ^?fEoJRMdXPfa@lCtEdFnMpA|BjHxJ|D~DrBhAnBZj[Ai@lg@kAlJ?xDX`Bz@lBzItGxEfFdDrGnBjH|@dHTtHN|s@`AbG|DlId@bBXjB~An[d@rCfBdGxDjIVlFn@t{CbBd_FIbPPpS@~f@h@`i@r@jgAyHh@yFjDa@Sy@mCu@gIs@}AaAi@wCIeAgAU_JS_CmAeIk@eAwD_@mFRsBlAuH\\mC^kHzBiDRiBlB}@hBOnA`@|cATh@TWVkBvAsBf@{AVmHR}@zDeFbBQ|IzDl@@x@k@`B}C^uC\\mHp@oAz@X`@lB`CpCl@bBrAdAtDbG`CpAlC?f@y@lDcL`@k@jDwBtCaA|FUGgLL[vECPa@CsDc@L?t@D`@`@\\?|@URuEBKTF|KyBVEXz@vCd@nHSzAb@dHGrFOhER`u@f@dSXhAy@@Kb@h@jIsAvBWpFd@lCMnO}DpHzDdFj@pDr@bNFfT\\bAb|@QdGkBdSO`ADfGzAbi@[wAH[nF?lEh@zgA\\h@z@RH~[zeCkAJ`Wa@@`@I|@tpBu@fBm@jEcEzBXzAzAjBDr@e`@v_DuB|Rk@lBpVSHTHhf@_CtXu@tBuBnB{HLc@T[|@nBh_DWPoUBiFX{wCpBd@tiC_Bl@eYzDoQpAqGnBeD|BkOxSkBl@c@dDK~CS^cb@yImX}GuSuD{RyGOeDi@_rCMi@_o@TE[rAiI?iLyAcwCfzAaALg@_@erB}Gu@S_@BwCLOL?BpBRPv@ELcCxC@RSQur@}SA]gB}Bi_@[eUg@o@oPCi@obCJWbnAw@fH[_AebCDkPhk@W@S[qAEkS{@iOg@sCyDgFzDcHNaPg@{BRkFtAyCc@iHb@oBDoCi@kIXM_@gs@b@aTY]a@yFRqBe@kHw@kCAkAt@iBd@aDCwDtGSAaCOW]ABx@Lj@\\L?jAkFNMcA]c@\\Yq@u{@a@cy@Bcj@Mm@eBqmFm@{zCSgCq@uBiCeFaBoFm@kD{AyZ[{B_A_D_DoGeAwFOus@UaI_A{HyAuFgEsI_EmE}IoGq@kAq@iDGcCrAwJf@sj@s@oFwB}Ge@{CNmDt@cCKs@aQwKyCyCmQm\\Wo@GiBiA@sBaIOiNd@{@bD{@BgOlE_\\C_j@Ua@aAKgP?"
+      }
+    }   
   ]
