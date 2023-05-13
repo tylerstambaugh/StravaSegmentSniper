@@ -1,5 +1,5 @@
+import { SegmentEffort } from "../SegmentEfforts";
 import { StravaMap } from "./ActivityListItem";
-import { SegmentEffort } from "./SegmentEfforts";
 
 type DetailedActivity = {
   name: string;
