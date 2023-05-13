@@ -97,7 +97,7 @@ function DisplayActivityList() {
           <Col md={2}>
             <PaginationOptions />
           </Col>
-          <Col md={3}>
+          <Col md={5}>
             <Pagination />
           </Col>
         </Row>

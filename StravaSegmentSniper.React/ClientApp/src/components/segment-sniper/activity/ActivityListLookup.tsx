@@ -1,8 +1,6 @@
-import React, { ReactElement, ReactNode, useRef, useState } from "react";
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
+import React, { FormEvent, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Container, Row, Col, Button, Stack } from "react-bootstrap";
+import { Container, Row, Col, Button, Stack, Form } from "react-bootstrap";
 import {
   FormControl,
   FormControlLabel,
@@ -12,6 +10,8 @@ import {
   TextField,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Formik, Field, FormikProps, useFormik } from "formik";
+import * as Yup from "yup";
 
 function ActivityListLookup() {
   const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
@@ -37,26 +37,61 @@ function ActivityListLookup() {
     e.preventDefault();
     console.log();
   }
+  interface ActivityLookupForm {
+    activityId: string;
+    startDate: Date;
+    endDate: Date;
+    activityType: string;
+  }
+  const validationSchema = Yup.object().shape({
+    // activityId: Yup.string().when(["startDate", "endDate"], {
+    //   is: undefined,
+    //   then: Yup.string().required(
+    //     "Activity ID or Start Date and End Date are required."
+    //   ),
+    //   otherwise: Yup.string(),
+    // }),
+    startDate: Yup.date(),
+    endDate: Yup.date(),
+    activityType: Yup.string().required("Please select an Activity Type"),
+  });
 
+  const formik = useFormik<ActivityLookupForm>({
+    initialValues: {
+      activityId: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      activityType: "",
+    },
+    onSubmit: () => {
+      alert("submission complete");
+    },
+    validationSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
+  });
   return (
     <>
       <Container className="md-auto p-2 mb-1 col-8 bg-light text-dark border rounded">
         <Row>
           <Col>
             <h3>Activity List Lookup</h3>
-            <form>
+            <Form name="activityLookupForm">
               <Row className="md-auto p-2 mb-1">
                 <Col>
-                  <FormControl>
-                    <TextField
-                      id="outlined-number"
-                      label="Activity Id"
-                      type="number"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </FormControl>
+                  <TextField
+                    name="activityId"
+                    value={formik.values.activityId}
+                    id="outlined-number"
+                    label="Activity Id"
+                    type="number"
+                    onChange={(e) => {
+                      formik.setFieldValue("activityId", e.target.value);
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
                 </Col>
               </Row>
               <div className="md-auto p-2 mb-1">
@@ -128,9 +163,9 @@ function ActivityListLookup() {
                 value="Search"
                 variant="primary"
                 className={"me-1"}
-                //onClick={(e) => handleSearchClick(e)}
+                // onSubmit={formik.handleSubmit((e) => e.target.value)}
               />
-            </form>
+            </Form>
           </Col>
         </Row>
       </Container>
