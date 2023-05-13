@@ -17,11 +17,12 @@ import ActivityList from "./mockData/mockActivities.json";
 const tableBody = ActivityList as ArrayElementType[];
 
 type ArrayElementType = (typeof ActivityList)[number] & {
-  button: any;
+  snipeButton: any;
+  detailsButton: any;
 };
 
 const header: TableColumnType<ArrayElementType>[] = [
-  { title: "Name", prop: "name" },
+  { title: "Name", prop: "name", isFilterable: true },
   { title: "Id", prop: "id" },
   { title: "Date", prop: "startDate", isSortable: true },
   { title: "Distance", prop: "distance" },
@@ -29,7 +30,7 @@ const header: TableColumnType<ArrayElementType>[] = [
   { title: "Max Speed", prop: "maxSpeed" },
   { title: "Gear", prop: "gearId" },
   {
-    prop: "button",
+    prop: "snipeButton",
     cell: (row) => (
       <Button
         variant="outline-primary"
@@ -38,7 +39,21 @@ const header: TableColumnType<ArrayElementType>[] = [
           alert(`${row.id}'s achievement count is ${row.achievementCount}`);
         }}
       >
-        Click me
+        Details
+      </Button>
+    ),
+  },
+  {
+    prop: "detailsButton",
+    cell: (row) => (
+      <Button
+        variant="outline-primary"
+        size="sm"
+        onClick={() => {
+          alert(`${row.id}'s achievement count is ${row.achievementCount}`);
+        }}
+      >
+        Snipe Segments
       </Button>
     ),
   },
@@ -50,7 +65,7 @@ function DisplayActivityList() {
       <DatatableWrapper body={tableBody} headers={header}>
         <Row>
           <Col>
-            <h3>Activity Serach Results</h3>
+            <h3>Activity Search Results</h3>
           </Col>
         </Row>
         <Row className="mb-4">
@@ -66,22 +81,26 @@ function DisplayActivityList() {
             sm={6}
             lg={4}
             className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
-          >
-            <PaginationOptions />
-          </Col>
+          ></Col>
           <Col
             xs={12}
             sm={6}
             lg={4}
             className="d-flex flex-col justify-content-end align-items-end"
-          >
-            <Pagination />
-          </Col>
+          ></Col>
         </Row>
         <Table>
           <TableHeader />
           <TableBody />
         </Table>
+        <Row className="justify-content-between">
+          <Col md={2}>
+            <PaginationOptions />
+          </Col>
+          <Col md={3}>
+            <Pagination />
+          </Col>
+        </Row>
       </DatatableWrapper>
     </Container>
   );
