@@ -78,48 +78,50 @@ function ActivityListLookup() {
             <h3>Activity List Lookup</h3>
             <Form name="activityLookupForm">
               <Row className="md-auto p-2 mb-1">
-                <Col>
-                  <TextField
-                    name="activityId"
-                    value={formik.values.activityId}
-                    id="outlined-number"
-                    label="Activity Id"
-                    type="number"
-                    onChange={(e) => {
-                      formik.setFieldValue("activityId", e.target.value);
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Col>
+                <div className="border rounded mb-1 p-2">
+                  <div className="md-auto p-2 mb-1">
+                    Look up by activity ID:
+                  </div>
+                  <Col>
+                    <TextField
+                      name="activityId"
+                      value={formik.values.activityId}
+                      id="outlined-number"
+                      label="Activity Id"
+                      type="number"
+                      onChange={(e) => {
+                        formik.setFieldValue("activityId", e.target.value);
+                      }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Col>
+                </div>
               </Row>
-              <div className="md-auto p-2 mb-1">
-                or look up a list of rides with a date range:
-              </div>
+
               <div className="border rounded mb-1 p-2">
+                <div className="md-auto p-2 mb-1">
+                  or look up a list of rides with a date range:
+                </div>
                 <Stack direction="horizontal" gap={2}>
                   <div>
-                    <label style={{ display: "inline-flex" }}>
-                      <span style={{ marginRight: "1rem" }}>Start Date:</span>
-                      <DatePicker
-                        disableFuture
-                        onChange={(date: Date | null) =>
-                          handleStartDateChange(date!)
-                        }
-                      />
-                    </label>
+                    <DatePicker
+                      label="Start Date"
+                      disableFuture
+                      onChange={(date: Date | null) =>
+                        formik.setFieldValue("startDate", date)
+                      }
+                    />
                   </div>
                   <div>
-                    <label style={{ display: "flex" }}>
-                      <span style={{ marginRight: "1rem" }}>End Date:</span>
-                      <DatePicker
-                        disableFuture
-                        onChange={(date: Date | null) =>
-                          handleEndDateChange(date!)
-                        }
-                      />
-                    </label>
+                    <DatePicker
+                      label="End Date"
+                      disableFuture
+                      onChange={(date: Date | null) =>
+                        formik.setFieldValue("endDate", date)
+                      }
+                    />
                   </div>
                 </Stack>
               </div>
