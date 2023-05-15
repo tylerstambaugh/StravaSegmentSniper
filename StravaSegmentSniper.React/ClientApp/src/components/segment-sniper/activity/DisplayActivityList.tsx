@@ -25,9 +25,9 @@ const header: TableColumnType<ArrayElementType>[] = [
   { title: "Name", prop: "name", isFilterable: true },
   { title: "Id", prop: "id" },
   { title: "Date", prop: "startDate", isSortable: true },
-  { title: "Distance", prop: "distance" },
-  { title: "Achievements", prop: "achievementCount" },
-  { title: "Max Speed", prop: "maxSpeed" },
+  { title: "Distance", prop: "distance", isSortable: true },
+  { title: "Achievements", prop: "achievementCount", isSortable: true },
+  { title: "Max Speed", prop: "maxSpeed", isSortable: true },
   { title: "Gear", prop: "gearId" },
   {
     prop: "snipeButton",
@@ -62,7 +62,16 @@ const header: TableColumnType<ArrayElementType>[] = [
 function DisplayActivityList() {
   return (
     <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
-      <DatatableWrapper body={tableBody} headers={header}>
+      <DatatableWrapper
+        body={tableBody}
+        headers={header}
+        paginationOptionsProps={{
+          initialState: {
+            rowsPerPage: 10,
+            options: [5, 10, 15, 20],
+          },
+        }}
+      >
         <Row>
           <Col>
             <h3>Activity Search Results</h3>

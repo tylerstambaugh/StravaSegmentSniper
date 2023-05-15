@@ -100,26 +100,22 @@ function ActivityListLookup() {
               <div className="border rounded mb-1 p-2">
                 <Stack direction="horizontal" gap={2}>
                   <div>
-                    <label style={{ display: "inline-flex" }}>
-                      <span style={{ marginRight: "1rem" }}>Start Date:</span>
-                      <DatePicker
-                        disableFuture
-                        onChange={(date: Date | null) =>
-                          handleStartDateChange(date!)
-                        }
-                      />
-                    </label>
+                    <DatePicker
+                      label="Start Date"
+                      disableFuture
+                      onChange={(date: Date | null) =>
+                        formik.setFieldValue("startDate", date)
+                      }
+                    />
                   </div>
                   <div>
-                    <label style={{ display: "flex" }}>
-                      <span style={{ marginRight: "1rem" }}>End Date:</span>
-                      <DatePicker
-                        disableFuture
-                        onChange={(date: Date | null) =>
-                          handleEndDateChange(date!)
-                        }
-                      />
-                    </label>
+                    <DatePicker
+                      label="End Date"
+                      disableFuture
+                      onChange={(date: Date | null) =>
+                        formik.setFieldValue("endDate", date)
+                      }
+                    />
                   </div>
                 </Stack>
               </div>
