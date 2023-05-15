@@ -78,26 +78,32 @@ function ActivityListLookup() {
             <h3>Activity List Lookup</h3>
             <Form name="activityLookupForm">
               <Row className="md-auto p-2 mb-1">
-                <Col>
-                  <TextField
-                    name="activityId"
-                    value={formik.values.activityId}
-                    id="outlined-number"
-                    label="Activity Id"
-                    type="number"
-                    onChange={(e) => {
-                      formik.setFieldValue("activityId", e.target.value);
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Col>
+                <div className="border rounded mb-1 p-2">
+                  <div className="md-auto p-2 mb-1">
+                    Look up by activity ID:
+                  </div>
+                  <Col>
+                    <TextField
+                      name="activityId"
+                      value={formik.values.activityId}
+                      id="outlined-number"
+                      label="Activity Id"
+                      type="number"
+                      onChange={(e) => {
+                        formik.setFieldValue("activityId", e.target.value);
+                      }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Col>
+                </div>
               </Row>
-              <div className="md-auto p-2 mb-1">
-                or look up a list of rides with a date range:
-              </div>
+
               <div className="border rounded mb-1 p-2">
+                <div className="md-auto p-2 mb-1">
+                  or look up a list of rides with a date range:
+                </div>
                 <Stack direction="horizontal" gap={2}>
                   <div>
                     <DatePicker
