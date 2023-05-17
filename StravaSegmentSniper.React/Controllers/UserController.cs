@@ -30,8 +30,8 @@ namespace StravaSegmentSniper.React.Controllers
         public WebAppUser GetUser()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
-             // var user = await _userManager.GetUserIdAsync(User)
-            return _webAppUserService.GetLoggedInUserById(userId);
+             var user = _webAppUserService.GetLoggedInUserById(userId);
+            return user;
         }
 
         //// GET: api/<UserController>
