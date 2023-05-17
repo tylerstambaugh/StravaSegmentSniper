@@ -13,6 +13,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import ActivityList from "./mockData/mockActivities.json";
+import { ActivityListItem } from "../models/Activity/ActivityListItem";
 
 const tableBody = ActivityList as ArrayElementType[];
 
@@ -59,7 +60,11 @@ const header: TableColumnType<ArrayElementType>[] = [
   },
 ];
 
-function DisplayActivityList() {
+export interface displayActivityListProps {
+  activityList: ActivityListItem[];
+}
+
+function DisplayActivityList(props: displayActivityListProps) {
   return (
     <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
       <DatatableWrapper

@@ -8,7 +8,7 @@ const useApiGet = (url: string): TApiResponse => {
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getAPIData = async () => {
+  const getApiData = async () => {
     setLoading(true);
     try {
       const apiResponse = await fetch(url);

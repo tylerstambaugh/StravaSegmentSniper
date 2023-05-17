@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Button, Stack, Form } from "react-bootstrap";
 import {
@@ -10,35 +10,15 @@ import {
   TextField,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Formik, Field, FormikProps, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 
-function ActivityListLookup() {
-  const [lookupStartDate, setLookupStartDate] = useState<Date>(new Date());
-  const [lookupEndDate, setLookupEndDate] = useState<Date>(new Date());
-  const activityIdRef = useRef<HTMLInputElement>(null);
-  const today = new Date();
-
-  function handleActivityIdChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log({ activityId: activityIdRef.current!.valueOf() });
-  }
-
-  function handleStartDateChange(e: Date) {
-    setLookupStartDate(e);
-  }
-
-  function handleEndDateChange(e: Date) {
-    setLookupEndDate(e);
-  }
-
-  function handleSearchClick(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    e.preventDefault();
-    console.log();
-  }
+interface SearchProps {
+  handleSearch: (activityId: number) => void;
+}
+function ActivityListLookup({ handleSearch }: SearchProps) {
   interface ActivityLookupForm {
-    activityId: string;
+    activityId: number;
     startDate: Date;
     endDate: Date;
     activityType: string;
@@ -58,12 +38,15 @@ function ActivityListLookup() {
 
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
-      activityId: "",
+      activityId: 0,
       startDate: new Date(),
       endDate: new Date(),
       activityType: "",
     },
-    onSubmit: () => {
+    onSubmit: (e) => {
+      handleSearch(e.activityId!);
+      console.log("submitting");
+
       alert("submission complete");
     },
     validationSchema,
@@ -76,7 +59,7 @@ function ActivityListLookup() {
         <Row>
           <Col>
             <h3>Activity List Lookup</h3>
-            <Form name="activityLookupForm">
+            <Form name="activityLookupForm" onSubmit={formik.handleSubmit}>
               <Row className="md-auto p-2 mb-1">
                 <div className="border rounded mb-1 p-2">
                   <div className="md-auto p-2 mb-1">
@@ -165,7 +148,6 @@ function ActivityListLookup() {
                 value="Search"
                 variant="primary"
                 className={"me-1"}
-                // onSubmit={formik.handleSubmit((e) => e.target.value)}
               />
             </Form>
           </Col>
