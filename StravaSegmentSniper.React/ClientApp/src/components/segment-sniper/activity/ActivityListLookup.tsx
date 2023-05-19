@@ -12,11 +12,9 @@ import {
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { ActivitySearchProps } from "./Activity";
 
-interface SearchProps {
-  handleSearch: (activityId: number) => void;
-}
-function ActivityListLookup({ handleSearch }: SearchProps) {
+function ActivityListLookup({ handleSearch }) {
   interface ActivityLookupForm {
     activityId: number;
     startDate: Date;
@@ -24,6 +22,7 @@ function ActivityListLookup({ handleSearch }: SearchProps) {
     activityType: string;
   }
   const validationSchema = Yup.object().shape({
+    activityId: Yup.number().required("Activity ID Is required"),
     // activityId: Yup.string().when(["startDate", "endDate"], {
     //   is: undefined,
     //   then: Yup.string().required(
@@ -31,9 +30,9 @@ function ActivityListLookup({ handleSearch }: SearchProps) {
     //   ),
     //   otherwise: Yup.string(),
     // }),
-    startDate: Yup.date(),
-    endDate: Yup.date(),
-    activityType: Yup.string().required("Please select an Activity Type"),
+    // startDate: Yup.date(),
+    // endDate: Yup.date(),
+    // activityType: Yup.string().required("Please select an Activity Type"),
   });
 
   const formik = useFormik<ActivityLookupForm>({
@@ -43,8 +42,10 @@ function ActivityListLookup({ handleSearch }: SearchProps) {
       endDate: new Date(),
       activityType: "",
     },
-    onSubmit: (e) => {
-      handleSearch(e.activityId!);
+    onSubmit: (values: ActivityLookupForm) => {
+      console.log(`${values.activityId} ${values.activityType}`);
+
+      handleSearch(values.activityId);
       console.log("submitting");
 
       alert("submission complete");
@@ -74,12 +75,14 @@ function ActivityListLookup({ handleSearch }: SearchProps) {
                       type="number"
                       onChange={(e) => {
                         formik.setFieldValue("activityId", e.target.value);
+                        formik.handleChange(e);
                       }}
                       InputLabelProps={{
                         shrink: true,
                       }}
                     />
                   </Col>
+                  <Col></Col>
                 </div>
               </Row>
 
@@ -148,6 +151,7 @@ function ActivityListLookup({ handleSearch }: SearchProps) {
                 value="Search"
                 variant="primary"
                 className={"me-1"}
+                onClick={(e) => console.log(`button was clicked ${e.target}`)}
               />
             </Form>
           </Col>
