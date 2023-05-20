@@ -1,4 +1,4 @@
-export interface detailedAthleteModel {
+export interface DetailedAthleteModel {
   stravaAthleteId: number;
   firstName: string;
   lastName: string;

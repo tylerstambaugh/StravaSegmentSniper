@@ -14,9 +14,11 @@ export interface ActivitySearchProps {
 function Activity() {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
 
-  function HandleActivitySearch(props: ActivitySearchProps) {
-    // const activityListResponse =  useGetActivityList(activityId)
-    // setActivityList(activityListResponse)
+  async function HandleActivitySearch(props: ActivitySearchProps) {
+    const activityListResponse = await useGetActivityList(props.activityId!);
+    console.log(activityListResponse.error);
+
+    setActivityList(activityListResponse.data ?? []);
     console.log(`going to call the api with activityID ${props.activityId}`);
   }
 
