@@ -1,17 +1,37 @@
 import { useState } from "react";
-import { TApiResponse } from "../models/apiResponse";
+import authService from "../../api-authorization/AuthorizeService";
 
-const useApiGet = (url: string): TApiResponse => {
-  const [status, setStatus] = useState<Number>(0);
-  const [statusText, setStatusText] = useState<String>('');
+// interface ApiResponse<T> {
+//   data: T;
+//   error: string | null;
+// }
+
+export interface UseApiCallResponse<T> {
+  status: number | null;
+  statusText: string | null;
+  data: T | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+
+function UseApiCall<T>(url: string): UseApiCallResponse<T> {
+  const [status, setStatus] = useState<number>(0);
+  const [statusText, setStatusText] = useState<string>('');
   const [data, setData] = useState<any>();
   const [error, setError] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
 
-  const getApiData = async () => {
-    setLoading(true);
+  async function getApiData(url: string) {
+    setIsLoading(true);
+    if(authService.isAuthenticated())
+    {
     try {
-      const apiResponse = await fetch(url);
+      const token = await authService.getAccessToken();
+      const apiResponse = await fetch(url, {
+        headers: !token ? {} : { Authorization: `Bearer ${token}` },
+      });
       const json = await apiResponse.json();
       setStatus(apiResponse.status);
       setStatusText(apiResponse.statusText);
@@ -19,10 +39,12 @@ const useApiGet = (url: string): TApiResponse => {
     } catch (error) {
       setError(error);
     }
-    setLoading(false);
+    setIsLoading(false);
   };
-  return { status, statusText, data, error, loading };
-};
+}
+  return { status, statusText, data, error, isLoading };
+}
+;
 
-export default useApiGet;
+export default UseApiCall;
 
