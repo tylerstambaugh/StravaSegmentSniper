@@ -1,5 +1,5 @@
 import { DetailedAthleteModel } from "../athlete/models/DetailedAthleteModel";
-import useApiGet, { UseApiCallResponse } from "./useApiFunction";
+import { UseApiCallResponse, useApiGet } from "./useApiGet";
 
 async function useGetAthleteDetails(
   athleteId: number
