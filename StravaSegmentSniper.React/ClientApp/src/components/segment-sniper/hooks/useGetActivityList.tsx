@@ -1,14 +1,19 @@
 import { ActivityListItem } from "../models/Activity/ActivityListItem";
-import { TApiResponse } from "../models/apiResponse";
-import useApiGet, { UseApiCallResponse } from "./useApiFunction";
+import { UseApiCallResponse, useApiGet } from "./useApiGet";
 
-async function useGetActivityList(
+const useGetActivityList = async (
   activityId: number
-): Promise<UseApiCallResponse<ActivityListItem[]>> {
-  const data: UseApiCallResponse<ActivityListItem[]> = useApiGet(
+): Promise<ActivityListItem[] | Error> => {
+  const response = await useApiGet<ActivityListItem[]>(
     `/activity/${activityId}`
   );
-  return data;
-}
+  if (response.error) {
+    console.log("somehting went wrong in useGetActivityList.tsx");
+    return response.error;
+  } else {
+    const responseData: ActivityListItem[] = response.data!;
+    return responseData;
+  }
+};
 
 export default useGetActivityList;

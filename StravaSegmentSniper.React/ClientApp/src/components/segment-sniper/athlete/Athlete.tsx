@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useGetAthleteDetails from "../hooks/useGetAthleteDetails";
 import authService from "../../api-authorization/AuthorizeService";
-import useApiGet from "../hooks/useApiFunction";
 import { WebAppUser } from "../models/webAppUser";
 
 const Athlete = () => {

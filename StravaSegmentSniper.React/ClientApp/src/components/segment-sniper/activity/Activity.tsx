@@ -16,9 +16,12 @@ function Activity() {
 
   async function HandleActivitySearch(props: ActivitySearchProps) {
     const activityListResponse = await useGetActivityList(props.activityId!);
-    console.log(activityListResponse.error);
-
-    setActivityList(activityListResponse.data ?? []);
+    console.log(activityListResponse);
+    if (activityListResponse instanceof Error) {
+      console.log("error");
+    } else {
+      setActivityList(activityListResponse ?? []);
+    }
     console.log(`going to call the api with activityID ${props.activityId}`);
   }
 
