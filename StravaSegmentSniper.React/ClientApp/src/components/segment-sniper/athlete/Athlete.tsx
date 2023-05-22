@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useGetAthleteDetails from "../hooks/useGetAthleteDetails";
 import authService from "../../api-authorization/AuthorizeService";
 import { WebAppUser } from "../models/webAppUser";
 
