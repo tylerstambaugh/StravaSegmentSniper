@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import authService from "../../api-authorization/AuthorizeService";
 
 export interface UseApiCallResponse<T> {
@@ -6,59 +6,32 @@ export interface UseApiCallResponse<T> {
   statusText: string | null;
   data: T | null;
   isLoading: boolean;
-  error: Error | null;
+  error: string | null;
 }
 
-const fetchApiData = async <T>(url: string): Promise<UseApiCallResponse<T>> => {
-  const response: UseApiCallResponse<T> = {
-    status: null,
-    statusText: null,
-    data: null,
-    isLoading: true,
-    error: null,
-  };
-
-  if (authService.isAuthenticated()) {
+export const useApiGet = async <T>(url: string):  Promise<UseApiCallResponse<T>> => {
+  const [status, setStatus] = useState<number>(0);
+  const [statusText, setStatusText] = useState<string>('');
+  const [data, setData] = useState<any>();
+  const [error, setError] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
+    setIsLoading(true);
+    if(authService.isAuthenticated())
+    {
     try {
       const token = await authService.getAccessToken();
       const apiResponse = await fetch(url, {
         headers: !token ? {} : { Authorization: `Bearer ${token}` },
       });
       const json = await apiResponse.json();
-      response.status = apiResponse.status;
-      response.statusText = apiResponse.statusText;
-      response.data = json;
+      setStatus(apiResponse.status);
+      setStatusText(apiResponse.statusText);
+      setData(json);
     } catch (error) {
-      if(error instanceof Error) {
-        response.error = error;
-      } else {
-        response.error = new Error('An unexpected error occurred ')
-      }
+      setError(error);
     }
   }
-
-  response.isLoading = false;
-  return response;
+    setIsLoading(false);
+  return { status, statusText, data, error, isLoading };
 };
-
-export const useApiGet = <T>(url: string): UseApiCallResponse<T> => {
-  const [response, setResponse] = useState<UseApiCallResponse<T>>({
-    status: null,
-    statusText: null,
-    data: null,
-    isLoading: false,
-    error: null,
-  });
-
-  useEffect(() => {
-    setResponse({ ...response, isLoading: true });
-
-    fetchApiData<T>(url)
-      .then((result) => setResponse(result))
-      .catch((error) => setResponse({ ...response, error }));
-  }, [url]);
-
-  return response;
-};
-
-

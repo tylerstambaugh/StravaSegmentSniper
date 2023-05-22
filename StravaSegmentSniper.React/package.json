@@ -8,5 +8,8 @@
     "react-bootstrap": "^2.7.4",
     "react-bs-datatable": "^3.11.2",
     "react-datepicker": "^4.11.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.6.0"
   }
 }

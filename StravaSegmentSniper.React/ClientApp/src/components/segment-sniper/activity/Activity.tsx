@@ -11,7 +11,7 @@ export interface ActivitySearchProps {
   activityType?: string;
 }
 
-function Activity() {
+const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
 
   async function HandleActivitySearch(props: ActivitySearchProps) {
@@ -32,6 +32,6 @@ function Activity() {
       <DisplayActivityList activityList={activityList} />
     </>
   );
-}
+};
 
 export default Activity;

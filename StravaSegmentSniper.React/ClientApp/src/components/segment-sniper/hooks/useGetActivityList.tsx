@@ -8,8 +8,8 @@ const useGetActivityList = async (
     `/activity/${activityId}`
   );
   if (response.error) {
-    console.log("somehting went wrong in useGetActivityList.tsx");
-    return response.error;
+    console.log("something went wrong in useGetActivityList.tsx");
+    return new Error();
   } else {
     const responseData: ActivityListItem[] = response.data!;
     return responseData;
