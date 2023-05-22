@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import ActivityListLookup from "./ActivityListLookup";
 import DisplayActivityList from "./DisplayActivityList";
 import { ActivityListItem } from "../models/Activity/ActivityListItem";
@@ -13,9 +13,10 @@ export interface ActivitySearchProps {
 
 const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
+  const { getActivityList } = useGetActivityList();
 
-  async function HandleActivitySearch(props: ActivitySearchProps) {
-    const activityListResponse = await useGetActivityList(props.activityId!);
+  async function handleActivitySearch(props: ActivitySearchProps) {
+    const activityListResponse = await getActivityList(props.activityId!);
     console.log(activityListResponse);
     if (activityListResponse instanceof Error) {
       console.log("error");
@@ -28,7 +29,7 @@ const Activity = () => {
   return (
     <>
       <h2>Strava Segment Sniper</h2>
-      <ActivityListLookup handleSearch={HandleActivitySearch} />
+      <ActivityListLookup handleSearch={handleActivitySearch} />
       <DisplayActivityList activityList={activityList} />
     </>
   );
