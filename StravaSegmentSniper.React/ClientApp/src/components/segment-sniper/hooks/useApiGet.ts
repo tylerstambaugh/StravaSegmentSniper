@@ -6,14 +6,14 @@ export interface UseApiCallResponse<T> {
   statusText: string | null;
   data: T | null;
   isLoading: boolean;
-  error: string | null;
+  error?: Error ;
 }
 
 export const useApiGet = async <T>(url: string):  Promise<UseApiCallResponse<T>> => {
   const [status, setStatus] = useState<number>(0);
   const [statusText, setStatusText] = useState<string>('');
   const [data, setData] = useState<any>();
-  const [error, setError] = useState<any>();
+  const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
     setIsLoading(true);
@@ -29,7 +29,12 @@ export const useApiGet = async <T>(url: string):  Promise<UseApiCallResponse<T>>
       setStatusText(apiResponse.statusText);
       setData(json);
     } catch (error) {
-      setError(error);
+      if(error instanceof Error) {
+        setError(error);
+      }
+      else {
+        setError(new Error('an unexpected error occurred in useApiGet'))
+      }
     }
   }
     setIsLoading(false);
