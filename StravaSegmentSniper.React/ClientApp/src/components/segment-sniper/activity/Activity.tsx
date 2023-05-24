@@ -13,18 +13,20 @@ export interface ActivitySearchProps {
 
 const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
+  const { loading, error, fetch } = useGetActivityList();
 
   async function handleActivitySearch(props: ActivitySearchProps) {
-    const [loading, data, error, fetch] = await useGetActivityList(
-      props.activityId!
-    );
-    console.log(activityListResponse);
-    if (activityListResponse instanceof Error) {
-      console.log("error");
-    } else {
-      setActivityList(activityListResponse ?? []);
-    }
     console.log(`going to call the api with activityID ${props.activityId}`);
+
+    const fetchResponse = await fetch(props.activityId!);
+
+    if (fetchResponse && !(fetchResponse instanceof Error)) {
+      setActivityList(fetchResponse);
+    } else {
+      // Handle error case here
+    }
+
+    console.log(activityList);
   }
 
   return (
