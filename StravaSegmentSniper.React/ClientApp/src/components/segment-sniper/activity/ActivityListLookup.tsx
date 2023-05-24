@@ -43,12 +43,10 @@ function ActivityListLookup({ handleSearch }) {
       activityType: "",
     },
     onSubmit: (values: ActivityLookupForm) => {
-      console.log(`${values.activityId} ${values.activityType}`);
+      console.log(`activity ID in onsubmit= ${values.activityId}`);
 
-      handleSearch(values.activityId);
+      handleSearch(values);
       console.log("submitting");
-
-      alert("submission complete");
     },
     validationSchema,
     validateOnBlur: false,
