@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ActivityListItem } from "../models/Activity/ActivityListItem";
-import { useAxios } from "./useAxios";
+import { useApi } from "./useApi";
 
 const useGetActivityList = (): {
   loading: boolean;
@@ -9,7 +9,7 @@ const useGetActivityList = (): {
     activityId: number
   ) => Promise<Error | ActivityListItem[] | undefined>;
 } => {
-  const [, data, , request] = useAxios<ActivityListItem[]>();
+  const api = useApi<ActivityListItem[]>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
@@ -19,12 +19,16 @@ const useGetActivityList = (): {
     setLoading(true);
 
     try {
-      await request(`/activity/${activityId}`, "GET");
-      if (data instanceof Error) {
-        setError(data);
+      const requestOptions: RequestInit = { method: "GET" };
+      const fetchResponse: ActivityListItem[] | Error = await api.fetch(
+        `/activity/${activityId}`,
+        requestOptions
+      );
+      if (fetchResponse instanceof Error) {
+        setError(fetchResponse);
         throw new Error(error?.message);
       }
-      return data;
+      return fetchResponse;
     } catch (error) {
       if (error instanceof Error) {
         setError(error);
