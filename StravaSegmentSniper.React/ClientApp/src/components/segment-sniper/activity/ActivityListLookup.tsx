@@ -146,7 +146,6 @@ function ActivityListLookup({ handleSearch }) {
                 value="Search"
                 variant="primary"
                 className={"me-1"}
-                onClick={(e) => console.log(`button was clicked ${e.target}`)}
               />
             </Form>
           </Col>
