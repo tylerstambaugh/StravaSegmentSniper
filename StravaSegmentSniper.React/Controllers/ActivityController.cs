@@ -43,6 +43,7 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet("{activityId}")]
+        [ActionName("ActivityList")]
         public DetailedActivityModel GetDetailedActivityById(int activityId)
         {
             var user =  _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());

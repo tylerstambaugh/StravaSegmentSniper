@@ -16,8 +16,6 @@ const Activity = () => {
   const { loading, error, fetch } = useGetActivityList();
 
   async function handleActivitySearch(props: ActivitySearchProps) {
-    console.log(`going to call the api with activityID ${props.activityId}`);
-
     const fetchResponse = await fetch(props.activityId!);
 
     if (fetchResponse && !(fetchResponse instanceof Error)) {
