@@ -1,4 +1,6 @@
 using StravaSegmentSniper.React.Helpers;
+//using Rick.Docs.Samples;
+
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = WebAppBuilderConfig.ConfigureBuilder();
@@ -30,19 +32,25 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    pattern: "api/{controller}/{action=Index}/{id?}");
 
-app.UseEndpoints(endpoints =>
-{
-    //endpoints.MapControllerRoute(
-    //  name: "Admin",
-    //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapControllerRoute(
-      name: "default",
-      pattern: "{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapRazorPages();
-});
+//app.UseRouting();
 
+//app.UseEndpoints(endpoints =>
+//{
+//    //endpoints.MapControllerRoute(
+//    //  name: "Admin",
+//    //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+//    endpoints.MapControllerRoute(
+//      name: "default",
+//      pattern: "{controller=Home}/{action=Index}/{id?}");
+//    endpoints.MapRazorPages();
+//});
+
+
+//Use Rick.Docs.Samples to gather route information
+//var routeInfo = new RouteInfo(endpoints);
+//var routes = routeInfo.GetRoutes();
 
 app.MapRazorPages();
 
