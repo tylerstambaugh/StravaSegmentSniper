@@ -1,4 +1,4 @@
-import { SegmentEffort } from "../SegmentEfforts";
+import { SegmentEffort } from "../Segment/SegmentEfforts";
 import { StravaMap } from "./ActivityListItem";
 
 type DetailedActivity = {
