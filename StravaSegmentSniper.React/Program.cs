@@ -29,30 +29,31 @@ app.UseIdentityServer();
 app.UseAuthorization();
 
 
-app.MapControllers();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "api/{controller}/{action=Index}/{id?}");
+//app.MapControllers();
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller}/{action=Index}/{id?}");
 
-//app.UseRouting();
+app.UseRouting();
 
-//app.UseEndpoints(endpoints =>
-//{
-//    //endpoints.MapControllerRoute(
-//    //  name: "Admin",
-//    //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-//    endpoints.MapControllerRoute(
-//      name: "default",
-//      pattern: "{controller=Home}/{action=Index}/{id?}");
-//    endpoints.MapRazorPages();
-//});
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    //endpoints.MapControllerRoute(
+    //  name: "Admin",
+    //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+      name: "default",
+      pattern: "{controller}/{action}/{id?}");
+    endpoints.MapRazorPages();
+});
 
 
 //Use Rick.Docs.Samples to gather route information
 //var routeInfo = new RouteInfo(endpoints);
 //var routes = routeInfo.GetRoutes();
 
-app.MapRazorPages();
+//app.MapRazorPages();
 
 app.MapFallbackToFile("index.html"); ;
 

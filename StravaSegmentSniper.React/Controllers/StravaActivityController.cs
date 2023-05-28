@@ -42,12 +42,13 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet("{activityId}")]
+        [HttpGet]
+        [ActionName("ActivityList")]
         public DetailedActivityModel GetStravaDetailedActivityById(int activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = 1;
-            DetailedActivityModel activity = _stravaAPIActivity.GetDetailedActivityById(activityId, userId).Result;
+            var stravaAthleteId = user.StravaAthleteId;
+            DetailedActivityModel activity = _stravaAPIActivity.GetDetailedActivityById(activityId, stravaAthleteId).Result;
 
             return activity;
         }
