@@ -11,7 +11,7 @@ const AppRoutes = [
     element: <SegmentSniper />,
   },
   {
-    path: "/activity/",
+    path: "/activities/",
     requireAuth: true,
     element: <Activity />,
   },

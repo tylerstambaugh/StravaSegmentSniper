@@ -21,7 +21,7 @@ const useGetActivityList = (): {
     try {
       const requestOptions: RequestInit = { method: "GET" };
       const fetchResponse: ActivityListItem[] | Error = await api.fetch(
-        `/activity/ActivityList/${activityId}`,
+        `/Activity/ActivityList/${activityId}`,
         requestOptions
       );
       if (fetchResponse instanceof Error) {

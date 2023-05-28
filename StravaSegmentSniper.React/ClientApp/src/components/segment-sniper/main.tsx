@@ -53,7 +53,7 @@ function SegmentSniper() {
                 <Link to="./athlete">View Athlete Details</Link>
               </li>
               <li style={{ cursor: "pointer" }}>
-                <Link to="./activity">Activities and Segment</Link>
+                <Link to="./activities">Activities and Segment</Link>
               </li>
               <li style={{ cursor: "pointer" }}>Token Maintenance</li>
             </ul>

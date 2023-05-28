@@ -8,8 +8,7 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class ActivityController : ControllerBase
     {
         private readonly IAthleteActivityService _athleteActivityService;
@@ -42,7 +41,7 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet("{activityId}")]
+        [HttpGet]
         [ActionName("ActivityList")]
         public DetailedActivityModel GetDetailedActivityById(int activityId)
         {
