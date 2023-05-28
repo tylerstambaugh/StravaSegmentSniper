@@ -8,14 +8,15 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [ApiController]
     [Route("[controller]/[action]")]
-    public class StravaActivityController : ControllerBase
+    [ApiController]
+    public class StravaActivityController : Controller
     {
         private readonly IAthleteActivityService _athleteActivityService;
         private readonly IStravaAPIActivity _stravaAPIActivity;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
 
         public StravaActivityController(IAthleteActivityService athleteActivityService, IStravaAPIActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
         {
@@ -25,9 +26,9 @@ namespace StravaSegmentSniper.React.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        // GET api/<ActivityController>
+        [ActionName("activitiesfortimerange")]
         [HttpGet]
-        public List<SummaryActivityModel> GetStravaSummaryActivityForTimeRange()
+        public List<SummaryActivityModel> GetStravaSummaryActivityForTimeRange(DateTime start, DateTime end)
         {
             int startDate = 9345693;
             int endDate = 9235479;
@@ -43,8 +44,8 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet("{activityId}")]
-        [ActionName("ActivityList")]
-        public DetailedActivityModel GetStravaDetailedActivityById(int activityId)
+        [ActionName("activitylist")]
+        public DetailedActivityModel GetStravaDetailedActivityById(long activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
@@ -53,6 +54,11 @@ namespace StravaSegmentSniper.React.Controllers
             return activity;
         }
 
-
+        [HttpGet("{teststring}")]
+        [ActionName("testget")]
+        public string TestGet(string test)
+        {
+            return $"test string was = {test}";
+        }
     }
 }

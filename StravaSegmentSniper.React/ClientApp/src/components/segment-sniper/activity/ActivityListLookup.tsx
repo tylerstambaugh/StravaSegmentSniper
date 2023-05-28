@@ -37,7 +37,7 @@ function ActivityListLookup({ handleSearch }) {
 
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
-      activityId: 0,
+      activityId: 9102798217,
       startDate: new Date(),
       endDate: new Date(),
       activityType: "",

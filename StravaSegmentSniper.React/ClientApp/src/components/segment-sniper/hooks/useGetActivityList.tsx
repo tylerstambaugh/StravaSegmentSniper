@@ -21,7 +21,7 @@ const useGetActivityList = (): {
     try {
       const requestOptions: RequestInit = { method: "GET" };
       const fetchResponse: ActivityListItem[] | Error = await api.fetch(
-        `/Activity/ActivityList/${activityId}`,
+        `stravaactivity/activitylist?activityId=${activityId}`,
         requestOptions
       );
       if (fetchResponse instanceof Error) {
