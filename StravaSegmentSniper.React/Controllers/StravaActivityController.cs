@@ -42,7 +42,7 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet]
+        [HttpGet("{activityId}")]
         [ActionName("ActivityList")]
         public DetailedActivityModel GetStravaDetailedActivityById(int activityId)
         {
