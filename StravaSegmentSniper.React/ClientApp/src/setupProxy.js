@@ -19,9 +19,9 @@ const context = [
   "/user",
   "/athlete",
   //"/activities",
-  "/stravaactivity",
-
+  "/StravaActivity",
   "/activity",
+  "/swagger",
 ];
 
 module.exports = function (app) {

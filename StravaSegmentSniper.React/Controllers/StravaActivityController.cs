@@ -8,9 +8,9 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
+    [Route("api/StravaActivity/[action]")]
     [ApiController]
-    public class StravaActivityController : Controller
+    public class StravaActivityController : ControllerBase
     {
         private readonly IAthleteActivityService _athleteActivityService;
         private readonly IStravaAPIActivity _stravaAPIActivity;
@@ -26,8 +26,8 @@ namespace StravaSegmentSniper.React.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
+        [HttpGet("getdata/{startDate}/{endDate}")]
         [ActionName("activitiesfortimerange")]
-        [HttpGet]
         public List<SummaryActivityModel> GetStravaSummaryActivityForTimeRange(DateTime start, DateTime end)
         {
             int startDate = 9345693;
@@ -43,7 +43,7 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet("{activityId}")]
+        [HttpGet("activitylist/{activityId}")]
         [ActionName("activitylist")]
         public DetailedActivityModel GetStravaDetailedActivityById(long activityId)
         {
@@ -54,8 +54,8 @@ namespace StravaSegmentSniper.React.Controllers
             return activity;
         }
 
-        [HttpGet("{teststring}")]
-        [ActionName("testget")]
+        [HttpGet("testget/{test}")]
+        //[ActionName("testget")]
         public string TestGet(string test)
         {
             return $"test string was = {test}";

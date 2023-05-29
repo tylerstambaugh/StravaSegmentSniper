@@ -1,6 +1,4 @@
 using StravaSegmentSniper.React.Helpers;
-//using Rick.Docs.Samples;
-
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = WebAppBuilderConfig.ConfigureBuilder();
@@ -8,6 +6,7 @@ var builder = WebAppBuilderConfig.ConfigureBuilder();
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -29,10 +28,15 @@ app.UseIdentityServer();
 app.UseAuthorization();
 
 
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
 app.MapControllers();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    pattern: "{controller}/{action}/{id?}");
 
 //app.UseRouting();
 
