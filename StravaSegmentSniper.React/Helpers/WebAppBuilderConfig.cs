@@ -37,7 +37,11 @@ namespace StravaSegmentSniper.React.Helpers
                 options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
 
             builder.Services.AddControllersWithViews();
+
             builder.Services.AddRazorPages();
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             //add automapper
             builder.Services.AddAutoMapper(typeof(Program));
