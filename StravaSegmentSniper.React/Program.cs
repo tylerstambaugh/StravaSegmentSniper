@@ -34,9 +34,9 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.MapControllers();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "api/{controller}");
 
 //app.UseRouting();
 
