@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [Route("api/StravaActivity/[action]")]
+    [Route("api/StravaActivity")]
     [ApiController]
     public class StravaActivityController : ControllerBase
     {
@@ -26,9 +26,8 @@ namespace StravaSegmentSniper.React.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpGet("getdata/{startDate}/{endDate}")]
-        [ActionName("activitiesfortimerange")]
-        public List<SummaryActivityModel> GetStravaSummaryActivityForTimeRange(DateTime start, DateTime end)
+        [HttpGet("summaryActivity/{startDate}/{endDate}")]
+        public List<SummaryActivityModel> SummaryActivityForTimeRange(DateTime start, DateTime end)
         {
             int startDate = 9345693;
             int endDate = 9235479;
@@ -43,9 +42,9 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet("activitylist/{activityId}")]
-        [ActionName("activitylist")]
-        public DetailedActivityModel GetStravaDetailedActivityById(long activityId)
+        [HttpGet]
+        [Route("/ActivityList/{activityId}")]
+        public DetailedActivityModel DetailedActivityById(long activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
@@ -54,9 +53,10 @@ namespace StravaSegmentSniper.React.Controllers
             return activity;
         }
 
-        [HttpGet("testget/{test}")]
-        //[ActionName("testget")]
-        public string TestGet(string test)
+        [HttpGet]
+        [Route("/TestGet/{test}")]
+       // [ActionName("testget")]
+        public string TestGet([FromQuery] string test)
         {
             return $"test string was = {test}";
         }
