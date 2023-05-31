@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [Route("api/StravaActivity")]
+    [Route("[controller]")]
     [ApiController]
     public class StravaActivityController : ControllerBase
     {
@@ -43,7 +43,7 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet]
-        [Route("/ActivityList/{activityId}")]
+        //[Route("/activitylist/{activityId}")]
         public DetailedActivityModel DetailedActivityById(long activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
@@ -53,12 +53,12 @@ namespace StravaSegmentSniper.React.Controllers
             return activity;
         }
 
-        [HttpGet]
-        [Route("/TestGet/{test}")]
-       // [ActionName("testget")]
-        public string TestGet([FromQuery] string test)
-        {
-            return $"test string was = {test}";
-        }
+       // [HttpGet]
+       // [Route("/TestGet/{test}")]
+       //[ActionName("testget")]
+       // public string TestGet([FromQuery] string test)
+       // {
+       //     return $"test string was = {test}";
+       // }
     }
 }
