@@ -42,9 +42,9 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet]
+        [HttpGet("activitylist")]
         //[Route("/activitylist/{activityId}")]
-        public DetailedActivityModel DetailedActivityById(long activityId)
+        public DetailedActivityModel DetailedActivityById([FromQuery]long activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;

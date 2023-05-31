@@ -55,21 +55,18 @@ export const useApi = <TResponse = any>() => {
     url: string,
     requestOptions: RequestInit
   ): Promise<Response | undefined> {
-    setAuthInHeaders();
+    const token = await authService.getAccessToken();
+    console.log(token);
 
+    requestOptions.headers = {
+      ...requestOptions.headers,
+      Authorization: `Bearer ${token}`,
+    };
     let response: Response | undefined = await window.fetch(
       url,
       requestOptions
     );
     return response;
-
-    function setAuthInHeaders() {
-      const token = async () => await authService.getAccessToken();
-      requestOptions.headers = {
-        ...requestOptions.headers,
-        Authorization: `Bearer ${token}`,
-      };
-    }
   }
   return { fetch };
 };
