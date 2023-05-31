@@ -23,6 +23,7 @@ const context = [
   "/activity",
   "/swagger",
   "/api",
+  "/stravaactivity",
 ];
 
 module.exports = function (app) {
