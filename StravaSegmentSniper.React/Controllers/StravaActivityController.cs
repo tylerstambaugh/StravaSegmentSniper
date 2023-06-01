@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using StravaSegmentSniper.React.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
@@ -27,7 +28,8 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet]
-        public List<SummaryActivityModel> SummaryActivityForTimeRange([FromBody] DateRangeParameters dateRangeParameters)
+        [ActionName("ActivityListByDates")]
+        public List<SummaryActivityModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
             int startDate = 9345693;
             int endDate = 9235479;
@@ -43,7 +45,7 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet]
-        [ActionName("activitylist")]
+        [ActionName("activitylistbyid")]
         //[Route("/activitylist/{activityId}")]
         public DetailedActivityModel DetailedActivityById([FromBody]long activityId)
         {
@@ -55,16 +57,14 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpGet]
-        [ActionName("testget")]
+        [ActionName("TestGet")]
         public string TestGet([FromQuery] string test)
         {
             return $"test string was = {test}";
         }
          
     }
-    public class DateRangeParameters
+    public class DateRangeParameters : DateRangeParametersContract
     {
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set;}
     }
 }
