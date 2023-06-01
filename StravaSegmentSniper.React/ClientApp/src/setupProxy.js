@@ -15,15 +15,11 @@ const context = [
   "/connect",
   "/ApplyDatabaseMigrations",
   "/_framework",
-  // "/segmentSniper/SegmentSniper",
   "/user",
   "/athlete",
-  //"/activities",
   "/SampleValues",
-  "/activity",
   "/swagger",
   "/api",
-  "/stravaactivity",
 ];
 
 module.exports = function (app) {

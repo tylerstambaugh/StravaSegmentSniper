@@ -27,8 +27,6 @@ app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
 
-
-
 app.UseSwagger();
 
 app.UseSwaggerUI();
@@ -36,26 +34,7 @@ app.UseSwaggerUI();
 app.MapControllers();
 //app.MapControllerRoute(
 //    name: "default",
-//    pattern: "api/{controller}");
-
-//app.UseRouting();
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllers();
-//    //endpoints.MapControllerRoute(
-//    //  name: "Admin",
-//    //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-//    endpoints.MapControllerRoute(
-//      name: "default",
-//      pattern: "{controller}/{action}/{id?}");
-//    endpoints.MapRazorPages();
-//});
-
-
-//Use Rick.Docs.Samples to gather route information
-//var routeInfo = new RouteInfo(endpoints);
-//var routes = routeInfo.GetRoutes();
+//    pattern: "api/");
 
 app.MapRazorPages();
 
