@@ -41,6 +41,10 @@ namespace StravaSegmentSniper.React.Helpers
 
             builder.Services.AddRazorPages();
 
+            builder.Services.AddControllers().AddNewtonsoftJson();
+
+            //builder.Services.AddRouting(ctx => ctx.LowercaseUrls = false);
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {

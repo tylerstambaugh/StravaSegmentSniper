@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
@@ -64,6 +65,7 @@
     <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
     <Folder Include="ClientApp\src\components\segment-sniper\token\" />
     <Folder Include="ClientApp\src\components\segment-sniper\segment\" />
+    <Folder Include="ActionHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
