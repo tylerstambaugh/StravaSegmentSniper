@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StravaActivityController : ControllerBase
     {
@@ -26,8 +26,8 @@ namespace StravaSegmentSniper.React.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpGet("summaryActivity/{startDate}/{endDate}")]
-        public List<SummaryActivityModel> SummaryActivityForTimeRange(DateTime start, DateTime end)
+        [HttpGet]
+        public List<SummaryActivityModel> SummaryActivityForTimeRange([FromBody] DateRangeParameters dateRangeParameters)
         {
             int startDate = 9345693;
             int endDate = 9235479;
@@ -42,9 +42,10 @@ namespace StravaSegmentSniper.React.Controllers
             return listOfActivities;
         }
 
-        [HttpGet("activitylist")]
+        [HttpGet]
+        [ActionName("activitylist")]
         //[Route("/activitylist/{activityId}")]
-        public DetailedActivityModel DetailedActivityById([FromQuery]long activityId)
+        public DetailedActivityModel DetailedActivityById([FromBody]long activityId)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
@@ -53,12 +54,17 @@ namespace StravaSegmentSniper.React.Controllers
             return activity;
         }
 
-       // [HttpGet]
-       // [Route("/TestGet/{test}")]
-       //[ActionName("testget")]
-       // public string TestGet([FromQuery] string test)
-       // {
-       //     return $"test string was = {test}";
-       // }
+        [HttpGet]
+        [ActionName("testget")]
+        public string TestGet([FromQuery] string test)
+        {
+            return $"test string was = {test}";
+        }
+         
+    }
+    public class DateRangeParameters
+    {
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set;}
     }
 }
