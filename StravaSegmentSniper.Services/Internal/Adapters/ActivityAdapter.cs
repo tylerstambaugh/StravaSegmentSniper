@@ -25,7 +25,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 StartDate = activity.StartDate,
                 ElapsedTime = activity.ElapsedTime,
                 MaxSpeed = activity.MaxSpeed,
-                StravaMap = activity.Map
+               // StravaMap = activity.Map
             };
         }
 

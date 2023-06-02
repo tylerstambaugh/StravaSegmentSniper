@@ -28,7 +28,7 @@ namespace StravaSegmentSniper.React.Controllers
             _stravaActivityActionHandler = stravaActivityActionHandler;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("ActivityListByDates")]
         public List<SummaryActivityModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
@@ -47,7 +47,7 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityListById")]
-        public ActivityListModel DetailedActivityById([FromBody]long activityId)
+        public ActivityListModel DetailedActivityById([FromQuery]long activityId)
         {
            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {

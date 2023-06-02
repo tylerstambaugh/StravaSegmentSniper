@@ -14,7 +14,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ActivitySearchProps } from "./Activity";
 
-function ActivityListLookup({ handleSearch }) {
+function ActivityListLookup({ activityLoading, handleSearch }) {
   interface ActivityLookupForm {
     activityId: number;
     startDate: Date;
