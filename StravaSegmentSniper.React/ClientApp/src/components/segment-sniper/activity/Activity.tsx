@@ -13,10 +13,13 @@ export interface ActivitySearchProps {
 
 const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
-  const { loading, error, fetch } = useGetActivityList();
+  const { activityLoading, activityError, fetchActivity } =
+    useGetActivityList();
+  const [loading, setLoading] = useState();
+  const [error, setError] = useState();
 
   async function handleActivitySearch(props: ActivitySearchProps) {
-    const fetchResponse = await fetch(props.activityId!);
+    const fetchResponse = await fetchActivity(props.activityId!);
 
     if (fetchResponse && !(fetchResponse instanceof Error)) {
       setActivityList(fetchResponse);

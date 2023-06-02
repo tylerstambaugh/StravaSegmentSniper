@@ -1,9 +1,10 @@
 export interface ActivityListItem {
   name: string;
-  distance: number;
   id: string;
   type: string;
   startDate: Date;
+  distance: number;
+  elapsedTime: number;
   achievementCount?: number;
   maxSpeed?: number;
   gearId?: string;
