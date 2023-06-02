@@ -65,7 +65,6 @@
     <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
     <Folder Include="ClientApp\src\components\segment-sniper\token\" />
     <Folder Include="ClientApp\src\components\segment-sniper\segment\" />
-    <Folder Include="ActionHandlers\" />
   </ItemGroup>
 
   <ItemGroup>

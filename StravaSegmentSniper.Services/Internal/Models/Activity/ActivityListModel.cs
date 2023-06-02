@@ -9,13 +9,13 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
 {
     public class ActivityListModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public double Distance { get; set; }
         public string Type { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public int? maxSpeed { get; set; }
+        public int ElapsedTime { get; set; }
+        public double? MaxSpeed { get; set; }
         public string? GearId { get; set; }
         public PolylineMapModel? StravaMap { get; set; }
     }

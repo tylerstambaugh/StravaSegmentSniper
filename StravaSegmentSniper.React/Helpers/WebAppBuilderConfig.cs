@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StravaSegmentSniper.Data;
+using StravaSegmentSniper.React.ActionHandlers;
+using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Athlete;
@@ -89,6 +91,9 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();
             builder.Services.AddScoped<IStravaAPISegment, StravaAPISegment>();
             builder.Services.AddScoped<IStravaAPIToken, StravaAPIToken>();
+            builder.Services.AddScoped<IActivityAdapter, ActivityAdapter>();
+            builder.Services.AddScoped<IStravaActivityActionHandler, StravaActivityActionHandler>();
+
 
             //register types for local EF data
 
