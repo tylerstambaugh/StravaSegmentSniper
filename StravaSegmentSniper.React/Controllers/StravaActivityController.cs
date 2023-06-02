@@ -57,13 +57,6 @@ namespace StravaSegmentSniper.React.Controllers
             return _stravaActivityActionHandler.HandleGetActivityById(contract);
      
         }
-
-        [HttpGet]
-        [ActionName("TestGet")]
-        public string TestGet([FromQuery] string test)
-        {
-            return $"test string was = {test}";
-        }
          
     }
   

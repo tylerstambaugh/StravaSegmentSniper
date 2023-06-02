@@ -2,47 +2,44 @@ import { useState } from "react";
 import { ActivityListItem } from "../models/Activity/ActivityListItem";
 import { useApi } from "./useApi";
 
-const useGetActivityList = (): {
-  loading: boolean;
-  error: Error | undefined;
-  fetch: (
-    activityId: number
-  ) => Promise<Error | ActivityListItem[] | undefined>;
-} => {
+const useGetActivityList = () => {
   const api = useApi<ActivityListItem[]>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error>();
+  const [activityLoading, setActivityLoading] = useState(false);
+  const [activityError, setActivityError] = useState<Error>();
 
-  async function fetch(
+  async function fetchActivity(
     activityId: number
   ): Promise<Error | ActivityListItem[] | undefined> {
-    setLoading(true);
+    setActivityLoading(true);
 
     try {
-      const requestOptions: RequestInit = { method: "GET" };
+      const requestOptions: RequestInit = {
+        method: "GET",
+        body: JSON.stringify(activityId),
+      };
       const fetchResponse: ActivityListItem[] | Error = await api.fetch(
-        `stravaactivity/activitylist?activityId=${activityId}`,
+        `/api/StravaActivity/ActivityListById`,
         requestOptions
       );
       if (fetchResponse instanceof Error) {
-        setError(fetchResponse);
-        throw new Error(error?.message);
+        setActivityError(fetchResponse);
+        throw new Error(activityError?.message);
       }
       return fetchResponse;
     } catch (error) {
       if (error instanceof Error) {
-        setError(error);
+        setActivityError(error);
         return error;
       } else {
         const newError: Error = new Error("An unexpected error occurred");
-        setError(newError);
+        setActivityError(newError);
         return newError;
       }
     } finally {
-      setLoading(false);
+      setActivityLoading(false);
     }
   }
-  return { loading, error, fetch };
+  return { activityLoading, activityError, fetchActivity };
 };
 
 export default useGetActivityList;
