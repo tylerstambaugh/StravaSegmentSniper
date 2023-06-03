@@ -20,22 +20,40 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 
             returnList.Add(
              new ActivityListModel
-            {
-                Id = activity.Id,
-                Name = activity.Name,
-                Distance = activity.Distance,
-                Type = activity.Type,
-                StartDate = activity.StartDate,
-                ElapsedTime = activity.ElapsedTime,
-                MaxSpeed = activity.MaxSpeed,
-               // StravaMap = activity.Map
-            });
+             {
+                 Id = activity.Id,
+                 Name = activity.Name,
+                 Distance = activity.Distance,
+                 Type = activity.Type,
+                 StartDate = activity.StartDate,
+                 ElapsedTime = activity.ElapsedTime,
+                 MaxSpeed = activity.MaxSpeed,
+                 // StravaMap = activity.Map
+             });
             return returnList;
         }
 
-        public ActivityListModel AdaptSummaryActivitytoActivityList(SummaryActivityModel activity)
+        public List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities)
         {
-            throw new NotImplementedException();
+            List<ActivityListModel> returnList = new List<ActivityListModel>();
+
+            foreach (SummaryActivityModel activity in activities)
+            {
+                returnList.Add(
+                     new ActivityListModel
+                     {
+                         Id = activity.Id,
+                         Name = activity.Name,
+                         Distance = activity.Distance,
+                         Type = activity.Type,
+                         StartDate = activity.StartDate,
+                         ElapsedTime = activity.ElapsedTime,
+                         MaxSpeed = activity.MaxSpeed,
+                         // StravaMap = activity.Map
+                     });
+            }
+
+            return returnList;
         }
     }
 }

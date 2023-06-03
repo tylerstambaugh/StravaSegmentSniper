@@ -43,7 +43,13 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       activityType: "",
     },
     onSubmit: (values: ActivityLookupForm) => {
-      handleSearch(values);
+      const searchProps: ActivitySearchProps = {
+        activityId: values.activityId,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        activityType: values.activityType,
+      };
+      handleSearch(searchProps);
     },
     validationSchema,
     validateOnBlur: false,

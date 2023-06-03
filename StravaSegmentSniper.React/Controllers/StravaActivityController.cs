@@ -30,19 +30,18 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpPost]
         [ActionName("ActivityListByDates")]
-        public List<SummaryActivityModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
+        public List<ActivityListModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
-            int startDate = 9345693;
-            int endDate = 9235479;
+            HandleGetSummaryActivitiesForDateRangeContract contract = new HandleGetSummaryActivitiesForDateRangeContract
+            {
+                StartDate = (DateTime)dateRangeParameters.StartDate,
+                EndDate = (DateTime)dateRangeParameters.EndDate
+            };
 
-            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = user.StravaAthleteId;
+            var returnList = _stravaActivityActionHandler.HandleGetSummaryActivitiesForDateRange(contract);
 
+            return returnList;
 
-            List<SummaryActivityModel> listOfActivities = _stravaAPIActivity
-                .GetSummaryActivityForTimeRange(startDate, endDate, userId).Result;
-
-            return listOfActivities;
         }
 
         [HttpGet]
