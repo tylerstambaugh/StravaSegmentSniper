@@ -14,9 +14,12 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         {
 
         }
-        public ActivityListModel AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
+        public List<ActivityListModel> AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
         {
-            return new ActivityListModel
+            List<ActivityListModel> returnList = new List<ActivityListModel>();
+
+            returnList.Add(
+             new ActivityListModel
             {
                 Id = activity.Id,
                 Name = activity.Name,
@@ -26,7 +29,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 ElapsedTime = activity.ElapsedTime,
                 MaxSpeed = activity.MaxSpeed,
                // StravaMap = activity.Map
-            };
+            });
+            return returnList;
         }
 
         public ActivityListModel AdaptSummaryActivitytoActivityList(SummaryActivityModel activity)

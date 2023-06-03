@@ -47,7 +47,7 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityListById")]
-        public ActivityListModel DetailedActivityById([FromQuery]long activityId)
+        public List<ActivityListModel> DetailedActivityById([FromQuery]long activityId)
         {
            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {

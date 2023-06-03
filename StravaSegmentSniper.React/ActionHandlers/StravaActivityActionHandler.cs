@@ -22,13 +22,13 @@ namespace StravaSegmentSniper.React.ActionHandlers
             _activityAdapter = activityAdapter;
         }
 
-        public ActivityListModel HandleGetActivityById(HandleGetActivityByIdContract contract)
+        public List<ActivityListModel> HandleGetActivityById(HandleGetActivityByIdContract contract)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
             DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, stravaAthleteId).Result;
 
-            ActivityListModel activity = _activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel);
+            List<ActivityListModel> activity = _activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel);
 
             return activity;
         }

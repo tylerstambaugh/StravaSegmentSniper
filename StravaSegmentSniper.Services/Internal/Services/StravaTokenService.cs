@@ -43,7 +43,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             var tokenToCheck = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
             DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(tokenToCheck.ExpiresAt);
 
-            return expirationDate < DateTimeOffset.UtcNow;
+            return expirationDate < DateTimeOffset.Now;
         }
 
         public int RefreshToken(string userId)
