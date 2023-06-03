@@ -22,6 +22,11 @@ namespace StravaSegmentSniper.Services.Internal.Services
         }
         public StravaApiToken GetTokenByStravaAthleteId(long stravaAthleteId)
         {
+            string userId = _authDbContext.Users.Where(x => x.StravaAthleteId == stravaAthleteId).First().Id;
+           
+            if (TokenIsExpired(userId))
+                RefreshToken(userId);
+
             return _context.StravaApiTokens.Where(x => x.Athlete.StravaAthleteId == stravaAthleteId).First();
         }
 

@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using StravaSegmentSniper.Data.Entities.Token;
-using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Token;
-using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Models.Token;
 
 namespace StravaSegmentSniper.Services.StravaAPI.TokenService
