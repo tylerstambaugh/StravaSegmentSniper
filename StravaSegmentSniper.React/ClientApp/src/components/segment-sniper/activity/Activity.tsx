@@ -18,10 +18,12 @@ const Activity = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
-  async function handleActivitySearch(props: ActivitySearchProps) {
+  async function handleActivitySearch(
+    activitySearchProps: ActivitySearchProps
+  ) {
     setLoading(true);
     try {
-      const fetchResponse = await fetchActivity(props.activityId!);
+      const fetchResponse = await fetchActivity(activitySearchProps!);
 
       if (fetchResponse && !(fetchResponse instanceof Error)) {
         setActivityList(fetchResponse);

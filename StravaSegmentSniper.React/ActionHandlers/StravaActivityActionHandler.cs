@@ -3,6 +3,7 @@ using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
+using System;
 using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.ActionHandlers
@@ -31,6 +32,29 @@ namespace StravaSegmentSniper.React.ActionHandlers
             List<ActivityListModel> activity = _activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel);
 
             return activity;
+        }
+
+        public List<ActivityListModel> HandleGetSummaryActivitiesForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract)
+        {
+
+            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            var stravaAthleteId = user.StravaAthleteId;
+
+            var unixStartDate = ConvertToEpochTime(contract.StartDate);
+            var unixEndDate = ConvertToEpochTime(contract.EndDate);
+
+            List<SummaryActivityModel> listOfActivities = _stravaAPIActivity
+                .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, stravaAthleteId).Result;
+
+            List<ActivityListModel> activities = _activityAdapter.AdaptSummaryActivityListtoActivityList(listOfActivities);
+
+            return activities;
+        }
+
+        private int ConvertToEpochTime(DateTime date)
+        {
+            DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return (int)(date - unixEpoch).TotalSeconds;
         }
     }
 }
