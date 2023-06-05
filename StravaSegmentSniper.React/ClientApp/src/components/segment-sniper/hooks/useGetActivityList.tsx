@@ -15,31 +15,6 @@ const useGetActivityList = () => {
 
     if (activitySearchProps.activityId) {
       return fetchByActivityId(activitySearchProps.activityId);
-      // try {
-      //   const requestOptions: RequestInit = {
-      //     method: "GET",
-      //   };
-      //   const fetchResponse: ActivityListItem[] | Error = await api.fetch(
-      //     `/api/StravaActivity/ActivityListById?activityId=${activitySearchProps.activityIdactivityId}`,
-      //     requestOptions
-      //   );
-      //   if (fetchResponse instanceof Error) {
-      //     setActivityError(fetchResponse);
-      //     throw new Error(activityError?.message);
-      //   }
-      //   return fetchResponse;
-      // } catch (error) {
-      //   if (error instanceof Error) {
-      //     setActivityError(error);
-      //     return error;
-      //   } else {
-      //     const newError: Error = new Error("An unexpected error occurred");
-      //     setActivityError(newError);
-      //     return newError;
-      //   }
-      // } finally {
-      //   setActivityLoading(false);
-      // }
     } else if (activitySearchProps.startDate && activitySearchProps.endDate) {
       return fetchByActivityDateRange(
         activitySearchProps.startDate,
