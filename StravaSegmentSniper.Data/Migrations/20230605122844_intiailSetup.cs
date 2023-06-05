@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StravaSegmentSniper.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class intiailSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -225,7 +225,7 @@ namespace StravaSegmentSniper.Data.Migrations
                         column: x => x.ActivityId,
                         principalTable: "DetailedActivities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DetailedSegmentEfforts_DetailedAthletes_AthleteId",
                         column: x => x.AthleteId,
@@ -237,7 +237,7 @@ namespace StravaSegmentSniper.Data.Migrations
                         column: x => x.SummarySegmentId,
                         principalTable: "SummarySegments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,7 +268,7 @@ namespace StravaSegmentSniper.Data.Migrations
                         column: x => x.DetailedActivityId,
                         principalTable: "DetailedActivities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SummaryActivities_DetailedAthletes_AthleteId",
                         column: x => x.AthleteId,

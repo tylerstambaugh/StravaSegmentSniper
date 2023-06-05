@@ -12,8 +12,8 @@ using StravaSegmentSniper.Data;
 namespace StravaSegmentSniper.Data.Migrations
 {
     [DbContext(typeof(StravaSegmentSniperDbContext))]
-    [Migration("20230502010236_initialSetup")]
-    partial class initialSetup
+    [Migration("20230605122844_intiailSetup")]
+    partial class intiailSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

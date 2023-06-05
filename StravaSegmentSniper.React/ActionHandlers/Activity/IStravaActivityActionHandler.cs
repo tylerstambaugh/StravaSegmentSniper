@@ -1,7 +1,7 @@
-﻿using StravaSegmentSniper.React.ActionHandlers.Contracts;
+﻿using StravaSegmentSniper.React.ActionHandlers.Activity.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 
-namespace StravaSegmentSniper.React.ActionHandlers
+namespace StravaSegmentSniper.React.ActionHandlers.Activity
 {
     public interface IStravaActivityActionHandler
     {

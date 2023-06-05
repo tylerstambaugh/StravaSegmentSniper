@@ -1,4 +1,4 @@
-﻿using StravaSegmentSniper.React.ActionHandlers.Contracts;
+﻿using StravaSegmentSniper.React.ActionHandlers.Activity.Contracts;
 using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;
@@ -6,7 +6,7 @@ using StravaSegmentSniper.Services.StravaAPI.Activity;
 using System;
 using System.Security.Claims;
 
-namespace StravaSegmentSniper.React.ActionHandlers
+namespace StravaSegmentSniper.React.ActionHandlers.Activity
 {
     public class StravaActivityActionHandler : IStravaActivityActionHandler
     {

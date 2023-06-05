@@ -43,7 +43,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                       services.AddScoped<IApplication, Application>();
                       services.AddScoped<IAthleteActivityService, AthleteActivityService>();
                       services.AddScoped<IAthleteService, AthleteService>();
-                      services.AddScoped<IStravaToken, StravaTokenService>();
+                      services.AddScoped<IStravaTokenService, StravaTokenService>();
 
 
                       //services that call Strava

@@ -14,10 +14,10 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
     public class StravaAPIActivity : IStravaAPIActivity
     {
         private readonly IMapper _mapper;
-        private readonly IStravaToken _tokenService;
+        private readonly IStravaTokenService _tokenService;
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public StravaAPIActivity(IMapper mapper, IStravaToken tokenService)
+        public StravaAPIActivity(IMapper mapper, IStravaTokenService tokenService)
         {
             _mapper = mapper;
             _tokenService = tokenService;

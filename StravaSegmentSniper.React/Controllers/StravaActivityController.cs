@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StravaSegmentSniper.React.ActionHandlers;
-using StravaSegmentSniper.React.ActionHandlers.Contracts;
+using StravaSegmentSniper.React.ActionHandlers.Activity;
+using StravaSegmentSniper.React.ActionHandlers.Activity.Contracts;
 using StravaSegmentSniper.React.Controllers.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;

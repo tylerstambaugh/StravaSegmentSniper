@@ -15,9 +15,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly IMapper _mapper;
-        private readonly IStravaToken _tokenService;
+        private readonly IStravaTokenService _tokenService;
 
-        public StravaAPISegment(IMapper mapper, IStravaToken tokenService)
+        public StravaAPISegment(IMapper mapper, IStravaTokenService tokenService)
         {
             _mapper = mapper;
             _tokenService = tokenService;

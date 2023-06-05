@@ -61,6 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	 <Folder Include="ActionHandlers\StravaApiToken\Contracts\" />
 	 <Folder Include="ClientApp\src\components\segment-sniper\" />
     <Folder Include="ClientApp\src\components\segment-sniper\athlete\" />
     <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
