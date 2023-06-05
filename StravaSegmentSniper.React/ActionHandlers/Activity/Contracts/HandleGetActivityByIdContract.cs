@@ -1,4 +1,4 @@
-﻿namespace StravaSegmentSniper.React.ActionHandlers.Contracts
+﻿namespace StravaSegmentSniper.React.ActionHandlers.Activity.Contracts
 {
     public class HandleGetActivityByIdContract
     {

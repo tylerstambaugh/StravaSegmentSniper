@@ -1,24 +1,30 @@
 ﻿using Authorization.Data.Data;
+using AutoMapper;
+using Microsoft.Identity.Client;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.Data.Entities.Token;
+using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Token;
 using StravaSegmentSniper.Services.StravaAPI;
+using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.TokenService;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
-    public class StravaTokenService : IStravaToken
+    public class StravaTokenService : IStravaTokenService
     {
         private readonly StravaSegmentSniperDbContext _context;
         private readonly AuthDbContext _authDbContext;
+        private readonly IMapper _mapper;
         private readonly IStravaAPIToken _stravaAPIToken;
 
         public StravaTokenService(StravaSegmentSniperDbContext context,
-                            IStravaAPIToken stravaAPIToken, AuthDbContext authDbContext)
+                            IStravaAPIToken stravaAPIToken, AuthDbContext authDbContext, IMapper mapper)
         {
             _context = context;
             _stravaAPIToken = stravaAPIToken;
             _authDbContext = authDbContext;
+            _mapper = mapper;
         }
         public StravaApiToken GetTokenByStravaAthleteId(long stravaAthleteId)
         {
@@ -73,7 +79,18 @@ namespace StravaSegmentSniper.Services.Internal.Services
             else
             {
                 return -1;
-            }
+            }           
+        }
+
+        public StravaApiTokenModel GetCurrentStravaApiToken(string userId)
+        {
+            var currentToken = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
+
+
+            StravaApiTokenModel model = _mapper.Map<StravaApiToken, StravaApiTokenModel>(currentToken);
+
+            return model;
+
         }
 
 

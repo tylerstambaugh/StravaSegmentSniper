@@ -13,11 +13,11 @@ namespace StravaSegmentSniper.Services.StravaAPI.Athlete
 {
     public class StravaAPIAthlete : IStravaAPIAthlete
     {
-        private readonly IStravaToken _tokenService;
+        private readonly IStravaTokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public StravaAPIAthlete(IStravaToken tokenService,
+        public StravaAPIAthlete(IStravaTokenService tokenService,
                                 IMapper mapper)
         {
             _tokenService = tokenService;
