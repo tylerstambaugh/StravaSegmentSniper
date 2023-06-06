@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.React.ActionHandlers.Activity;
+using StravaSegmentSniper.React.ActionHandlers.Segment;
 using StravaSegmentSniper.React.ActionHandlers.StravaApiToken;
 using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Services;
@@ -94,6 +95,7 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IActivityAdapter, ActivityAdapter>();
             builder.Services.AddScoped<IStravaActivityActionHandler, StravaActivityActionHandler>();
             builder.Services.AddScoped<IStravaApiTokenActionHandler, StravaApiTokenActionHandler>();
+            builder.Services.AddScoped<IStravaSegmentActionHandler, StravaSegmentActionHandler>();
 
             return builder;
         }

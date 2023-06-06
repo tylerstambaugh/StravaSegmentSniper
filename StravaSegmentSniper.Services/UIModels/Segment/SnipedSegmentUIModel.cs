@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.UIModels.Segment
 {
-    public class SegmentUIModel
+    public class SnipedSegmentUIModel
     {
         public long Id { get; set; }
         public string Name { get; set; }
+        public int LeaderboardPlace { get; set; }
+        public double PercentageFromKom { get; set; }
         public string ActivityType { get; set; }
         public double Distance { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -23,6 +25,4 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
         public XomsModel Xoms { get; set; }
         public LocalLegendModel LocalLegend { get; set; }
     }
-
- 
 }
