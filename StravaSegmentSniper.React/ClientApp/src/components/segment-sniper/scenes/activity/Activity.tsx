@@ -1,8 +1,8 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import ActivityListLookup from "./ActivityListLookup";
 import DisplayActivityList from "./DisplayActivityList";
-import { ActivityListItem } from "../models/Activity/ActivityListItem";
-import useGetActivityList from "../hooks/useGetActivityList";
+import useGetActivityList from "../../hooks/activity/useGetActivityList";
+import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 
 export interface ActivitySearchProps {
   activityId?: number;

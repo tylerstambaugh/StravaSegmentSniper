@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ActivityListItem } from "../models/Activity/ActivityListItem";
-import { useApi } from "./useApi";
-import { ActivitySearchProps } from "../activity/Activity";
+import { ActivityListItem } from "../../models/Activity/ActivityListItem";
+import { ActivitySearchProps } from "../../scenes/activity/Activity";
+import { useApi } from "../useApi";
 
 const useGetActivityList = () => {
   const api = useApi<ActivityListItem[]>();

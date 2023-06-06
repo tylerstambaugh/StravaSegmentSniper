@@ -1,10 +1,7 @@
 ﻿using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Misc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StravaSegmentSniper.Services.Internal.Models.Segment;
+using StravaSegmentSniper.Services.UIModels.Activity;
 
 namespace StravaSegmentSniper.Services.Internal.Adapters
 {
@@ -54,6 +51,31 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
             }
 
             return returnList;
+        }
+
+        public DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel model)
+        {
+            DetailedActivityUIModel returnModel = new DetailedActivityUIModel
+            {
+
+                Id = model.Id,
+                DetailedAthleteId = model.DetailedAthleteId,
+                Name = model.Name,
+                Distance = model.Distance,
+                MovingTime = model.MovingTime,
+                TotalElevationGain = model.TotalElevationGain,
+                Type = model.Type,
+                StartDate = model.StartDate,
+                AchievementCount = model.AchievementCount,
+                Map = model.Map,
+                AverageSpeed = model.AverageSpeed,
+                MaxSpeed = model.MaxSpeed,
+                PrCount = model.PrCount,
+                Description = model.Description,
+                            SegmentEfforts = model.SegmentEfforts
+                };
+
+            return returnModel;
         }
     }
 }

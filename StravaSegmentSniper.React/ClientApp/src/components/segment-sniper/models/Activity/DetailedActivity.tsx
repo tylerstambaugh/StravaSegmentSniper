@@ -1,4 +1,3 @@
-import { SegmentEffort } from "../Segment/SegmentEfforts";
 import { StravaMap } from "./ActivityListItem";
 
 type DetailedActivity = {
@@ -12,5 +11,5 @@ type DetailedActivity = {
   endLatLng: [number, number];
   maxSpeed: number;
   stravaMap: StravaMap;
-  segmentEfforts: SegmentEffort[];
+  //segmentEfforts: SegmentEffort[];
 };
