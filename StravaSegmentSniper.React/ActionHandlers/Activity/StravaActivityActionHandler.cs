@@ -3,7 +3,7 @@ using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
-using System;
+using StravaSegmentSniper.Services.UIModels.Activity;
 using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Activity
@@ -23,7 +23,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             _activityAdapter = activityAdapter;
         }
 
-        public List<ActivityListModel> HandleGetActivityById(HandleGetActivityByIdContract contract)
+        public List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
@@ -49,6 +49,17 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             List<ActivityListModel> activities = _activityAdapter.AdaptSummaryActivityListtoActivityList(listOfActivities);
 
             return activities;
+        }
+
+        public DetailedActivityUIModel HandleGetActivityDetailById(HandleGetActivityByIdContract contract)
+        {
+            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            var stravaAthleteId = user.StravaAthleteId;
+            DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, stravaAthleteId).Result;
+
+            var model = _activityAdapter.AdaptDetailedActivityModelToDetailedActivityUIModel(detailedActivityModel);
+
+            return model;
         }
 
         private int ConvertToEpochTime(DateTime date)

@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
+    <ProjectReference Include="..\StravaSegmentSniperUIModels\StravaSegmentSniperUIModels.csproj" />
   </ItemGroup>
 
 </Project>

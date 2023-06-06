@@ -62,9 +62,8 @@
 
   <ItemGroup>
 	 <Folder Include="ActionHandlers\StravaApiToken\Contracts\" />
-	 <Folder Include="ClientApp\src\components\segment-sniper\" />
-    <Folder Include="ClientApp\src\components\segment-sniper\athlete\" />
-    <Folder Include="ClientApp\src\components\segment-sniper\activity\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\scenes\athlete\" />
+    <Folder Include="ClientApp\src\components\segment-sniper\scenes\activity\" />
     <Folder Include="ClientApp\src\components\segment-sniper\token\" />
     <Folder Include="ClientApp\src\components\segment-sniper\segment\" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import authService from "../../api-authorization/AuthorizeService";
-import { WebAppUser } from "../models/webAppUser";
+import authService from "../../../api-authorization/AuthorizeService";
+import { WebAppUser } from "../../models/webAppUser";
 
 const Athlete = () => {
   const [userName, setUsername] = useState(null);

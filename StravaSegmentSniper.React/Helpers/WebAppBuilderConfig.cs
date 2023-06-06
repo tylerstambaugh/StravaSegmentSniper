@@ -78,7 +78,6 @@ namespace StravaSegmentSniper.React.Helpers
     });
             });
 
-            //add automapper
             builder.Services.AddAutoMapper(typeof(Program));
 
             //builder.Services.AddScoped<IStravaSegmentSniperDbContext>(provider => provider.GetService<StravaSegmentSniperDbContext>());
@@ -95,11 +94,6 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IActivityAdapter, ActivityAdapter>();
             builder.Services.AddScoped<IStravaActivityActionHandler, StravaActivityActionHandler>();
             builder.Services.AddScoped<IStravaApiTokenActionHandler, StravaApiTokenActionHandler>();
-
-
-            //register types for local EF data
-
-
 
             return builder;
         }

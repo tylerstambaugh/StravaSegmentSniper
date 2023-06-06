@@ -4,20 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace StravaSegmentSniper.React.Controllers
 {
     [Authorize]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    [Route("[controller]")]
-    public class Segment : ControllerBase
+    public class StravaSegmentController : ControllerBase
     {
-        public Segment()
+        public StravaSegmentController()
         {
 
         }
 
         // GET api/<Segment>/5
         [HttpGet("{id}")]
-        public Segment Get(int id)
+        public StravaSegmentController Get(int id)
         {
-            return new Segment();
+            return new StravaSegmentController();
         }
     }
 }

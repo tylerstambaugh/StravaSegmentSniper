@@ -6,7 +6,7 @@ using StravaSegmentSniper.React.Controllers.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
-using System.Security.Claims;
+using StravaSegmentSniper.Services.UIModels.Activity;
 
 namespace StravaSegmentSniper.React.Controllers
 {
@@ -15,16 +15,10 @@ namespace StravaSegmentSniper.React.Controllers
     [ApiController]
     public class StravaActivityController : ControllerBase
     {
-        private readonly IStravaAPIActivity _stravaAPIActivity;
-        private readonly IWebAppUserService _webAppUserService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IStravaActivityActionHandler _stravaActivityActionHandler;
 
-        public StravaActivityController(IStravaAPIActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor, IStravaActivityActionHandler stravaActivityActionHandler)
+        public StravaActivityController(IStravaActivityActionHandler stravaActivityActionHandler)
         {
-            _stravaAPIActivity = stravaAPIActivity;
-            _webAppUserService = webAppUserService;
-            _httpContextAccessor = httpContextAccessor;
             _stravaActivityActionHandler = stravaActivityActionHandler;
         }
 
@@ -46,17 +40,28 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityListById")]
-        public List<ActivityListModel> DetailedActivityById([FromQuery]long activityId)
+        public List<ActivityListModel> StravaActivityListById([FromQuery]long activityId)
         {
            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {
                    activityId = activityId
             };
 
-            return _stravaActivityActionHandler.HandleGetActivityById(contract);
-     
+            return _stravaActivityActionHandler.HandleGetActivityListById(contract);     
         }
-         
+
+        [HttpGet]
+        [ActionName("ActivityDetailtById")]
+        public DetailedActivityUIModel StravaActivityDetailById([FromQuery] long activityId)
+        {
+            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
+            {
+                activityId = activityId
+            };
+
+            return _stravaActivityActionHandler.HandleGetActivityDetailById(contract);
+        }
+
     }
   
 }

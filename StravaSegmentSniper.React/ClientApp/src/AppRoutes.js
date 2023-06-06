@@ -1,7 +1,7 @@
 import ApiAuthorzationRoutes from "./components/api-authorization/ApiAuthorizationRoutes";
 import SegmentSniper from "./components/segment-sniper/main";
-import Activity from "./components/segment-sniper/activity/Activity";
-import Athlete from "./components/segment-sniper/athlete/Athlete";
+import Activity from "./components/segment-sniper/scenes/activity/Activity";
+import Athlete from "./components/segment-sniper/scenes/athlete/Athlete";
 
 const AppRoutes = [
   {
