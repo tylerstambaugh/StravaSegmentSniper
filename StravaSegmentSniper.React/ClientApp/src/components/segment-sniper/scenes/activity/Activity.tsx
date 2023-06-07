@@ -3,6 +3,7 @@ import ActivityListLookup from "./ActivityListLookup";
 import DisplayActivityList from "./DisplayActivityList";
 import useGetActivityList from "../../hooks/activity/useGetActivityList";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
+import { SegmentListItem } from "../../models/Segment/Segment";
 
 export interface ActivitySearchProps {
   activityId?: number;
@@ -13,6 +14,9 @@ export interface ActivitySearchProps {
 
 const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
+  const [activitySEgmentsList, setActivitySegmentsList] = useState<
+    SegmentListItem[]
+  >([]);
   const { activityLoading, activityError, fetchActivity } =
     useGetActivityList();
   const [loading, setLoading] = useState(false);
