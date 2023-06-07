@@ -11,7 +11,6 @@ import {
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import ActivityList from "./mockData/mockActivities.json";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 export interface displayActivityListProps {
   activityList: ActivityListItem[];
