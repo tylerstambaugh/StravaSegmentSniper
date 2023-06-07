@@ -1,4 +1,6 @@
-const TokenMaintenanceScene = () => {
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+
+const TokenScene = () => {
   return (
     <>
       <h2>Strava Segment Sniper - Token Maintenance</h2>
@@ -13,3 +15,5 @@ const TokenMaintenanceScene = () => {
     </>
   );
 };
+
+export default TokenScene;

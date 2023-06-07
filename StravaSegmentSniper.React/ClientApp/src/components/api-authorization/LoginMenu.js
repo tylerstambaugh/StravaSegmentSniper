@@ -10,7 +10,7 @@ export class LoginMenu extends Component {
 
     this.state = {
       isAuthenticated: false,
-      userName: null
+      userName: null,
     };
   }
 

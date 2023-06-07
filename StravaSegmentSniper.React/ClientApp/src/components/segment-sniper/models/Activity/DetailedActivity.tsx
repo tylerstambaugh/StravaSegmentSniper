@@ -1,6 +1,6 @@
 import { StravaMap } from "./ActivityListItem";
 
-type DetailedActivity = {
+export interface DetailedActivity {
   name: string;
   distance: number;
   id: string;
@@ -12,4 +12,4 @@ type DetailedActivity = {
   maxSpeed: number;
   stravaMap: StravaMap;
   //segmentEfforts: SegmentEffort[];
-};
+}
