@@ -1,4 +1,5 @@
 ﻿using StravaSegmentSniper.Services.Internal.Models.Misc;
+using StravaSegmentSniper.Services.UIModels.Segment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
         public double? MaxSpeed { get; set; }
         public string? GearId { get; set; }
         public PolylineMapModel? StravaMap { get; set; }
+        public List<SegmentUIModel> Segments { get; set; }
     }
 }

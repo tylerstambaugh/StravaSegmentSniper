@@ -93,6 +93,7 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IStravaAPISegment, StravaAPISegment>();
             builder.Services.AddScoped<IStravaAPIToken, StravaAPIToken>();
             builder.Services.AddScoped<IActivityAdapter, ActivityAdapter>();
+            builder.Services.AddScoped<ISegmentAdapter, SegmentAdapter>();
             builder.Services.AddScoped<IStravaActivityActionHandler, StravaActivityActionHandler>();
             builder.Services.AddScoped<IStravaApiTokenActionHandler, StravaApiTokenActionHandler>();
             builder.Services.AddScoped<IStravaSegmentActionHandler, StravaSegmentActionHandler>();

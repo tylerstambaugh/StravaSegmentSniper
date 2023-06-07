@@ -2,18 +2,27 @@
 using StravaSegmentSniper.Services.Internal.Models.Misc;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.UIModels.Activity;
+using StravaSegmentSniper.Services.UIModels.Segment;
 
 namespace StravaSegmentSniper.Services.Internal.Adapters
 {
     public class ActivityAdapter : IActivityAdapter
     {
-        public ActivityAdapter()
-        {
+        private readonly ISegmentAdapter _segmentAdapter;
 
+        public ActivityAdapter(ISegmentAdapter segmentAdapter)
+        {
+            _segmentAdapter = segmentAdapter;
         }
         public List<ActivityListModel> AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
         {
             List<ActivityListModel> returnList = new List<ActivityListModel>();
+            List<SegmentUIModel> segments = new List<SegmentUIModel>();
+
+            foreach(DetailedSegmentEffortModel segmentEffort in  activity.SegmentEfforts)
+            {
+                segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
+            }
 
             returnList.Add(
              new ActivityListModel
@@ -25,8 +34,9 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                  StartDate = activity.StartDate,
                  ElapsedTime = activity.ElapsedTime,
                  MaxSpeed = activity.MaxSpeed,
+                 Segments = segments,
                  // StravaMap = activity.Map
-             });
+             }); ;
             return returnList;
         }
 

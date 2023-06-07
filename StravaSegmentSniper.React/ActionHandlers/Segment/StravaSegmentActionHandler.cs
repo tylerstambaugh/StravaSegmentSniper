@@ -1,9 +1,11 @@
 ﻿using StravaSegmentSniper.React.Controllers.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
+using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Segment;
 using StravaSegmentSniper.Services.UIModels.Segment;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
@@ -32,6 +34,15 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             var stravaAthleteId = user.StravaAthleteId;
             DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, stravaAthleteId).Result;
 
+            List<DetailedSegmentEffortModel> segmentsEfforts = detailedActivityModel.SegmentEfforts;
+
+            List<DetailedSegmentModel> segmentModels = new List<DetailedSegmentModel>();
+
+            foreach(DetailedSegmentEffortModel segmentEffortModel in segmentsEfforts)
+            {
+                DetailedSegmentModel model = _stravaSegment.GetDetailedSegmentById(segmentEffortModel.Id, stravaAthleteId).Result;
+                segmentModels.Add(model);
+            }
 
 
             throw new NotImplementedException();

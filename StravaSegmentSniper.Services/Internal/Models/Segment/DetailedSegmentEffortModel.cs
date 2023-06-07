@@ -5,7 +5,7 @@ namespace StravaSegmentSniper.Services.Internal.Models.Segment
 {
     public class DetailedSegmentEffortModel
     {
-        public object Id { get; set; }
+        public long Id { get; set; }
         public int ResourceState { get; set; }
         public string Name { get; set; }
         public ActivityModel Activity { get; set; }
