@@ -3,6 +3,9 @@ export interface SegmentListItem {
   name: string;
   time: number;
   distance: number;
+  // athleteStats: athleteSegmentStats;
+  // koms: xomsModel;
+  rank: number;
 }
 
 export interface Segment {
@@ -64,4 +67,16 @@ export interface Segment {
     };
     destination: string;
   };
+}
+
+export interface xomsModel {
+  komTime: string;
+  qomTime: string;
+}
+
+export interface athleteSegmentStats {
+  pr_elapsed_time: number;
+  pr_date: string;
+  pr_activity_id: number;
+  effort_count: number;
 }

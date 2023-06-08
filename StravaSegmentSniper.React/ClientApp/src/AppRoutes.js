@@ -1,4 +1,4 @@
-import ApiAuthorzationRoutes from "./components/api-authorization/ApiAuthorizationRoutes";
+import ApiAuthorizationRoutes from "./components/api-authorization/ApiAuthorizationRoutes";
 import SegmentSniper from "./components/segment-sniper/main";
 import Activity from "./components/segment-sniper/scenes/activity/Activity";
 import Athlete from "./components/segment-sniper/scenes/athlete/Athlete";
@@ -26,7 +26,7 @@ const AppRoutes = [
     requireAuth: true,
     element: <TokenScene />,
   },
-  ...ApiAuthorzationRoutes,
+  ...ApiAuthorizationRoutes,
 ];
 
 export default AppRoutes;

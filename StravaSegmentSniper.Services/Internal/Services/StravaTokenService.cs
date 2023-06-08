@@ -59,7 +59,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
             RefreshTokenModel refreshedToken = _stravaAPIToken.RefreshToken(tokenToUpdate.RefreshToken).Result;
 
-            if (refreshedToken.AccessToken != null)
+            if (refreshedToken.AccessToken != null && refreshedToken != null)
             {
                 try
                 {

@@ -1,3 +1,5 @@
+import { SegmentListItem } from "../Segment/Segment";
+
 export interface ActivityListItem {
   name: string;
   id: string;
@@ -9,6 +11,7 @@ export interface ActivityListItem {
   maxSpeed?: number;
   gearId?: string;
   stravaMap?: StravaMap;
+  segments: SegmentListItem[];
 }
 
 export interface StravaMap {

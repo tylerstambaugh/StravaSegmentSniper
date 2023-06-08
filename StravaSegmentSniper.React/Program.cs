@@ -1,3 +1,6 @@
+using Authorization.Data.Data;
+using Microsoft.EntityFrameworkCore;
+using StravaSegmentSniper.Data;
 using StravaSegmentSniper.React.Helpers;
 
 //var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +21,18 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+//var service = (IServiceScopeFactory)app.Services.GetService(typeof(IServiceScopeFactory));
+
+//using (var db = service.CreateScope().ServiceProvider.GetService<AuthDbContext>())
+//{
+//    db.Database.Migrate();
+//}
+
+//using (var db = service.CreateScope().ServiceProvider.GetService<StravaSegmentSniperDbContext>())
+//{
+//    db.Database.Migrate();
+//}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

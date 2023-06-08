@@ -65,6 +65,13 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 
         public DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel model)
         {
+
+            List<SegmentUIModel> segments = new List<SegmentUIModel>();
+
+            foreach (DetailedSegmentEffortModel segmentEffort in model.SegmentEfforts)
+            {
+                segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
+            }
             DetailedActivityUIModel returnModel = new DetailedActivityUIModel
             {
 

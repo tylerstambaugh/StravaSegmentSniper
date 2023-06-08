@@ -22,7 +22,7 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
         public int StarCount { get; set; }
         public AthleteSegmentStatsModel AthleteSegmentStats { get; set; }
         public XomsModel Xoms { get; set; }
-        public LocalLegendModel LocalLegend { get; set; }
+        public int Rank { get; set; }
     }
 
  

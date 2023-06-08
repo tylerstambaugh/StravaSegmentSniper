@@ -18,6 +18,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 Name = model.Name,
                 Distance = model.Distance,
                 Time = model.ElapsedTime,
+                //Rank = model.Achievements.OrderBy(r => r.Rank).First().Rank,
             };
             return returnModel;
         }
