@@ -23,7 +23,7 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpPost]
         [ActionName("SnipeSegments")]
-        public List<SegmentUIModel> SnipeSegments(SegmentSniperContract contract)
+        public List<SegmentEffortUIListModel> SnipeSegments(SegmentSniperContract contract)
         {
             var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract);
 

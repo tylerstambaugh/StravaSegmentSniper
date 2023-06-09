@@ -1,9 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ActivityListLookup from "./ActivityListLookup";
 import DisplayActivityList from "./DisplayActivityList";
 import useGetActivityList from "../../hooks/activity/useGetActivityList";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 import { SegmentListItem } from "../../models/Segment/Segment";
+import DisplaySegmentList from "../segment/DisplaySegmentList";
 
 export interface ActivitySearchProps {
   activityId?: number;
@@ -14,7 +15,7 @@ export interface ActivitySearchProps {
 
 const Activity = () => {
   const [activityList, setActivityList] = useState<ActivityListItem[]>([]);
-  const [activitySEgmentsList, setActivitySegmentsList] = useState<
+  const [activitySegmentsList, setActivitySegmentsList] = useState<
     SegmentListItem[]
   >([]);
   const { activityLoading, activityError, fetchActivity } =
@@ -47,6 +48,12 @@ const Activity = () => {
     console.log(activityList);
   }
 
+  // useEffect(() => {
+  //   if (activityList !== undefined) {
+  //     setActivitySegmentsList(activityList[0].segments!);
+  //   }
+  // }, [activityList]);
+
   return (
     <>
       <h2>Strava Segment Sniper</h2>
@@ -55,6 +62,7 @@ const Activity = () => {
         handleSearch={handleActivitySearch}
       />
       <DisplayActivityList activityList={activityList} />
+      <DisplaySegmentList segmentList={activitySegmentsList} />
     </>
   );
 };
