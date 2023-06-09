@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.UIModels.Segment
 {
-    public class SegmentUIModel
+    public class SegmentEffortUIListModel
     {
         public long Id { get; set; }
+        public long ActivityId { get; set; }
         public string Name { get; set; }
         public int Time { get; set; }
         public string ActivityType { get; set; }

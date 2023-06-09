@@ -19,6 +19,6 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
         public double? MaxSpeed { get; set; }
         public string? GearId { get; set; }
         public PolylineMapModel? StravaMap { get; set; }
-        public List<SegmentUIModel> Segments { get; set; }
+        public List<SegmentEffortUIListModel> Segments { get; set; }
     }
 }

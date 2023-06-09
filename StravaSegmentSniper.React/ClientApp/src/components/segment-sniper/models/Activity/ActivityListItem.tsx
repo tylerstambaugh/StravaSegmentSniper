@@ -11,7 +11,7 @@ export interface ActivityListItem {
   maxSpeed?: number;
   gearId?: string;
   stravaMap?: StravaMap;
-  segments: SegmentListItem[];
+  segments?: SegmentListItem[];
 }
 
 export interface StravaMap {

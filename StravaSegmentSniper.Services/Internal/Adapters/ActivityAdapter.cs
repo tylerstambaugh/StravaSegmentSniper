@@ -17,7 +17,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         public List<ActivityListModel> AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
         {
             List<ActivityListModel> returnList = new List<ActivityListModel>();
-            List<SegmentUIModel> segments = new List<SegmentUIModel>();
+            List<SegmentEffortUIListModel> segments = new List<SegmentEffortUIListModel>();
 
             foreach(DetailedSegmentEffortModel segmentEffort in  activity.SegmentEfforts)
             {
@@ -66,7 +66,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         public DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel model)
         {
 
-            List<SegmentUIModel> segments = new List<SegmentUIModel>();
+            List<SegmentEffortUIListModel> segments = new List<SegmentEffortUIListModel>();
 
             foreach (DetailedSegmentEffortModel segmentEffort in model.SegmentEfforts)
             {

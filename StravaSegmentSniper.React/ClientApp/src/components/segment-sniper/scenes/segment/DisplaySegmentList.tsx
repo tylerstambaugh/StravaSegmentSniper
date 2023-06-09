@@ -49,57 +49,85 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   ];
 
   return (
-    <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
-      <DatatableWrapper
-        body={tableBody}
-        headers={header}
-        paginationOptionsProps={{
-          initialState: {
-            rowsPerPage: 10,
-            options: [5, 10, 15, 20],
-          },
-        }}
-      >
-        <Row>
-          <Col>
-            <h3>Activity Search Results</h3>
-          </Col>
-        </Row>
-        <Row className="mb-4">
-          <Col
-            xs={12}
-            lg={4}
-            className="d-flex flex-col justify-content-end align-items-end"
+    <>
+      {props.segmentList.length > 0 ? (
+        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+          <DatatableWrapper
+            body={tableBody}
+            headers={header}
+            paginationOptionsProps={{
+              initialState: {
+                rowsPerPage: 10,
+                options: [5, 10, 15, 20],
+              },
+            }}
           >
-            <Filter />
-          </Col>
-          <Col
-            xs={12}
-            sm={6}
-            lg={4}
-            className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
-          ></Col>
-          <Col
-            xs={12}
-            sm={6}
-            lg={4}
-            className="d-flex flex-col justify-content-end align-items-end"
-          ></Col>
-        </Row>
-        <Table>
-          <TableHeader />
-          <TableBody />
-        </Table>
-        <Row className="justify-content-between">
-          <Col md={2}>
-            <PaginationOptions />
-          </Col>
-          <Col md={5}>
-            <Pagination />
-          </Col>
-        </Row>
-      </DatatableWrapper>
-    </Container>
+            <Row>
+              <Col>
+                <h3>Activity Search Results</h3>
+              </Col>
+            </Row>
+            <Row className="mb-4">
+              <Col
+                xs={12}
+                lg={4}
+                className="d-flex flex-col justify-content-end align-items-end"
+              >
+                <Filter />
+              </Col>
+              <Col
+                xs={12}
+                sm={6}
+                lg={4}
+                className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
+              ></Col>
+              <Col
+                xs={12}
+                sm={6}
+                lg={4}
+                className="d-flex flex-col justify-content-end align-items-end"
+              ></Col>
+            </Row>
+            <Table>
+              <TableHeader />
+              <TableBody />
+            </Table>
+            <Row className="justify-content-between">
+              <Col md={2}>
+                <PaginationOptions />
+              </Col>
+              <Col md={5}>
+                <Pagination />
+              </Col>
+            </Row>
+          </DatatableWrapper>
+        </Container>
+      ) : (
+        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+          <DatatableWrapper
+            body={tableBody}
+            headers={header}
+            paginationOptionsProps={{
+              initialState: {
+                rowsPerPage: 10,
+                options: [5, 10, 15, 20],
+              },
+            }}
+          >
+            <Row>
+              <Col>
+                <h3>Segments List Results</h3>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>No Results to Display</p>
+              </Col>
+            </Row>
+          </DatatableWrapper>
+        </Container>
+      )}
+    </>
   );
 }
 

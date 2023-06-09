@@ -3,9 +3,9 @@ export interface SegmentListItem {
   name: string;
   time: number;
   distance: number;
-  // athleteStats: athleteSegmentStats;
-  // koms: xomsModel;
-  rank: number;
+  athleteStats?: athleteSegmentStats;
+  koms?: xomsModel;
+  rank?: number;
 }
 
 export interface Segment {
