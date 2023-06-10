@@ -49,13 +49,19 @@ const Activity = () => {
     console.log(activityList);
   }
 
-  function handleSnipeSegments(activityId: number) {}
+  function handleShowSegments(activityId: string) {
+    setActivitySegmentsList(
+      activityList.find((x) => x.id === activityId)?.segments!
+    );
+  }
 
-  useNonInitialEffect(() => {
-    if (activityList !== undefined && activityList[0].segments) {
-      setActivitySegmentsList(activityList[0].segments);
-    }
-  }, [activityList]);
+  function handleSnipeSegments(activityId: string) {}
+
+  // useNonInitialEffect(() => {
+  //   if (activityList !== undefined && activityList[0].segments) {
+  //     setActivitySegmentsList(activityList[0].segments);
+  //   }
+  // }, [activityList]);
 
   return (
     <>
@@ -67,6 +73,7 @@ const Activity = () => {
       <DisplayActivityList
         activityList={activityList}
         handleSnipeSegments={handleSnipeSegments}
+        handleShowSegments={handleShowSegments}
       />
       <DisplaySegmentList segmentList={activitySegmentsList} />
     </>

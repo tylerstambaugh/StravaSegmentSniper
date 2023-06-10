@@ -14,19 +14,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 export interface displayActivityListProps {
   activityList: ActivityListItem[];
-  handleSnipeSegments: (activityId: number) => void;
+  handleSnipeSegments: (activityId: string) => void;
+  handleShowSegments(activityId: string);
 }
 type ArrayElementType = ActivityListItem & {
+  segmentsButton: any;
   snipeButton: any;
   detailsButton: any;
 };
 
-function DisplayActivityList(
-  props: displayActivityListProps,
-  handleSnipeSegments
-) {
+const DisplayActivityList = (props: displayActivityListProps) => {
   const tableBody: ArrayElementType[] = props.activityList.map((item) => ({
     ...item,
+    segmentsButton: null,
     snipeButton: null,
     detailsButton: null,
   }));
@@ -39,7 +39,7 @@ function DisplayActivityList(
     { title: "Achievements", prop: "achievementCount", isSortable: true },
     { title: "Max Speed", prop: "maxSpeed", isSortable: true },
     {
-      prop: "snipeButton",
+      prop: "detailsButton",
       cell: (row) => (
         <Button
           variant="outline-primary"
@@ -53,7 +53,21 @@ function DisplayActivityList(
       ),
     },
     {
-      prop: "detailsButton",
+      prop: "segments",
+      cell: (row) => (
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => {
+            props.handleShowSegments(row.id ?? "");
+          }}
+        >
+          Segments
+        </Button>
+      ),
+    },
+    {
+      prop: "snipeButton",
       cell: (row) => (
         <Button
           variant="outline-primary"
@@ -149,5 +163,5 @@ function DisplayActivityList(
       )}
     </>
   );
-}
+};
 export default DisplayActivityList;
