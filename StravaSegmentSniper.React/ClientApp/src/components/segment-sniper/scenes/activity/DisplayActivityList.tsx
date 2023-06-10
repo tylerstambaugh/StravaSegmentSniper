@@ -14,13 +14,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 export interface displayActivityListProps {
   activityList: ActivityListItem[];
+  handleSnipeSegments: (activityId: number) => void;
 }
 type ArrayElementType = ActivityListItem & {
   snipeButton: any;
   detailsButton: any;
 };
 
-function DisplayActivityList(props: displayActivityListProps) {
+function DisplayActivityList(
+  props: displayActivityListProps,
+  handleSnipeSegments
+) {
   const tableBody: ArrayElementType[] = props.activityList.map((item) => ({
     ...item,
     snipeButton: null,

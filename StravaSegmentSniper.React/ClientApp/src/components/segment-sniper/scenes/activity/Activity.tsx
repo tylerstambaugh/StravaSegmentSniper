@@ -5,6 +5,7 @@ import useGetActivityList from "../../hooks/activity/useGetActivityList";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 import { SegmentListItem } from "../../models/Segment/Segment";
 import DisplaySegmentList from "../segment/DisplaySegmentList";
+import { useNonInitialEffect } from "react-cork";
 
 export interface ActivitySearchProps {
   activityId?: number;
@@ -48,11 +49,13 @@ const Activity = () => {
     console.log(activityList);
   }
 
-  // useEffect(() => {
-  //   if (activityList !== undefined) {
-  //     setActivitySegmentsList(activityList[0].segments!);
-  //   }
-  // }, [activityList]);
+  function handleSnipeSegments(activityId: number) {}
+
+  useNonInitialEffect(() => {
+    if (activityList !== undefined && activityList[0].segments) {
+      setActivitySegmentsList(activityList[0].segments);
+    }
+  }, [activityList]);
 
   return (
     <>
@@ -61,10 +64,36 @@ const Activity = () => {
         activityLoading={activityLoading}
         handleSearch={handleActivitySearch}
       />
-      <DisplayActivityList activityList={activityList} />
+      <DisplayActivityList
+        activityList={activityList}
+        handleSnipeSegments={handleSnipeSegments}
+      />
       <DisplaySegmentList segmentList={activitySegmentsList} />
     </>
   );
 };
 
 export default Activity;
+
+// const initialState: ActivityListItem = {
+//   name: "",
+//   id: "",
+//   startDate: undefined,
+//   elapsedTime: undefined,
+//   type: "",
+//   distance: undefined,
+//   achievementCount: undefined,
+//   maxSpeed: undefined,
+//   stravaMap: {
+//     id: "",
+//     polyline: "",
+//   },
+//   segments: [
+//     {
+//       name: "",
+//       id: "",
+//       time: 0,
+//       distance: 0,
+//     },
+//   ],
+// };
