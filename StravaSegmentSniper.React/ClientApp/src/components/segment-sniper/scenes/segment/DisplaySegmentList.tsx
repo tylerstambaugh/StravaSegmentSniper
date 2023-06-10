@@ -64,7 +64,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           >
             <Row>
               <Col>
-                <h3>Activity Search Results</h3>
+                <h3>Segments</h3>
               </Col>
             </Row>
             <Row className="mb-4">
