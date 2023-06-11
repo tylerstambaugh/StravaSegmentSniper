@@ -29,12 +29,12 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             var stravaAthleteId = user.StravaAthleteId;
             DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, stravaAthleteId).Result;
 
-            List<ActivityListModel> activity = _activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel);
-
-            return activity;
+            List<ActivityListModel> activityList = new List<ActivityListModel>();
+                activityList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel));
+            return activityList;
         }
 
-        public List<ActivityListModel> HandleGetSummaryActivitiesForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract)
+        public List<ActivityListModel> HandleGetActivitListForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract)
         {
 
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
@@ -43,12 +43,25 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             var unixStartDate = ConvertToEpochTime(contract.StartDate);
             var unixEndDate = ConvertToEpochTime(contract.EndDate);
 
-            List<SummaryActivityModel> listOfActivities = _stravaAPIActivity
+            List<SummaryActivityModel> listOfSummaryActivities = _stravaAPIActivity
                 .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, stravaAthleteId).Result;
 
-            List<ActivityListModel> activities = _activityAdapter.AdaptSummaryActivityListtoActivityList(listOfActivities);
+            List<DetailedActivityModel> listOfDetailedActivities = new List<DetailedActivityModel>();
 
-            return activities;
+            foreach(SummaryActivityModel activityModel in listOfSummaryActivities)
+            {
+                listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.Id, stravaAthleteId).Result);
+            }
+
+            List<ActivityListModel> activitieList = new List<ActivityListModel>();
+
+            foreach (var activity in listOfDetailedActivities)
+            {
+                activitieList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(activity));
+
+            }
+
+            return activitieList;
         }
 
         public DetailedActivityUIModel HandleGetActivityDetailById(HandleGetActivityByIdContract contract)
