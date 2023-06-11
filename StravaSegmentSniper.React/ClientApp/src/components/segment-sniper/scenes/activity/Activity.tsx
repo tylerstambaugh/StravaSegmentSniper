@@ -50,18 +50,19 @@ const Activity = () => {
   }
 
   function handleShowSegments(activityId: string) {
-    setActivitySegmentsList(
-      activityList.find((x) => x.id === activityId)?.segments!
-    );
+    if (activityList && activityList.length > 0) {
+      const selectedActivity = activityList.find((x) => x.id === activityId);
+      if (
+        selectedActivity &&
+        selectedActivity.segments &&
+        selectedActivity.segments.length > 0
+      ) {
+        setActivitySegmentsList(selectedActivity.segments);
+      }
+    }
   }
 
-  function handleSnipeSegments(activityId: string) {}
-
-  // useNonInitialEffect(() => {
-  //   if (activityList !== undefined && activityList[0].segments) {
-  //     setActivitySegmentsList(activityList[0].segments);
-  //   }
-  // }, [activityList]);
+  async function handleSnipeSegments(activityId: string) {}
 
   return (
     <>

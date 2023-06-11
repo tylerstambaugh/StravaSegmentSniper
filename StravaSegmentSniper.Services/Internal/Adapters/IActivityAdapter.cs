@@ -5,8 +5,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 {
     public interface IActivityAdapter
     {
-        List<ActivityListModel> AdaptDetailedActivitytoActivityList(DetailedActivityModel activity);
-        List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities);
+        ActivityListModel AdaptDetailedActivitytoActivityList(DetailedActivityModel activity);
+       // List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities);
         DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel detailedActivityModel);
     }
 }

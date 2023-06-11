@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Button, Stack, Form } from "react-bootstrap";
 import {
@@ -15,20 +15,21 @@ import * as Yup from "yup";
 import { ActivitySearchProps } from "./Activity";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
+  const [validated, setValidated] = useState(false);
   interface ActivityLookupForm {
-    activityId: number;
-    startDate: Date;
-    endDate: Date;
-    activityType: string;
+    activityId?: number;
+    startDate?: Date;
+    endDate?: Date;
+    activityType?: string;
   }
   const validationSchema = Yup.object().shape({
     activityId: Yup.number().required("Activity ID Is required"),
-    // activityId: Yup.string().when(["startDate", "endDate"], {
+    // activityId: Yup.number().when(["startDate", "endDate"], {
     //   is: undefined,
-    //   then: Yup.string().required(
+    //   then: Yup.number().required(
     //     "Activity ID or Start Date and End Date are required."
     //   ),
-    //   otherwise: Yup.string(),
+    //   otherwise: Yup.number(),
     // }),
     // startDate: Yup.date(),
     // endDate: Yup.date(),
@@ -38,11 +39,11 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
       activityId: 9102798217,
-      startDate: new Date(),
-      endDate: new Date(),
       activityType: "",
     },
     onSubmit: (values: ActivityLookupForm) => {
+      console.log(`endDate = ${values.endDate}`);
+
       const searchProps: ActivitySearchProps = {
         activityId: values.activityId,
         startDate: values.startDate,
@@ -52,8 +53,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       handleSearch(searchProps);
     },
     validationSchema,
-    validateOnBlur: false,
-    validateOnChange: false,
+    validateOnBlur: true,
+    validateOnChange: true,
   });
   return (
     <>
@@ -61,7 +62,14 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
         <Row>
           <Col>
             <h3>Activity List Lookup</h3>
-            <Form name="activityLookupForm" onSubmit={formik.handleSubmit}>
+            <Form
+              name="activityLookupForm"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setValidated(true);
+                formik.handleSubmit(event);
+              }}
+            >
               <Row className="md-auto p-2 mb-1">
                 <div className="border rounded mb-1 p-2">
                   <div className="md-auto p-2 mb-1">

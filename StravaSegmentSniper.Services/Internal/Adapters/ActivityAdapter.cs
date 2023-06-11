@@ -14,9 +14,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         {
             _segmentAdapter = segmentAdapter;
         }
-        public List<ActivityListModel> AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
+        public ActivityListModel AdaptDetailedActivitytoActivityList(DetailedActivityModel activity)
         {
-            List<ActivityListModel> returnList = new List<ActivityListModel>();
             List<SegmentEffortUIListModel> segments = new List<SegmentEffortUIListModel>();
 
             foreach(DetailedSegmentEffortModel segmentEffort in  activity.SegmentEfforts)
@@ -24,8 +23,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
             }
 
-            returnList.Add(
-             new ActivityListModel
+            ActivityListModel returnActivity = new ActivityListModel 
              {
                  Id = activity.Id,
                  Name = activity.Name,
@@ -36,32 +34,32 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                  MaxSpeed = activity.MaxSpeed,
                  Segments = segments,
                  // StravaMap = activity.Map
-             }); ;
-            return returnList;
+             };
+            return returnActivity;
         }
 
-        public List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities)
-        {
-            List<ActivityListModel> returnList = new List<ActivityListModel>();
+        //public List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities)
+        //{
+        //    List<ActivityListModel> returnList = new List<ActivityListModel>();
 
-            foreach (SummaryActivityModel activity in activities)
-            {
-                returnList.Add(
-                     new ActivityListModel
-                     {
-                         Id = activity.Id,
-                         Name = activity.Name,
-                         Distance = activity.Distance,
-                         Type = activity.Type,
-                         StartDate = activity.StartDate,
-                         ElapsedTime = activity.ElapsedTime,
-                         MaxSpeed = activity.MaxSpeed,
-                         // StravaMap = activity.Map
-                     });
-            }
+        //    foreach (SummaryActivityModel activity in activities)
+        //    {
+        //        returnList.Add(
+        //             new ActivityListModel
+        //             {
+        //                 Id = activity.Id,
+        //                 Name = activity.Name,
+        //                 Distance = activity.Distance,
+        //                 Type = activity.Type,
+        //                 StartDate = activity.StartDate,
+        //                 ElapsedTime = activity.ElapsedTime,
+        //                 MaxSpeed = activity.MaxSpeed,
+        //                 // StravaMap = activity.Map
+        //             });
+        //    }
 
-            return returnList;
-        }
+        //    return returnList;
+        //}
 
         public DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel model)
         {

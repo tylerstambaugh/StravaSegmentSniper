@@ -32,7 +32,7 @@ namespace StravaSegmentSniper.React.Controllers
                 EndDate = (DateTime)dateRangeParameters.EndDate
             };
 
-            var returnList = _stravaActivityActionHandler.HandleGetSummaryActivitiesForDateRange(contract);
+            var returnList = _stravaActivityActionHandler.HandleGetActivitListForDateRange(contract);
 
             return returnList;
 
