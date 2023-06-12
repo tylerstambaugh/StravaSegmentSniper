@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import { ActivitySearchProps } from "./Activity";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
@@ -22,23 +22,43 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     endDate?: Date;
     activityType?: string;
   }
-  const validationSchema = Yup.object().shape({
-    activityId: Yup.number().required("Activity ID Is required"),
-    // activityId: Yup.number().when(["startDate", "endDate"], {
-    //   is: (startDate, endDate) => !startDate && !endDate,
-    //   then: Yup.number().required(
-    //     "Activity ID or Start Date and End Date are required."
-    //   ),
-    //   otherwise: Yup.number(),
-    // }),
-    // startDate: Yup.date().when("endDate", {
+  const validationSchema = yup.object().shape({
+    //activityId: Yup.number().required("Activity ID Is required"),
+    // activityId: Yup.number()
+    //   .typeError("Activity ID Must Be A Number")
+    //   .when(["startDate", "endDate"], {
+    //     is: (startDate, endDate) => (!startDate && !endDate),
+    //     then: Yup.number().required(
+    //       "Activity ID or Start Date and End Date are required."
+    //     ),
+    //     otherwise: Yup.number(),
+    //   }),
+    activityId: yup
+      .number()
+      .typeError("Activity ID Must Be A Number")
+      .test(
+        "activity-id-test",
+        "Activity ID or Start and End Date are required.",
+        (value, ctx) => {
+          const { startDate, endDate } = ctx.parent;
+          const isStartDateMissing = !startDate && endDate;
+          const isEndDateMissing = startDate && !endDate;
+
+          if (!value && (isStartDateMissing || isEndDateMissing)) {
+            return false; // Fail validation
+          }
+
+          return true; // Pass validation
+        }
+      ),
+    // startDate: yup.date().when("endDate", {
     //   is: (endDate) => endDate !== undefined,
-    //   then:: Yup.date().required("Start date is required with enddate exists"),
-    //   otherwise: Yup.date(),
+    //   then: yup.date().required("Start date is required with End Date exists"),
+    //   otherwise: yup.date(),
     // }),
-    startDate: Yup.date(),
-    endDate: Yup.date(),
-    activityType: Yup.string().required("Please select an Activity Type"),
+    //startDate: yup.date(),
+    endDate: yup.date(),
+    activityType: yup.string().required("Please select an Activity Type"),
   });
 
   const formik = useFormik<ActivityLookupForm>({
