@@ -25,15 +25,20 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   const validationSchema = Yup.object().shape({
     activityId: Yup.number().required("Activity ID Is required"),
     // activityId: Yup.number().when(["startDate", "endDate"], {
-    //   is: undefined,
+    //   is: (startDate, endDate) => !startDate && !endDate,
     //   then: Yup.number().required(
     //     "Activity ID or Start Date and End Date are required."
     //   ),
     //   otherwise: Yup.number(),
     // }),
-    // startDate: Yup.date(),
-    // endDate: Yup.date(),
-    // activityType: Yup.string().required("Please select an Activity Type"),
+    // startDate: Yup.date().when("endDate", {
+    //   is: (endDate) => endDate !== undefined,
+    //   then:: Yup.date().required("Start date is required with enddate exists"),
+    //   otherwise: Yup.date(),
+    // }),
+    startDate: Yup.date(),
+    endDate: Yup.date(),
+    activityType: Yup.string().required("Please select an Activity Type"),
   });
 
   const formik = useFormik<ActivityLookupForm>({
@@ -53,7 +58,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       handleSearch(searchProps);
     },
     validationSchema,
-    validateOnBlur: true,
+    validateOnBlur: false,
     validateOnChange: true,
   });
   return (
@@ -79,6 +84,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                     <TextField
                       name="activityId"
                       value={formik.values.activityId}
+                      error={Boolean(formik.errors.activityId)}
+                      helperText={formik.errors.activityId}
                       id="outlined-number"
                       label="Activity Id"
                       type="number"
@@ -103,6 +110,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <div>
                     <DatePicker
                       label="Start Date"
+                      value={formik.values.startDate}
                       disableFuture
                       onChange={(date: Date | null) =>
                         formik.setFieldValue("startDate", date)
@@ -112,6 +120,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <div>
                     <DatePicker
                       label="End Date"
+                      value={formik.values.endDate}
                       disableFuture
                       onChange={(date: Date | null) =>
                         formik.setFieldValue("endDate", date)
