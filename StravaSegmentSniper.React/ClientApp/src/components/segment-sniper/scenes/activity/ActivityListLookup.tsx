@@ -25,57 +25,30 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     endDate?: Date;
     activityType?: string;
   }
-  const validationSchema = yup.object().shape({
-    activityId: yup
-      .number()
-      .typeError("Activity ID Must Be A Number")
-      .test(
-        "activity-id-test",
-        "Activity ID or Start and End Date are required.",
-        (value, ctx) => {
-          const { startDate, endDate } = ctx.parent;
-          const isStartDateMissing = !startDate && endDate;
-          const isEndDateMissing = startDate && !endDate;
+  const validationSchema = yup
+    .object()
+    .shape({
+      activityId: yup.number().nullable(),
+      startDate: yup.date().nullable(),
+      endDate: yup.date().nullable(),
+      activityType: yup.string().required("Please select an Activity Type"),
+    })
+    .test(
+      "activityOrDates",
+      "Please provide an activity ID or both start and end dates.",
+      function (values) {
+        const { activityId, startDate, endDate } = values;
 
-          if (!value && (isStartDateMissing || isEndDateMissing)) {
-            return false; // Fail validation
-          }
-          return true; // Pass validation
+        if (!activityId && (!startDate || !endDate)) {
+          return this.createError({
+            path: "activityId",
+            message:
+              "Please provide an activity ID or both start and end dates.",
+          });
         }
-      ),
-
-    // startDate: yup
-    //   .date()
-    //   .typeError("Please enter a valid date")
-    //   .test(
-    //     "start-date-test",
-    //     "Start and end date are required",
-    //     (value, ctx) => {
-    //       const endDate = ctx.parent;
-
-    //       if (value && !endDate) {
-    //         return false;
-    //       }
-    //       return true;
-    //     }
-    //   ),
-    // endDate: yup
-    //   .date()
-    //   .typeError("Please enter a valid date")
-    //   .test(
-    //     "end-date-test",
-    //     "End and start date are required",
-    //     (value, ctx) => {
-    //       const startDate = ctx.parent;
-
-    //       if (value && !startDate) {
-    //         return false;
-    //       }
-    //       return true;
-    //     }
-    //   ),
-    activityType: yup.string().required("Please select an Activity Type"),
-  });
+        return true;
+      }
+    );
 
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
@@ -85,6 +58,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     onSubmit: (values: ActivityLookupForm) => {
       console.log(`endDate = ${values.endDate}`);
 
+      setValidated(true);
       const searchProps: ActivitySearchProps = {
         activityId: values.activityId,
         startDate: values.startDate,
@@ -94,7 +68,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       handleSearch(searchProps);
     },
     validationSchema,
-    validateOnBlur: false,
+    validateOnBlur: true,
     validateOnChange: true,
   });
   return (
@@ -106,8 +80,11 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
             <Form
               name="activityLookupForm"
               onSubmit={(event) => {
-                // event.preventDefault();
-                // setValidated(true);
+                event.preventDefault();
+                setValidated(true);
+                console.log(`formik isValid = ${formik.isValid}`);
+                console.log(`formik status = ${formik.status}`);
+                console.log(`formik errors endDate = ${formik.errors.endDate}`);
                 formik.handleSubmit(event);
               }}
             >
