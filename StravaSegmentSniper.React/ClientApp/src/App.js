@@ -6,6 +6,8 @@ import { Layout } from "./components/Layout";
 import "./custom.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { ToastContainer } from 'react-toastify';
+
 
 export default class App extends Component {
   static displayName = "Strava Segment Sniper";
@@ -32,6 +34,7 @@ export default class App extends Component {
               );
             })}
           </Routes>
+          <ToastContainer />
         </Layout>
       </LocalizationProvider>
     );

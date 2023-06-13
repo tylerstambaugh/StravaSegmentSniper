@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -33,14 +35,30 @@ function SegmentSniper() {
   async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const token = await authService.getAccessToken();
     console.log(token);
-    const response = await fetch("/user", {
-      headers: !token ? {} : { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
-    if (data instanceof Error) {
-      console.log(`there was an error fetching the data. ${data}`);
+    const response = await toast.promise(
+      fetch("/user", {
+        headers: !token ? {} : { Authorization: `Bearer ${token}` },
+      }),
+      {
+        pending: "fetch is pending",
+        success: "fetch resolved 👌",
+        error: "fetch rejected 🤯",
+      }
+    );
+
+    if (!response.ok) {
+      console.log("There was an error fetching the data.");
     } else {
-      setAppUser(data);
+      const data: Promise<WebAppUser> = toast.promise(response.json(), {
+        pending: "get data is pending",
+        success: "get data resolved 👌",
+        error: "get data rejected 🤯",
+      });
+      data
+        .then((resolvedData) => setAppUser(resolvedData))
+        .catch((error) =>
+          console.log(`There was an error fetching the data. ${error.message}`)
+        );
     }
   }
 
