@@ -16,6 +16,9 @@ import { ActivitySearchProps } from "./Activity";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
   const [validated, setValidated] = useState(false);
+  const [startDateError, setStartDateError] = useState("");
+  const [endDateError, setEndDateError] = useState("");
+
   interface ActivityLookupForm {
     activityId?: number;
     startDate?: Date;
@@ -23,16 +26,6 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     activityType?: string;
   }
   const validationSchema = yup.object().shape({
-    //activityId: Yup.number().required("Activity ID Is required"),
-    // activityId: Yup.number()
-    //   .typeError("Activity ID Must Be A Number")
-    //   .when(["startDate", "endDate"], {
-    //     is: (startDate, endDate) => (!startDate && !endDate),
-    //     then: Yup.number().required(
-    //       "Activity ID or Start Date and End Date are required."
-    //     ),
-    //     otherwise: Yup.number(),
-    //   }),
     activityId: yup
       .number()
       .typeError("Activity ID Must Be A Number")
@@ -47,17 +40,40 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
           if (!value && (isStartDateMissing || isEndDateMissing)) {
             return false; // Fail validation
           }
-
           return true; // Pass validation
         }
       ),
-    // startDate: yup.date().when("endDate", {
-    //   is: (endDate) => endDate !== undefined,
-    //   then: yup.date().required("Start date is required with End Date exists"),
-    //   otherwise: yup.date(),
-    // }),
-    //startDate: yup.date(),
-    endDate: yup.date(),
+
+    // startDate: yup
+    //   .date()
+    //   .typeError("Please enter a valid date")
+    //   .test(
+    //     "start-date-test",
+    //     "Start and end date are required",
+    //     (value, ctx) => {
+    //       const endDate = ctx.parent;
+
+    //       if (value && !endDate) {
+    //         return false;
+    //       }
+    //       return true;
+    //     }
+    //   ),
+    // endDate: yup
+    //   .date()
+    //   .typeError("Please enter a valid date")
+    //   .test(
+    //     "end-date-test",
+    //     "End and start date are required",
+    //     (value, ctx) => {
+    //       const startDate = ctx.parent;
+
+    //       if (value && !startDate) {
+    //         return false;
+    //       }
+    //       return true;
+    //     }
+    //   ),
     activityType: yup.string().required("Please select an Activity Type"),
   });
 
@@ -90,8 +106,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
             <Form
               name="activityLookupForm"
               onSubmit={(event) => {
-                event.preventDefault();
-                setValidated(true);
+                // event.preventDefault();
+                // setValidated(true);
                 formik.handleSubmit(event);
               }}
             >
@@ -130,7 +146,16 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <div>
                     <DatePicker
                       label="Start Date"
-                      value={formik.values.startDate}
+                      slotProps={{
+                        textField: {
+                          error: !!startDateError,
+                          helperText: "Invalid Date",
+                        },
+                      }}
+                      onError={(err) =>
+                        setStartDateError(err ?? "an error with start date")
+                      }
+                      value={formik.values.startDate ?? null}
                       disableFuture
                       onChange={(date: Date | null) =>
                         formik.setFieldValue("startDate", date)
@@ -140,7 +165,16 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <div>
                     <DatePicker
                       label="End Date"
-                      value={formik.values.endDate}
+                      slotProps={{
+                        textField: {
+                          error: !!endDateError,
+                          helperText: "Invalid Date",
+                        },
+                      }}
+                      onError={(err) =>
+                        setEndDateError(err ?? "an error with end date")
+                      }
+                      value={formik.values.endDate ?? null}
                       disableFuture
                       onChange={(date: Date | null) =>
                         formik.setFieldValue("endDate", date)
