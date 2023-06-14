@@ -28,6 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -55,7 +56,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj" />
-    <ProjectReference Include="..\StravaSegmentSniper.ConsoleUI\StravaSegmentSniper.ConsoleUI.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Data\StravaSegmentSniper.Data.csproj" />
     <ProjectReference Include="..\StravaSegmentSniper.Services\StravaSegmentSniper.Services.csproj" />
   </ItemGroup>
