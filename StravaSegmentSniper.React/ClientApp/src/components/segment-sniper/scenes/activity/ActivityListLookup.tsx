@@ -51,7 +51,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
       activityId: 9102798217,
-      activityType: "Ride",
+      activityType: "ride",
       startDate: undefined,
       endDate: undefined,
     },
@@ -153,9 +153,10 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       }
                       value={formik.values.endDate ?? null}
                       disableFuture
-                      onChange={(date: Date | null) =>
-                        formik.setFieldValue("endDate", date)
-                      }
+                      onChange={(date: Date | null) => {
+                        formik.setFieldValue("endDate", date);
+                        formik.handleChange(date);
+                      }}
                     />
                   </div>
                 </Stack>
@@ -170,6 +171,9 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                     defaultValue="ride"
                     name="row-radio-buttons-group"
                     row
+                    onChange={(e) =>
+                      formik.setFieldValue("activityType", e.target.value)
+                    }
                   >
                     <FormControlLabel
                       value="ride"
