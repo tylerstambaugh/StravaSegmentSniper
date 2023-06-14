@@ -16,6 +16,7 @@ export interface displayActivityListProps {
   activityList: ActivityListItem[];
   handleSnipeSegments: (activityId: string) => void;
   handleShowSegments(activityId: string);
+  clearSearchResults: () => void;
 }
 type ArrayElementType = ActivityListItem & {
   segmentsButton: any;
@@ -66,26 +67,12 @@ const DisplayActivityList = (props: displayActivityListProps) => {
         </Button>
       ),
     },
-    {
-      prop: "snipeButton",
-      cell: (row) => (
-        <Button
-          variant="outline-primary"
-          size="sm"
-          onClick={() => {
-            alert(`${row.id}'s achievement count is ${row.achievementCount}`);
-          }}
-        >
-          Snipe Segments
-        </Button>
-      ),
-    },
   ];
 
   return (
     <>
       {props.activityList.length > 0 ? (
-        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+        <Container className="p-2 mb-1 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}
@@ -96,11 +83,20 @@ const DisplayActivityList = (props: displayActivityListProps) => {
               },
             }}
           >
-            <Row>
-              <Col>
-                <h3>Activity Search Results</h3>
-              </Col>
-            </Row>
+            <div>
+              <Row>
+                <Col>
+                  <h3>Activity Search Results</h3>
+                </Col>
+                <Col>
+                  <Button
+                    as="input"
+                    value="Clear"
+                    onClick={(e) => props.clearSearchResults()}
+                  ></Button>
+                </Col>
+              </Row>
+            </div>
             <Row className="mb-4">
               <Col
                 xs={12}

@@ -6,6 +6,8 @@ import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 import { SegmentListItem } from "../../models/Segment/Segment";
 import DisplaySegmentList from "../segment/DisplaySegmentList";
 import { useNonInitialEffect } from "react-cork";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export interface ActivitySearchProps {
   activityId?: number;
@@ -19,6 +21,8 @@ const Activity = () => {
   const [activitySegmentsList, setActivitySegmentsList] = useState<
     SegmentListItem[]
   >([]);
+
+  const [selectedActivityId, setSelectedActivityId] = useState<string>();
   const { activityLoading, activityError, fetchActivity } =
     useGetActivityList();
   const [loading, setLoading] = useState(false);
@@ -52,6 +56,7 @@ const Activity = () => {
   function handleShowSegments(activityId: string) {
     if (activityList && activityList.length > 0) {
       const selectedActivity = activityList.find((x) => x.id === activityId);
+      setSelectedActivityId(selectedActivity?.id);
       if (
         selectedActivity &&
         selectedActivity.segments &&
@@ -62,7 +67,23 @@ const Activity = () => {
     }
   }
 
-  async function handleSnipeSegments(activityId: string) {}
+  function clearSearchResults() {
+    setActivityList([]);
+    setActivitySegmentsList([]);
+    setSelectedActivityId("");
+    toast.info("Search Results Cleared", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
+
+  async function handleSnipeSegments() {}
 
   return (
     <>
@@ -75,8 +96,12 @@ const Activity = () => {
         activityList={activityList}
         handleSnipeSegments={handleSnipeSegments}
         handleShowSegments={handleShowSegments}
+        clearSearchResults={clearSearchResults}
       />
-      <DisplaySegmentList segmentList={activitySegmentsList} />
+      <DisplaySegmentList
+        segmentList={activitySegmentsList}
+        handleSnipeSegments={handleSnipeSegments}
+      />
     </>
   );
 };
