@@ -37,17 +37,25 @@ function SegmentSniper() {
     console.log(token);
     const response = await toast.promise(
       fetch("/user", {
-        headers: !token ? {} : { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }),
       {
         pending: "fetch is pending",
         success: "fetch resolved 👌",
         error: "fetch rejected 🤯",
+      },
+      {
+        autoClose: 1500,
+        position: "bottom-center",
       }
     );
 
     if (!response.ok) {
       console.log("There was an error fetching the data.");
+      toast.error("There was an error calling the API", {
+        autoClose: 1500,
+        position: "bottom-center",
+      });
     } else {
       const data: Promise<WebAppUser> = toast.promise(response.json(), {
         pending: "get data is pending",
