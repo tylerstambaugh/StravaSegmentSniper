@@ -25,35 +25,35 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     endDate?: Date;
     activityType?: string;
   }
-  const validationSchema = yup
-    .object()
-    .shape({
-      activityId: yup.number().nullable(),
-      startDate: yup.date().nullable(),
-      endDate: yup.date().nullable(),
-      activityType: yup.string().required("Please select an Activity Type"),
-    })
-    .test(
-      "activityOrDates",
-      "Please provide an activity ID or both start and end dates.",
-      function (values) {
-        const { activityId, startDate, endDate } = values;
+  const validationSchema = yup.object().shape({
+    activityId: yup.number().nullable(),
+    startDate: yup.date().nullable(),
+    endDate: yup.date().nullable(),
+    activityType: yup.string().required("Please select an Activity Type"),
+  });
+  // .test(
+  //   "activityOrDates",
+  //   "Please provide an activity ID or both start and end dates.",
+  //   function (values) {
+  //     const { activityId, startDate, endDate } = values;
 
-        if (!activityId && (!startDate || !endDate)) {
-          return this.createError({
-            path: "activityId",
-            message:
-              "Please provide an activity ID or both start and end dates.",
-          });
-        }
-        return true;
-      }
-    );
+  //     if (!activityId && (!startDate || !endDate)) {
+  //       return this.createError({
+  //         path: "activityId",
+  //         message:
+  //           "Please provide an activity ID or both start and end dates.",
+  //       });
+  //     }
+  //     return true;
+  //   }
+  // );
 
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
       activityId: 9102798217,
-      activityType: "",
+      activityType: "Ride",
+      startDate: undefined,
+      endDate: undefined,
     },
     onSubmit: (values: ActivityLookupForm) => {
       console.log(`endDate = ${values.endDate}`);
@@ -194,13 +194,27 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   </RadioGroup>
                 </FormControl>
               </div>
-              <Button
-                as="input"
-                type="submit"
-                value="Search"
-                variant="primary"
-                className={"me-1"}
-              />
+              <Row>
+                <Col>
+                  <Button
+                    as="input"
+                    type="submit"
+                    value="Search"
+                    variant="primary"
+                    className={"me-1"}
+                    disabled={activityLoading}
+                  />
+                </Col>
+                <Col>
+                  <Button
+                    as="input"
+                    value="Reset"
+                    variant="secondary"
+                    className={"me-1"}
+                    onClick={(e) => formik.resetForm()}
+                  />
+                </Col>
+              </Row>
             </Form>
           </Col>
         </Row>

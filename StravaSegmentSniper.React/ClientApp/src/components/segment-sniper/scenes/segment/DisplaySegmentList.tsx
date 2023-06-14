@@ -14,6 +14,7 @@ import { SegmentListItem } from "../../models/Segment/Segment";
 
 export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
+  handleSnipeSegments: () => void;
 }
 
 type ArrayElementType = SegmentListItem & {
@@ -65,6 +66,14 @@ function DisplaySegmentList(props: displaySegmentListProps) {
             <Row>
               <Col>
                 <h3>Segments</h3>
+              </Col>
+              <Col>
+                <Button
+                  as="input"
+                  value="Snipe!"
+                  variant="primary"
+                  onClick={(e) => props.handleSnipeSegments()}
+                />
               </Col>
             </Row>
             <Row className="mb-4">
