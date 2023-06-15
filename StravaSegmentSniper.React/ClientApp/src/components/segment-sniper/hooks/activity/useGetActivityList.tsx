@@ -22,7 +22,9 @@ const useGetActivityList = () => {
       );
     } else {
       setActivityLoading(false);
-      const error: Error = new Error("An unexpected error occurred");
+      const error: Error = new Error(
+        "Valid Activity ID or Start Date and End Date are required to search."
+      );
       setActivityError(error);
       return error;
     }
@@ -58,19 +60,33 @@ const useGetActivityList = () => {
     async function fetchByActivityDateRange(startDate: Date, endDate: Date) {
       try {
         const bodyData = {
-          startDate: Date,
-          endDate: Date,
+          startDate,
+          endDate,
         };
+        console.log(`request start date ${startDate}`);
+        console.log(`request start date ${endDate}`);
+
+        console.log(`request body data= ${JSON.stringify(bodyData, null, 4)}`);
+
         const requestOptions: RequestInit = {
-          method: "GET",
+          method: "POST",
           body: JSON.stringify(bodyData),
         };
         const fetchResponse: ActivityListItem[] | Error = await api.fetch(
           `/api/StravaActivity/ActivityListByDates`,
           requestOptions
         );
+        console.log(
+          `useGetActivityList response =  ${JSON.stringify(
+            fetchResponse,
+            null,
+            4
+          )}`
+        );
+
         if (fetchResponse instanceof Error) {
           setActivityError(fetchResponse);
+          console.log(`useGetActivity error:  ${fetchResponse}`);
           throw new Error(activityError?.message);
         }
         return fetchResponse;

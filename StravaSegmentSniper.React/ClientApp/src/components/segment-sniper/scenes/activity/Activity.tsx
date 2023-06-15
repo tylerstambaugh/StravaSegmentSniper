@@ -33,17 +33,22 @@ const Activity = () => {
   ) {
     setLoading(true);
     try {
+      console.log(
+        `activity search props ${JSON.stringify(activitySearchProps, null, 4)}`
+      );
       const fetchResponse = await fetchActivity(activitySearchProps!);
 
       if (fetchResponse && !(fetchResponse instanceof Error)) {
         setActivityList(fetchResponse);
       } else {
-        console.log(`error when fetching: ${fetchResponse}`);
+        console.log(
+          `fetch response: ${JSON.stringify(fetchResponse, null, 4)}`
+        );
       }
     } catch (error) {
       if (error instanceof Error) {
         setError(error);
-        console.log(`error when fetching: ${error.stack}`);
+        console.log(`caught error: ${JSON.stringify(error, null, 4)}`);
       } else {
         throw new Error("an unexpected error try to fetch activities");
       }

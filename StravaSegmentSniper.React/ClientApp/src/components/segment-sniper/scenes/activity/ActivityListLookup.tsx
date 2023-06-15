@@ -27,8 +27,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   }
   const validationSchema = yup.object().shape({
     activityId: yup.number().nullable(),
-    startDate: yup.date().nullable(),
-    endDate: yup.date().nullable(),
+    // startDate: yup.date().nullable(),
+    // endDate: yup.date().nullable(),
     activityType: yup.string().required("Please select an Activity Type"),
   });
   // .test(
@@ -96,7 +96,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <Col>
                     <TextField
                       name="activityId"
-                      value={formik.values.activityId}
+                      defaultValue={formik.values.activityId}
                       error={Boolean(formik.errors.activityId)}
                       helperText={formik.errors.activityId}
                       id="outlined-number"
@@ -104,7 +104,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       type="number"
                       onChange={(e) => {
                         formik.setFieldValue("activityId", e.target.value);
-                        formik.handleChange(e);
+                        //formik.handleChange(e);
                       }}
                       InputLabelProps={{
                         shrink: true,
@@ -132,11 +132,12 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       onError={(err) =>
                         setStartDateError(err ?? "an error with start date")
                       }
-                      value={formik.values.startDate ?? null}
+                      defaultValue={formik.values.startDate ?? null}
                       disableFuture
-                      onChange={(date: Date | null) =>
-                        formik.setFieldValue("startDate", date)
-                      }
+                      onChange={(date: Date | null) => {
+                        formik.setFieldValue("startDate", date);
+                        console.log(`start date: ${date}`);
+                      }}
                     />
                   </div>
                   <div>
@@ -151,11 +152,11 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       onError={(err) =>
                         setEndDateError(err ?? "an error with end date")
                       }
-                      value={formik.values.endDate ?? null}
+                      defaultValue={formik.values.endDate ?? null}
                       disableFuture
                       onChange={(date: Date | null) => {
                         formik.setFieldValue("endDate", date);
-                        formik.handleChange(date);
+                        console.log(`end date: ${date}`);
                       }}
                     />
                   </div>
@@ -201,22 +202,22 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
               <Row>
                 <Col>
                   <Button
-                    as="input"
                     type="submit"
-                    value="Search"
                     variant="primary"
                     className={"me-1"}
                     disabled={activityLoading}
-                  />
+                  >
+                    Search
+                  </Button>
                 </Col>
                 <Col>
                   <Button
-                    as="input"
-                    value="Reset"
                     variant="secondary"
                     className={"me-1"}
                     onClick={(e) => formik.resetForm()}
-                  />
+                  >
+                    Reset
+                  </Button>
                 </Col>
               </Row>
             </Form>

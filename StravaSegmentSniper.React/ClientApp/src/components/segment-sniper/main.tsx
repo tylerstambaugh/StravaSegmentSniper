@@ -30,6 +30,9 @@ function SegmentSniper() {
     setIsAuthenticated(isAuthenticated);
     setUsername(user && user.name);
     console.log(`user from populate state = ${JSON.stringify(user, null, 4)}`);
+    const authToken = await authService
+      .getAccessToken()
+      .then((res) => console.log(`user token: ${res}`));
   }
 
   async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -51,7 +54,13 @@ function SegmentSniper() {
     );
 
     if (!response.ok) {
-      console.log("There was an error fetching the data.");
+      console.log(
+        `There was an error fetching the data. ${JSON.stringify(
+          response,
+          null,
+          4
+        )}`
+      );
       toast.error("There was an error calling the API", {
         autoClose: 1500,
         position: "bottom-center",
@@ -65,7 +74,7 @@ function SegmentSniper() {
       data
         .then((resolvedData) => setAppUser(resolvedData))
         .catch((error) =>
-          console.log(`There was an error fetching the data. ${error.message}`)
+          console.log(`There was an error fetching the data. ${error}`)
         );
     }
   }

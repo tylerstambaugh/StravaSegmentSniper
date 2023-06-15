@@ -4,9 +4,9 @@ namespace StravaSegmentSniper.React.Controllers.Contracts
 {
     public class DateRangeParametersContract
     {
-        [JsonProperty]
+        //[JsonProperty]
         public DateTime? EndDate { get; set; }
-        [JsonProperty]
+        //[JsonProperty]
         public DateTime? StartDate { get; set; }
     }
 }
