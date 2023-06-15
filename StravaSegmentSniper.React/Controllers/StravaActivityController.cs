@@ -24,6 +24,7 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpPost]
         [ActionName("ActivityListByDates")]
+        [Consumes("application/json")]
         public List<ActivityListModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
             HandleGetSummaryActivitiesForDateRangeContract contract = new HandleGetSummaryActivitiesForDateRangeContract

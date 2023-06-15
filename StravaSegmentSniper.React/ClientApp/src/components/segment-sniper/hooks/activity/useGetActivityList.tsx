@@ -71,6 +71,10 @@ const useGetActivityList = () => {
         const requestOptions: RequestInit = {
           method: "POST",
           body: JSON.stringify(bodyData),
+          headers: {
+            "Content-Type": "application/json",
+            //'X-Request-Id': uuidv4(),
+          },
         };
         const fetchResponse: ActivityListItem[] | Error = await api.fetch(
           `/api/StravaActivity/ActivityListByDates`,
