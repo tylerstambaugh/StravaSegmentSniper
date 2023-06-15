@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "86edf9f2-1df9-4b35-896e-ef3cc58786b1",
+		"name": "SegmentSniper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Segments",
+			"item": [
+				{
+					"name": "Get Segment",
+					"_postman_id": "75cb921a-6fe0-4d44-9b65-cd7b881eb9a5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer a6995c5ebc5913c6e0fcfaaf32f3aacbf3215c90",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/segments/5289440"
+					},
+					"response": [
+						{
+							"id": "b98c6813-939c-41a5-b36e-4f54beb10864",
+							"name": "Get Segment",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer a6995c5ebc5913c6e0fcfaaf32f3aacbf3215c90",
+										"type": "text"
+									}
+								],
+								"url": "https://www.strava.com/api/v3/segments/5289440"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jun 2023 10:43:54 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 linkerd, 1.1 linkerd, 1.1 6af19ee26bf6ed454c71e179bec18e3c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"658b5bbcc159997af3ae0772dfb752fb\""
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.21.3"
+								},
+								{
+									"key": "Status",
+									"value": "200 OK"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "141db967-4c5b-4aa4-b308-8db32682d14c"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "100,1000"
+								},
+								{
+									"key": "X-RateLimit-Usage",
+									"value": "1,1"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "ORD58-P4"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "9dIiAQjshB3avATI1eO7RYXKX6R-nL_BnQnLPCbpYBEgOIpjUAcaNQ=="
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 5289440,\n    \"resource_state\": 3,\n    \"name\": \"Goose Creek Road\",\n    \"activity_type\": \"Ride\",\n    \"distance\": 2917.3,\n    \"average_grade\": 2.7,\n    \"maximum_grade\": 16.3,\n    \"elevation_high\": 279,\n    \"elevation_low\": 197.8,\n    \"start_latlng\": [\n        39.348323,\n        -86.457422\n    ],\n    \"end_latlng\": [\n        39.343793,\n        -86.427522\n    ],\n    \"elevation_profile\": \"https://d3o5xota0a1fcr.cloudfront.net/v6/charts/WGZMHZUFPSXD3HMJ5KZG3ZXY6EFJT3PW27EIDLVU5KJYQ3OITQ4SW7JS7JJBPKV45KWMT6YUD6UKGN6YFU4VI===\",\n    \"climb_category\": 0,\n    \"city\": \"Martinsville\",\n    \"state\": \"IN\",\n    \"country\": \"United States\",\n    \"private\": false,\n    \"hazardous\": false,\n    \"starred\": false,\n    \"created_at\": \"2013-08-27T20:24:35Z\",\n    \"updated_at\": \"2021-05-15T02:13:53Z\",\n    \"total_elevation_gain\": 92.8,\n    \"map\": {\n        \"id\": \"s5289440\",\n        \"polyline\": \"_fdoF|eunOIkAK_@Y{@a@y@OUc@c@g@[g@a@mAw@o@eASe@Kc@Mw@AkAOyCc@mIW_DOiBQmAi@kCG[G_A@cA^{CHaABcAHu@p@cDdAoEv@cCh@oAvAyC~@_CTw@VgAvAkMPyBn@aFFeAJkDRqAP_@RYb@Sj@M^OXSX]v@cB|@uCXuAFsDJw@Ps@Xk@rAkB`@s@nAaCh@wAPo@~@kEPeAJw@^uB\",\n        \"resource_state\": 3\n    },\n    \"effort_count\": 632,\n    \"athlete_count\": 187,\n    \"star_count\": 6,\n    \"athlete_segment_stats\": {\n        \"pr_elapsed_time\": 620,\n        \"pr_date\": \"2023-04-07\",\n        \"pr_activity_id\": 8849911820,\n        \"effort_count\": 5\n    },\n    \"xoms\": {\n        \"kom\": \"5:37\",\n        \"qom\": \"6:55\",\n        \"overall\": \"5:37\",\n        \"destination\": {\n            \"href\": \"strava://segments/5289440/leaderboard\",\n            \"type\": \"overall\",\n            \"name\": \"All-Time\"\n        }\n    },\n    \"local_legend\": {\n        \"athlete_id\": 46052437,\n        \"title\": \"Eric Ford\",\n        \"profile\": \"https://dgalywyr863hv.cloudfront.net/pictures/athletes/46052437/13264081/5/large.jpg\",\n        \"effort_description\": \"4 efforts in the last 90 days\",\n        \"effort_count\": \"4\",\n        \"effort_counts\": {\n            \"overall\": \"4 efforts\",\n            \"female\": \"2 efforts\"\n        },\n        \"destination\": \"strava://segments/5289440/local_legend?categories%5B%5D=overall\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Segment Effort",
+					"_postman_id": "4d2f4f71-3861-4477-a4f2-984292b021d7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 9627c98802e2230d50b74767f448ec96192f9311",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/segments_efforts/3051956924639015198"
+					},
+					"response": []
+				},
+				{
+					"name": "Segment Leaderboard",
+					"_postman_id": "39a7508f-b624-4323-81bc-8c206f119211",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer a6995c5ebc5913c6e0fcfaaf32f3aacbf3215c90",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/segments/5289440/leaderboard"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "ac90daf6-b183-4c9c-a7d9-7eb4dd28b995"
+		},
+		{
+			"name": "Local API",
+			"item": [
+				{
+					"name": "Authorization",
+					"item": [
+						{
+							"name": "GetToken",
+							"_postman_id": "45debd52-a335-41bc-a506-c741f1c7537f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"tyler.stambaugh@icloud.com\",\r\n  \"password\": \"Password1!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:44411/api/auth/login"
+							},
+							"response": []
+						}
+					],
+					"_postman_id": "79e80fbd-326e-4ab8-b060-16b17aebc5ef",
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "GET WebAppUser",
+					"_postman_id": "93e2a22e-f222-4640-868b-f9c8ba7a941b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NTY1Mzk4OSwiaWF0IjoxNjg1NjUzOTg5LCJleHAiOjE2ODU2NTc1ODksImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODU2NTM5ODgsImlkcCI6ImxvY2FsIiwic2lkIjoiRjY5QzNGRUUxMTc3Qzc2NDkxQTA1NkQ2QzlGQzgyRkMiLCJqdGkiOiI3ODkxNkMxNEM4RjMyNTlCMDkyOEJGRUZENjg3NkExOCJ9.W56_HLKwEEMP0n9oVZUg2tX4LP21dI0cqhF2A74T2hYqgV9PpL05-CL939MSMCuzCxOy8lK_4Xp2Io9NgK5zNBjlwaICO8oVkZjTQiYbd9gN_gV55HgbQPRqQByNoOCBM_BQEHk0u-6j_jsFZ6vDPRitR6WtbEyIm11omCa1dbiRXinSFvMjI6gUbCDiZOfGWyl6-z5dcmqfAZz4FiHuea3iCtbs568LhBvcQpnzO5Fl5p5VX6OT8442ur3q0QmfwqZxkKsCRuIIjQcbNmaJa7G-1ZQGr-yaTBTPlPh0IAJeb0Q6yjbLEMGuZGy02Gaf2TAO2qW4OmtmMPlprD6lfA",
+								"type": "text"
+							}
+						],
+						"url": "https://localhost:44411/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get DetailedAthlete",
+					"_postman_id": "37b1b6ce-1f22-48af-896a-5dc5cc105930",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4Mjg4Mjg5NiwiaWF0IjoxNjgyODgyODk2LCJleHAiOjE2ODI4ODY0OTYsImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiIwMTUwY2NlNi0wNDZiLTQxYzYtODIwYi04ZGM5ZjkyZWZkMDIiLCJhdXRoX3RpbWUiOjE2ODI4ODI4OTQsImlkcCI6ImxvY2FsIiwic2lkIjoiNDdCNEIyQjU0RENBQjFFRDQ0RDc1MDM2OTlCNERENUEiLCJqdGkiOiI1MzBEMzY1QTFFQjdBRkE4MjQ3NDMwRkU2MkFCNzBCNCJ9.hNMQk0PkrN-2jhgqp2EDtsOk6-u97wbuj5EX7a6ae8rnwaBFZgpkT438zvsGNHbROHxJA3qogJLpESuhFpR8aM2iYfmN3gPIXmBFIWhkkY2NREcOkfex8mwpDUX0KtUjfgBAWHXOgpc30-xTwWpk6_tEE6HRJmofuiOYJ6kEsQWyB9ou_49puWjpufaXA27hZ28TJNYLdo-PuiuYl8np2bRG7WPZT5VZYeiYQfgeSo3DXiqw1xL1j5-06V3j612l9Nuyw3YWe5QR688qQcKyz2kmHVBIdNT95A-ugK8Jn49FDsI2_pcn0qg5bO5N9VsMRksqiJn89uGUWppi0F3kyg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"url": "https://localhost:44411/athlete/381648"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity List",
+					"_postman_id": "e390d5f5-3629-4c85-98d6-6afc31d18a03",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NTEwMTEzOSwiaWF0IjoxNjg1MTAxMTM5LCJleHAiOjE2ODUxMDQ3MzksImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODUxMDExMzcsImlkcCI6ImxvY2FsIiwic2lkIjoiRjJGMkZBNEU1MzkyQkZCNjY0MkM3Nzk2MkEyMDdGMDQiLCJqdGkiOiI5Q0U1MkRDRThFNTA0RjM2N0I2RDNEOTQwRDI1RjhENSJ9.AhHhOb8JQEUIcUkeR7l3xrK9XYIne6Jc0W_cic1TIlVzcnEkCbJyMadd5cdDAzwK5Fffb3mMXmdjGlvR6G2zSk4Lce6VmJwPf4EATf1bwxt30Im73L11vl3yZ1jEne62fXQB0_3s1BXq_QCVqfAcmqedW09qME0thlqyATlhiok7c_XWfO_jSIPmDsWQ1VtubhSSNmkkQKzByxarSqPPl-vz5-VhOxKTS1vTWSsSWoY-ReXmyCJmRp69ExmJwengnoNhMm6tHeXDoj-fWhEtCAqm2vGGX-W7An78s-mYNwhcM8DwduHt5Bubd0Q76gK_ttmRcUgR5KJ9WlFNN2S-uQ",
+								"type": "text"
+							}
+						],
+						"url": "https://localhost:44411/activity/ActivityList/9102798217"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Strava Activity List By Date",
+					"_postman_id": "623498fa-85d0-4876-b477-e27b0a1b5824",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NjgzMDAwOCwiaWF0IjoxNjg2ODMwMDA4LCJleHAiOjE2ODY4MzM2MDgsImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODY4MzAwMDcsImlkcCI6ImxvY2FsIiwic2lkIjoiQ0Y1OUMwNTBDQUQ1RjA2RUY4NUVCMkYwN0FGREFFRjgiLCJqdGkiOiI1QTRFRjMyNDkzRUEzRjMxRTQ5RkZEQzU1MDE0MTQ4NSJ9.NCJgBdwYsInTAdKGHBcZkVeyVHg5zUmOMakG0RvFWSCR4hZkTPT2MLTIWOVBWHaTmDe3flRxFs59rLVFrP_2WOaiFbZJo7Jy6uxUBo6Aa_KQjHERUAktKAxwQJWCX-B0Nc58cPGo55swZ1oquC4o543Wrc26QcUyuMOjRTHU4oXVhc-MYCaOJy_f7sRxNy1aQhH4tkg74BBtG8nrm209LYU3AUJCQNY8WBVdZ15Z-JVxkt8ammQjLaNZDfZEi60Oz6_rMrlcOF4IdiULxAhk4RmZf_GVITXn6xnNGORpxjnV5Pznla_UwPHNEwY3W2Z6-o9-bSF3QI5PVZ4gUBrhKw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startDate\": \"2023-06-12T04:00:00.000Z\",\r\n    \"endDate\": \"2023-06-14T04:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:44411/api/StravaActivity/ActivityListByDates"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Strava Activity List By ID",
+					"_postman_id": "7d15b260-45c0-4fd3-9de4-10d770b1b981",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NTcwNjcxMCwiaWF0IjoxNjg1NzA2NzEwLCJleHAiOjE2ODU3MTAzMTAsImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODU3MDQwMTIsImlkcCI6ImxvY2FsIiwic2lkIjoiQUMxMjc2OEYxNTU2QzgxQzVFOEYzOEEyM0JFOTQyNkEiLCJqdGkiOiIxREU1NTc4REFEMEU4QjRCM0JFMzMyMDI5MTY2Nzk3NSJ9.Y2L8y4MuVomyOGcnaWLx9eZx5p5pO2zmTQZykW9AhffKY0PA4QNd5-AqeEMrrrVyMahdKTb_ZIHG6bmzuTpjX0OrhHEmGARwErtdGC2cvAz3gV88N753dlDMYIiDY8Ru3FloXD1W4gDUcaM79cvTPCjodyU05TH5RIXIR1B2MC7SuNe2SaoelRdvxwVPRKhJcr6426p9OhmpHSxptC7BVHqHCuhelJTzI9nQtejWK8WZwpxNnd4np2AttRReeQdpnYjs_d2S5x9Q1YvZxapWbyigBXUaNihMWZKDBWr29U8PhJ888qc82gtKhvV0ccLxK1gFrwykrFTx1rY6X2bERQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44411/api/StravaActivity/ActivityListById?activityId=9102798217",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44411",
+							"path": [
+								"api",
+								"StravaActivity",
+								"ActivityListById"
+							],
+							"query": [
+								{
+									"key": "activityId",
+									"value": "9102798217"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "testGet",
+					"_postman_id": "a54a8467-f2de-4994-8943-628485689bde",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NTY1Mzk4OSwiaWF0IjoxNjg1NjUzOTg5LCJleHAiOjE2ODU2NTc1ODksImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODU2NTM5ODgsImlkcCI6ImxvY2FsIiwic2lkIjoiRjY5QzNGRUUxMTc3Qzc2NDkxQTA1NkQ2QzlGQzgyRkMiLCJqdGkiOiI3ODkxNkMxNEM4RjMyNTlCMDkyOEJGRUZENjg3NkExOCJ9.W56_HLKwEEMP0n9oVZUg2tX4LP21dI0cqhF2A74T2hYqgV9PpL05-CL939MSMCuzCxOy8lK_4Xp2Io9NgK5zNBjlwaICO8oVkZjTQiYbd9gN_gV55HgbQPRqQByNoOCBM_BQEHk0u-6j_jsFZ6vDPRitR6WtbEyIm11omCa1dbiRXinSFvMjI6gUbCDiZOfGWyl6-z5dcmqfAZz4FiHuea3iCtbs568LhBvcQpnzO5Fl5p5VX6OT8442ur3q0QmfwqZxkKsCRuIIjQcbNmaJa7G-1ZQGr-yaTBTPlPh0IAJeb0Q6yjbLEMGuZGy02Gaf2TAO2qW4OmtmMPlprD6lfA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44411/api/StravaActivity/TestGet?test=gfdsdf",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44411",
+							"path": [
+								"api",
+								"StravaActivity",
+								"TestGet"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "gfdsdf"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "68dad52b-e0f0-4244-9859-bf438ad098ce"
+		},
+		{
+			"name": "Authorization",
+			"item": [],
+			"_postman_id": "9c1a8fab-2aea-47c8-adcc-d8eea0ac9fe0"
+		},
+		{
+			"name": "Athlete",
+			"item": [
+				{
+					"name": "Athlete",
+					"_postman_id": "6b6f6dfa-ccab-4c15-af32-d14bd224efa9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 984d97ccbe6c5cd255fa9d0d099fa06b5ca1c015",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/athlete"
+					},
+					"response": []
+				},
+				{
+					"name": "Athlete Stats",
+					"_postman_id": "f5a48043-19ab-43ae-8867-f5da6db1b4b5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ae65400cb7f059540d0a778b4ef3ec433dc00ce5",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/athletes/381648/stats"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "c65d1439-1b2f-4b1d-9445-bd0ab2de268a"
+		},
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "List Athlete Activites",
+					"_postman_id": "aca64b3b-0072-4918-b6b8-980af1edfd44",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ae65400cb7f059540d0a778b4ef3ec433dc00ce5",
+								"type": "text"
+							},
+							{
+								"key": "before",
+								"value": "1672575629",
+								"type": "text"
+							},
+							{
+								"key": "after",
+								"value": "1641057592",
+								"type": "text"
+							}
+						],
+						"url": "https://www.strava.com/api/v3/athlete/activities"
+					},
+					"response": []
+				},
+				{
+					"name": "Athlete Activites",
+					"_postman_id": "e314d46e-e9f0-4f74-a1e7-3c95eb921cfc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 9d1cb22fdcab9339767635ece28bea44b9385ee6",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.strava.com/api/v3/athlete/activities?before=1672627067&after=1667183753&per_page=200",
+							"protocol": "https",
+							"host": [
+								"www",
+								"strava",
+								"com"
+							],
+							"path": [
+								"api",
+								"v3",
+								"athlete",
+								"activities"
+							],
+							"query": [
+								{
+									"key": "before",
+									"value": "1672627067"
+								},
+								{
+									"key": "after",
+									"value": "1667183753"
+								},
+								{
+									"key": "per_page",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity By Id",
+					"_postman_id": "411617ab-d6bb-4937-8c41-0d61b842b93d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 4b1b2eda4636d95a06147e553aace7012d1fdd24",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.strava.com/api/v3/activities/9134932661?include_all_efforts=1",
+							"protocol": "https",
+							"host": [
+								"www",
+								"strava",
+								"com"
+							],
+							"path": [
+								"api",
+								"v3",
+								"activities",
+								"9134932661"
+							],
+							"query": [
+								{
+									"key": "include_all_efforts",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "5c5a0e9c-c5a6-4945-9b20-2f8bb99c2381"
+		}
+	]
+}
