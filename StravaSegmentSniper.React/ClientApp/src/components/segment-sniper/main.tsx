@@ -5,23 +5,18 @@ import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const loginPath = `${ApplicationPaths.Login}`;
   const [appUser, setAppUser] = useState<WebAppUser>();
-
   useEffect(() => {
     const _subscription = authService.subscribe(() => populateState());
     populateState();
-
     return () => {
       authService.unsubscribe(_subscription);
     };
   });
-
   async function populateState() {
     const [isAuthenticated, user] = await Promise.all([
       authService.isAuthenticated(),
@@ -33,36 +28,7 @@ function SegmentSniper() {
     const authToken = await authService
       .getAccessToken()
       .then((res) => console.log(`user token: ${res}`));
-    try {
-      const response = await fetch("/user", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
-
-      if (!response.ok) {
-        console.log(
-          `There was an error fetching the data. ${JSON.stringify(
-            response,
-            null,
-            4
-          )}`
-        );
-        toast.error("There was an error calling the API", {
-          autoClose: 1500,
-          position: "bottom-center",
-        });
-      } else {
-        response
-          .json()
-          .then((resolvedData) => setAppUser(resolvedData))
-          .catch((error) =>
-            console.log(`There was an error fetching the data. ${error}`)
-          );
-      }
-    } catch (error) {
-      console.log(`There was an error fetching the data. ${error}`);
-    }
   }
-
   async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const token = await authService.getAccessToken();
     console.log(token);
@@ -80,7 +46,6 @@ function SegmentSniper() {
         position: "bottom-center",
       }
     );
-
     if (!response.ok) {
       console.log(
         `There was an error fetching the data. ${JSON.stringify(
@@ -106,42 +71,8 @@ function SegmentSniper() {
         );
     }
   }
-
-  return !isAuthenticated ? (
-    <>
-      <main className="container">
-        <div className="row justify-content-center mt-3 mb-3">
-          <div className="col-6">
-            <p>You must be logged in to access this app.</p>
-            <p>
-              Click
-              <Link to={loginPath}> here </Link>
-              to login.
-            </p>
-          </div>
-        </div>
-      </main>
-    </>
-  ) : isAuthenticated && !appUser?.stravaAthleteId ? (
-    <>
-      <main className="container">
-        <div className="row justify-content-center mt-3 mb-3">
-          <div className="col-6">
-            <p>You need to connect your Strava Account.</p>
-            <p>
-              Click
-              <Link to={loginPath}>
-                {" "}
-                <img src=".\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange.png" />{" "}
-              </Link>
-              to get started.
-            </p>
-          </div>
-        </div>
-      </main>
-    </>
-  ) : (
-    <>
+  if (isAuthenticated) {
+    return (
       <main className="container">
         <div className="row justify-content-center mt-3 mb-3">
           <div className="main-tile">
@@ -165,8 +96,22 @@ function SegmentSniper() {
           </div>
         </div>
       </main>
-    </>
-  );
+    );
+  } else {
+    return (
+      <main className="container">
+        <div className="row justify-content-center mt-3 mb-3">
+          <div className="col-6">
+            <p>You must be logged in to access this app.</p>
+            <p>
+              Click
+              <Link to={loginPath}> here </Link>
+              to login.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 }
-
 export default SegmentSniper;
