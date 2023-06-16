@@ -44,7 +44,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             var unixEndDate = ConvertToEpochTime(contract.EndDate);
 
             List<SummaryActivityModel> listOfSummaryActivities = _stravaAPIActivity
-                .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, stravaAthleteId).Result;
+                .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, stravaAthleteId)
+                .Result
+                .Where(sa => sa.Type == contract.ActivityType.ToString()).ToList();
 
             List<DetailedActivityModel> listOfDetailedActivities = new List<DetailedActivityModel>();
 
@@ -58,7 +60,6 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             foreach (var activity in listOfDetailedActivities)
             {
                 activitieList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(activity));
-
             }
 
             return activitieList;

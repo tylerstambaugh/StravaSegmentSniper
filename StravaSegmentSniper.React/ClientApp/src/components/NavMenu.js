@@ -39,6 +39,7 @@ export class NavMenu extends Component {
         >
           <NavbarBrand tag={Link} to="/">
             Strava Segment Sniper
+            <img src="./segment-sniper/assets/stravaImages/poweredByStrava/pwrdBy_strava_white/api_logo_pwrdBy_strava_horiz_white.png" />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse

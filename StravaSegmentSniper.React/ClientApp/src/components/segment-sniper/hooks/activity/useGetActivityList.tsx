@@ -18,7 +18,8 @@ const useGetActivityList = () => {
     } else if (activitySearchProps.startDate && activitySearchProps.endDate) {
       return fetchByActivityDateRange(
         activitySearchProps.startDate,
-        activitySearchProps.endDate
+        activitySearchProps.endDate,
+        activitySearchProps.activityType ?? ""
       );
     } else {
       setActivityLoading(false);
@@ -57,16 +58,17 @@ const useGetActivityList = () => {
       }
     }
 
-    async function fetchByActivityDateRange(startDate: Date, endDate: Date) {
+    async function fetchByActivityDateRange(
+      startDate: Date,
+      endDate: Date,
+      activityType: string
+    ) {
       try {
         const bodyData = {
           startDate,
           endDate,
+          activityType,
         };
-        console.log(`request start date ${startDate}`);
-        console.log(`request start date ${endDate}`);
-
-        console.log(`request body data= ${JSON.stringify(bodyData, null, 4)}`);
 
         const requestOptions: RequestInit = {
           method: "POST",
@@ -80,17 +82,9 @@ const useGetActivityList = () => {
           `/api/StravaActivity/ActivityListByDates`,
           requestOptions
         );
-        console.log(
-          `useGetActivityList response =  ${JSON.stringify(
-            fetchResponse,
-            null,
-            4
-          )}`
-        );
 
         if (fetchResponse instanceof Error) {
           setActivityError(fetchResponse);
-          console.log(`useGetActivity error:  ${fetchResponse}`);
           throw new Error(activityError?.message);
         }
         return fetchResponse;
