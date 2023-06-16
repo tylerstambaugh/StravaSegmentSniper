@@ -27,16 +27,15 @@ namespace StravaSegmentSniper.React.Controllers
         [Consumes("application/json")]
         public List<ActivityListModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
-            HandleGetSummaryActivitiesForDateRangeContract contract = new HandleGetSummaryActivitiesForDateRangeContract
-            {
-                StartDate = (DateTime)dateRangeParameters.StartDate,
-                EndDate = (DateTime)dateRangeParameters.EndDate
-            };
+            HandleGetSummaryActivitiesForDateRangeContract contract = new HandleGetSummaryActivitiesForDateRangeContract(
+                 (DateTime)dateRangeParameters.StartDate,
+                (DateTime)dateRangeParameters.EndDate,
+                dateRangeParameters.ActivityType
+            );
 
             var returnList = _stravaActivityActionHandler.HandleGetActivitListForDateRange(contract);
 
             return returnList;
-
         }
 
         [HttpGet]

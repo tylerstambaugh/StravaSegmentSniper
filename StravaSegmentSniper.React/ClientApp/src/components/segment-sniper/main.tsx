@@ -33,6 +33,34 @@ function SegmentSniper() {
     const authToken = await authService
       .getAccessToken()
       .then((res) => console.log(`user token: ${res}`));
+    try {
+      const response = await fetch("/user", {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+
+      if (!response.ok) {
+        console.log(
+          `There was an error fetching the data. ${JSON.stringify(
+            response,
+            null,
+            4
+          )}`
+        );
+        toast.error("There was an error calling the API", {
+          autoClose: 1500,
+          position: "bottom-center",
+        });
+      } else {
+        response
+          .json()
+          .then((resolvedData) => setAppUser(resolvedData))
+          .catch((error) =>
+            console.log(`There was an error fetching the data. ${error}`)
+          );
+      }
+    } catch (error) {
+      console.log(`There was an error fetching the data. ${error}`);
+    }
   }
 
   async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -79,8 +107,41 @@ function SegmentSniper() {
     }
   }
 
-  if (isAuthenticated) {
-    return (
+  return !isAuthenticated ? (
+    <>
+      <main className="container">
+        <div className="row justify-content-center mt-3 mb-3">
+          <div className="col-6">
+            <p>You must be logged in to access this app.</p>
+            <p>
+              Click
+              <Link to={loginPath}> here </Link>
+              to login.
+            </p>
+          </div>
+        </div>
+      </main>
+    </>
+  ) : isAuthenticated && !appUser?.stravaAthleteId ? (
+    <>
+      <main className="container">
+        <div className="row justify-content-center mt-3 mb-3">
+          <div className="col-6">
+            <p>You need to connect your Strava Account.</p>
+            <p>
+              Click
+              <Link to={loginPath}>
+                {" "}
+                <img src=".\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange.png" />{" "}
+              </Link>
+              to get started.
+            </p>
+          </div>
+        </div>
+      </main>
+    </>
+  ) : (
+    <>
       <main className="container">
         <div className="row justify-content-center mt-3 mb-3">
           <div className="main-tile">
@@ -104,23 +165,8 @@ function SegmentSniper() {
           </div>
         </div>
       </main>
-    );
-  } else {
-    return (
-      <main className="container">
-        <div className="row justify-content-center mt-3 mb-3">
-          <div className="col-6">
-            <p>You must be logged in to access this app.</p>
-            <p>
-              Click
-              <Link to={loginPath}> here </Link>
-              to login.
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+    </>
+  );
 }
 
 export default SegmentSniper;
