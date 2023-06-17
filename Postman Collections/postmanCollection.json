@@ -10,7 +10,7 @@
 			"item": [
 				{
 					"name": "Get Segment",
-					"_postman_id": "75cb921a-6fe0-4d44-9b65-cd7b881eb9a5",
+					"id": "75cb921a-6fe0-4d44-9b65-cd7b881eb9a5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -145,7 +145,7 @@
 				},
 				{
 					"name": "Get Segment Effort",
-					"_postman_id": "4d2f4f71-3861-4477-a4f2-984292b021d7",
+					"id": "4d2f4f71-3861-4477-a4f2-984292b021d7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -164,7 +164,7 @@
 				},
 				{
 					"name": "Segment Leaderboard",
-					"_postman_id": "39a7508f-b624-4323-81bc-8c206f119211",
+					"id": "39a7508f-b624-4323-81bc-8c206f119211",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -182,7 +182,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "ac90daf6-b183-4c9c-a7d9-7eb4dd28b995"
+			"id": "ac90daf6-b183-4c9c-a7d9-7eb4dd28b995"
 		},
 		{
 			"name": "Local API",
@@ -192,7 +192,7 @@
 					"item": [
 						{
 							"name": "GetToken",
-							"_postman_id": "45debd52-a335-41bc-a506-c741f1c7537f",
+							"id": "45debd52-a335-41bc-a506-c741f1c7537f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true,
 								"disabledSystemHeaders": {}
@@ -214,12 +214,11 @@
 							"response": []
 						}
 					],
-					"_postman_id": "79e80fbd-326e-4ab8-b060-16b17aebc5ef",
-					"_postman_isSubFolder": true
+					"id": "79e80fbd-326e-4ab8-b060-16b17aebc5ef"
 				},
 				{
 					"name": "GET WebAppUser",
-					"_postman_id": "93e2a22e-f222-4640-868b-f9c8ba7a941b",
+					"id": "93e2a22e-f222-4640-868b-f9c8ba7a941b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -238,7 +237,7 @@
 				},
 				{
 					"name": "Get DetailedAthlete",
-					"_postman_id": "37b1b6ce-1f22-48af-896a-5dc5cc105930",
+					"id": "37b1b6ce-1f22-48af-896a-5dc5cc105930",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -262,7 +261,7 @@
 				},
 				{
 					"name": "Get Activity List",
-					"_postman_id": "e390d5f5-3629-4c85-98d6-6afc31d18a03",
+					"id": "e390d5f5-3629-4c85-98d6-6afc31d18a03",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -281,7 +280,7 @@
 				},
 				{
 					"name": "Get Strava Activity List By Date",
-					"_postman_id": "623498fa-85d0-4876-b477-e27b0a1b5824",
+					"id": "623498fa-85d0-4876-b477-e27b0a1b5824",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -296,7 +295,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"startDate\": \"2023-06-12T04:00:00.000Z\",\r\n    \"endDate\": \"2023-06-14T04:00:00.000Z\"\r\n}",
+							"raw": "{\r\n    \"startDate\": \"2023-06-12T04:00:00.000Z\",\r\n    \"endDate\": \"2023-06-14T04:00:00.000Z\",\r\n    \"activityType\": \"ride\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -309,7 +308,7 @@
 				},
 				{
 					"name": "Get Strava Activity List By ID",
-					"_postman_id": "7d15b260-45c0-4fd3-9de4-10d770b1b981",
+					"id": "7d15b260-45c0-4fd3-9de4-10d770b1b981",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -346,7 +345,7 @@
 				},
 				{
 					"name": "testGet",
-					"_postman_id": "a54a8467-f2de-4994-8943-628485689bde",
+					"id": "a54a8467-f2de-4994-8943-628485689bde",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -382,19 +381,19 @@
 					"response": []
 				}
 			],
-			"_postman_id": "68dad52b-e0f0-4244-9859-bf438ad098ce"
+			"id": "68dad52b-e0f0-4244-9859-bf438ad098ce"
 		},
 		{
 			"name": "Authorization",
 			"item": [],
-			"_postman_id": "9c1a8fab-2aea-47c8-adcc-d8eea0ac9fe0"
+			"id": "9c1a8fab-2aea-47c8-adcc-d8eea0ac9fe0"
 		},
 		{
 			"name": "Athlete",
 			"item": [
 				{
 					"name": "Athlete",
-					"_postman_id": "6b6f6dfa-ccab-4c15-af32-d14bd224efa9",
+					"id": "6b6f6dfa-ccab-4c15-af32-d14bd224efa9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -413,7 +412,7 @@
 				},
 				{
 					"name": "Athlete Stats",
-					"_postman_id": "f5a48043-19ab-43ae-8867-f5da6db1b4b5",
+					"id": "f5a48043-19ab-43ae-8867-f5da6db1b4b5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -431,14 +430,14 @@
 					"response": []
 				}
 			],
-			"_postman_id": "c65d1439-1b2f-4b1d-9445-bd0ab2de268a"
+			"id": "c65d1439-1b2f-4b1d-9445-bd0ab2de268a"
 		},
 		{
 			"name": "Activities",
 			"item": [
 				{
 					"name": "List Athlete Activites",
-					"_postman_id": "aca64b3b-0072-4918-b6b8-980af1edfd44",
+					"id": "aca64b3b-0072-4918-b6b8-980af1edfd44",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -467,7 +466,7 @@
 				},
 				{
 					"name": "Athlete Activites",
-					"_postman_id": "e314d46e-e9f0-4f74-a1e7-3c95eb921cfc",
+					"id": "e314d46e-e9f0-4f74-a1e7-3c95eb921cfc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -514,7 +513,7 @@
 				},
 				{
 					"name": "Get Activity By Id",
-					"_postman_id": "411617ab-d6bb-4937-8c41-0d61b842b93d",
+					"id": "411617ab-d6bb-4937-8c41-0d61b842b93d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -552,7 +551,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "5c5a0e9c-c5a6-4945-9b20-2f8bb99c2381"
+			"id": "5c5a0e9c-c5a6-4945-9b20-2f8bb99c2381"
 		}
 	]
 }
