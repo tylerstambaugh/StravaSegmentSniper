@@ -8,12 +8,13 @@ import DisplaySegmentList from "../segment/DisplaySegmentList";
 import { useNonInitialEffect } from "react-cork";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ActivityTypeEnum from "../../enums/activityTypes";
 
 export interface ActivitySearchProps {
   activityId?: number;
   startDate?: Date;
   endDate?: Date;
-  activityType?: string;
+  activityType?: ActivityTypeEnum;
 }
 
 const Activity = () => {
@@ -89,6 +90,16 @@ const Activity = () => {
   }
 
   async function handleSnipeSegments() {}
+
+  useEffect(() => {
+    toast.error(
+      `There was an error fetching the activities: ${activityError}`,
+      {
+        autoClose: 1500,
+        position: "bottom-center",
+      }
+    );
+  }, [activityError]);
 
   return (
     <>

@@ -28,6 +28,10 @@ namespace StravaSegmentSniper.React.Helpers
                 options.UseSqlServer(authConnectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            var appDataConnectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
+            builder.Services.AddDbContext<StravaSegmentSniperDbContext>(options =>
+                options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
+
             builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>();
 
@@ -37,15 +41,9 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            var appDataConnectionString = builder.Configuration.GetConnectionString("StravaSegmentSniperData");
-            builder.Services.AddDbContext<StravaSegmentSniperDbContext>(options =>
-                options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
-
-            builder.Services.AddControllersWithViews();
-
-            builder.Services.AddRazorPages();
-
             builder.Services.AddControllers().AddNewtonsoftJson();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             //builder.Services.AddRouting(ctx => ctx.LowercaseUrls = false);
 
