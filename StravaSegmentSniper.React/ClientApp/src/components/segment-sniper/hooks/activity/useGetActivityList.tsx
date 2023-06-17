@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 import { ActivitySearchProps } from "../../scenes/activity/Activity";
 import { useApi } from "../useApi";
+import ActivityTypeEnum from "../../enums/activityTypes";
 
 const useGetActivityList = () => {
   const api = useApi<ActivityListItem[]>();
@@ -19,7 +20,7 @@ const useGetActivityList = () => {
       return fetchByActivityDateRange(
         activitySearchProps.startDate,
         activitySearchProps.endDate,
-        activitySearchProps.activityType ?? ""
+        activitySearchProps.activityType ?? 0
       );
     } else {
       setActivityLoading(false);
@@ -61,7 +62,7 @@ const useGetActivityList = () => {
     async function fetchByActivityDateRange(
       startDate: Date,
       endDate: Date,
-      activityType: string
+      activityType: ActivityTypeEnum
     ) {
       try {
         const bodyData = {

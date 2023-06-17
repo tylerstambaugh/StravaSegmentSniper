@@ -13,6 +13,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ActivitySearchProps } from "./Activity";
+import ActivityTypeEnum from "../../enums/activityTypes";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
   const [validated, setValidated] = useState(false);
@@ -63,7 +64,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
         activityId: values.activityId,
         startDate: values.startDate,
         endDate: values.endDate,
-        activityType: values.activityType,
+        activityType: values.activityType as unknown as ActivityTypeEnum,
       };
       handleSearch(searchProps);
     },
@@ -177,22 +178,22 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                     }
                   >
                     <FormControlLabel
-                      value="ride"
+                      value="Ride"
                       control={<Radio />}
                       label="Ride"
                     />
                     <FormControlLabel
-                      value="walk"
+                      value="Walk"
                       control={<Radio />}
                       label="Walk"
                     />
                     <FormControlLabel
-                      value="run"
+                      value="Run"
                       control={<Radio />}
                       label="Run"
                     />
                     <FormControlLabel
-                      value="hike"
+                      value="Hike"
                       control={<Radio />}
                       label="Hike"
                     />
