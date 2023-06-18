@@ -91,7 +91,7 @@ const Activity = () => {
 
   async function handleSnipeSegments() {}
 
-  useEffect(() => {
+  useNonInitialEffect(() => {
     toast.error(
       `There was an error fetching the activities: ${activityError}`,
       {
