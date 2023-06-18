@@ -32,38 +32,16 @@ function SegmentSniper() {
   async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const token = await authService.getAccessToken();
     console.log(token);
-    const response = await toast.promise(
-      fetch("/user", {
-        headers: { Authorization: `Bearer ${token}` },
-      }),
-      {
-        pending: "fetch is pending",
-        success: "fetch resolved 👌",
-        error: "fetch rejected 🤯",
-      },
-      {
-        autoClose: 1500,
-        position: "bottom-center",
-      }
-    );
+    const response = await fetch("/user", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (!response.ok) {
-      console.log(
-        `There was an error fetching the data. ${JSON.stringify(
-          response,
-          null,
-          4
-        )}`
-      );
       toast.error("There was an error calling the API", {
         autoClose: 1500,
         position: "bottom-center",
       });
     } else {
-      const data: Promise<WebAppUser> = toast.promise(response.json(), {
-        pending: "get data is pending",
-        success: "get data resolved 👌",
-        error: "get data rejected 🤯",
-      });
+      const data: Promise<WebAppUser> = response.json();
       data
         .then((resolvedData) => setAppUser(resolvedData))
         .catch((error) =>

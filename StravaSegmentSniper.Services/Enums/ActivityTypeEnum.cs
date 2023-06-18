@@ -8,7 +8,7 @@ namespace StravaSegmentSniper.Services.Enums
 {
     public class ActivityTypeEnum
     {
-        enum ActivityType
+        public enum ActivityType
         {
             Ride,
             Walk,

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using StravaSegmentSniper.Services.Enums;
+using static StravaSegmentSniper.Services.Enums.ActivityTypeEnum;
 
 namespace StravaSegmentSniper.React.Controllers.Contracts
 {
@@ -7,6 +8,6 @@ namespace StravaSegmentSniper.React.Controllers.Contracts
     {
         public DateTime? EndDate { get; set; }
         public DateTime? StartDate { get; set; }
-        public ActivityTypeEnum? ActivityType { get; set; }
+        public string? ActivityType { get; set; }
     }
 }
