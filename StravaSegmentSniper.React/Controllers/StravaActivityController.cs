@@ -68,14 +68,14 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityDetailtById")]
-        public DetailedActivityUIModel StravaActivityDetailById([FromQuery] long activityId)
+        public IActionResult StravaActivityDetailById([FromQuery] long activityId)
         {
             HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {
                 activityId = activityId
             };
 
-            return _stravaActivityActionHandler.HandleGetActivityDetailById(contract);
+            return Ok(_stravaActivityActionHandler.HandleGetActivityDetailById(contract));
         }
 
     }
