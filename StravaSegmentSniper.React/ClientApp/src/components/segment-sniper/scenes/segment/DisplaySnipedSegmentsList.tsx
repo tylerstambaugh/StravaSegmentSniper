@@ -10,21 +10,24 @@ import {
 } from "react-bs-datatable";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { SegmentListItem } from "../../models/Segment/Segment";
+import {
+  SegmentListItem,
+  SnipedSegmentListItem,
+} from "../../models/Segment/Segment";
 
-export interface displaySegmentListProps {
-  segmentList: SegmentListItem[];
-  handleSnipeSegments: () => void;
+export interface displaySnipedSegmentListProps {
+  snipedSegmentList: SnipedSegmentListItem[];
 }
+
+const [isSnipeList, setIsSnipeList] = useState();
 
 type ArrayElementType = SegmentListItem & {
   detailsButton: any;
 };
 
-function DisplaySegmentList(props: displaySegmentListProps) {
-  const tableBody: ArrayElementType[] = props.segmentList.map((item) => ({
+function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
+  const tableBody: ArrayElementType[] = props.snipedSegmentList.map((item) => ({
     ...item,
-    snipeButton: null,
     detailsButton: null,
   }));
 
@@ -33,6 +36,8 @@ function DisplaySegmentList(props: displaySegmentListProps) {
     { title: "Id", prop: "id" },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "Time", prop: "time", isSortable: true },
+    { title: "% From KOM", prop: "percentOff", isSortable: true},
+    { title: "Seconds From KOM", prop: "secondsOff", isSortable: true}
     {
       prop: "detailsButton",
       cell: (row) => (
@@ -51,7 +56,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
 
   return (
     <>
-      {props.segmentList.length > 0 ? (
+      {props.snipedSegmentList.length > 0 ? (
         <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
@@ -70,7 +75,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
               <Col>
                 <Button
                   as="input"
-                  value="Snipe!"
+                  value="Clear"
                   variant="primary"
                   onClick={(e) => props.handleSnipeSegments()}
                 />
@@ -140,4 +145,4 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   );
 }
 
-export default DisplaySegmentList;
+export default DisplaySnipedSegmentList;

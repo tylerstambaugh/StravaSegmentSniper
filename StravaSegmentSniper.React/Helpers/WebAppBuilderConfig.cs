@@ -2,6 +2,7 @@
 using Authorization.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.React.ActionHandlers.Activity;
@@ -39,7 +40,13 @@ namespace StravaSegmentSniper.React.Helpers
                 .AddApiAuthorization<WebAppUser, AuthDbContext>();
 
             builder.Services.AddAuthentication()
-                .AddIdentityServerJwt();
+                .AddIdentityServerJwt().AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false
+                    };
+                });
 
             builder.Services.AddControllers().AddNewtonsoftJson();
             builder.Services.AddControllersWithViews();
