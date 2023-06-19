@@ -8,6 +8,8 @@ export interface SegmentListItem {
   rank?: number;
 }
 
+export interface SnipedSegmentListItem {}
+
 export interface Segment {
   id: number;
   resource_state: number;

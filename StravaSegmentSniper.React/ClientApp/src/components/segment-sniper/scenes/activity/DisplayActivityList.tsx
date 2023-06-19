@@ -14,7 +14,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
 export interface displayActivityListProps {
   activityList: ActivityListItem[];
-  handleSnipeSegments: (activityId: string) => void;
   handleShowSegments(activityId: string);
   clearSearchResults: () => void;
 }

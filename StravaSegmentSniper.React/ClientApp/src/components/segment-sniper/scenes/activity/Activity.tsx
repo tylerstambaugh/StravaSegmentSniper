@@ -9,6 +9,7 @@ import { useNonInitialEffect } from "react-cork";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ActivityTypeEnum from "../../enums/activityTypes";
+import SegmentList from "../segment/SegmentList";
 
 export interface ActivitySearchProps {
   activityId?: number;
@@ -89,8 +90,6 @@ const Activity = () => {
     });
   }
 
-  async function handleSnipeSegments() {}
-
   useNonInitialEffect(() => {
     toast.error(
       `There was an error fetching the activities: ${activityError}`,
@@ -110,14 +109,10 @@ const Activity = () => {
       />
       <DisplayActivityList
         activityList={activityList}
-        handleSnipeSegments={handleSnipeSegments}
         handleShowSegments={handleShowSegments}
         clearSearchResults={clearSearchResults}
       />
-      <DisplaySegmentList
-        segmentList={activitySegmentsList}
-        handleSnipeSegments={handleSnipeSegments}
-      />
+      <SegmentList activitySegmentList={activitySegmentsList} />
     </>
   );
 };

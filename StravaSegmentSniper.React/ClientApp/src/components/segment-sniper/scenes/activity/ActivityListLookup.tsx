@@ -52,7 +52,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
       activityId: 9102798217,
-      activityType: "ride",
+      activityType: undefined,
       startDate: undefined,
       endDate: undefined,
     },
@@ -170,7 +170,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   </FormLabel>
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="ride"
+                    defaultValue="Ride"
                     name="row-radio-buttons-group"
                     row
                     onChange={(e) =>
@@ -196,6 +196,11 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       value="Hike"
                       control={<Radio />}
                       label="Hike"
+                    />
+                    <FormControlLabel
+                      value="None"
+                      control={<Radio />}
+                      label="None"
                     />
                   </RadioGroup>
                 </FormControl>
