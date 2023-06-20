@@ -7,6 +7,11 @@ import {
 import React from "react";
 import DisplaySnipedSegmentList from "./DisplaySnipedSegmentsList";
 
+export interface SnipeSegmentProps {
+  activityId: number;
+  secondsOff: number;
+  percentageOff: number;
+}
 export interface segmentListProps {
   activitySegmentList: SegmentListItem[];
 }
@@ -19,6 +24,8 @@ const SegmentList = (props: segmentListProps) => {
 
   async function handleSnipeSegments() {}
 
+  function clearSnipedSegments() {}
+
   return (
     <>
       {!isSnipeList ? (
@@ -27,7 +34,10 @@ const SegmentList = (props: segmentListProps) => {
           handleSnipeSegments={handleSnipeSegments}
         />
       ) : (
-        <DisplaySnipedSegmentList snipedSegmentList={snipedSegmentlist} />
+        <DisplaySnipedSegmentList
+          snipedSegmentList={snipedSegmentlist}
+          clearSnipedSegments={clearSnipedSegments}
+        />
       )}
     </>
   );
