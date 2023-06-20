@@ -8,7 +8,17 @@ export interface SegmentListItem {
   rank?: number;
 }
 
-export interface SnipedSegmentListItem {}
+export interface SnipedSegmentListItem {
+  id: string;
+  name: string;
+  time: number;
+  distance: number;
+  secondsOff: number;
+  percentOff: number;
+  athleteStats?: athleteSegmentStats;
+  koms?: xomsModel;
+  rank?: number;
+}
 
 export interface Segment {
   id: number;

@@ -17,11 +17,10 @@ import {
 
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
+  clearSnipedSegments: () => void;
 }
 
-const [isSnipeList, setIsSnipeList] = useState();
-
-type ArrayElementType = SegmentListItem & {
+type ArrayElementType = SnipedSegmentListItem & {
   detailsButton: any;
 };
 
@@ -36,8 +35,8 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     { title: "Id", prop: "id" },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "Time", prop: "time", isSortable: true },
-    { title: "% From KOM", prop: "percentOff", isSortable: true},
-    { title: "Seconds From KOM", prop: "secondsOff", isSortable: true}
+    { title: "Seconds From KOM", prop: "secondsOff", isSortable: true },
+    { title: "% From KOM", prop: "percentOff", isSortable: true },
     {
       prop: "detailsButton",
       cell: (row) => (
@@ -77,7 +76,7 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
                   as="input"
                   value="Clear"
                   variant="primary"
-                  onClick={(e) => props.handleSnipeSegments()}
+                  onClick={(e) => props.clearSnipedSegments()}
                 />
               </Col>
             </Row>
@@ -135,7 +134,8 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
             </Row>
             <Row>
               <Col>
-                <p>No Results to Display</p>
+                <p>Try harder next time woosie</p>
+                <p>No segments to snipe!</p>
               </Col>
             </Row>
           </DatatableWrapper>
