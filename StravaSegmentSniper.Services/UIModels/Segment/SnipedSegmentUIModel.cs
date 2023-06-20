@@ -24,5 +24,7 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
         public AthleteSegmentStatsModel AthleteSegmentStats { get; set; }
         public XomsModel Xoms { get; set; }
         public LocalLegendModel LocalLegend { get; set; }
+        public int SecondsOff { get; set; }
+        public int percentOff { get; set; }
     }
 }
