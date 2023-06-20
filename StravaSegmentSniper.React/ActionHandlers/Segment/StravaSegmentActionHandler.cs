@@ -5,7 +5,6 @@ using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Segment;
 using StravaSegmentSniper.Services.UIModels.Segment;
-using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
@@ -17,7 +16,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StravaSegmentActionHandler(IStravaAPIActivity stravaAPIActivity, IStravaAPISegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor) {
+        public StravaSegmentActionHandler(IStravaAPIActivity stravaAPIActivity, IStravaAPISegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
+        {
             _stravaAPIActivity = stravaAPIActivity;
             _stravaSegment = stravaSegment;
             _webAppUserService = webAppUserService;
@@ -37,16 +37,56 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             List<DetailedSegmentEffortModel> segmentsEfforts = detailedActivityModel.SegmentEfforts;
 
             List<DetailedSegmentModel> segmentModels = new List<DetailedSegmentModel>();
+            List<SnipedSegmentUIModel> snipedSegments = new List<SnipedSegmentUIModel>();
 
-            foreach(DetailedSegmentEffortModel segmentEffortModel in segmentsEfforts)
+            foreach (DetailedSegmentEffortModel segmentEffortModel in segmentsEfforts)
             {
                 DetailedSegmentModel model = _stravaSegment.GetDetailedSegmentById(segmentEffortModel.Id, stravaAthleteId).Result;
                 segmentModels.Add(model);
-            }
 
+                XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
+
+                if (contract.PercentageFromTopTen != null && contract.PercentageFromTopTen > 0)
+                {
+                    var percentageOff = xomsTime.komTime / (segmentEffortModel.MovingTime - xomsTime.komTime) ;
+                }
+            }
 
             throw new NotImplementedException();
 
         }
+
+        private XomsTimes GetXomTimeFromStrings(XomsModel xoms)
+        {
+            XomsTimes returnTimes = new XomsTimes();
+
+            returnTimes.komTime = GetTimeFromString(xoms.Kom);
+            returnTimes.qomTime = GetTimeFromString(xoms.Qom);
+            return returnTimes;
+        }
+
+        private int GetTimeFromString(string time)
+        {
+
+            int returnTime = 0;
+            string[] timeParts = time.Split(':');
+
+            for (int i = 0; i < timeParts.Length; i++)
+            {
+                int factor = i * 60;
+                returnTime += int.Parse(timeParts[timeParts.Length-i]) * factor;
+            }
+            return returnTime;
+        }
+    }
+
+    class XomsTimes
+    {
+        public XomsTimes()
+        {
+
+        }
+        public int komTime { get; set; }
+        public int qomTime { get; set; }
     }
 }
