@@ -14,6 +14,7 @@ using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Athlete;
 using StravaSegmentSniper.Services.StravaAPI.Segment;
 using StravaSegmentSniper.Services.StravaAPI.TokenService;
+using System.Text;
 
 namespace StravaSegmentSniper.React.Helpers
 {
@@ -39,12 +40,18 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddIdentityServer()
                 .AddApiAuthorization<WebAppUser, AuthDbContext>();
 
-            builder.Services.AddAuthentication()
+            builder.Services.AddAuthentication("Bearer")
                 .AddIdentityServerJwt().AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer = false
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
                     };
                 });
 
