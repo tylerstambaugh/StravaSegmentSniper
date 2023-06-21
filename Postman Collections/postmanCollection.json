@@ -160,7 +160,123 @@
 						],
 						"url": "https://www.strava.com/api/v3/segments_efforts/3051956924639015198"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "7e471de0-ea99-4d6f-ae72-1c3a132a83bf",
+							"name": "Get Segment Effort",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer 7fe9473cddb4261e570295899a60c9b7be4ded5e",
+										"type": "text"
+									}
+								],
+								"url": "https://www.strava.com/api/v3/segments_efforts/3051956924639015198"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 22:19:28 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 linkerd, 1.1 linkerd, 1.1 419c9901ed027566ceb381cbfb7dd6c0.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Origin"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.21.3"
+								},
+								{
+									"key": "Status",
+									"value": "404 Not Found"
+								},
+								{
+									"key": "Expires",
+									"value": "Sat, 01 Jan 2000 00:00:00 GMT"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "_strava4_session=epr3f424s6gf2pme304rjj7r4cbo0nql; domain=strava.com; path=/; secure; HttpOnly"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "d7c067d0-b4cf-480d-9fc4-8eda6e0f92d0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "ORD52-C1"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "3XTlEnsUY67R6sizvLsuGqcllYpVyKDjZLvOfY2rokcp25rPprQVgQ=="
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Record Not Found\",\n    \"errors\": [\n        {\n            \"resource\": \"resource\",\n            \"field\": \"path\",\n            \"code\": \"invalid\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Segment Leaderboard",
