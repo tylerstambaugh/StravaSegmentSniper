@@ -19,13 +19,14 @@ export interface displaySegmentListProps {
 
 type ArrayElementType = SegmentListItem & {
   detailsButton: any;
+  starButton: any;
 };
 
 function DisplaySegmentList(props: displaySegmentListProps) {
   const tableBody: ArrayElementType[] = props.segmentList.map((item) => ({
     ...item,
-    snipeButton: null,
     detailsButton: null,
+    starButton: null,
   }));
 
   const header: TableColumnType<ArrayElementType>[] = [
@@ -35,6 +36,20 @@ function DisplaySegmentList(props: displaySegmentListProps) {
     { title: "Time", prop: "time", isSortable: true },
     {
       prop: "detailsButton",
+      cell: (row) => (
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => {
+            alert(`We'll show details`);
+          }}
+        >
+          Details
+        </Button>
+      ),
+    },
+    {
+      prop: "starButton",
       cell: (row) => (
         <Button
           variant="outline-primary"
