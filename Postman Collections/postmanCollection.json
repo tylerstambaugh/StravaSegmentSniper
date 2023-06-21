@@ -163,7 +163,7 @@
 					"response": [
 						{
 							"id": "7e471de0-ea99-4d6f-ae72-1c3a132a83bf",
-							"name": "Get Segment Effort",
+							"name": "Get Segment Effort Sample Response",
 							"originalRequest": {
 								"method": "GET",
 								"header": [
