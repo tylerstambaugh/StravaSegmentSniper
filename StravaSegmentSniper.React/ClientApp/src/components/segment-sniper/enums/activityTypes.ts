@@ -3,6 +3,7 @@ enum ActivityTypeEnum {
   Walk,
   Hike,
   Run,
+  All,
 }
 
 export default ActivityTypeEnum;

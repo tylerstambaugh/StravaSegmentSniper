@@ -18,7 +18,6 @@ import {
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
-  handleShowSnipeSegmentModal: () => void;
 }
 
 type TabelRow = SnipedSegmentListItem & {

@@ -14,22 +14,22 @@ import { SegmentListItem } from "../../models/Segment/Segment";
 
 export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
-  handleSnipeSegments: () => void;
+  handleShowSnipeSegmentsModal: () => void;
 }
 
-type ArrayElementType = SegmentListItem & {
+type TableRow = SegmentListItem & {
   detailsButton: any;
   starButton: any;
 };
 
 function DisplaySegmentList(props: displaySegmentListProps) {
-  const tableBody: ArrayElementType[] = props.segmentList.map((item) => ({
+  const tableBody: TableRow[] = props.segmentList.map((item) => ({
     ...item,
     detailsButton: null,
     starButton: null,
   }));
 
-  const header: TableColumnType<ArrayElementType>[] = [
+  const header: TableColumnType<TableRow>[] = [
     { title: "Name", prop: "name", isFilterable: true },
     { title: "Id", prop: "id" },
     { title: "Distance", prop: "distance", isSortable: true },
@@ -87,7 +87,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                   as="input"
                   value="Snipe!"
                   variant="primary"
-                  onClick={(e) => props.handleSnipeSegments()}
+                  onClick={(e) => props.handleShowSnipeSegmentsModal()}
                 />
               </Col>
             </Row>

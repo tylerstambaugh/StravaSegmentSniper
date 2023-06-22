@@ -51,7 +51,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
 
   const formik = useFormik<ActivityLookupForm>({
     initialValues: {
-      activityId: 9102798217,
+      activityId: undefined,
       activityType: undefined,
       startDate: undefined,
       endDate: undefined,
@@ -112,7 +112,9 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       }}
                     />
                   </Col>
-                  <Col></Col>
+                  <Col>
+                    <p>Activity Id for test = 9102798217</p>
+                  </Col>
                 </div>
               </Row>
 
@@ -198,34 +200,36 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       label="Hike"
                     />
                     <FormControlLabel
-                      value="None"
+                      value="All"
                       control={<Radio />}
-                      label="None"
+                      label="All"
                     />
                   </RadioGroup>
                 </FormControl>
               </div>
-              <Row>
-                <Col>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    className={"me-1"}
-                    disabled={activityLoading}
-                  >
-                    Search
-                  </Button>
-                </Col>
-                <Col>
-                  <Button
-                    variant="secondary"
-                    className={"me-1"}
-                    onClick={(e) => formik.resetForm()}
-                  >
-                    Reset
-                  </Button>
-                </Col>
-              </Row>
+              <div className="d-flex justify-content-end">
+                <Row>
+                  <Col>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      className={"me-1"}
+                      disabled={activityLoading}
+                    >
+                      Search
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button
+                      variant="secondary"
+                      className={"me-1"}
+                      onClick={(e) => formik.resetForm()}
+                    >
+                      Reset
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
             </Form>
           </Col>
         </Row>

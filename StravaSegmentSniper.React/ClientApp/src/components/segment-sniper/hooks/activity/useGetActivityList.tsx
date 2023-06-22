@@ -68,7 +68,7 @@ const useGetActivityList = () => {
         const bodyData = {
           startDate,
           endDate,
-          activityType,
+          ...(activityType === ActivityTypeEnum.All ? {} : { activityType }),
         };
 
         const requestOptions: RequestInit = {
