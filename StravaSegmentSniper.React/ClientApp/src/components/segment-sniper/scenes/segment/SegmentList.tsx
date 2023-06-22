@@ -10,8 +10,8 @@ import SnipeSegmentsModal from "./SnipeSegmentsModal";
 
 export interface SnipeSegmentProps {
   activityId: number;
-  secondsOff: number;
-  percentageOff: number;
+  secondsOff?: number | undefined;
+  percentageOff?: number | undefined;
 }
 export interface SegmentListProps {
   activitySegmentList: SegmentListItem[];
