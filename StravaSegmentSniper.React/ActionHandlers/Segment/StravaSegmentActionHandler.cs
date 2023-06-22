@@ -26,12 +26,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
         public List<SnipedSegmentUIModel> HandleSnipingSegments(SegmentSniperContract contract)
         {
-
-            //get detailed activity by Id
             try
             {
-
-
+            //get detailed activity by Id
                 var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
                 var stravaAthleteId = user.StravaAthleteId;
                 DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, stravaAthleteId).Result;

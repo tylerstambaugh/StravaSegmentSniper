@@ -18,19 +18,22 @@ import {
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
+  handleShowSnipeSegmentModal: () => void;
 }
 
-type ArrayElementType = SnipedSegmentListItem & {
+type TabelRow = SnipedSegmentListItem & {
   detailsButton: any;
+  starButton: any;
 };
 
 function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
-  const tableBody: ArrayElementType[] = props.snipedSegmentList.map((item) => ({
+  const tableBody: TabelRow[] = props.snipedSegmentList.map((item) => ({
     ...item,
     detailsButton: null,
+    starButton: null,
   }));
 
-  const header: TableColumnType<ArrayElementType>[] = [
+  const header: TableColumnType<TabelRow>[] = [
     { title: "Name", prop: "name", isFilterable: true },
     { title: "Id", prop: "id" },
     { title: "Distance", prop: "distance", isSortable: true },
@@ -39,6 +42,20 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     { title: "% From KOM", prop: "percentOff", isSortable: true },
     {
       prop: "detailsButton",
+      cell: (row) => (
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => {
+            alert(`We'll show details`);
+          }}
+        >
+          Details
+        </Button>
+      ),
+    },
+    {
+      prop: "starButton",
       cell: (row) => (
         <Button
           variant="outline-primary"

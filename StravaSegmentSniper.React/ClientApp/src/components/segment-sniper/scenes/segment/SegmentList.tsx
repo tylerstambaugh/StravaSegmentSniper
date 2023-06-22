@@ -16,27 +16,32 @@ export interface segmentListProps {
   activitySegmentList: SegmentListItem[];
 }
 const SegmentList = (props: segmentListProps) => {
+  const [showSnipeSegmentModal, setShowSnipeSegmentModal] = useState(false);
   const [isSnipeList, setIsSnipeList] = useState(false);
 
   const [snipedSegmentlist, setSnipedSegmentList] = useState<
     SnipedSegmentListItem[]
   >([]);
 
-  async function handleSnipeSegments() {}
+  const handleCloseSnipeSegmentModal = () => setShowSnipeSegmentModal(false);
+  const handleShowSnipeSegmentModal = () => setShowSnipeSegmentModal(true);
 
-  function clearSnipedSegments() {}
+  function clearSnipedSegments() {
+    setSnipedSegmentList([]);
+  }
 
   return (
     <>
       {!isSnipeList ? (
         <DisplaySegmentList
           segmentList={props.activitySegmentList}
-          handleSnipeSegments={handleSnipeSegments}
+          handleShowSnipeSegmentsModal={handleShowSnipeSegmentModal}
         />
       ) : (
         <DisplaySnipedSegmentList
           snipedSegmentList={snipedSegmentlist}
           clearSnipedSegments={clearSnipedSegments}
+          handleShowSnipeSegmentModal={handleShowSnipeSegmentModal}
         />
       )}
     </>
