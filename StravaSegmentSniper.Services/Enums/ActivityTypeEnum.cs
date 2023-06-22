@@ -14,6 +14,7 @@ namespace StravaSegmentSniper.Services.Enums
             Walk,
             Run,
             Hike,
+            All,
         }
     }
 }

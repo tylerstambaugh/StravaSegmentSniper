@@ -34,6 +34,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             return activityList;
         }
 
+
+        //make async
         public List<ActivityListModel> HandleGetActivitListForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract)
         {
 

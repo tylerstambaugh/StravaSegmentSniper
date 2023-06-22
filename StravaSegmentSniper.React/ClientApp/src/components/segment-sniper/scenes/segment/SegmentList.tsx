@@ -6,16 +6,17 @@ import {
 } from "../../models/Segment/Segment";
 import React from "react";
 import DisplaySnipedSegmentList from "./DisplaySnipedSegmentsList";
+import SnipeSegmentsModal from "./SnipeSegmentsModal";
 
 export interface SnipeSegmentProps {
   activityId: number;
   secondsOff: number;
   percentageOff: number;
 }
-export interface segmentListProps {
+export interface SegmentListProps {
   activitySegmentList: SegmentListItem[];
 }
-const SegmentList = (props: segmentListProps) => {
+const SegmentList = (props: SegmentListProps) => {
   const [showSnipeSegmentModal, setShowSnipeSegmentModal] = useState(false);
   const [isSnipeList, setIsSnipeList] = useState(false);
 
@@ -24,24 +25,31 @@ const SegmentList = (props: segmentListProps) => {
   >([]);
 
   const handleCloseSnipeSegmentModal = () => setShowSnipeSegmentModal(false);
-  const handleShowSnipeSegmentModal = () => setShowSnipeSegmentModal(true);
+  const handleShowSnipeSegmentsModal = () => setShowSnipeSegmentModal(true);
 
   function clearSnipedSegments() {
     setSnipedSegmentList([]);
+    setIsSnipeList(false);
   }
+
+  async function handleSnipeSegments() {}
 
   return (
     <>
+      <SnipeSegmentsModal
+        show={showSnipeSegmentModal}
+        handleClose={handleCloseSnipeSegmentModal}
+        handleSnipeSegments={handleSnipeSegments}
+      />
       {!isSnipeList ? (
         <DisplaySegmentList
           segmentList={props.activitySegmentList}
-          handleShowSnipeSegmentsModal={handleShowSnipeSegmentModal}
+          handleShowSnipeSegmentsModal={handleShowSnipeSegmentsModal}
         />
       ) : (
         <DisplaySnipedSegmentList
           snipedSegmentList={snipedSegmentlist}
           clearSnipedSegments={clearSnipedSegments}
-          handleShowSnipeSegmentModal={handleShowSnipeSegmentModal}
         />
       )}
     </>
