@@ -30,7 +30,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                  Distance = activity.Distance,
                  Type = activity.Type,
                  StartDate = activity.StartDate,
-                 ElapsedTime = activity.ElapsedTime,
+                 ElapsedTimeSeconds = activity.ElapsedTime,
+                 ElapsedTime = TimeSpan.FromSeconds(activity.ElapsedTime).ToString(@"hh\:mm\:ss\"),
                  MaxSpeed = activity.MaxSpeed,
                  Segments = segments,
                  // StravaMap = activity.Map

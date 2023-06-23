@@ -6,7 +6,7 @@ export interface ActivityListItem {
   type?: string;
   startDate?: Date;
   distance?: number;
-  elapsedTime?: number;
+  elapsedTime?: string;
   achievementCount?: number;
   maxSpeed?: number;
   stravaMap?: StravaMap;

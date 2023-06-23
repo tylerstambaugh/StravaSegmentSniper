@@ -12,10 +12,10 @@ import ActivityTypeEnum from "../../enums/activityTypes";
 import SegmentList from "../segment/SegmentList";
 
 export interface ActivitySearchProps {
-  activityId?: number;
-  startDate?: Date;
-  endDate?: Date;
-  activityType?: ActivityTypeEnum;
+  activityId?: number | null;
+  startDate?: Date | null;
+  endDate?: Date | null;
+  activityType?: ActivityTypeEnum | null;
 }
 
 const Activity = () => {

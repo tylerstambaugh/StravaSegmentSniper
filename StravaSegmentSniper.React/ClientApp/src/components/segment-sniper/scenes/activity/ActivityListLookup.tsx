@@ -21,10 +21,10 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   const [endDateError, setEndDateError] = useState("");
 
   interface ActivityLookupForm {
-    activityId?: number;
-    startDate?: Date;
-    endDate?: Date;
-    activityType?: string;
+    activityId?: number | null;
+    startDate?: Date | null;
+    endDate?: Date | null;
+    activityType?: string | null;
   }
   const validationSchema = yup.object().shape({
     activityId: yup.number().nullable(),
@@ -97,7 +97,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <Col>
                     <TextField
                       name="activityId"
-                      defaultValue={formik.values.activityId}
+                      value={formik.values.activityId}
                       error={Boolean(formik.errors.activityId)}
                       helperText={formik.errors.activityId}
                       id="outlined-number"
@@ -173,6 +173,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Ride"
+                    value={formik.values.activityType}
                     name="row-radio-buttons-group"
                     row
                     onChange={(e) =>
@@ -223,7 +224,17 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                     <Button
                       variant="secondary"
                       className={"me-1"}
-                      onClick={(e) => formik.resetForm()}
+                      onClick={(e) => {
+                        formik.resetForm({
+                          values: {
+                            activityId: undefined,
+                            startDate: null,
+                            endDate: null,
+                            activityType: "All",
+                          },
+                        });
+                        console.log("form reset called");
+                      }}
                     >
                       Reset
                     </Button>
