@@ -63,7 +63,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
                     props.handleClose();
                   }}
                 >
-                  <Stack direction="horizontal" gap={2}>
+                  <Stack direction="vertical" gap={2}>
                     <Col>
                       <TextField
                         name="secondsFromKom"
