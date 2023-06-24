@@ -49,16 +49,17 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   //   }
   // );
 
-  const formik = useFormik<ActivityLookupForm>({
-    initialValues: {
-      activityId: undefined,
-      activityType: undefined,
-      startDate: undefined,
-      endDate: undefined,
-    },
-    onSubmit: (values: ActivityLookupForm) => {
-      console.log(`endDate = ${values.endDate}`);
+  const initialValues = {
+    activityId: undefined,
+    activityType: "Ride",
+    startDate: undefined,
+    endDate: undefined,
+  };
 
+  const formik = useFormik<ActivityLookupForm>({
+    initialValues,
+    enableReinitialize: true,
+    onSubmit: (values: ActivityLookupForm) => {
       setValidated(true);
       const searchProps: ActivitySearchProps = {
         activityId: values.activityId,
@@ -72,6 +73,21 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     validateOnBlur: true,
     validateOnChange: true,
   });
+
+  const handleFormReset = () => {
+    formik.resetForm({
+      values: {
+        ...formik.values,
+        startDate: null,
+        endDate: null,
+      },
+    });
+    formik.setFieldValue("startDate", null);
+    formik.setFieldValue("endDate", null);
+    setValidated(false);
+    setStartDateError("");
+    setEndDateError("");
+  };
   return (
     <>
       <Container className="md-auto p-2 mb-1 col-8 bg-light text-dark border rounded">
@@ -97,7 +113,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   <Col>
                     <TextField
                       name="activityId"
-                      value={formik.values.activityId}
+                      defaultValue={formik.values.activityId || undefined}
+                      value={formik.values.activityId || ""}
                       error={Boolean(formik.errors.activityId)}
                       helperText={formik.errors.activityId}
                       id="outlined-number"
@@ -136,6 +153,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                         setStartDateError(err ?? "an error with start date")
                       }
                       defaultValue={formik.values.startDate ?? null}
+                      value={formik.values.startDate || null}
                       disableFuture
                       onChange={(date: Date | null) => {
                         formik.setFieldValue("startDate", date);
@@ -156,6 +174,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                         setEndDateError(err ?? "an error with end date")
                       }
                       defaultValue={formik.values.endDate ?? null}
+                      value={formik.values.endDate || null}
                       disableFuture
                       onChange={(date: Date | null) => {
                         formik.setFieldValue("endDate", date);
@@ -172,7 +191,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                   </FormLabel>
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="Ride"
+                    defaultValue={formik.values.activityType}
                     value={formik.values.activityType}
                     name="row-radio-buttons-group"
                     row
@@ -225,14 +244,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       variant="secondary"
                       className={"me-1"}
                       onClick={(e) => {
-                        formik.resetForm({
-                          values: {
-                            activityId: undefined,
-                            startDate: null,
-                            endDate: null,
-                            activityType: "All",
-                          },
-                        });
+                        handleFormReset();
                         console.log("form reset called");
                       }}
                     >
