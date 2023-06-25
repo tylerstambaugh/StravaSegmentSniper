@@ -15,7 +15,7 @@ namespace StravaSegmentSniper.Services.UIModels.Activity
         public int MovingTime { get; set; }
         public double TotalElevationGain { get; set; }
         public string Type { get; set; }
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
         public DateTime StartDateLocal { get; set; }
         public int AchievementCount { get; set; }
         public PolylineMapModel Map { get; set; }

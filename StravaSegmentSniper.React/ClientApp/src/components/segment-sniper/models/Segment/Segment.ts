@@ -11,7 +11,7 @@ export interface SegmentListItem {
 export interface SnipedSegmentListItem {
   id: string;
   name: string;
-  time: number;
+  time: string;
   distance: number;
   secondsOff: number;
   percentOff: number;

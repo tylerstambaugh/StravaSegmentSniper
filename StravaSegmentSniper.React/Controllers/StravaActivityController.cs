@@ -49,21 +49,22 @@ namespace StravaSegmentSniper.React.Controllers
             else
             {
                 throw new ArgumentException("Invalid Activity Search Parameters");
-            }
-
-            
+            }            
         }
 
         [HttpGet]
         [ActionName("ActivityListById")]
-        public List<ActivityListModel> StravaActivityListById([FromQuery]long activityId)
+        public IActionResult StravaActivityListById([FromQuery]long activityId)
         {
            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {
                    activityId = activityId
             };
-
-            return _stravaActivityActionHandler.HandleGetActivityListById(contract);     
+            var returnList = _stravaActivityActionHandler.HandleGetActivityListById(contract);
+            if (returnList != null)
+                return Ok(returnList);
+            else
+                return BadRequest("No activity found with that Id");
         }
 
         [HttpGet]

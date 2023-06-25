@@ -22,6 +22,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
   const validationSchema = yup.object().shape({
     secondsFromTopTen: yup.number().nullable(),
   });
+
   const formik = useFormik<SnipeSegmentsParametersForm>({
     initialValues: {
       secondsFromKom: undefined,
@@ -54,6 +55,8 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
                 <Form
                   name="SnipeSegmentsParametersForm"
                   onSubmit={(event) => {
+                    console.log("handling submission");
+
                     event.preventDefault();
                     setValidated(true);
                     console.log(`formik isValid = ${formik.isValid}`);
@@ -107,19 +110,21 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
                       />
                     </Col>
                   </Stack>
+                  <Button
+                    variant="secondary"
+                    onClick={() => props.handleClose()}
+                  >
+                    Cancel
+                  </Button>
+                  <Button variant="primary" type="submit">
+                    Snipe!
+                  </Button>
                 </Form>
               </Col>
             </Row>
           </Container>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => props.handleClose()}>
-            Cancel
-          </Button>
-          <Button variant="primary" type="submit">
-            Snipe!
-          </Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

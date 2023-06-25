@@ -1,5 +1,4 @@
 ﻿using StravaSegmentSniper.Services.Internal.Models.Activity;
-using StravaSegmentSniper.Services.Internal.Models.Misc;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.UIModels.Activity;
 using StravaSegmentSniper.Services.UIModels.Segment;
@@ -18,26 +17,31 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         {
             List<SegmentEffortUIListModel> segments = new List<SegmentEffortUIListModel>();
 
-            foreach(DetailedSegmentEffortModel segmentEffort in  activity.SegmentEfforts)
+            foreach (DetailedSegmentEffortModel segmentEffort in activity.SegmentEfforts)
             {
                 segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
             }
 
-            ActivityListModel returnActivity = new ActivityListModel 
-             {
-                 Id = activity.Id,
-                 Name = activity.Name,
-                 Distance = activity.Distance,
-                 Type = activity.Type,
-                 StartDate = activity.StartDate,
-                 ElapsedTimeSeconds = activity.ElapsedTime,
-                 ElapsedTime = TimeSpan.FromSeconds(activity.ElapsedTime).ToString(@"hh\:mm\:ss"),
-                 MaxSpeed = activity.MaxSpeed,
-                 Segments = segments,
-                 // StravaMap = activity.Map
-             };
+            ActivityListModel returnActivity = new ActivityListModel
+            {
+                Id = activity.Id,
+                Name = activity.Name,
+                Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(activity.Distance), 2),
+                Type = activity.Type,
+                StartDate = activity.StartDate.ToShortDateString(),
+                ElapsedTimeSeconds = activity.ElapsedTime,
+                ElapsedTime = TimeSpan.FromSeconds(activity.ElapsedTime).ToString(@"hh\:mm\:ss"),
+                AchievementCount = activity.AchievementCount,
+                MaxSpeed = Math.Round(CommonConversionHelpers.ConvertMetersPerSecondToMilesPerHour(activity.MaxSpeed), 2),
+                Segments = segments,
+                // StravaMap = activity.Map
+            };
             return returnActivity;
         }
+
+ 
+
+
 
         //public List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities)
         //{
@@ -77,19 +81,19 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 Id = model.Id,
                 DetailedAthleteId = model.DetailedAthleteId,
                 Name = model.Name,
-                Distance = model.Distance,
+                Distance = CommonConversionHelpers.ConvertMetersToMiles(model.Distance),
                 MovingTime = model.MovingTime,
                 TotalElevationGain = model.TotalElevationGain,
                 Type = model.Type,
-                StartDate = model.StartDate,
+                StartDate = model.StartDate.ToShortDateString(),
                 AchievementCount = model.AchievementCount,
                 Map = model.Map,
-                AverageSpeed = model.AverageSpeed,
-                MaxSpeed = model.MaxSpeed,
+                AverageSpeed = CommonConversionHelpers.ConvertMetersPerSecondToMilesPerHour(model.AverageSpeed),
+                MaxSpeed = Math.Round(CommonConversionHelpers.ConvertMetersPerSecondToMilesPerHour(model.MaxSpeed), 2),
                 PrCount = model.PrCount,
                 Description = model.Description,
-                            SegmentEfforts = model.SegmentEfforts
-                };
+                SegmentEfforts = model.SegmentEfforts
+            };
 
             return returnModel;
         }
