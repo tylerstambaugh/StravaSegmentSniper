@@ -1,5 +1,6 @@
 ﻿using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.UIModels.Segment;
+using System.Diagnostics;
 
 namespace StravaSegmentSniper.Services.Internal.Adapters
 {
@@ -12,8 +13,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 Id = model.Id,
                 ActivityId = model.Activity.Id,
                 Name = model.Name,
-                Distance = model.Distance,
-                Time = model.ElapsedTime,
+                Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
+                Time = TimeSpan.FromSeconds(model.ElapsedTime).ToString(@"hh\:mm\:ss"),
                 //Rank = model.Achievements.OrderBy(r => r.Rank).First().Rank,
             };
             return returnModel;

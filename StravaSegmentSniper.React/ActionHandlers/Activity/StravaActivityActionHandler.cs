@@ -43,8 +43,10 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var stravaAthleteId = user.StravaAthleteId;
 
+            var endDate = contract.EndDate.AddDays(1);
+
             var unixStartDate = ConvertToEpochTime(contract.StartDate);
-            var unixEndDate = ConvertToEpochTime(contract.EndDate);
+            var unixEndDate = ConvertToEpochTime(endDate);
 
 
             List<SummaryActivityModel> listOfSummaryActivities = _stravaAPIActivity

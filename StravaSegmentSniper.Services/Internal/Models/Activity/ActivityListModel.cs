@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Services.Internal.Models.Misc;
+﻿using StravaDataAnalyzerDataEF.Entities.Segment;
+using StravaSegmentSniper.Services.Internal.Models.Misc;
 using StravaSegmentSniper.Services.UIModels.Segment;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
         public string Name { get; set; }
         public double Distance { get; set; }
         public string Type { get; set; }
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
         public int ElapsedTimeSeconds { get; set; }
         public string ElapsedTime { get; set; }
         public double? MaxSpeed { get; set; }
+        public int AchievementCount { get; set; }
         public string? GearId { get; set; }
         public PolylineMapModel? StravaMap { get; set; }
         public List<SegmentEffortUIListModel> Segments { get; set; }
