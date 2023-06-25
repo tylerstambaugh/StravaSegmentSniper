@@ -3,13 +3,13 @@ import { Button, Col, Container, Form, Row, Stack } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { SnipeSegmentProps } from "./SegmentList";
+import { SnipeSegmentFunctionProps } from "./SegmentList";
 import { TextField } from "@mui/material";
 
-interface ShowSnipeSegmentsModalProps {
+export interface ShowSnipeSegmentsModalProps {
   show: boolean;
   handleClose: () => void;
-  handleSnipeSegments: (snipeProps: SnipeSegmentProps) => void;
+  handleSnipeSegments: (snipeProps: SnipeSegmentFunctionProps) => void;
 }
 
 function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
@@ -30,8 +30,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
     },
     onSubmit: (values: SnipeSegmentsParametersForm) => {
       setValidated(true);
-      const snipeProps: SnipeSegmentProps = {
-        activityId: 123,
+      const snipeProps: SnipeSegmentFunctionProps = {
         secondsOff: values.secondsFromKom ?? undefined,
         percentageOff: values.percentageFromKom ?? undefined,
       };
@@ -48,24 +47,24 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
         <Modal.Header closeButton>
           <Modal.Title>Segment Sniping Parameters</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Container>
-            <Row>
-              <Col>
-                <Form
-                  name="SnipeSegmentsParametersForm"
-                  onSubmit={(event) => {
-                    console.log("handling submission");
+        <Form
+          name="SnipeSegmentsParametersForm"
+          onSubmit={(event) => {
+            console.log("handling submission");
 
-                    event.preventDefault();
-                    setValidated(true);
-                    console.log(`formik isValid = ${formik.isValid}`);
-                    console.log(`formik status = ${formik.status}`);
-                    //console.log(`formik errors endDate = ${formik.errors.endDate}`);
-                    formik.handleSubmit(event);
-                    props.handleClose();
-                  }}
-                >
+            event.preventDefault();
+            setValidated(true);
+            console.log(`formik isValid = ${formik.isValid}`);
+            console.log(`formik status = ${formik.status}`);
+            //console.log(`formik errors endDate = ${formik.errors.endDate}`);
+            formik.handleSubmit(event);
+            props.handleClose();
+          }}
+        >
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col>
                   <Stack direction="vertical" gap={2}>
                     <Col>
                       <TextField
@@ -110,21 +109,19 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
                       />
                     </Col>
                   </Stack>
-                  <Button
-                    variant="secondary"
-                    onClick={() => props.handleClose()}
-                  >
-                    Cancel
-                  </Button>
-                  <Button variant="primary" type="submit">
-                    Snipe!
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => props.handleClose()}>
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit">
+              Snipe!
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

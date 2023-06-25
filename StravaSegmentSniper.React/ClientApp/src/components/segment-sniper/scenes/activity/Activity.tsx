@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ActivityTypeEnum from "../../enums/activityTypes";
 import SegmentList from "../segment/SegmentList";
+import { Container } from "react-bootstrap";
 
 export interface ActivitySearchProps {
   activityId?: number | null;
@@ -102,17 +103,22 @@ const Activity = () => {
 
   return (
     <>
-      <h2>Strava Segment Sniper</h2>
-      <ActivityListLookup
-        activityLoading={activityLoading}
-        handleSearch={handleActivitySearch}
-      />
-      <DisplayActivityList
-        activityList={activityList}
-        handleShowSegments={handleShowSegments}
-        clearSearchResults={clearSearchResults}
-      />
-      <SegmentList activitySegmentList={activitySegmentsList} />
+      <Container className="mb-4">
+        <h2>Strava Segment Sniper</h2>
+        <ActivityListLookup
+          activityLoading={activityLoading}
+          handleSearch={handleActivitySearch}
+        />
+        <DisplayActivityList
+          activityList={activityList}
+          handleShowSegments={handleShowSegments}
+          clearSearchResults={clearSearchResults}
+        />
+        <SegmentList
+          activitySegmentList={activitySegmentsList}
+          activityId={selectedActivityId}
+        />
+      </Container>
     </>
   );
 };

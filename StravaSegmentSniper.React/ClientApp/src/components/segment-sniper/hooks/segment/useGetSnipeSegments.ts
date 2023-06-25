@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SnipedSegmentListItem } from "../../models/Segment/Segment";
 import { useApi } from "../useApi";
-import { SnipeSegmentProps } from "../../scenes/segment/SegmentList";
+import { SnipeSegmentFunctionProps } from "../../scenes/segment/SegmentList";
 
 const useSnipeSegments = () => {
   const api = useApi<SnipedSegmentListItem[]>();
@@ -9,7 +9,7 @@ const useSnipeSegments = () => {
   const [snipedSegmentsError, setSnipedSegmentsError] = useState<Error>();
 
   async function fetchSnipedSegments(
-    props: SnipeSegmentProps
+    props: SnipeSegmentFunctionProps
   ): Promise<Error | SnipedSegmentListItem[] | undefined> {
     const [snipedSegmentList, setSnipedSegmentList] = useState<
       SnipedSegmentListItem[]
