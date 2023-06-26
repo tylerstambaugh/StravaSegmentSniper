@@ -85,8 +85,8 @@ function DisplaySegmentList(props: displaySegmentListProps) {
               <Col>
                 <Button
                   as="input"
-                  value="Snipe!"
                   variant="primary"
+                  value="Snipe!"
                   onClick={(e) => props.handleShowSnipeSegmentsModal()}
                 />
               </Col>
