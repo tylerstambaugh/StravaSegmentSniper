@@ -3,7 +3,7 @@ import { SnipedSegmentListItem } from "../../models/Segment/Segment";
 import { useApi } from "../useApi";
 import { SnipeSegmentFunctionProps } from "../../scenes/segment/SegmentList";
 
-const useSnipeSegments = () => {
+const useGetSnipeSegments = () => {
   const api = useApi<SnipedSegmentListItem[]>();
   const [snipedSegmentsLoading, setSnipedSegmentsLoading] = useState(false);
   const [snipedSegmentsError, setSnipedSegmentsError] = useState<Error>();
@@ -11,9 +11,6 @@ const useSnipeSegments = () => {
   async function fetchSnipedSegments(
     props: SnipeSegmentFunctionProps
   ): Promise<Error | SnipedSegmentListItem[] | undefined> {
-    const [snipedSegmentList, setSnipedSegmentList] = useState<
-      SnipedSegmentListItem[]
-    >([]);
     setSnipedSegmentsLoading(true);
 
     try {
@@ -26,7 +23,7 @@ const useSnipeSegments = () => {
         },
       };
       const fetchResponse: SnipedSegmentListItem[] | Error = await api.fetch(
-        `url`,
+        `/api/SegmentSniper/SnipeSegments`,
         requestOptions
       );
       if (fetchResponse instanceof Error) {
@@ -47,4 +44,7 @@ const useSnipeSegments = () => {
       setSnipedSegmentsLoading(false);
     }
   }
+  return { fetchSnipedSegments, snipedSegmentsError, snipedSegmentsLoading };
 };
+
+export default useGetSnipeSegments;
