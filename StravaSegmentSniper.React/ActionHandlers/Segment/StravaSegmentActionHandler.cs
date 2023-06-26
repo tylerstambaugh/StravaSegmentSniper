@@ -6,6 +6,7 @@ using StravaSegmentSniper.Services.StravaAPI.Activity;
 using StravaSegmentSniper.Services.StravaAPI.Segment;
 using StravaSegmentSniper.Services.UIModels.Segment;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
@@ -49,12 +50,12 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
                     double percentageOff = 0;
                     int secondsOff = 0;
-                    if (contract.PercentageFromKom > 0)
+                    if (contract.PercentageFromKom != null && contract.PercentageFromKom > 0)
                     {
                         percentageOff = xomsTime.KomTime / (segmentEffortModel.MovingTime - xomsTime.KomTime);
                     }
 
-                    if (contract.SecondsFromKom > 0)
+                    if (contract.SecondsFromKom != null && contract.SecondsFromKom > 0)
                     {
                         secondsOff = segmentEffortModel.MovingTime - xomsTime.KomTime;
                     }
@@ -105,16 +106,23 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
         private int GetTimeFromString(string time)
         {
+            time = RemoveLetters(time);
 
             int returnTime = 0;
             string[] timeParts = time.Split(':');
 
-            for (int i = 0; i < timeParts.Length; i++)
+            for (int i = 0; i <= timeParts.Length - 1; i++)
             {
-                int factor = i * 60;
+                int factor = 60^i;
                 returnTime += int.Parse(timeParts[timeParts.Length-i]) * factor;
             }
             return returnTime;
+        }
+
+        private string RemoveLetters(string input)
+        {
+            Regex regex = new Regex("[^0-9:]");
+            return regex.Replace(input, "");
         }
 
         private class XomsTimes
