@@ -21,6 +21,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
 
   const validationSchema = yup.object().shape({
     secondsFromTopTen: yup.number().nullable(),
+    percentageFromKom: yup.number().nullable(),
   });
 
   const formik = useFormik<SnipeSegmentsParametersForm>({
@@ -31,8 +32,8 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
     onSubmit: (values: SnipeSegmentsParametersForm) => {
       setValidated(true);
       const snipeProps: SnipeSegmentFunctionProps = {
-        secondsOff: values.secondsFromKom ?? undefined,
-        percentageOff: values.percentageFromKom ?? undefined,
+        secondsOff: values.secondsFromKom,
+        percentageOff: values.percentageFromKom,
       };
       props.handleSnipeSegments(snipeProps);
     },

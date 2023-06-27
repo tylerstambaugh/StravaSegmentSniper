@@ -12,8 +12,8 @@ import useGetSnipeSegments from "../../hooks/segment/useGetSnipeSegments";
 
 export interface SnipeSegmentFunctionProps {
   activityId?: string;
-  secondsOff?: number | undefined;
-  percentageOff?: number | undefined;
+  secondsOff?: number;
+  percentageOff?: number;
 }
 export interface SegmentListProps {
   activityId: string | undefined;
@@ -47,11 +47,18 @@ const SegmentList = (props: SegmentListProps) => {
   async function handleSnipeSegments(
     snipeSegmentsProps: SnipeSegmentFunctionProps
   ) {
-    snipeSegmentsProps.activityId = props.activityId;
+    snipeSegmentsProps = {
+      ...snipeSegmentsProps,
+      activityId: props.activityId,
+    };
     setLoading(true);
     try {
       console.log(
-        `activity search props ${JSON.stringify(snipeSegmentsProps, null, 4)}`
+        `snipe segment search props ${JSON.stringify(
+          snipeSegmentsProps,
+          null,
+          4
+        )}`
       );
       const fetchResponse = await fetchSnipedSegments(snipeSegmentsProps!);
       if (fetchResponse && !(fetchResponse instanceof Error)) {

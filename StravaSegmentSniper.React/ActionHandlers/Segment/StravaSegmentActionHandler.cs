@@ -113,8 +113,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
             for (int i = 0; i <= timeParts.Length - 1; i++)
             {
-                int factor = 60^i;
-                returnTime += int.Parse(timeParts[timeParts.Length-i]) * factor;
+                int factor = (int)Math.Pow(60, i);
+                returnTime += int.Parse(timeParts[timeParts.Length-(i+1)]) * factor;
             }
             return returnTime;
         }

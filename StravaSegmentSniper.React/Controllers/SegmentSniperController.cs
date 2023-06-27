@@ -23,11 +23,13 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpPost]
         [ActionName("SnipeSegments")]
-        public List<SegmentEffortUIListModel> SnipeSegments(SegmentSniperContract contract)
+        public IActionResult SnipeSegments(SegmentSniperContract contract)
         {
             var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract);
-
-            throw new NotImplementedException();
+            if (returnList != null)
+                return Ok(returnList);
+            else
+                return BadRequest("Unable to snipe segments with info provided.");;
         }
     }
         
