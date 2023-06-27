@@ -46,7 +46,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                     segmentModels.Add(model);
 
                     //do sniping on list of segments
-                    XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
+                        XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
 
                     double percentageOff = 0;
                     int secondsOff = 0;
