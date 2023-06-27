@@ -10,6 +10,8 @@ import {
   TextField,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { addDays } from "date-fns";
+import dayjs, { Dayjs } from "dayjs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ActivitySearchProps } from "./Activity";
@@ -17,9 +19,10 @@ import ActivityTypeEnum from "../../enums/activityTypes";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
   const [validated, setValidated] = useState(false);
-  const [startDateError, setStartDateError] = useState("");
-  const [endDateError, setEndDateError] = useState("");
+  const [startDateError, setStartDateError] = useState<string | undefined>("");
+  const [endDateError, setEndDateError] = useState<string | undefined>("");
 
+  //const minDate: Date = dayjs().subtract(45, "day").toDate();
   interface ActivityLookupForm {
     activityId?: number | null;
     startDate?: Date | null;
@@ -28,8 +31,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
   }
   const validationSchema = yup.object().shape({
     activityId: yup.number().nullable(),
-    // startDate: yup.date().nullable(),
-    // endDate: yup.date().nullable(),
+    //startDate: yup.date().nullable(),
+    //endDate: yup.date().nullable(),
     activityType: yup.string().required("Please select an Activity Type"),
   });
   // .test(
@@ -137,7 +140,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
 
               <div className="border rounded mb-1 p-2">
                 <div className="md-auto p-2 mb-1">
-                  or look up a list of rides with a date range:
+                  or look up a list with a date range:
                 </div>
                 <Stack direction="horizontal" gap={2}>
                   <div>
@@ -145,16 +148,21 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       label="Start Date"
                       slotProps={{
                         textField: {
-                          error: !!startDateError,
-                          helperText: "Invalid Date",
+                          error: startDateError !== "",
+                          helperText: <>{startDateError}</>,
                         },
                       }}
-                      onError={(err) =>
-                        setStartDateError(err ?? "an error with start date")
-                      }
-                      defaultValue={formik.values.startDate ?? null}
+                      onError={(err) => {
+                        if (err === "disableFuture") {
+                          setStartDateError("Date must be in past.");
+                        } else {
+                          setStartDateError(err ?? "");
+                        }
+                      }}
+                      defaultValue={formik.values.startDate || null}
                       value={formik.values.startDate || null}
                       disableFuture
+                      showDaysOutsideCurrentMonth
                       onChange={(date: Date | null) => {
                         formik.setFieldValue("startDate", date);
                         console.log(`start date: ${date}`);
@@ -167,12 +175,16 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       slotProps={{
                         textField: {
                           error: !!endDateError,
-                          helperText: "Invalid Date",
+                          helperText: <>{endDateError}</>,
                         },
                       }}
-                      onError={(err) =>
-                        setEndDateError(err ?? "an error with end date")
-                      }
+                      onError={(err) => {
+                        if (err === "disableFuture") {
+                          setStartDateError("Date must be in past.");
+                        } else {
+                          setStartDateError(err ?? "");
+                        }
+                      }}
                       defaultValue={formik.values.endDate ?? null}
                       value={formik.values.endDate || null}
                       disableFuture
