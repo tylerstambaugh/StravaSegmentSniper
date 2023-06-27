@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using StravaSegmentSniper.Data;
 using StravaSegmentSniper.React.Helpers;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = WebAppBuilderConfig.ConfigureBuilder();
