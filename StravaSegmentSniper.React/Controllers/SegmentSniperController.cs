@@ -25,6 +25,7 @@ namespace StravaSegmentSniper.React.Controllers
         [ActionName("SnipeSegments")]
         public List<SegmentEffortUIListModel> SnipeSegments(SegmentSniperContract contract)
         {
+            //need to check API usage
             var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract);
 
             throw new NotImplementedException();
