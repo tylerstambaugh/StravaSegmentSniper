@@ -25,6 +25,7 @@ namespace StravaSegmentSniper.React.Controllers
         [ActionName("SnipeSegments")]
         public IActionResult SnipeSegments(SegmentSniperContract contract)
         {
+            //need to check API usage
             var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract);
             if (returnList != null)
                 return Ok(returnList);
