@@ -19,7 +19,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer a6995c5ebc5913c6e0fcfaaf32f3aacbf3215c90",
+								"value": "Bearer fb788d5771069026032798f7f7928756b28da256",
 								"type": "text"
 							}
 						],
@@ -405,7 +405,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4Njk5ODc0MiwiaWF0IjoxNjg2OTk4NzQyLCJleHAiOjE2ODcwMDIzNDIsImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODY5OTg3NDEsImlkcCI6ImxvY2FsIiwic2lkIjoiQjREQzQ5NkM1M0FBOUI5Qzk4MzlDQzY4REUzRjIyRTgiLCJqdGkiOiJERkM1Rjc0OUU3QkI1MDVFREExMzc3MUE3NzM5ODg2RSJ9.0W8UmdRDkIO5yjeKU_yU9bi7u0onCyi7S31zEI--M8Xeun4FkPesl1XGdu0q6weBRge3wElDl2T8Zn-fdu80IiAFoic2pFEvqwuQtD9sr-8YQIjQ-u-VV6TR_eTnpYj0je9e3Ogipq1PRgUUYfFf6afMGIk4DxfFe0KrNyLYqDcrAEJ4LHotBnny80SusCZKkETx4R9-GLGa8Yi29LFtbktLZZfb5pazghzpSZVRGMOBVKAUKofUvBZYUGEYBcgQkLATtkS1NWtIrkSKSG3l96vk7OWSW4aI5CSfiX2gRWlwt9kJngSuNHcTBU9-kizFK-sFvVjWI7zopKd4UN2v-A",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NzA4MTY2OSwiaWF0IjoxNjg3MDgxNjY5LCJleHAiOjE2ODcwODUyNjksImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODcwODE2NjgsImlkcCI6ImxvY2FsIiwic2lkIjoiOUNCNzQ2MUFCQjc5NUVDMjJCRkU2RTY3MDk2ODAwNEQiLCJqdGkiOiIwMUY5MTA1MEQyNTRBODQzNjJFMUVCOTc1NjMxQkJGMyJ9.LE-eV0mNbw4Cz7kf0EmH1s7yqNvs3YSEhNe-ZQItrUjze13tBpVkL4FdH6cuf2hhlncExDEHFHVOydFe1Ah6gBxlu8kVJM2NaZR-o_hU1hnRQ_nC3jWRDrEuUm5dIOloOcdKEEFNO9h0SXl1G1BWYk1aUkUSNlYskC8Zk5HcZPxJe7xPWEM7hw-xzCEECev-sBYCSFZzHXdAOE9lqh43zJVFZ0Hd5KtRH4MCbJnFac7fEqIV7n-QAyonfA1VypVSssFmJQ_Q9OJM9d1hH48kTKqDev0E6XFzHQEc3S_aibrJxzD293DG3I6kyCOCs1uNjuYKxFzPAw5VqTP4cv__RQ",
 								"type": "text"
 							}
 						],
@@ -638,7 +638,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 4b1b2eda4636d95a06147e553aace7012d1fdd24",
+								"value": "{{access_token}}",
 								"type": "text"
 							}
 						],
@@ -694,7 +694,7 @@
 	],
 	"variable": [
 		{
-			"id": "16334506-3e74-4051-84cf-16a73cad87ad",
+			"id": "6d2f4035-d390-47d8-8ac6-cc7c714d6363",
 			"key": "access_token",
 			"value": "Bearer 6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
