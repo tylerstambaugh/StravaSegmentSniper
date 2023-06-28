@@ -674,7 +674,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "233419b7-2feb-4304-8a60-056f7a55bc9e",
+				"id": "668578f4-aa5f-4b49-8c46-f0e6a532cd5b",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -684,7 +684,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "ff1f6fcb-72ee-4e42-8e4c-8984cf702db7",
+				"id": "dd0aaf5d-6140-4e32-972e-f55d18c88f00",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -694,9 +694,9 @@
 	],
 	"variable": [
 		{
-			"id": "bbd0df9a-017b-4a72-ac79-1a6d22a3ac3c",
+			"id": "16334506-3e74-4051-84cf-16a73cad87ad",
 			"key": "access_token",
-			"value": "Bearer",
+			"value": "Bearer 6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		}
 	]
