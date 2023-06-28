@@ -23,6 +23,10 @@ type TableRow = SegmentListItem & {
 };
 
 function DisplaySegmentList(props: displaySegmentListProps) {
+  const [listOfSegments, setListOfSegments] = useState<SegmentListItem[]>(
+    props.segmentList
+  );
+  //setListOfSegments(props.segmentList);
   const tableBody: TableRow[] = props.segmentList.map((item) => ({
     ...item,
     detailsButton: null,
@@ -64,6 +68,10 @@ function DisplaySegmentList(props: displaySegmentListProps) {
     },
   ];
 
+  function clearSegmentsList() {
+    setListOfSegments([]);
+  }
+
   return (
     <>
       {props.segmentList.length > 0 ? (
@@ -82,14 +90,6 @@ function DisplaySegmentList(props: displaySegmentListProps) {
               <Col>
                 <h3>Segments</h3>
               </Col>
-              <Col>
-                <Button
-                  as="input"
-                  variant="primary"
-                  value="Snipe!"
-                  onClick={(e) => props.handleShowSnipeSegmentsModal()}
-                />
-              </Col>
             </Row>
             <Row className="mb-4">
               <Col
@@ -98,6 +98,21 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                 className="d-flex flex-col justify-content-end align-items-end"
               >
                 <Filter />
+              </Col>
+              <Col>
+                <Button
+                  as="input"
+                  variant="primary"
+                  value="Snipe!"
+                  onClick={(e) => props.handleShowSnipeSegmentsModal()}
+                />
+              </Col>
+              <Col>
+                <Button
+                  as="input"
+                  value="Clear"
+                  onClick={(e) => clearSegmentsList()}
+                ></Button>
               </Col>
               <Col
                 xs={12}

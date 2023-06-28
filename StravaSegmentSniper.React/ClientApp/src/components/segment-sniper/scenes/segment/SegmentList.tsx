@@ -63,6 +63,7 @@ const SegmentList = (props: SegmentListProps) => {
       const fetchResponse = await fetchSnipedSegments(snipeSegmentsProps!);
       if (fetchResponse && !(fetchResponse instanceof Error)) {
         setSnipedSegmentList(fetchResponse);
+        setIsSnipeList(true);
       } else {
         console.log(
           `fetch response: ${JSON.stringify(fetchResponse, null, 4)}`
@@ -79,6 +80,10 @@ const SegmentList = (props: SegmentListProps) => {
       setLoading(false);
     }
     console.log(snipedSegmentlist);
+  }
+
+  function clearSegmentsDisplay() {
+    console.log("going to clear list of segments...");
   }
 
   return (

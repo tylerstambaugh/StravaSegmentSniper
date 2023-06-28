@@ -90,11 +90,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
               </Row>
               <div className="d-flex justify-content">
                 <Row>
-                  <Col
-                    xs={12}
-                    lg={4}
-                    className="d-flex flex-col justify-content-end align-items-end"
-                  >
+                  <Col>
                     <Filter />
                   </Col>
                   <Col>
