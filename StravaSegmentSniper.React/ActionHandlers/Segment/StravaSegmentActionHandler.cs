@@ -34,12 +34,15 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                 var stravaAthleteId = user.StravaAthleteId;
                 DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, stravaAthleteId).Result;
 
-                List<DetailedSegmentEffortModel> segmentsEfforts = detailedActivityModel.SegmentEfforts;
+                List<DetailedSegmentEffortModel> segmentEfforts = detailedActivityModel.SegmentEfforts;
+
+                //limiting the list to 5 for testing to not blow up API call count
+                segmentEfforts = segmentEfforts.GetRange(0, 5);
 
                 List<DetailedSegmentModel> segmentModels = new List<DetailedSegmentModel>();
                 List<SnipedSegmentUIModel> snipedSegments = new List<SnipedSegmentUIModel>();
 
-                foreach (DetailedSegmentEffortModel segmentEffortModel in segmentsEfforts)
+                foreach (DetailedSegmentEffortModel segmentEffortModel in segmentEfforts)
                 {
                     //get detailed segments for each segment Id
                     DetailedSegmentModel model = _stravaSegment.GetDetailedSegmentById(segmentEffortModel.Segment.Id, stravaAthleteId).Result;
@@ -52,7 +55,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                     int secondsOff = 0;
                     if (contract.PercentageFromKom != null && contract.PercentageFromKom > 0)
                     {
-                        percentageOff = xomsTime.KomTime / (segmentEffortModel.MovingTime - xomsTime.KomTime);
+                        percentageOff = Math.Round((double)((segmentEffortModel.MovingTime - xomsTime.KomTime) / (double)xomsTime.KomTime), 3) * 100;
                     }
 
                     if (contract.SecondsFromKom != null && contract.SecondsFromKom > 0)
