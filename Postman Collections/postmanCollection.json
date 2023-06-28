@@ -154,11 +154,11 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 9627c98802e2230d50b74767f448ec96192f9311",
+								"value": "Bearer fb788d5771069026032798f7f7928756b28da256",
 								"type": "text"
 							}
 						],
-						"url": "https://www.strava.com/api/v3/segments_efforts/3051956924639015198"
+						"url": "https://www.strava.com/api/v3/segments_efforts/3106392772169458000"
 					},
 					"response": [
 						{
@@ -694,7 +694,7 @@
 	],
 	"variable": [
 		{
-			"id": "6d2f4035-d390-47d8-8ac6-cc7c714d6363",
+			"id": "ee335327-ecc3-4f44-98db-360bcdc63623",
 			"key": "access_token",
 			"value": "Bearer 6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
