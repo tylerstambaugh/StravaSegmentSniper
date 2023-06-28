@@ -669,5 +669,35 @@
 			],
 			"id": "5c5a0e9c-c5a6-4945-9b20-2f8bb99c2381"
 		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "233419b7-2feb-4304-8a60-056f7a55bc9e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ff1f6fcb-72ee-4e42-8e4c-8984cf702db7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bbd0df9a-017b-4a72-ac79-1a6d22a3ac3c",
+			"key": "access_token",
+			"value": "Bearer",
+			"type": "string"
+		}
 	]
 }
