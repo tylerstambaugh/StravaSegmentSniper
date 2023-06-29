@@ -88,20 +88,19 @@ const DisplayActivityList = (props: displayActivityListProps) => {
                   <h3>Activity Search Results</h3>
                 </Col>
               </Row>
-              <div className="d-flex justify-content">
-                <Row>
-                  <Col>
-                    <Filter />
-                  </Col>
-                  <Col>
-                    <Button
-                      as="input"
-                      value="Clear"
-                      onClick={(e) => props.clearSearchResults()}
-                    ></Button>
-                  </Col>
-                </Row>
-              </div>
+
+              <Row className="d-flex justify-content-between">
+                <Col sm={3}>
+                  <Filter />
+                </Col>
+                <Col className="d-flex justify-content-end">
+                  <Button
+                    as="input"
+                    value="Clear"
+                    onClick={(e) => props.clearSearchResults()}
+                  ></Button>
+                </Col>
+              </Row>
             </div>
             <Row className="mb-4">
               <Col

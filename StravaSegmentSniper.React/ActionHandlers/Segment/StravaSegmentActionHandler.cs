@@ -1,4 +1,5 @@
 ﻿using StravaSegmentSniper.React.Controllers.Contracts;
+using StravaSegmentSniper.Services.Internal.Adapters;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
@@ -51,31 +52,29 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                     //do sniping on list of segments
                         XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
 
-                    double percentageOff = 0;
+                    double percentageOff = Math.Round((double)((segmentEffortModel.MovingTime - xomsTime.KomTime) / (double)xomsTime.KomTime), 3) * 100;
+                    
                     int secondsOff = 0;
-                    if (contract.PercentageFromKom != null && contract.PercentageFromKom > 0)
-                    {
-                        percentageOff = Math.Round((double)((segmentEffortModel.MovingTime - xomsTime.KomTime) / (double)xomsTime.KomTime), 3) * 100;
-                    }
 
                     if (contract.SecondsFromKom != null && contract.SecondsFromKom > 0)
                     {
                         secondsOff = segmentEffortModel.MovingTime - xomsTime.KomTime;
                     }
 
-                    SnipedSegmentUIModel uIModel = new SnipedSegmentUIModel
+                    SnipedSegmentUIModel UiModel = new SnipedSegmentUIModel
                     {
                         Id = model.Id,
                         Name = model.Name,
-                        LeaderboardPlace = 99,
                         PercentageFromKom = percentageOff,
-                        SecondsOff = secondsOff,
+                        SecondsFromKom = secondsOff,
                         ActivityType = model.ActivityType,
-                        Distance = model.Distance,
+                        Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
+                        KomTime = model.Xoms.Kom,
                         CreatedAt = model.CreatedAt,
                         Map = model.Map,
                         EffortCount = model.EffortCount,
                         AthleteCount = model.AthleteCount,
+                        Starred = model.Starred,
                         StarCount = model.StarCount,
                         AthleteSegmentStats = model.AthleteSegmentStats,
                         Xoms = model.Xoms,
@@ -84,7 +83,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
                     if (percentageOff < contract.PercentageFromKom || secondsOff < contract.SecondsFromKom)
                     {
-                        snipedSegments.Add(uIModel);
+                        snipedSegments.Add(UiModel);
                     }
                 }
 
