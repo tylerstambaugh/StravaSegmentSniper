@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SnipedSegmentListItem } from "../../models/Segment/Segment";
 import { useApi } from "../useApi";
 import { SnipeSegmentFunctionProps } from "../../scenes/segment/SegmentList";
+import { ListItemSecondaryAction } from "@mui/material";
 
 const useGetSnipeSegments = () => {
   const api = useApi<SnipedSegmentListItem[]>();
@@ -30,7 +31,24 @@ const useGetSnipeSegments = () => {
         setSnipedSegmentsError(fetchResponse);
         throw new Error(snipedSegmentsError?.message);
       }
-      return fetchResponse;
+
+      //map response to new SnipeSegmentListItem to return:
+      let returnList: SnipedSegmentListItem[] = fetchResponse.map((item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          komTime: item.komTime,
+          distance: item.distance,
+          secondsFromKom: item.secondsFromKom ? item.secondsFromKom : undefined,
+          percentageFromKom: item.percentageFromKom
+            ? item.percentageFromKom
+            : undefined,
+          athleteStats: item.athleteStats,
+          koms: item.koms,
+        };
+      });
+      return returnList;
+      //return fetchResponse;
     } catch (error) {
       if (error instanceof Error) {
         setSnipedSegmentsError(error);
