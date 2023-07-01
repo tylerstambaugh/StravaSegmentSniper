@@ -30,7 +30,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
   const validationSchema = yup.object().shape({
     secondsFromLeader: yup.number().nullable(),
     percentageFromLeader: yup.number().nullable(),
-    useQom: yup.string().required("Select QOM or KOM"),
+    //useQom: yup.string().required("Select QOM or KOM"),
   });
 
   const formik = useFormik<SnipeSegmentsParametersForm>({
