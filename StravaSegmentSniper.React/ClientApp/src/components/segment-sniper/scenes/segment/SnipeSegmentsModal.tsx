@@ -4,7 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { SnipeSegmentFunctionProps } from "./SegmentList";
-import { TextField } from "@mui/material";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 
 export interface ShowSnipeSegmentsModalProps {
   show: boolean;
@@ -15,25 +22,29 @@ export interface ShowSnipeSegmentsModalProps {
 function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
   const [validated, setValidated] = useState(false);
   interface SnipeSegmentsParametersForm {
-    secondsFromKom?: number;
-    percentageFromKom?: number;
+    secondsFromLeader?: number;
+    percentageFromLeader?: number;
+    useQom: boolean;
   }
 
   const validationSchema = yup.object().shape({
-    secondsFromTopTen: yup.number().nullable(),
-    percentageFromKom: yup.number().nullable(),
+    secondsFromLeader: yup.number().nullable(),
+    percentageFromLeader: yup.number().nullable(),
+    useQom: yup.string().required("Select QOM or KOM"),
   });
 
   const formik = useFormik<SnipeSegmentsParametersForm>({
     initialValues: {
-      secondsFromKom: undefined,
-      percentageFromKom: undefined,
+      secondsFromLeader: undefined,
+      percentageFromLeader: undefined,
+      useQom: false,
     },
     onSubmit: (values: SnipeSegmentsParametersForm) => {
       setValidated(true);
       const snipeProps: SnipeSegmentFunctionProps = {
-        secondsOff: values.secondsFromKom,
-        percentageOff: values.percentageFromKom,
+        secondsOff: values.secondsFromLeader,
+        percentageOff: values.percentageFromLeader,
+        useQom: (values.useQom as unknown) === "QOM" ? true : false,
       };
       props.handleSnipeSegments(snipeProps);
     },
@@ -66,63 +77,92 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
             <Container>
               <Row>
                 <Col>
-                  <Stack direction="vertical" gap={2}>
-                    <Col>
-                      <TextField
-                        name="secondsFromKom"
-                        defaultValue={formik.values.secondsFromKom}
-                        error={Boolean(formik.errors.secondsFromKom)}
-                        helperText={formik.errors.secondsFromKom}
-                        id="outlined-number"
-                        label="Seconds From KOM"
-                        type="number"
-                        onChange={(e) => {
-                          formik.setFieldValue(
-                            "secondsFromKom",
-                            e.target.value
-                          );
-                          //formik.handleChange(e);
-                        }}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
+                  <TextField
+                    name="secondsFromLeader"
+                    defaultValue={formik.values.secondsFromLeader}
+                    error={Boolean(formik.errors.secondsFromLeader)}
+                    helperText={formik.errors.secondsFromLeader}
+                    id="outlined-number"
+                    label="Seconds From Leader"
+                    type="number"
+                    onChange={(e) => {
+                      formik.setFieldValue("secondsFromLeader", e.target.value);
+                      //formik.handleChange(e);
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p>OR</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <TextField
+                    name="percentageFromLeader"
+                    defaultValue={formik.values.percentageFromLeader}
+                    error={Boolean(formik.errors.percentageFromLeader)}
+                    helperText={formik.errors.percentageFromLeader}
+                    id="outlined-number"
+                    label="Percentage From Leader"
+                    type="number"
+                    onChange={(e) => {
+                      formik.setFieldValue(
+                        "percentageFromLeader",
+                        e.target.value
+                      );
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormControl>
+                    <FormLabel id="QomKomRadioLabel">
+                      Leader Time Type
+                    </FormLabel>
+                    <RadioGroup
+                      aria-labelledby="QomKomRadioGroupLabel"
+                      defaultValue={formik.values.useQom}
+                      value={formik.values.useQom}
+                      name="useQomRadio"
+                      row
+                      onChange={(e) =>
+                        formik.setFieldValue("useQom", e.target.value)
+                      }
+                    >
+                      <FormControlLabel
+                        value="KOM"
+                        control={<Radio />}
+                        label="KOM"
                       />
-                    </Col>
-                    <p>OR</p>
-                    <Col>
-                      <TextField
-                        name="percentageFromKom"
-                        defaultValue={formik.values.percentageFromKom}
-                        error={Boolean(formik.errors.percentageFromKom)}
-                        helperText={formik.errors.percentageFromKom}
-                        id="outlined-number"
-                        label="Percentage From KOM"
-                        type="number"
-                        onChange={(e) => {
-                          formik.setFieldValue(
-                            "percentageFromKom",
-                            e.target.value
-                          );
-                        }}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
+                      <FormControlLabel
+                        value="QOM"
+                        control={<Radio />}
+                        label="QOM"
                       />
-                    </Col>
-                  </Stack>
+                    </RadioGroup>
+                  </FormControl>
                 </Col>
               </Row>
             </Container>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => props.handleClose()}>
-              Cancel
-            </Button>
-            <Button variant="primary" type="submit">
-              Snipe!
-            </Button>
-          </Modal.Footer>
         </Form>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => props.handleClose()}>
+            Cancel
+          </Button>
+          <Button variant="primary" type="submit">
+            Snipe!
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

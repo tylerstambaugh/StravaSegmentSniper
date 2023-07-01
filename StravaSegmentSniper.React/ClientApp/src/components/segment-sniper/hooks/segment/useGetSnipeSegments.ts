@@ -39,9 +39,11 @@ const useGetSnipeSegments = () => {
           name: item.name,
           komTime: item.komTime,
           distance: item.distance,
-          secondsFromKom: item.secondsFromKom ? item.secondsFromKom : undefined,
-          percentageFromKom: item.percentageFromKom
-            ? item.percentageFromKom
+          secondsFromKom: item.secondsFromLeader
+            ? item.secondsFromLeader
+            : undefined,
+          percentageFromKom: item.percentageFromLeader
+            ? item.percentageFromLeader
             : undefined,
           athleteStats: item.athleteStats,
           koms: item.koms,

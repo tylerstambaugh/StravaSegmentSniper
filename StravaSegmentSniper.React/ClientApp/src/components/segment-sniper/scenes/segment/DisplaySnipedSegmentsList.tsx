@@ -37,8 +37,12 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     { title: "Id", prop: "id" },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "KOM Time", prop: "komTime", isSortable: true },
-    { title: "Seconds From KOM", prop: "secondsFromKom", isSortable: true },
-    { title: "% From KOM", prop: "percentageFromKom", isSortable: true },
+    {
+      title: "Seconds From KOM/QOM",
+      prop: "secondsFromLeader",
+      isSortable: true,
+    },
+    { title: "% From KOM/QOM", prop: "percentageFromLeader", isSortable: true },
     {
       prop: "detailsButton",
       cell: (row) => (

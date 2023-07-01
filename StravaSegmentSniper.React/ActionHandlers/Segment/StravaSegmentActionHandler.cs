@@ -50,23 +50,30 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                     segmentModels.Add(model);
 
                     //do sniping on list of segments
-                        XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
+                    XomsTimes xomsTime = GetXomTimeFromStrings(model.Xoms);
 
-                    double percentageOff = Math.Round((double)((segmentEffortModel.MovingTime - xomsTime.KomTime) / (double)xomsTime.KomTime), 3) * 100;
-                    
-                    int secondsOff = 0;
+                    int segementLeaderTime;                
 
-                    if (contract.SecondsFromKom != null && contract.SecondsFromKom > 0)
+                    if(contract.UseQom) 
+                    { 
+                     segementLeaderTime = xomsTime.QomTime;                    
+                    } 
+                    else
                     {
-                        secondsOff = segmentEffortModel.MovingTime - xomsTime.KomTime;
+                        segementLeaderTime = xomsTime.KomTime;
                     }
+
+                    double percentageOff = Math.Round((double)((segmentEffortModel.MovingTime - segementLeaderTime) / (double)segementLeaderTime), 3) * 100;
+                    
+                    int secondsOff = segmentEffortModel.MovingTime - segementLeaderTime;
+                    
 
                     SnipedSegmentUIModel UiModel = new SnipedSegmentUIModel
                     {
                         Id = model.Id,
                         Name = model.Name,
-                        PercentageFromKom = percentageOff,
-                        SecondsFromKom = secondsOff,
+                        PercentageFromLeader = percentageOff,
+                        SecondsFromLeader = secondsOff,
                         ActivityType = model.ActivityType,
                         Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
                         KomTime = model.Xoms.Kom,

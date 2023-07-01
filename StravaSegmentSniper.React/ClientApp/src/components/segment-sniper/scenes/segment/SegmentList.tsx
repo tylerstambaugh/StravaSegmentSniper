@@ -14,6 +14,7 @@ export interface SnipeSegmentFunctionProps {
   activityId?: string;
   secondsOff?: number;
   percentageOff?: number;
+  useQom: boolean;
 }
 export interface SegmentListProps {
   activityId: string | undefined;

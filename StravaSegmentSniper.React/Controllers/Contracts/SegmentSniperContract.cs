@@ -9,6 +9,8 @@ namespace StravaSegmentSniper.React.Controllers.Contracts
         public int? SecondsFromKom { get; set; }
         [JsonProperty("percentageOff")]
         public int? PercentageFromKom { get; set; }
+
+        public bool UseQom { get; set; }
     }
 }
 

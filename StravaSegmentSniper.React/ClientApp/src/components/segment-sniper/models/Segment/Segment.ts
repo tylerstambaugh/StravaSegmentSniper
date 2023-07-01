@@ -13,10 +13,11 @@ export interface SnipedSegmentListItem {
   name: string;
   komTime: string;
   distance: number;
-  secondsFromKom?: number;
-  percentageFromKom?: number;
+  secondsFromLeader?: number;
+  percentageFromLeader?: number;
   athleteStats?: athleteSegmentStats;
   koms?: xomsModel;
+  useQom?: boolean;
 }
 
 export interface Segment {
