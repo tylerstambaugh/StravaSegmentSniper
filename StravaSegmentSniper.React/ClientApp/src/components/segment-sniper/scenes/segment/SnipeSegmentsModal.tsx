@@ -25,12 +25,18 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
   interface SnipeSegmentsParametersForm {
     secondsFromLeader?: number;
     percentageFromLeader?: number;
-    useQom: string;
+    useQom?: string;
   }
 
   const validationSchema = yup.object().shape({
-    secondsFromLeader: yup.number().nullable(),
-    percentageFromLeader: yup.number().nullable(),
+    secondsFromLeader: yup
+      .number()
+      .min(2, "Number must be greater than 2")
+      .nullable(),
+    percentageFromLeader: yup
+      .number()
+      .min(2, "Number must be greater than 2")
+      .nullable(),
     useQom: yup.string().required("Select QOM or KOM"),
   });
 
@@ -53,7 +59,7 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
     },
     validationSchema,
     validateOnBlur: true,
-    validateOnChange: false,
+    validateOnChange: true,
   });
 
   return (
@@ -106,7 +112,10 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
               </Row>
               <Row>
                 <Col>
-                  <Form.Group controlId="percentageFromLeader">
+                  <Form.Group
+                    controlId="percentageFromLeader"
+                    className=" pb-4"
+                  >
                     <Form.Label>Percentage From Leader</Form.Label>
                     <Form.Control
                       type="number"
@@ -132,32 +141,29 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
                     <Form.Label>Leader Time Type</Form.Label>
                     <Row>
                       <Col>
-                        <Form.Check
-                          type="radio"
-                          name="useQom"
-                          id="komRadio"
-                          label="KOM"
-                          value="KOM"
-                          checked={formik.values.useQom === "KOM"}
+                        <RadioGroup
+                          aria-labelledby="demo-radio-buttons-group-label"
+                          defaultValue={formik.values.useQom}
+                          value={formik.values.useQom}
+                          name="row-radio-buttons-group"
+                          row
                           onChange={(e) => {
-                            formik.setFieldValue("useQom", "KOM");
+                            formik.setFieldValue("useQom", e.target.value);
                             console.log(formik.values);
+                            console.log(formik.errors);
                           }}
-                        />
-                      </Col>
-                      <Col>
-                        <Form.Check
-                          type="radio"
-                          name="useQom"
-                          id="qomRadio"
-                          label="QOM"
-                          value="QOM"
-                          checked={formik.values.useQom === "QOM"}
-                          onChange={(e) => {
-                            formik.setFieldValue("useQom", "QOM");
-                            console.log(formik.values);
-                          }}
-                        />
+                        >
+                          <FormControlLabel
+                            value="KOM"
+                            control={<Radio />}
+                            label="KOM"
+                          />
+                          <FormControlLabel
+                            value="QOM"
+                            control={<Radio />}
+                            label="QOM"
+                          />
+                        </RadioGroup>
                       </Col>
                     </Row>
                   </Form.Group>
@@ -165,15 +171,15 @@ function ShowSnipeSegmentsModal(props: ShowSnipeSegmentsModalProps) {
               </Row>
             </Container>
           </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => props.handleClose()}>
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit">
+              Snipe!
+            </Button>
+          </Modal.Footer>
         </Form>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => props.handleClose()}>
-            Cancel
-          </Button>
-          <Button variant="primary" type="submit">
-            Snipe!
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

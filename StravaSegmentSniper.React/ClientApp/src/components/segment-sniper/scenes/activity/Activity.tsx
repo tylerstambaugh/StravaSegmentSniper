@@ -80,8 +80,8 @@ const Activity = () => {
     setActivitySegmentsList([]);
     setSelectedActivityId("");
     toast.info("Search Results Cleared", {
-      position: "top-center",
-      autoClose: 2000,
+      position: "bottom-center",
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
