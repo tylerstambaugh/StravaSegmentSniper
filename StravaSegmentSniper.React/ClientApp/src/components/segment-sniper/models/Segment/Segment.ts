@@ -20,7 +20,7 @@ export interface SnipedSegmentListItem {
   useQom?: boolean;
 }
 
-export interface Segment {
+export interface SegmentDetails {
   id: number;
   resource_state: number;
   name: string;
