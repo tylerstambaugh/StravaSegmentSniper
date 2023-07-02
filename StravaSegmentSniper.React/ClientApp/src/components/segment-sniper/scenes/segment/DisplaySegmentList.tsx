@@ -75,7 +75,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   return (
     <>
       {props.segmentList.length > 0 ? (
-        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+        <Container className="p-2 mb-1 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}
@@ -91,15 +91,11 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                 <h3>Segments</h3>
               </Col>
             </Row>
-            <Row className="mb-4">
-              <Col
-                xs={12}
-                lg={4}
-                className="d-flex flex-col justify-content-end align-items-end"
-              >
-                <Filter />
+            <Row className="d-flex justify-content-between">
+              <Col sm={3}>
+                <Filter placeholder="Filter Segments" />
               </Col>
-              <Col>
+              <Col className="d-flex justify-content-end pb-3">
                 <Button
                   as="input"
                   variant="primary"
@@ -107,35 +103,25 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                   onClick={(e) => props.handleShowSnipeSegmentsModal()}
                 />
               </Col>
-              <Col>
+            </Row>
+            <Row>
+              <Col className="d-flex justify-content-end">
                 <Button
                   as="input"
                   value="Clear"
                   onClick={(e) => clearSegmentsList()}
                 ></Button>
               </Col>
-              <Col
-                xs={12}
-                sm={6}
-                lg={4}
-                className="d-flex flex-col justify-content-lg-center align-items-center justify-content-sm-start mb-2 mb-sm-0"
-              ></Col>
-              <Col
-                xs={12}
-                sm={6}
-                lg={4}
-                className="d-flex flex-col justify-content-end align-items-end"
-              ></Col>
             </Row>
             <Table>
               <TableHeader />
               <TableBody />
             </Table>
             <Row className="justify-content-between">
-              <Col md={2}>
+              <Col sm={2}>
                 <PaginationOptions />
               </Col>
-              <Col md={5}>
+              <Col sm={5} className="mt-3">
                 <Pagination />
               </Col>
             </Row>
