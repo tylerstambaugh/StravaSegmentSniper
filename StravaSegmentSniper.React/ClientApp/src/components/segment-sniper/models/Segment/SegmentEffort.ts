@@ -1,4 +1,4 @@
-import { Segment } from "./Segment";
+import { SegmentDetails } from "./Segment";
 
 export interface SegmentEffortListItem {
   id: number;
