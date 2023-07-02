@@ -71,7 +71,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
   return (
     <>
       {props.activityList.length > 0 ? (
-        <Container className="p-2 mb-1 col-12 bg-light text-dark border rounded">
+        <Container className="p-2 mb-2  bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}
@@ -91,7 +91,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
 
               <Row className="d-flex justify-content-between">
                 <Col sm={3}>
-                  <Filter />
+                  <Filter placeholder="Filter Activities" />
                 </Col>
                 <Col className="d-flex justify-content-end">
                   <Button
@@ -121,10 +121,10 @@ const DisplayActivityList = (props: displayActivityListProps) => {
               <TableBody />
             </Table>
             <Row className="justify-content-between">
-              <Col md={2}>
+              <Col sm={2}>
                 <PaginationOptions />
               </Col>
-              <Col md={5}>
+              <Col sm={5} className="mt-3">
                 <Pagination />
               </Col>
             </Row>
