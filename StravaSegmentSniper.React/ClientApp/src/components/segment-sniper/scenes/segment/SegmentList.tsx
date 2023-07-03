@@ -54,6 +54,10 @@ const SegmentList = (props: SegmentListProps) => {
     }
   }, [isSnipeList]);
 
+  useEffect(() => {
+    setIsSnipeList(false);
+  }, [props.activitySegmentList]);
+
   async function handleSnipeSegments(
     snipeSegmentsProps: SnipeSegmentFunctionProps
   ) {
