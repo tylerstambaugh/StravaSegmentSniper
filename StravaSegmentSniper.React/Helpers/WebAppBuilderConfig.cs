@@ -1,6 +1,7 @@
 ﻿using Authorization.Data.Data;
 using Authorization.Data.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -35,7 +36,14 @@ namespace StravaSegmentSniper.React.Helpers
                 options.UseSqlServer(appDataConnectionString).UseLazyLoadingProxies());
 
             builder.Services.AddDefaultIdentity<WebAppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AuthDbContext>();
+                 .AddRoles<IdentityRole>()
+                 .AddEntityFrameworkStores<AuthDbContext>();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole",
+                     policy => policy.RequireRole("Administrator"));
+            });
 
             builder.Services.AddIdentityServer()
                 .AddApiAuthorization<WebAppUser, AuthDbContext>();
