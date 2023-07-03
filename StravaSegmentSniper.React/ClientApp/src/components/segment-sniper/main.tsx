@@ -82,34 +82,28 @@ function SegmentSniper() {
   return (
     <>
       {isAuthenticated && appUser?.stravaAthleteId ? (
-        <Container>
+        <Container className="d-flex p-2 mb-2 bg-light text-dark border rounded">
           <Row>
-            <Col>
-              <Link to="./athlete" style={{ cursor: "pointer" }}>
-                View Athlete Details
-              </Link>
+            <Col md={4}>
+              <div className="d-flex justify-content-center">
+                <Link to="./athlete" style={{ cursor: "pointer" }}>
+                  View Athlete Details
+                </Link>
+              </div>
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Link to="./activities" style={{ cursor: "pointer" }}>
-                Segment Sniper
-              </Link>
+            <Col md={4}>
+              <div className="d-flex justify-content-center">
+                <Link to="./activities" style={{ cursor: "pointer" }}>
+                  Segment Sniper
+                </Link>
+              </div>
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Link to="./token-maintenance" style={{ cursor: "pointer" }}>
-                Token Maintenance
-              </Link>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="d-flex p-3">
-              <p>testing button:</p>
-              <button onClick={(e) => callAPI(e)}>Call API</button>
-              <p>webappuser: {appUser?.id}</p>
-              <p>stravaAthleteId: {appUser?.stravaAthleteId}</p>
+            <Col md={4}>
+              <div className="d-flex justify-content-center">
+                <Link to="./token-maintenance" style={{ cursor: "pointer" }}>
+                  Token Maintenance
+                </Link>
+              </div>
             </Col>
           </Row>
         </Container>
