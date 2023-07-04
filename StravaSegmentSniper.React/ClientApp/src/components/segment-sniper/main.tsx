@@ -6,7 +6,7 @@ import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -82,28 +82,29 @@ function SegmentSniper() {
   return (
     <>
       {isAuthenticated && appUser?.stravaAthleteId ? (
-        <Container className="d-flex p-2 mb-2 bg-light text-dark border rounded">
+        <Container
+          className="flex-column justify-content-center p-2 mb-2 bg-light text-dark border rounded"
+          style={{ width: "50%" }}
+        >
           <Row>
-            <Col md={4}>
-              <div className="d-flex justify-content-center">
-                <Link to="./athlete" style={{ cursor: "pointer" }}>
-                  View Athlete Details
-                </Link>
-              </div>
+            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
+              <Link to="./athlete">
+                <Button style={{ cursor: "pointer" }}>Athlete Details</Button>
+              </Link>
             </Col>
-            <Col md={4}>
-              <div className="d-flex justify-content-center">
-                <Link to="./activities" style={{ cursor: "pointer" }}>
-                  Segment Sniper
-                </Link>
-              </div>
+          </Row>
+          <Row>
+            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
+              <Link to="./activities">
+                <Button style={{ cursor: "pointer" }}>Segment Sniper</Button>
+              </Link>
             </Col>
-            <Col md={4}>
-              <div className="d-flex justify-content-center">
-                <Link to="./token-maintenance" style={{ cursor: "pointer" }}>
-                  Token Maintenance
-                </Link>
-              </div>
+          </Row>
+          <Row>
+            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
+              <Link to="./token-maintenance">
+                <Button style={{ cursor: "pointer" }}>Admin</Button>
+              </Link>
             </Col>
           </Row>
         </Container>
