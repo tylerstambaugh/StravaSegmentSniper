@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Col, Container, Row } from "react-bootstrap";
