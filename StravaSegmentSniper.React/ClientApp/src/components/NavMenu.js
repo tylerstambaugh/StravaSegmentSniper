@@ -40,7 +40,7 @@ export class NavMenu extends Component {
         >
           <NavbarBrand tag={Link} to="/">
             Strava Segment Sniper
-            <img src={stravaHeaderImage} />
+            <img src={stravaHeaderImage} alt="strava logo"/>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse
