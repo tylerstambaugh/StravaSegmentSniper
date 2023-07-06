@@ -3,20 +3,17 @@ import { Link } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Col, Container, Row } from "react-bootstrap";
-//import ConnectWithStravaImage from "../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png";
-import ConnectWithStravaImage from "../segment-sniper/assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const loginPath = `${ApplicationPaths.Login}`;
-  const connectWithStravaPAth = "./";
   const [appUser, setAppUser] = useState<WebAppUser>();
   const [authToken, setAuthToken] = useState("");
+  const ConnectWithStravaImage = require("./assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
   async function populateState() {
     const [isAuthenticated, user] = await Promise.all([
@@ -45,10 +42,9 @@ function SegmentSniper() {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       if (!response.ok) {
-        toast.error("There was an error calling the API", {
-          autoClose: 1500,
-          position: "bottom-center",
-        });
+        console.log(
+          `non initial use effect response not 'OK': ${response.json()}`
+        );
       } else {
         const data: Promise<WebAppUser> = response.json();
         data
@@ -60,27 +56,6 @@ function SegmentSniper() {
     };
     fetchData();
   }, [userName]);
-
-  async function callAPI(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    const token = await authService.getAccessToken();
-    console.log(token);
-    const response = await fetch("/user", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!response.ok) {
-      toast.error("There was an error calling the API", {
-        autoClose: 1500,
-        position: "bottom-center",
-      });
-    } else {
-      const data: Promise<WebAppUser> = response.json();
-      data
-        .then((resolvedData) => setAppUser(resolvedData))
-        .catch((error) =>
-          console.log(`There was an error fetching the data. ${error}`)
-        );
-    }
-  }
 
   return (
     <>
