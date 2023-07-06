@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../../../src/custom.css";
 import { Link } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
 import { WebAppUser } from "./models/webAppUser";
@@ -6,6 +7,8 @@ import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import ConnectWithStrava from "./scenes/connectWithStrava/ConnectWithStrava";
+import { is } from "date-fns/locale";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -13,6 +16,7 @@ function SegmentSniper() {
   const loginPath = `${ApplicationPaths.Login}`;
   const [appUser, setAppUser] = useState<WebAppUser>();
   const [authToken, setAuthToken] = useState("");
+  const [loading, setLoading] = useState(true);
   const ConnectWithStravaImage = require("./assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
   async function populateState() {
@@ -35,6 +39,10 @@ function SegmentSniper() {
       authService.unsubscribe(_subscription);
     };
   });
+
+  useEffect(() => {
+    if (userName) setLoading(false);
+  }, [userName]);
 
   useNonInitialEffect(() => {
     const fetchData = async () => {
@@ -59,7 +67,9 @@ function SegmentSniper() {
 
   return (
     <>
-      {isAuthenticated && appUser?.stravaAthleteId ? (
+      {loading ? (
+        <div className="loader"></div>
+      ) : isAuthenticated && appUser?.stravaAthleteId ? (
         <Container
           className="flex-column justify-content-center p-2 mb-2 bg-light text-dark border rounded"
           style={{ width: "50%" }}
@@ -88,20 +98,7 @@ function SegmentSniper() {
         </Container>
       ) : isAuthenticated &&
         (!appUser?.stravaAthleteId || appUser.stravaAthleteId === 0) ? (
-        <main className="container">
-          <div className="row justify-content-center mt-3 mb-3">
-            <div className="col-6">
-              <p>You need to connect your Strava Account</p>
-              <p>
-                Click
-                <Link to="./connect">
-                  <img src={ConnectWithStravaImage} />
-                </Link>
-                to being.
-              </p>
-            </div>
-          </div>
-        </main>
+        <ConnectWithStrava />
       ) : (
         <main className="container">
           <div className="row justify-content-center mt-3 mb-3">
