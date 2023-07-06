@@ -63,6 +63,7 @@
   <ItemGroup>
 	 <Folder Include="ActionHandlers\StravaApiToken\Contracts\" />
 	 <Folder Include="Areas\Identity\Data\" />
+	 <Folder Include="ClientApp\src\components\segment-sniper\assets\" />
     <Folder Include="ClientApp\src\components\segment-sniper\scenes\athlete\" />
     <Folder Include="ClientApp\src\components\segment-sniper\scenes\activity\" />
     <Folder Include="ClientApp\src\components\segment-sniper\token\" />
@@ -71,6 +72,50 @@
 
   <ItemGroup>
     <None Include="Helpers\MappingProfiles\MappingProfiles.cs" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_light\btn_strava_connectwith_light%402x.png" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_light\btn_strava_connectwith_light.eps" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_light\btn_strava_connectwith_light.png" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_light\btn_strava_connectwith_light.svg" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange%402x.png" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange.eps" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange.png" />
+    <None Include="wwwroot\assets\stravaImages\btn_strava_connectwith_orange\btn_strava_connectwith_orange.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_horiz_gray.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_horiz_gray.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_horiz_gray.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_stack_gray.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_stack_gray.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_gray\api_logo_cptblWith_strava_stack_gray.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_horiz_light.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_horiz_light.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_horiz_light.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_stack_light.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_stack_light.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_light\api_logo_cptblWith_strava_stack_light.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_horiz_white.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_horiz_white.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_horiz_white.svg" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_stack_white.eps" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_stack_white.png" />
+    <None Include="wwwroot\assets\stravaImages\compatibleWithStrava\cptblWith_strava_white\api_logo_cptblWith_strava_stack_white.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_horiz_gray.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_horiz_gray.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_horiz_gray.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_stack_gray.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_stack_gray.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_gray\api_logo_pwrdBy_strava_stack_gray.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_horiz_light.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_horiz_light.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_horiz_light.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_stack_light.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_stack_light.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_light\api_logo_pwrdBy_strava_stack_light.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_horiz_white.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_horiz_white.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_horiz_white.svg" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_stack_white.eps" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_stack_white.png" />
+    <None Include="wwwroot\assets\stravaImages\poweredByStrava\pwrdBy_strava_white\api_logo_pwrdBy_strava_stack_white.svg" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
