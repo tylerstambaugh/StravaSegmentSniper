@@ -6,22 +6,28 @@ import { Link } from "react-router-dom";
 const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
 const ConnectWithStrava = () => {
+  async function handleConnectWithStrava() {
+    console.log("calling strava to connect");
+  }
+
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center">
-      <Row>
+      <Row sm={8} md={6} lg={2} className="text-center">
         <Col>
-          <p className="text-center">
-            YBefore you can start sniping segments, we'll need you to authorize
-            us to access your Strava data. Click the button below to get
-            started.
+          <p>
+            Before you can start sniping segments, we'll need you to authorize
+            us to access your Strava data. When you click the below button,
+            you'll be redirected to Strava and asked to grant this app
+            permission to view our data. After accepting the agreement, you'll
+            be redirected here and can begin sniping segments.
           </p>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Link to="primary">
+          <Button onClick={() => handleConnectWithStrava()}>
             <img src={connectWithStravaImage} />
-          </Link>
+          </Button>
         </Col>
       </Row>
     </Container>
