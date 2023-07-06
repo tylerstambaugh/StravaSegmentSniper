@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { LoginMenu } from "./api-authorization/LoginMenu";
 import "./NavMenu.css";
 import stravaHeaderImage from "./segment-sniper/assets/stravaImages/poweredByStrava/pwrdBy_strava_light/api_logo_pwrdBy_strava_horiz_light.svg"
+//import stravaHeaderImage from "../../../wwwroot/assets/stravaImages/poweredByStrava/pwrdBy_strava_light/api_logo_pwrdBy_strava_horiz_light.svg"
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;

@@ -7,11 +7,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Col, Container, Row } from "react-bootstrap";
+//import ConnectWithStravaImage from "../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png";
+import ConnectWithStravaImage from "../segment-sniper/assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const loginPath = `${ApplicationPaths.Login}`;
+  const connectWithStravaPAth = "./";
   const [appUser, setAppUser] = useState<WebAppUser>();
   const [authToken, setAuthToken] = useState("");
 
@@ -116,8 +119,10 @@ function SegmentSniper() {
               <p>You need to connect your Strava Account</p>
               <p>
                 Click
-                <Link to={loginPath}> here </Link>
-                to login.
+                <Link to="./connect">
+                  <img src={ConnectWithStravaImage} />
+                </Link>
+                to being.
               </p>
             </div>
           </div>
