@@ -18,7 +18,7 @@ const useConnectWithStrava = () => {
       };
 
       const fetchResponse: ConnectWithStravaResponse | Error = await api.fetch(
-        "/api/connect",
+        "/api/ConnectWithStrava/GetClientId",
         requestOptions
       );
 
@@ -26,7 +26,6 @@ const useConnectWithStrava = () => {
         setConnectError(fetchResponse);
         throw new Error(fetchResponse.message);
       }
-
       return fetchResponse;
     } catch (error) {
       if (error instanceof Error) {

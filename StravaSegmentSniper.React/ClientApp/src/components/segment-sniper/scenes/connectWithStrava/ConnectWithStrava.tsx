@@ -1,19 +1,23 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-//import connectWithStravaImage from "../../../segment-sniper/assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png"
+import "../../../../custom.css";
+import useConnectWithStrava from "../../hooks/connectWithStrava/useConnectWithStrava";
 
 const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
 const ConnectWithStrava = () => {
+  const connect = useConnectWithStrava();
+
   async function handleConnectWithStrava() {
     console.log("calling strava to connect");
+    const clientId = connect.fetchConnectWithStrava();
+    console.log(clientId);
   }
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center">
-      <Row sm={8} md={6} lg={2} className="text-center">
-        <Col>
+      <Row sm={1} className="text-center ">
+        <Col className="mx-auto">
           <p>
             Before you can start sniping segments, we'll need you to authorize
             us to access your Strava data. When you click the below button,

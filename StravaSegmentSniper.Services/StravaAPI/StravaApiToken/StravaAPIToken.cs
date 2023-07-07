@@ -17,12 +17,13 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
             _configuration = configuration;
         }
 
-        public async Task<StravaApiToken> GetAthleteToken()
+        public async Task<StravaApiToken> ExchangeAuthCodeForToken()
         {
             //https://www.strava.com/oauth/authorize?client_id=93654&redirect_uri=http://localhost&response_type=code&scope=activity:read_all&scope=read_all
 
             throw new NotImplementedException();
         }
+
         public async Task<RefreshTokenModel> RefreshToken(string refreshToken)
         {
             //refresh token

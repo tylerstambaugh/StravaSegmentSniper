@@ -3,12 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.React.ActionHandlers.Activity;
 using StravaSegmentSniper.React.ActionHandlers.Activity.Contracts;
 using StravaSegmentSniper.React.Controllers.Contracts;
-using StravaSegmentSniper.Services.Enums;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
-using StravaSegmentSniper.Services.Internal.Services;
-using StravaSegmentSniper.Services.StravaAPI.Activity;
-using StravaSegmentSniper.Services.UIModels.Activity;
-using System.Net;
 using static StravaSegmentSniper.Services.Enums.ActivityTypeEnum;
 
 namespace StravaSegmentSniper.React.Controllers
