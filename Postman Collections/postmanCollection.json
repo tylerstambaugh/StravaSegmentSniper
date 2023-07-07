@@ -330,7 +330,7 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "Get Client Id",
 							"id": "fa2c4ac6-8412-49a4-90ef-8eeaee0497da",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -706,7 +706,7 @@
 	],
 	"variable": [
 		{
-			"id": "f2b8edef-1b22-43d4-b901-b6953698f0ce",
+			"id": "cf5eb2bd-8230-4853-acfc-daf59da954e4",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
