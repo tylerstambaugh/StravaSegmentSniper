@@ -19,7 +19,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer a6995c5ebc5913c6e0fcfaaf32f3aacbf3215c90",
+								"value": "Bearer fb788d5771069026032798f7f7928756b28da256",
 								"type": "text"
 							}
 						],
@@ -154,11 +154,11 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 9627c98802e2230d50b74767f448ec96192f9311",
+								"value": "Bearer fb788d5771069026032798f7f7928756b28da256",
 								"type": "text"
 							}
 						],
-						"url": "https://www.strava.com/api/v3/segments_efforts/3051956924639015198"
+						"url": "https://www.strava.com/api/v3/segments_efforts/3106392772169458000"
 					},
 					"response": [
 						{
@@ -328,6 +328,18 @@
 								"url": "https://localhost:44411/api/auth/login"
 							},
 							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "fa2c4ac6-8412-49a4-90ef-8eeaee0497da",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					],
 					"id": "79e80fbd-326e-4ab8-b060-16b17aebc5ef"
@@ -405,7 +417,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4Njk5ODc0MiwiaWF0IjoxNjg2OTk4NzQyLCJleHAiOjE2ODcwMDIzNDIsImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODY5OTg3NDEsImlkcCI6ImxvY2FsIiwic2lkIjoiQjREQzQ5NkM1M0FBOUI5Qzk4MzlDQzY4REUzRjIyRTgiLCJqdGkiOiJERkM1Rjc0OUU3QkI1MDVFREExMzc3MUE3NzM5ODg2RSJ9.0W8UmdRDkIO5yjeKU_yU9bi7u0onCyi7S31zEI--M8Xeun4FkPesl1XGdu0q6weBRge3wElDl2T8Zn-fdu80IiAFoic2pFEvqwuQtD9sr-8YQIjQ-u-VV6TR_eTnpYj0je9e3Ogipq1PRgUUYfFf6afMGIk4DxfFe0KrNyLYqDcrAEJ4LHotBnny80SusCZKkETx4R9-GLGa8Yi29LFtbktLZZfb5pazghzpSZVRGMOBVKAUKofUvBZYUGEYBcgQkLATtkS1NWtIrkSKSG3l96vk7OWSW4aI5CSfiX2gRWlwt9kJngSuNHcTBU9-kizFK-sFvVjWI7zopKd4UN2v-A",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkRldmVsb3BtZW50IiwidHlwIjoiYXQrand0In0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDQxMSIsIm5iZiI6MTY4NzA4MTY2OSwiaWF0IjoxNjg3MDgxNjY5LCJleHAiOjE2ODcwODUyNjksImF1ZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3RBUEkiLCJzY29wZSI6WyJTdHJhdmFTZWdtZW50U25pcGVyLlJlYWN0QVBJIiwib3BlbmlkIiwicHJvZmlsZSJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IlN0cmF2YVNlZ21lbnRTbmlwZXIuUmVhY3QiLCJzdWIiOiJlNWFjZDBmMi1jNTYzLTRiZjgtYjc3MC00NjEyY2QzOThlZDkiLCJhdXRoX3RpbWUiOjE2ODcwODE2NjgsImlkcCI6ImxvY2FsIiwic2lkIjoiOUNCNzQ2MUFCQjc5NUVDMjJCRkU2RTY3MDk2ODAwNEQiLCJqdGkiOiIwMUY5MTA1MEQyNTRBODQzNjJFMUVCOTc1NjMxQkJGMyJ9.LE-eV0mNbw4Cz7kf0EmH1s7yqNvs3YSEhNe-ZQItrUjze13tBpVkL4FdH6cuf2hhlncExDEHFHVOydFe1Ah6gBxlu8kVJM2NaZR-o_hU1hnRQ_nC3jWRDrEuUm5dIOloOcdKEEFNO9h0SXl1G1BWYk1aUkUSNlYskC8Zk5HcZPxJe7xPWEM7hw-xzCEECev-sBYCSFZzHXdAOE9lqh43zJVFZ0Hd5KtRH4MCbJnFac7fEqIV7n-QAyonfA1VypVSssFmJQ_Q9OJM9d1hH48kTKqDev0E6XFzHQEc3S_aibrJxzD293DG3I6kyCOCs1uNjuYKxFzPAw5VqTP4cv__RQ",
 								"type": "text"
 							}
 						],
@@ -674,7 +686,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "668578f4-aa5f-4b49-8c46-f0e6a532cd5b",
+				"id": "9c6cab4e-609e-4831-bd5d-b9fa2535b8fe",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -684,7 +696,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "dd0aaf5d-6140-4e32-972e-f55d18c88f00",
+				"id": "d25c8406-11e2-40ee-a234-775b4ed06c40",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -694,9 +706,9 @@
 	],
 	"variable": [
 		{
-			"id": "5336b2c6-f3d3-404c-b8d1-c3c42b20d835",
+			"id": "f2b8edef-1b22-43d4-b901-b6953698f0ce",
 			"key": "access_token",
-			"value": "Bearer 6160cd68586cf552754a47e4273501cb43bf35d0",
+			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		}
 	]
