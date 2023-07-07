@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import ConnectWithStrava from "./scenes/connectWithStrava/ConnectWithStrava";
-import { is } from "date-fns/locale";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -17,7 +16,6 @@ function SegmentSniper() {
   const [appUser, setAppUser] = useState<WebAppUser>();
   const [authToken, setAuthToken] = useState("");
   const [loading, setLoading] = useState(true);
-  const ConnectWithStravaImage = require("./assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
   async function populateState() {
     const [isAuthenticated, user] = await Promise.all([
@@ -71,27 +69,31 @@ function SegmentSniper() {
         <div className="loader"></div>
       ) : isAuthenticated && appUser?.stravaAthleteId ? (
         <Container
-          className="flex-column justify-content-center p-2 mb-2 bg-light text-dark border rounded"
+          className="d-flex flex-column justify-content-center p-2 mb-2 bg-light text-dark border rounded "
           style={{ width: "50%" }}
         >
           <Row>
-            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
-              <Link to="./athlete">
-                <Button style={{ cursor: "pointer" }}>Athlete Details</Button>
+            <Col
+              md={9}
+              sm={2}
+              className="d-flex p-2 mb-2 justify-content-center"
+            >
+              <Link to="./athlete" className="rounded-button">
+                Athlete Details
               </Link>
             </Col>
           </Row>
           <Row>
             <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
-              <Link to="./activities">
-                <Button style={{ cursor: "pointer" }}>Segment Sniper</Button>
+              <Link to="./activities" className="rounded-button">
+                Segment Sniper
               </Link>
             </Col>
           </Row>
           <Row>
             <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
-              <Link to="./token-maintenance">
-                <Button style={{ cursor: "pointer" }}>Admin</Button>
+              <Link to="./token-maintenance" className="rounded-button">
+                Admin
               </Link>
             </Col>
           </Row>
