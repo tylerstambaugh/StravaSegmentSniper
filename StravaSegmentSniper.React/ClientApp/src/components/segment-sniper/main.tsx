@@ -39,8 +39,8 @@ function SegmentSniper() {
   });
 
   useEffect(() => {
-    if (userName) setLoading(false);
-  }, [userName]);
+    if (isAuthenticated) setLoading(false);
+  }, [isAuthenticated]);
 
   useNonInitialEffect(() => {
     const fetchData = async () => {
@@ -66,32 +66,34 @@ function SegmentSniper() {
   return (
     <>
       {loading ? (
-        <div className="loader"></div>
+        <Container
+          className="d-flex flex-column justify-content-center mb-2 bg-light text-dark border rounded mx-auto "
+          style={{ width: "50%" }}
+        >
+          <div className="loader"></div>
+        </Container>
       ) : isAuthenticated && appUser?.stravaAthleteId ? (
         <Container
-          className="d-flex flex-column justify-content-center p-2 mb-2 bg-light text-dark border rounded "
+          className="d-flex flex-column justify-content-center mb-2 bg-light text-dark border rounded mx-auto "
           style={{ width: "50%" }}
         >
           <Row>
-            <Col
-              md={9}
-              sm={2}
-              className="d-flex p-2 mb-2 justify-content-center"
-            >
-              <Link to="./athlete" className="rounded-button">
-                Athlete Details
-              </Link>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
+            <Col md={12} className="d-flex p-2 mb-2 justify-content-center">
               <Link to="./activities" className="rounded-button">
                 Segment Sniper
               </Link>
             </Col>
           </Row>
           <Row>
-            <Col md={9} className="d-flex p-2 mb-2 justify-content-center">
+            <Col md={12} className="d-flex p-2 mb-2 justify-content-center">
+              <Link to="./athlete" className="rounded-button">
+                Athlete Details
+              </Link>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={12} className="d-flex p-2 mb-2 justify-content-center">
               <Link to="./token-maintenance" className="rounded-button">
                 Admin
               </Link>
