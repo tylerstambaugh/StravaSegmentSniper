@@ -37,19 +37,23 @@ h1, h2, h3, h4, h5, p {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #e0e0e0;
-  text-decoration: none;
+  background-color: #FC4C02;
+  text-decoration: underline, double;
+  font-weight: bold;
   color: #000000;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
   width: 200px; /* Set the desired fixed width */
   text-align: center; /* Optional: Center the text horizontally */
 }
 
 .rounded-button:hover {
-  background-color: #d2d2d2;
+  background-color: #fc4d028e;
 }
 
 .loader {
+  display: flex;
+  align-self: center;
+  justify-self: center;
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
