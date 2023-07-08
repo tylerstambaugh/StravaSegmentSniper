@@ -8,15 +8,26 @@ const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_con
 const ConnectWithStrava = () => {
   const connect = useConnectWithStrava();
 
+  interface fetchClientIdResponse {
+    key: string;
+    value: string;
+  }
+
   async function handleConnectWithStrava() {
     console.log("calling strava to connect");
-    const clientId = connect.fetchConnectWithStrava();
-    console.log(clientId);
+    let clientId;
+    const fetchResponse = connect.fetchConnectWithStrava().then((res) => {
+      console.log(res);
+      clientId = res;
+    });
+    window.open(
+      `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
+    );
   }
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center">
-      <Row sm={1} className="text-center ">
+      <Row sm={3} className="text-center ">
         <Col className="mx-auto">
           <p>
             Before you can start sniping segments, we'll need you to authorize
@@ -29,7 +40,10 @@ const ConnectWithStrava = () => {
       </Row>
       <Row>
         <Col>
-          <Button onClick={() => handleConnectWithStrava()}>
+          <Button
+            variant="outline-secondary"
+            onClick={() => handleConnectWithStrava()}
+          >
             <img src={connectWithStravaImage} />
           </Button>
         </Col>
