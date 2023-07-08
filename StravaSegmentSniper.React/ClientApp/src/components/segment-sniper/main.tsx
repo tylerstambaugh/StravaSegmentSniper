@@ -6,7 +6,7 @@ import { WebAppUser } from "./models/webAppUser";
 import { ApplicationPaths } from "../api-authorization/ApiAuthorizationConstants";
 import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import ConnectWithStrava from "./scenes/connectWithStrava/ConnectWithStrava";
 
 function SegmentSniper() {
@@ -23,8 +23,9 @@ function SegmentSniper() {
       authService.getUser(),
     ]);
     setIsAuthenticated(isAuthenticated);
-    setUsername(user && user.name);
 
+    setUsername(user && user.name);
+    setLoading(false);
     const authTokenRes = await authService
       .getAccessToken()
       .then((res) => setAuthToken(res));
@@ -37,31 +38,6 @@ function SegmentSniper() {
       authService.unsubscribe(_subscription);
     };
   });
-
-  useEffect(() => {
-    if (isAuthenticated) setLoading(false);
-  }, [isAuthenticated]);
-
-  useNonInitialEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/user", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
-      if (!response.ok) {
-        console.log(
-          `non initial use effect response not 'OK': ${response.json()}`
-        );
-      } else {
-        const data: Promise<WebAppUser> = response.json();
-        data
-          .then((resolvedData) => setAppUser(resolvedData))
-          .catch((error) =>
-            console.log(`There was an error fetching the data. ${error}`)
-          );
-      }
-    };
-    fetchData();
-  }, [userName]);
 
   return (
     <>
@@ -104,18 +80,24 @@ function SegmentSniper() {
         (!appUser?.stravaAthleteId || appUser.stravaAthleteId === 0) ? (
         <ConnectWithStrava />
       ) : (
-        <main className="container">
-          <div className="row justify-content-center mt-3 mb-3">
-            <div className="col-6">
-              <p>You must be logged in to access this app.</p>
-              <p>
-                Click
-                <Link to={loginPath}> here </Link>
-                to login.
-              </p>
-            </div>
-          </div>
-        </main>
+        <div className="d-flex justify-content-center">
+          <Card style={{ width: "30rem" }}>
+            <Card.Body className="flex-column justify-content-center mx-auto align-items-center">
+              <Row>
+                <p>You must be logged in to access this app.</p>
+              </Row>
+              <Row className="justify-content-between">
+                <Link to={loginPath}>
+                  <Button>Login</Button>
+                </Link>
+                <span className="mx-2">Or</span>
+                <Link to={loginPath}>
+                  <Button>Register</Button>
+                </Link>
+              </Row>
+            </Card.Body>
+          </Card>
+        </div>
       )}
     </>
   );
