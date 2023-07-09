@@ -21,5 +21,11 @@ namespace StravaSegmentSniper.React.Controllers
         {
             return Ok(_configuration.GetSection("StravaAPICodes:ClientId"));
         }
+
+        [HttpPost]
+        public IActionResult PostAuthorizationCode()
+        {
+            return BadRequest();
+        }
     }
 }
