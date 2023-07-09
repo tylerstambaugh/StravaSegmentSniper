@@ -63,6 +63,9 @@ namespace StravaSegmentSniper.React.Helpers
                     };
                 });
 
+            //may want to take this out in production...
+            builder.Services.AddDirectoryBrowser();
+
             builder.Services.AddControllers().AddNewtonsoftJson();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
