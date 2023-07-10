@@ -23,9 +23,29 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostAuthorizationCode()
+        public IActionResult PostExchangeToken([System.Web.Http.FromUri] AuthCodeResponse authCodeResponse)
         {
-            return BadRequest();
+            AuthCodeResponse response = new AuthCodeResponse
+            {
+                State = authCodeResponse.State,
+                AuthCode = authCodeResponse.AuthCode,
+                Scopes = authCodeResponse.Scopes,
+            };
+
+            //call handler to handle response
+
+            if (response.AuthCode != null)
+            {
+                return Ok();
+            }
+            else { return BadRequest(); }
+        }
+
+        public class AuthCodeResponse
+        {
+            public string State { get; set; }
+            public string AuthCode { get; set; }
+            public string Scopes { get; set; }
         }
     }
 }

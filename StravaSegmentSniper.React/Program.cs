@@ -5,6 +5,7 @@ using StravaSegmentSniper.Data;
 using StravaSegmentSniper.React.Helpers;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.FileProviders;
 
 //var builder = WebApplication.CreateBuilder(args);
 var builder = WebAppBuilderConfig.ConfigureBuilder();
@@ -23,10 +24,14 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(new StaticFileOptions
-{
-    ServeUnknownFileTypes = true
-});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//           Path.Combine(builder.Environment.ContentRootPath, "ClientApp")),
+//    RequestPath = "/StaticFiles"
+//});
+
+app.UseStaticFiles();
 
 app.UseRouting();
 
