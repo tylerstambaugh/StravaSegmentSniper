@@ -6,5 +6,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         WebAppUser GetLoggedInUserById(string userId);
         WebAppUser GetLoggedInUserByStravaId(long stravaId);
+        bool AddStravaIdToWebAppUser(string userId, long stravaId);
     }
 }
