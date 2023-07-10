@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../../../../custom.css";
-import useConnectWithStrava from "../../hooks/connectWithStrava/useConnectWithStrava";
+import useGetClientId, {
+  ClientIdResponse,
+} from "../../hooks/connectWithStrava/useGetClientId";
+import { toast } from "react-toastify";
 
 const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
-const ConnectWithStrava = () => {
-  const connect = useConnectWithStrava();
+function ConnectWithStrava() {
+  const connect = useGetClientId();
+  let ClientId;
 
-  interface fetchClientIdResponse {
-    key: string;
-    value: string;
+  async function getClientId() {
+    console.log("calling strava to connect");
+    const response: ClientIdResponse | Error = await connect.fetchClientId();
+    if (response instanceof Error) {
+      toast.error(`There was an error fetching the client Id: ${response}`, {
+        autoClose: 1500,
+        position: "bottom-center",
+      });
+    } else {
+      ClientId = response.ClientId;
+    }
   }
 
   async function handleConnectWithStrava() {
-    console.log("calling strava to connect");
-    let clientId;
-    const fetchResponse = connect.fetchConnectWithStrava().then((res) => {
-      console.log(res);
-      clientId = res;
-    });
     window.open(
-      `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
+      `http://www.strava.com/oauth/authorize?client_id=${ClientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
     );
   }
+
+  useEffect(() => {
+    getClientId();
+  }, []);
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center">
@@ -50,6 +60,6 @@ const ConnectWithStrava = () => {
       </Row>
     </Container>
   );
-};
+}
 
 export default ConnectWithStrava;
