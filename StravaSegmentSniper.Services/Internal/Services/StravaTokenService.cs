@@ -86,14 +86,17 @@ namespace StravaSegmentSniper.Services.Internal.Services
         {
             var currentToken = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
 
-
             StravaApiTokenModel model = _mapper.Map<StravaApiToken, StravaApiTokenModel>(currentToken);
 
             return model;
-
         }
 
+        public bool AddStravaApiTokenRecord(StravaApiToken model)
+        {
+            _context.StravaApiTokens.Add(model);
 
+                return _context.SaveChanges() == 1;
+        }
 
     }
 }

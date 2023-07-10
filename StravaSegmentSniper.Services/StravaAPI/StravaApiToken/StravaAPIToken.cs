@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
+using Duende.IdentityServer.EntityFramework.Entities;
+using Duende.IdentityServer.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.Internal.Models.Token;
 using StravaSegmentSniper.Services.StravaAPI.Models.Token;
+using static IdentityModel.OidcConstants;
+using System.Security.Policy;
 
 namespace StravaSegmentSniper.Services.StravaAPI.TokenService
 {
@@ -11,27 +16,81 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient = new HttpClient();
+        private readonly string _clientId;
+        private readonly string _clientSecret;
+
         public StravaAPIToken(IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
             _configuration = configuration;
+            _clientId = _configuration.GetSection("StravaAPICodes:ClientId").Value;
+            _clientSecret = _configuration.GetSection("StravaAPICodes:ClientSecret").Value;
         }
 
-        public async Task<StravaApiToken> ExchangeAuthCodeForToken()
+        public async Task<StravaApiToken> ExchangeAuthCodeForToken(string authCode)
         {
-            //https://www.strava.com/oauth/authorize?client_id=93654&redirect_uri=http://localhost&response_type=code&scope=activity:read_all&scope=read_all
+
+            string query = $"client_id={_clientId}&client_secret={_clientSecret}&code={authCode}&grant_type=authorization_code";
+            var builder = new UriBuilder()
+            {
+                Scheme = "https",
+                Host = "www.strava.com",
+                Path = "oauth/token",
+                Query = query
+            };
+
+            var url = builder.ToString();
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.PostAsync(url, null);
+                if (response.IsSuccessStatusCode)
+                {
+                    var model = await response.Content.ReadAsAsync<StravaAPIToken>();
+
+                    StravaApiToken returnToken = _mapper
+                              .Map<StravaAPIToken, StravaApiToken>(model);
+
+                    return returnToken;
+                }
+                else
+                {
+                    throw new HttpRequestException(response.Content.ToString());
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
+                return null;
+            }
+
+            //-F grant_type = authorization_code
+
+            //        {
+            //            "token_type": "Bearer",
+            //"expires_at": 1562908002,
+            //"expires_in": 21600,
+            //"refresh_token": "REFRESHTOKEN",
+            //"access_token": "ACCESSTOKEN",
+            //"athlete": {
+            //                "id": 123456,
+            //    "username": "MeowTheCat",
+            //    "resource_state": 2,
+            //    "firstname": "Meow",
+            //    "lastname": "TheCat",
+            //    "city": "",
+            //    "state": "",
+            //    "country": null,
+            //    ...
+            //}
+            //        }
 
             throw new NotImplementedException();
         }
 
         public async Task<RefreshTokenModel> RefreshToken(string refreshToken)
         {
-            //refresh token
-            //grant_type "refresh_token"
-            var clientId = _configuration.GetSection("StravaAPICodes:ClientId");
-            var clientSecret = _configuration.GetSection("StravaAPICodes:ClientSecret");
-
-            string query = $"client_id={clientId.Value}&client_secret={clientSecret.Value}&refresh_token={refreshToken}&grant_type=refresh_token";
+            string query = $"client_id={_clientId}&client_secret={_clientSecret}&refresh_token={refreshToken}&grant_type=refresh_token";
             var builder = new UriBuilder()
             {
                 Scheme = "https",

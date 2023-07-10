@@ -1,5 +1,6 @@
 ﻿using Authorization.Data.Data;
 using Authorization.Data.Models;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace StravaSegmentSniper.Services.Internal.Services
 {
@@ -38,6 +39,18 @@ namespace StravaSegmentSniper.Services.Internal.Services
             {
                 throw new ArgumentException();
             }
+        }
+
+        public bool AddStravaIdToWebAppUser(string userId, long stravaId)
+        {
+            var userToUpdate = GetLoggedInUserById(userId);
+
+            if (userToUpdate != null)
+            {   
+                userToUpdate.StravaAthleteId = stravaId;
+            }
+
+            return _authDbContext.SaveChanges() == 1;
         }
     }
 }

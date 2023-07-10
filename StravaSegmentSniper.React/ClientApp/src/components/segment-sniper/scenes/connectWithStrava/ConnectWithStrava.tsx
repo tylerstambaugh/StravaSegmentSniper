@@ -21,7 +21,8 @@ function ConnectWithStrava() {
         position: "bottom-center",
       });
     } else {
-      ClientId = response.ClientId;
+      ClientId = response;
+      console.log(ClientId);
     }
   }
 
