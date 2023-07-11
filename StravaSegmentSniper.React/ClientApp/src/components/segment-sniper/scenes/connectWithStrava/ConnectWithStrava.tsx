@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../../../../custom.css";
 import useGetClientId, {
@@ -32,7 +32,7 @@ function ConnectWithStrava() {
     );
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getClientId();
   }, []);
 

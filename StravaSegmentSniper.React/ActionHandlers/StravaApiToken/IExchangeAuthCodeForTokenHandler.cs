@@ -2,19 +2,20 @@
 {
     public interface IExchangeAuthCodeForTokenHandler
     {
-        Task Execute(ExchangeAuthCodeForTokenContract contract);
+        Task<ExchangeAuthCodeForTokenContract.Result> Execute(ExchangeAuthCodeForTokenContract contract);
 
-        public class Result
-        {
-
-        }
-
-        
     }
 
     public class ExchangeAuthCodeForTokenContract
     {
         public string AuthCode { get; set; }
+        public string Scopes { get; set; }
+
+        public class Result
+        {
+            public bool TokenWasAdded { get; set; }
+        }
+
 
     }
 }

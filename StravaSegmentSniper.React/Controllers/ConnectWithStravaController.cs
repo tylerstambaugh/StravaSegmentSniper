@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using StravaSegmentSniper.React.ActionHandlers.StravaApiToken;
 
 namespace StravaSegmentSniper.React.Controllers
 {
@@ -9,10 +10,12 @@ namespace StravaSegmentSniper.React.Controllers
     public class ConnectWithStravaController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly IExchangeAuthCodeForTokenHandler _exchangeAuthCodeForTokenHandler;
 
-        public ConnectWithStravaController(IConfiguration configuration)
+        public ConnectWithStravaController(IConfiguration configuration, IExchangeAuthCodeForTokenHandler exchangeAuthCodeForTokenHandler)
         {
             _configuration = configuration;
+            _exchangeAuthCodeForTokenHandler = exchangeAuthCodeForTokenHandler;
         }
 
         [HttpGet]
@@ -25,14 +28,14 @@ namespace StravaSegmentSniper.React.Controllers
         [HttpPost]
         public IActionResult PostExchangeToken([System.Web.Http.FromUri] AuthCodeResponse authCodeResponse)
         {
-            AuthCodeResponse response = new AuthCodeResponse
+            ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
-                State = authCodeResponse.State,
-                AuthCode = authCodeResponse.AuthCode,
-                Scopes = authCodeResponse.Scopes,
+               AuthCode = authCodeResponse.AuthCode,
+               Scopes = authCodeResponse.Scopes,
             };
 
             //call handler to handle response
+            var handleSuccess = await _exchangeAuthCodeForTokenHandler.Execute(contract);
 
             if (response.AuthCode != null)
             {

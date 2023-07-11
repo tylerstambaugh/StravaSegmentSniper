@@ -19,16 +19,13 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
             _httpContextAccessor = httpContextAccessor;
             _stravaTokenService = stravaTokenService;
         }
-        public async Task Execute(ExchangeAuthCodeForTokenContract contract)
+        public async Task<ExchangeAuthCodeForTokenContract.Result> Execute(ExchangeAuthCodeForTokenContract contract)
         {
+            ValidateContract(contract);
 
             //call stravaToken service to get token
             var tokenData =  await _stravaApiTokenService.ExchangeAuthCodeForToken(contract.AuthCode);
-
-            if(tokenData == null ) 
-            {
-                throw new ArgumentException("Invalid parameter", paramName: nameof(contract.AuthCode));
-            }
+            
 
             //update webAppUser with StravaId
             var userId = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).Id;
@@ -47,9 +44,18 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
 
             var tokenWasAdded = _stravaTokenService.AddStravaApiTokenRecord(stravaTokenToAdd);
 
-            if(tokenWasAdded)
+                return new ExchangeAuthCodeForTokenContract.Result
+                {
+                    TokenWasAdded = tokenWasAdded,
+                };
+        }
 
-            throw new NotImplementedException();
+        private void ValidateContract(ExchangeAuthCodeForTokenContract contract)
+        {
+            if (tokenData == null)
+            {
+                throw new ArgumentException("Invalid parameter", paramName: nameof(contract.AuthCode));
+            }
         }
     }
 }

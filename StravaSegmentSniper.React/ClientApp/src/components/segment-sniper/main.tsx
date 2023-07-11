@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "../../../src/custom.css";
 import { Link } from "react-router-dom";
 import authService from "../api-authorization/AuthorizeService";
@@ -31,13 +31,34 @@ function SegmentSniper() {
       .then((res) => setAuthToken(res));
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const _subscription = authService.subscribe(() => populateState());
     populateState();
     return () => {
       authService.unsubscribe(_subscription);
     };
   });
+
+  useNonInitialEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/user", {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+      if (!response.ok) {
+        console.log(
+          `non initial use effect response not 'OK': ${response.json()}`
+        );
+      } else {
+        const data: Promise<WebAppUser> = response.json();
+        data
+          .then((resolvedData) => setAppUser(resolvedData))
+          .catch((error) =>
+            console.log(`There was an error fetching the data. ${error}`)
+          );
+      }
+    };
+    fetchData();
+  }, [userName]);
 
   return (
     <>
