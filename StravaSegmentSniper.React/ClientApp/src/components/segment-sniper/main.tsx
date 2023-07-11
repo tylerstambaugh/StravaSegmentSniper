@@ -25,10 +25,11 @@ function SegmentSniper() {
     setIsAuthenticated(isAuthenticated);
 
     setUsername(user && user.name);
-    setLoading(false);
     const authTokenRes = await authService
       .getAccessToken()
       .then((res) => setAuthToken(res));
+
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -39,8 +40,8 @@ function SegmentSniper() {
     };
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
+  async function fetchUser() {
+    if (isAuthenticated) {
       const response = await fetch("/user", {
         headers: { Authorization: `Bearer ${authToken}` },
       });
@@ -56,9 +57,12 @@ function SegmentSniper() {
             console.log(`There was an error fetching the data. ${error}`)
           );
       }
-    };
-    fetchData();
-  }, [userName]);
+    }
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -97,8 +101,7 @@ function SegmentSniper() {
             </Col>
           </Row>
         </Container>
-      ) : isAuthenticated &&
-        (!appUser?.stravaAthleteId || appUser.stravaAthleteId === 0) ? (
+      ) : !appUser?.stravaAthleteId || appUser.stravaAthleteId === 0 ? (
         <ConnectWithStrava />
       ) : (
         <div className="d-flex justify-content-center">

@@ -27,14 +27,12 @@ function ConnectWithStrava() {
   }
 
   async function handleConnectWithStrava() {
-    window.open(
-      `http://www.strava.com/oauth/authorize?client_id=${ClientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
+    getClientId().then((res) =>
+      window.open(
+        `http://www.strava.com/oauth/authorize?client_id=${ClientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
+      )
     );
   }
-
-  useLayoutEffect(() => {
-    getClientId();
-  }, []);
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center">
