@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   DatatableWrapper,
   Filter,
@@ -8,7 +8,15 @@ import {
   TableColumnType,
   TableHeader,
 } from "react-bs-datatable";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Row,
+  Table,
+  ToggleButton,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { ActivityListItem } from "../../models/Activity/ActivityListItem";
@@ -24,6 +32,8 @@ type ArrayElementType = ActivityListItem & {
 };
 
 const DisplayActivityList = (props: displayActivityListProps) => {
+  const [checked, setChecked] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
   const tableBody: ArrayElementType[] = props.activityList.map((item) => ({
     ...item,
     segmentsButton: null,
@@ -55,18 +65,29 @@ const DisplayActivityList = (props: displayActivityListProps) => {
     {
       prop: "segments",
       cell: (row) => (
-        <Button
-          variant="outline-primary"
-          size="sm"
-          onClick={() => {
-            props.handleShowSegments(row.id ?? "");
-          }}
-        >
-          Segments
-        </Button>
+        <ButtonGroup className="mb-2">
+          <ToggleButton
+            id="toggle-check"
+            type="checkbox"
+            variant={checked ? "outline-primary" : "primary"}
+            checked={row.id === selectedRow}
+            value="1"
+            onChange={(e) => setChecked(e.currentTarget.checked)}
+            onClick={() => {
+              handleSegmentButtonClick(row.id ?? "");
+            }}
+          >
+            Segments
+          </ToggleButton>
+        </ButtonGroup>
       ),
     },
   ];
+
+  const handleSegmentButtonClick = (activityId: string) => {
+    props.handleShowSegments(activityId);
+    setSelectedRow(activityId); // Update the selected row when the segment button is clicked
+  };
 
   return (
     <>
