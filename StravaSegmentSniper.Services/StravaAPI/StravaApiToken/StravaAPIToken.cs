@@ -46,10 +46,10 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
                 HttpResponseMessage response = await _httpClient.PostAsync(url, null);
                 if (response.IsSuccessStatusCode)
                 {
-                    var model = await response.Content.ReadAsAsync<StravaAPIToken>();
+                    var model = await response.Content.ReadAsAsync<StravaApiExchangeTokenResponse>();
 
                     StravaApiToken returnToken = _mapper
-                              .Map<StravaAPIToken, StravaApiToken>(model);
+                              .Map<StravaApiExchangeTokenResponse, StravaApiToken>(model);
 
                     return returnToken;
                 }
@@ -63,27 +63,6 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
                 Console.WriteLine($"Status Code{ex.StatusCode}, {ex.Message}");
                 return null;
             }
-
-            //-F grant_type = authorization_code
-
-            //        {
-            //            "token_type": "Bearer",
-            //"expires_at": 1562908002,
-            //"expires_in": 21600,
-            //"refresh_token": "REFRESHTOKEN",
-            //"access_token": "ACCESSTOKEN",
-            //"athlete": {
-            //                "id": 123456,
-            //    "username": "MeowTheCat",
-            //    "resource_state": 2,
-            //    "firstname": "Meow",
-            //    "lastname": "TheCat",
-            //    "city": "",
-            //    "state": "",
-            //    "country": null,
-            //    ...
-            //}
-            //        }
 
             throw new NotImplementedException();
         }
