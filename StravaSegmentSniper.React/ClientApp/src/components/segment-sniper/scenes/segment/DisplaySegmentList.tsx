@@ -104,15 +104,6 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col className="d-flex justify-content-end">
-                <Button
-                  as="input"
-                  value="Clear"
-                  onClick={(e) => clearSegmentsList()}
-                ></Button>
-              </Col>
-            </Row>
             <Table>
               <TableHeader />
               <TableBody />

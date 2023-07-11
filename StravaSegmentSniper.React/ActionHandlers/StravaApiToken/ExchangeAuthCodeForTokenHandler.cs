@@ -52,7 +52,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
 
         private void ValidateContract(ExchangeAuthCodeForTokenContract contract)
         {
-            if (tokenData == null)
+            if (contract == null)
             {
                 throw new ArgumentException("Invalid parameter", paramName: nameof(contract.AuthCode));
             }

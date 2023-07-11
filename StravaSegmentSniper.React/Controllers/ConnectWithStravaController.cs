@@ -26,7 +26,7 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostExchangeToken([System.Web.Http.FromUri] AuthCodeResponse authCodeResponse)
+        public  IActionResult PostExchangeToken([System.Web.Http.FromUri] AuthCodeResponse authCodeResponse)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
@@ -35,9 +35,9 @@ namespace StravaSegmentSniper.React.Controllers
             };
 
             //call handler to handle response
-            var handleSuccess = await _exchangeAuthCodeForTokenHandler.Execute(contract);
+            var handleSuccess = _exchangeAuthCodeForTokenHandler.Execute(contract).Result;
 
-            if (response.AuthCode != null)
+            if (handleSuccess.TokenWasAdded)
             {
                 return Ok();
             }

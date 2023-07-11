@@ -31,7 +31,7 @@ function SegmentSniper() {
       .then((res) => setAuthToken(res));
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const _subscription = authService.subscribe(() => populateState());
     populateState();
     return () => {
@@ -39,7 +39,7 @@ function SegmentSniper() {
     };
   });
 
-  useNonInitialEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/user", {
         headers: { Authorization: `Bearer ${authToken}` },

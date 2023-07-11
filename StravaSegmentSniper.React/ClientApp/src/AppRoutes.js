@@ -8,7 +8,7 @@ import ConnectWithStrava from "./components/segment-sniper/scenes/connectWithStr
 const AppRoutes = [
   {
     index: true,
-    requireAuth: false,
+    requireAuth: true,
     path: "/",
     element: <SegmentSniper />,
   },
