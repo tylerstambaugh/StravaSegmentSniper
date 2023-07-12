@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using StravaSegmentSniper.React.ActionHandlers.StravaApiToken;
 
 namespace StravaSegmentSniper.React.Controllers
@@ -22,7 +23,11 @@ namespace StravaSegmentSniper.React.Controllers
         //[ActionName("GetClientId")]
         public IActionResult GetClientId()
         {
-            return Ok(_configuration.GetSection("StravaAPICodes:ClientId").Value);
+            var clientId = new ClientIdResponse
+            {
+                ClientId = _configuration.GetSection("StravaAPICodes:ClientId").Value
+            };
+            return Ok(clientId);
         }
 
         [HttpPost]
@@ -49,6 +54,11 @@ namespace StravaSegmentSniper.React.Controllers
             public string State { get; set; }
             public string AuthCode { get; set; }
             public string Scopes { get; set; }
+        }
+
+        public class ClientIdResponse
+        {
+            public string ClientId { get; set; }
         }
     }
 }
