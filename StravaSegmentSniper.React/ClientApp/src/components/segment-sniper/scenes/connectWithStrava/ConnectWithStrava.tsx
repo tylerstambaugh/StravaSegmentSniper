@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../../../../custom.css";
 import useGetClientId, {
@@ -10,8 +10,7 @@ const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_con
 
 function ConnectWithStrava() {
   const connect = useGetClientId();
-  let ClientId;
-
+  const [clientId, setClientId] = useState<string>();
   async function getClientId() {
     console.log("calling strava to connect");
     const response: ClientIdResponse | Error = await connect.fetchClientId();
@@ -21,16 +20,15 @@ function ConnectWithStrava() {
         position: "bottom-center",
       });
     } else {
-      ClientId = response;
-      console.log(ClientId);
+      setClientId(response.ClientId);
     }
   }
 
   async function handleConnectWithStrava() {
-    getClientId().then((res) =>
-      window.open(
-        `http://www.strava.com/oauth/authorize?client_id=${ClientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
-      )
+    await getClientId();
+    console.log(clientId);
+    window.open(
+      `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
     );
   }
 

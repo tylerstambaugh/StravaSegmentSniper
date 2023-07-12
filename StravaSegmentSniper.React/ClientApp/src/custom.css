@@ -39,8 +39,7 @@ h1, h2, h3, h4, h5, p {
   border-radius: 20px;
   background-color: #FC4C02;
   text-decoration: underline, double;
-  font-weight: bold;
-  color: #000000;
+  color: #292b2c;
   transition: background-color 0.4s ease;
   width: 200px; /* Set the desired fixed width */
   text-align: center; /* Optional: Center the text horizontally */

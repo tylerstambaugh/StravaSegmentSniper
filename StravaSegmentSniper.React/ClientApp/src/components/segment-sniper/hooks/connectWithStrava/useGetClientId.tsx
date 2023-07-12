@@ -1,6 +1,5 @@
-import { useState } from "react";
+  import { useState } from "react";
 import { useApi } from "../useApi";
-import { ConnectWithStravaResponse } from "../../models/Account/ConnectWithStravaResponse";
 
 const useGetClientId = () => {
   const api = useApi();
