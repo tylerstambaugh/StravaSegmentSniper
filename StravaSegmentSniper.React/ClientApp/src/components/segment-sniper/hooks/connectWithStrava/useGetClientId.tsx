@@ -6,7 +6,7 @@ const useGetClientId = () => {
   const [connectLoading, setConnectLoading] = useState(false);
   const [connectError, setConnectError] = useState<Error | undefined>();
 
-  async function fetchClientId() {
+  async function fetchClientId(): Promise<ClientIdResponse | Error> {
     setConnectLoading(true);
 
     try {
@@ -14,7 +14,7 @@ const useGetClientId = () => {
         method: "GET",
       };
 
-      const fetchResponse = await api.fetch(
+      const fetchResponse: ClientIdResponse | Error = await api.fetch(
         "/api/ConnectWithStrava/GetClientId",
         requestOptions
       );
@@ -23,6 +23,7 @@ const useGetClientId = () => {
         setConnectError(fetchResponse);
         throw new Error(fetchResponse.message);
       }
+
       return fetchResponse;
     } catch (error) {
       if (error instanceof Error) {
@@ -44,5 +45,5 @@ const useGetClientId = () => {
 export default useGetClientId;
 
 export interface ClientIdResponse {
-  ClientId: string;
+  clientId: string;
 }

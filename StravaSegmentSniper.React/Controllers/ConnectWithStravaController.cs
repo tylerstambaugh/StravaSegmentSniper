@@ -23,20 +23,22 @@ namespace StravaSegmentSniper.React.Controllers
         //[ActionName("GetClientId")]
         public IActionResult GetClientId()
         {
-            var clientId = new ClientIdResponse
+
+            return Ok(new ClientIdResponse
             {
                 ClientId = _configuration.GetSection("StravaAPICodes:ClientId").Value
-            };
-            return Ok(clientId);
+            }
+            );
         }
 
         [HttpPost]
-        public  IActionResult PostExchangeToken([System.Web.Http.FromUri] AuthCodeResponse authCodeResponse)
+        [ActionName("PostExchangeToken")]
+        public  IActionResult PostExchangeToken(string state, string code, string scope)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
-               AuthCode = authCodeResponse.AuthCode,
-               Scopes = authCodeResponse.Scopes,
+               AuthCode = code,
+               Scopes = scope,
             };
 
             //call handler to handle response

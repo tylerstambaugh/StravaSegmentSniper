@@ -28,6 +28,7 @@ function SegmentSniper() {
     const authTokenRes = await authService
       .getAccessToken()
       .then((res) => setAuthToken(res));
+    console.log(authToken);
 
     setLoading(false);
   }
@@ -41,7 +42,7 @@ function SegmentSniper() {
   });
 
   async function fetchUser() {
-    if (isAuthenticated) {
+    if (isAuthenticated && authToken) {
       const response = await fetch("/user", {
         headers: { Authorization: `Bearer ${authToken}` },
       });
