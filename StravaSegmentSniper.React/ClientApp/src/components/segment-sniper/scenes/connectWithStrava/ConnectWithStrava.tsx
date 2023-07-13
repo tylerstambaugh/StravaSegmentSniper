@@ -13,9 +13,12 @@ const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_con
 function ConnectWithStrava() {
   const connect = useGetClientId();
   const [clientId, setClientId] = useState<string>();
+  const baseUrl = window.origin;
 
   async function handleConnectWithStrava() {
-    const response: any = await connect.fetchClientId();
+    const response: ClientIdResponse | Error = await connect.fetchClientId();
+    console.log(`response = ${response}`);
+
     if (response instanceof Error) {
       toast.error(`There was an error fetching the client Id: ${response}`, {
         autoClose: 1500,
@@ -23,14 +26,14 @@ function ConnectWithStrava() {
       });
     } else {
       setClientId(response.clientId);
-      console.log(response.ClientId);
+      console.log(`response.ClientId = ${response.clientId}`);
     }
   }
 
   useEffect(() => {
     if (clientId) {
       window.open(
-        `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=http://localhost/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
+        `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${baseUrl}/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
       );
     }
   }, [clientId]);

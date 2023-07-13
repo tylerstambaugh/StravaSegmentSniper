@@ -124,26 +124,3 @@ const Activity = () => {
 };
 
 export default Activity;
-
-// const initialState: ActivityListItem = {
-//   name: "",
-//   id: "",
-//   startDate: undefined,
-//   elapsedTime: undefined,
-//   type: "",
-//   distance: undefined,
-//   achievementCount: undefined,
-//   maxSpeed: undefined,
-//   stravaMap: {
-//     id: "",
-//     polyline: "",
-//   },
-//   segments: [
-//     {
-//       name: "",
-//       id: "",
-//       time: 0,
-//       distance: 0,
-//     },
-//   ],
-// };
