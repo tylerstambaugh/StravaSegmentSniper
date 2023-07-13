@@ -49,16 +49,6 @@ namespace StravaSegmentSniper.React.Controllers
             else { return BadRequest(); }
         }
 
-        public class AuthCodeResponse
-        {
-            public string State { get; set; }
-            public string AuthCode { get; set; }
-            public string Scopes { get; set; }
-        }
 
-        public class ClientIdResponse
-        {
-            public string ClientId { get; set; }
-        }
     }
 }

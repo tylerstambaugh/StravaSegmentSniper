@@ -1,4 +1,4 @@
-  import { useState } from "react";
+import { useState } from "react";
 import { useApi } from "../useApi";
 
 const useGetClientId = () => {
@@ -6,7 +6,7 @@ const useGetClientId = () => {
   const [connectLoading, setConnectLoading] = useState(false);
   const [connectError, setConnectError] = useState<Error | undefined>();
 
-  async function fetchClientId(): Promise<ClientIdResponse | Error> {
+  async function fetchClientId() {
     setConnectLoading(true);
 
     try {
@@ -14,7 +14,7 @@ const useGetClientId = () => {
         method: "GET",
       };
 
-      const fetchResponse: ClientIdResponse | Error = await api.fetch(
+      const fetchResponse = await api.fetch(
         "/api/ConnectWithStrava/GetClientId",
         requestOptions
       );

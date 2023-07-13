@@ -60,7 +60,7 @@ function SegmentSniper() {
     }
   }
 
-  useEffect(() => {
+  useNonInitialEffect(() => {
     fetchUser();
   }, [isAuthenticated]);
 
