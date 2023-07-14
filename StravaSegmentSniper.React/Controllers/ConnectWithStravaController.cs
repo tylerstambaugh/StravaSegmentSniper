@@ -31,9 +31,10 @@ namespace StravaSegmentSniper.React.Controllers
             );
         }
 
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpGet]
         [ActionName("PostExchangeToken")]
-        public  IActionResult PostExchangeToken(string state, string code, string scope)
+        public  IActionResult PostExchangeToken(string code, string scope)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
@@ -46,11 +47,13 @@ namespace StravaSegmentSniper.React.Controllers
 
             if (handleSuccess.TokenWasAdded)
             {
-                return Ok();
+                string url = "https://localhost:44411/";
+                return Redirect(url);
+
+                //return Ok();
             }
             else { return BadRequest(); }
         }
-
 
     }
 }

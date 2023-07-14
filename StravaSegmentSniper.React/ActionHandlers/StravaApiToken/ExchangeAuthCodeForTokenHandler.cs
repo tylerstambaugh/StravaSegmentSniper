@@ -28,15 +28,16 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
             
 
             //update webAppUser with StravaId
-            var userId = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString()).Id;
-            var stravaAthleteIdWasAdded = _webAppUserService.AddStravaIdToWebAppUser(userId, tokenData.Athlete.Id);
+            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
+            var userId = user.Id;
+            var stravaAthleteIdWasAdded = _webAppUserService.AddStravaIdToWebAppUser(userId, tokenData.AthleteId);
 
             //update StravaApiTokens with tokendata
             var stravaTokenToAdd = new Data.Entities.Token.StravaApiToken
             {
                 UserId = userId,
-                DetailedAthleteId = tokenData.Athlete.Id,
-                AuthorizationToken = tokenData.AuthorizationToken,
+                DetailedAthleteId = tokenData.AthleteId,
+                AuthorizationToken = tokenData.Token,
                 RefreshToken = tokenData.RefreshToken,
                 ExpiresAt = tokenData.ExpiresAt,
                 ExpiresIn = tokenData.ExpiresIn,
