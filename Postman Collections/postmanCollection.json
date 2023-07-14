@@ -650,7 +650,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{access_token}}",
+								"value": "Bearer 6160cd68586cf552754a47e4273501cb43bf35d0",
 								"type": "text"
 							}
 						],
@@ -706,7 +706,7 @@
 	],
 	"variable": [
 		{
-			"id": "cf5eb2bd-8230-4853-acfc-daf59da954e4",
+			"id": "a2a868f0-1afd-49f4-998b-244998f81d2b",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
