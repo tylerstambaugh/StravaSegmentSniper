@@ -27,7 +27,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
             _clientSecret = _configuration.GetSection("StravaAPICodes:ClientSecret").Value;
         }
 
-        public async Task<StravaApiToken> ExchangeAuthCodeForToken(string authCode)
+        public async Task<StravaApiTokenModel> ExchangeAuthCodeForToken(string authCode)
         {
 
             string query = $"client_id={_clientId}&client_secret={_clientSecret}&code={authCode}&grant_type=authorization_code";
@@ -48,8 +48,8 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
                 {
                     var model = await response.Content.ReadAsAsync<StravaApiExchangeTokenResponse>();
 
-                    StravaApiToken returnToken = _mapper
-                              .Map<StravaApiExchangeTokenResponse, StravaApiToken>(model);
+                    StravaApiTokenModel returnToken = _mapper
+                              .Map<StravaApiExchangeTokenResponse, StravaApiTokenModel>(model);
 
                     return returnToken;
                 }

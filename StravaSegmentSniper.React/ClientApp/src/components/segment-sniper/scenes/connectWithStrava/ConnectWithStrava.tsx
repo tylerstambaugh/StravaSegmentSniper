@@ -16,6 +16,7 @@ function ConnectWithStrava() {
   const baseUrl = window.origin;
 
   async function handleConnectWithStrava() {
+    setClientId("");
     const response: ClientIdResponse | Error = await connect.fetchClientId();
     console.log(`response = ${response}`);
 
