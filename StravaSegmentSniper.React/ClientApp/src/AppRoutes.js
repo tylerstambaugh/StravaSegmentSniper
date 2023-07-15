@@ -4,6 +4,9 @@ import Activity from "./components/segment-sniper/scenes/activity/Activity";
 import Athlete from "./components/segment-sniper/scenes/athlete/Athlete";
 import TokenScene from "./components/segment-sniper/scenes/token/tokenScene";
 import ConnectWithStrava from "./components/segment-sniper/scenes/connectWithStrava/ConnectWithStrava"
+import ConnectWithStravaSuccess from "./components/segment-sniper/scenes/connectWithStrava/ConnectWithStravaSuccess";
+import ConnectWithStravaError from "./components/segment-sniper/scenes/connectWithStrava/ConnectWithStravaError";
+
 
 const AppRoutes = [
   {
@@ -27,6 +30,17 @@ const AppRoutes = [
     requireAuth: true,
     element: <ConnectWithStrava />
   },
+  {
+    path: "/connect-with-strava-success/",
+    requireAuth: true,
+    element: <ConnectWithStravaSuccess />
+  },
+  {
+    path: "/connect-with-strava-error/",
+    requireAuth: true,
+    element: <ConnectWithStravaError />
+  },
+
   {
     path: "/token-maintenance/",
     requireAuth: true,
