@@ -5,8 +5,6 @@ import useGetClientId, {
   ClientIdResponse,
 } from "../../hooks/connectWithStrava/useGetClientId";
 import { toast } from "react-toastify";
-import { useNonInitialEffect } from "react-cork";
-import { log } from "console";
 
 const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
@@ -27,15 +25,12 @@ function ConnectWithStrava() {
       });
     } else {
       setClientId(response.clientId);
-      console.log(`response.ClientId = ${response.clientId}`);
     }
   }
 
   useEffect(() => {
     if (clientId) {
-      window.open(
-        `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${baseUrl}/api/ConnectWithStrava/PostExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`
-      );
+      window.location.href = `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${baseUrl}/api/ConnectWithStrava/ExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`;
     }
   }, [clientId]);
 

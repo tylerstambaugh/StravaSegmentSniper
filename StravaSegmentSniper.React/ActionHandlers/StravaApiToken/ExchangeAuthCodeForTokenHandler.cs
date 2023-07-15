@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Data.Entities.Token;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using StravaSegmentSniper.Data.Entities.Token;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.TokenService;
 using System.Security.Claims;
@@ -25,9 +26,18 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
 
             //call stravaToken service to get token
             var tokenData =  await _stravaApiTokenService.ExchangeAuthCodeForToken(contract.AuthCode);
-            
+
 
             //update webAppUser with StravaId
+
+            //var auth = await _httpContextAccessor.HttpContext.Session.(JwtBearerDefaults.AuthenticationScheme);
+            //if (auth.Succeeded)
+            //{
+            //    var claimsPrincipal = auth.Principal;
+            //    var subject = claimsPrincipal.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier).;
+            //    // use the subject claim as needed (actual value is "subject.Value")
+            //}
+
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var userId = user.Id;
             var stravaAthleteIdWasAdded = _webAppUserService.AddStravaIdToWebAppUser(userId, tokenData.AthleteId);
