@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using StravaSegmentSniper.React.ActionHandlers.StravaApiToken;
-using System.Security;
+//using System.Web.Http;
 
-[assembly: AllowPartiallyTrustedCallers]
 namespace StravaSegmentSniper.React.Controllers
 {
     
@@ -35,13 +34,13 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [AllowAnonymous]
-        [Authorize]
         [HttpGet]
-        [ActionName("ExchangeToken")]
-        public  IActionResult ExchangeToken(string code, string scope)
+        [ActionName("ExchangeToken/{id}")]
+        public  IActionResult ExchangeToken(string id, [System.Web.Http.FromUri] string code, [System.Web.Http.FromUri] string scope)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
+                UserId = id,
                AuthCode = code,
                Scopes = scope,
             };
