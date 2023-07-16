@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol;
 using StravaSegmentSniper.React.ActionHandlers.StravaApiToken;
 //using System.Web.Http;
 
 namespace StravaSegmentSniper.React.Controllers
 {
-    
+
     [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -36,13 +35,13 @@ namespace StravaSegmentSniper.React.Controllers
         [AllowAnonymous]
         [HttpGet]
         [ActionName("ExchangeToken/{id}")]
-        public  IActionResult ExchangeToken(string id, [System.Web.Http.FromUri] string code, [System.Web.Http.FromUri] string scope)
+        public IActionResult ExchangeToken(string id, [System.Web.Http.FromUri] string code, [System.Web.Http.FromUri] string scope)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract
             {
                 UserId = id,
-               AuthCode = code,
-               Scopes = scope,
+                AuthCode = code,
+                Scopes = scope,
             };
 
             var handleSuccess = _exchangeAuthCodeForTokenHandler.Execute(contract).Result;
@@ -52,7 +51,7 @@ namespace StravaSegmentSniper.React.Controllers
                 string url = "https://localhost:44411/connect-with-strava-success";
                 return Redirect(url);
             }
-            else 
+            else
             {
                 string url = "https://localhost:44411/connect-with-strava-error";
                 return Redirect(url);

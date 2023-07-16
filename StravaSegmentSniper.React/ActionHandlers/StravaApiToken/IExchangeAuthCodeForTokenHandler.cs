@@ -8,6 +8,7 @@
 
     public class ExchangeAuthCodeForTokenContract
     {
+        public string UserId { get; set; }
         public string AuthCode { get; set; }
         public string Scopes { get; set; }
 
