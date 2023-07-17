@@ -45,7 +45,6 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
                         var stravaTokenToAdd = new Data.Entities.Token.StravaApiToken
                         {
                             UserId = contract.UserId,
-                            DetailedAthleteId = tokenData.AthleteId,
                             AuthorizationToken = tokenData.Token,
                             RefreshToken = tokenData.RefreshToken,
                             ExpiresAt = tokenData.ExpiresAt,

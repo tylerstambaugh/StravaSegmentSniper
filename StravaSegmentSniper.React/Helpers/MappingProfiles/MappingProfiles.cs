@@ -70,8 +70,7 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
                 .ForMember(dest => dest.AuthorizationToken, opt => opt.MapFrom(src => src.Token))
                 .ForMember(dest => dest.ExpiresAt, opt => opt.MapFrom(src => src.ExpiresAt))
                 .ForMember(dest => dest.ExpiresIn, opt => opt.MapFrom(src => src.ExpiresIn))
-                .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.RefreshToken))
-                .ForMember(dest => dest.DetailedAthleteId, opt => opt.MapFrom(src => src.AthleteId));
+                .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.RefreshToken));
 
             CreateMap<StravaApiExchangeTokenResponse, StravaApiTokenModel>()
                 .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.access_token))

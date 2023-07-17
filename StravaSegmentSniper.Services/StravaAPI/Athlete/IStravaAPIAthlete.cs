@@ -4,6 +4,6 @@ namespace StravaSegmentSniper.Services.StravaAPI.Athlete
 {
     public interface IStravaAPIAthlete
     {
-        Task<DetailedAthleteModel> GetDetailedAthleteFromStrava(int userId);
+        Task<DetailedAthleteModel> GetDetailedAthleteFromStrava(string userId);
     }
 }

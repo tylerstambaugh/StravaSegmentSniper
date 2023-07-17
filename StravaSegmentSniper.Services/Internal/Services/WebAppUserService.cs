@@ -27,19 +27,20 @@ namespace StravaSegmentSniper.Services.Internal.Services
             }
         }
 
-        public WebAppUser GetLoggedInUserByStravaId(long stravaId)
-        {
-            var userToReturn = _authDbContext.Users.Where(x => x.StravaAthleteId == stravaId).First();
+        //remove
+        //public WebAppUser GetLoggedInUserByStravaId(long stravaId)
+        //{
+        //    var userToReturn = _authDbContext.Users.Where(x => x.StravaAthleteId == stravaId).First();
 
-            if (userToReturn != null)
-            {
-                return userToReturn;
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
-        }
+        //    if (userToReturn != null)
+        //    {
+        //        return userToReturn;
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException();
+        //    }
+        //}
 
         public bool AddStravaIdToWebAppUser(string userId, long stravaId)
         {

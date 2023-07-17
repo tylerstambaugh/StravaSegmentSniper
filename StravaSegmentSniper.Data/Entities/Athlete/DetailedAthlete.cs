@@ -1,4 +1,5 @@
-﻿using StravaSegmentSniper.Data.Entities.Misc;
+﻿using Authorization.Data.Models;
+using StravaSegmentSniper.Data.Entities.Misc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

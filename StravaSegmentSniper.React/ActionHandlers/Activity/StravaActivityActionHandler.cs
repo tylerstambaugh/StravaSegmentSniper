@@ -27,8 +27,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
         public List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var stravaAthleteId = user.StravaAthleteId;
-            DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, stravaAthleteId).Result;
+            var userId = user.Id;
+            DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, userId).Result;
 
             List<ActivityListModel> activityList = new List<ActivityListModel>();
                 activityList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(detailedActivityModel));
@@ -41,7 +41,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
         {
 
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var stravaAthleteId = user.StravaAthleteId;
+            var userId = user.Id;
 
             var endDate = contract.EndDate.AddDays(1);
 
@@ -50,7 +50,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 
 
             List<SummaryActivityModel> listOfSummaryActivities = _stravaAPIActivity
-                .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, stravaAthleteId)
+                .GetSummaryActivityForTimeRange(unixStartDate, unixEndDate, userId)
                 .Result;
 
             if (contract.ActivityType != ActivityTypeEnum.ActivityType.All)
@@ -63,7 +63,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 
             foreach(SummaryActivityModel activityModel in listOfSummaryActivities)
             {
-                listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.Id, stravaAthleteId).Result);
+                listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.Id, userId).Result);
             }
 
             List<ActivityListModel> activitieList = new List<ActivityListModel>();
@@ -79,8 +79,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
         public DetailedActivityUIModel HandleGetActivityDetailById(HandleGetActivityByIdContract contract)
         {
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var stravaAthleteId = user.StravaAthleteId;
-            DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, stravaAthleteId).Result;
+            var userId = user.Id;
+            DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, userId).Result;
 
             var model = _activityAdapter.AdaptDetailedActivityModelToDetailedActivityUIModel(detailedActivityModel);
 
