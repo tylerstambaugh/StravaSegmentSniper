@@ -24,9 +24,9 @@ namespace StravaSegmentSniper.Services.StravaAPI.Athlete
             _mapper = mapper;
         }
 
-        public async Task<DetailedAthleteModel> GetDetailedAthleteFromStrava(int stravaAthleteId)
+        public async Task<DetailedAthleteModel> GetDetailedAthleteFromStrava(string userId)
         {
-            var token = _tokenService.GetTokenByStravaAthleteId(stravaAthleteId);
+            var token = _tokenService.GetTokenByUserId(userId);
             if (token != null)
             {
                 var builder = new UriBuilder()

@@ -32,8 +32,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             {
             //get detailed activity by Id
                 var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-                var stravaAthleteId = user.StravaAthleteId;
-                DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, stravaAthleteId).Result;
+                var userId = user.Id;
+                DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, userId).Result;
 
                 List<DetailedSegmentEffortModel> segmentEfforts = detailedActivityModel.SegmentEfforts;
 
@@ -46,7 +46,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                 foreach (DetailedSegmentEffortModel segmentEffortModel in segmentEfforts)
                 {
                     //get detailed segments for each segment Id
-                    DetailedSegmentModel model = _stravaSegment.GetDetailedSegmentById(segmentEffortModel.Segment.Id, stravaAthleteId).Result;
+                    DetailedSegmentModel model = _stravaSegment.GetDetailedSegmentById(segmentEffortModel.Segment.Id, userId).Result;
                     segmentModels.Add(model);
 
                     //do sniping on list of segments

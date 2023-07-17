@@ -32,7 +32,7 @@ namespace StravaSegmentSniper.React.Controllers
             int endDate = 9235479;
 
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = user.StravaAthleteId;
+            var userId = user.Id;
 
 
             List<SummaryActivityModel> listOfActivities = _stravaAPIActivity
@@ -46,7 +46,7 @@ namespace StravaSegmentSniper.React.Controllers
         public DetailedActivityModel GetDetailedActivityById(int activityId)
         {
             var user =  _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = 1;
+            var userId = user.Id;
             DetailedActivityModel activity = _stravaAPIActivity.GetDetailedActivityById(activityId, userId).Result;
 
             return activity;

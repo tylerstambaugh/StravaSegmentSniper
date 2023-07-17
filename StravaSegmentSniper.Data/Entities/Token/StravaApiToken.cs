@@ -10,9 +10,10 @@ namespace StravaSegmentSniper.Data.Entities.Token
         public int Id { get; set; }
         public string UserId { get; set; }
 
-        [ForeignKey("DetailedAthlete")]
-        public int? DetailedAthleteId { get; set; }
-        public virtual DetailedAthlete Athlete { get; set; }
+        //remove
+        //[ForeignKey("DetailedAthlete")]
+        //public int? DetailedAthleteId { get; set; }
+        //public virtual DetailedAthlete Athlete { get; set; }
 
         public string? AuthorizationToken { get; set; }
 

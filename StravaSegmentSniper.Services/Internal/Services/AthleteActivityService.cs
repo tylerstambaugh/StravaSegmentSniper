@@ -25,7 +25,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _context = context;
         }  
 
-        public List<DetailedSegmentModel> GetAllDetailedSegments(int userId)
+        public List<DetailedSegmentModel> GetAllDetailedSegments(string userId)
         {
            // string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             //Get ist of activities for the athlete
@@ -62,7 +62,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
             return segments;
         }
-        public List<SummaryActivityModel> GetSummaryActivityForATimeRange(int userId, int after, int before)
+        public List<SummaryActivityModel> GetSummaryActivityForATimeRange(string userId, int after, int before)
         {
             List<SummaryActivityModel> returnList = new List<SummaryActivityModel>();
             //string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
