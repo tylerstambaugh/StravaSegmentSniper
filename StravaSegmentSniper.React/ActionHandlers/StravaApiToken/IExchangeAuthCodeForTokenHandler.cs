@@ -20,13 +20,13 @@
 
     }
 
-    public class AuthCodeResponse
-    {
-        public string UserId { get; set; }
-        public string State { get; set; }
-        public string AuthCode { get; set; }
-        public string Scopes { get; set; }
-    }
+    //public class AuthCodeResponse
+    //{
+    //    public string UserId { get; set; }
+    //    public string State { get; set; }
+    //    public string AuthCode { get; set; }
+    //    public string Scopes { get; set; }
+    //}
 
     public class ClientIdResponse
     {
