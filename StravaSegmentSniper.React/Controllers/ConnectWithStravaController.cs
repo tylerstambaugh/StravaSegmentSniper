@@ -7,7 +7,7 @@ namespace StravaSegmentSniper.React.Controllers
 {
 
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]/")]
     [ApiController]
     public class ConnectWithStravaController : ControllerBase
     {
@@ -33,8 +33,8 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        [ActionName("ExchangeToken/{id}")]
+        [HttpGet("{id}")]
+        //[ActionName("ExchangeToken/")]
         public IActionResult ExchangeToken(string id, [System.Web.Http.FromUri] string code, [System.Web.Http.FromUri] string scope)
         {
             ExchangeAuthCodeForTokenContract contract = new ExchangeAuthCodeForTokenContract

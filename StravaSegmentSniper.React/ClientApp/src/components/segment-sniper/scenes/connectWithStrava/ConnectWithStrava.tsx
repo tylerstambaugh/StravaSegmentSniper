@@ -5,6 +5,8 @@ import useGetClientId, {
   ClientIdResponse,
 } from "../../hooks/connectWithStrava/useGetClientId";
 import { toast } from "react-toastify";
+import authService from "../../../api-authorization/AuthorizeService";
+import { UserManager, WebStorageStateStore } from "oidc-client";
 
 const connectWithStravaImage = require("../../assets/stravaImages/btn_strava_connectwith_orange/btn_strava_connectwith_orange@2x.png");
 
@@ -12,25 +14,45 @@ function ConnectWithStrava() {
   const connect = useGetClientId();
   const [clientId, setClientId] = useState<string>();
   const baseUrl = window.origin;
+  const [userId, setUserId] = useState();
 
   async function handleConnectWithStrava() {
     setClientId("");
-    const response: ClientIdResponse | Error = await connect.fetchClientId();
-    console.log(`response = ${response}`);
+    const clientIdResponse: ClientIdResponse | Error =
+      await connect.fetchClientId();
+    const userIdResponse: any | Error = await authService.getUser();
 
-    if (response instanceof Error) {
-      toast.error(`There was an error fetching the client Id: ${response}`, {
-        autoClose: 1500,
-        position: "bottom-center",
-      });
+    if (userIdResponse instanceof Error) {
+      toast.error(
+        `There was an error fetching the user Id: ${clientIdResponse}`,
+        {
+          autoClose: 1500,
+          position: "bottom-center",
+        }
+      );
     } else {
-      setClientId(response.clientId);
+      console.log(await userIdResponse);
+      setUserId(userIdResponse.sub);
+    }
+
+    if (clientIdResponse instanceof Error) {
+      toast.error(
+        `There was an error fetching the client Id: ${clientIdResponse}`,
+        {
+          autoClose: 1500,
+          position: "bottom-center",
+        }
+      );
+    } else {
+      setClientId(clientIdResponse.clientId);
     }
   }
 
   useEffect(() => {
     if (clientId) {
-      window.location.href = `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${baseUrl}/api/ConnectWithStrava/ExchangeToken&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`;
+      console.log(`user Id: ${userId}`);
+
+      window.location.href = `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${baseUrl}/api/ConnectWithStrava/ExchangeToken/${userId}&approval_prompt=force&scope=activity:read_all,activity:write,profile:read_all,profile:write`;
     }
   }, [clientId]);
 
