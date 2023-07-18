@@ -86,8 +86,19 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public bool AddStravaApiTokenRecord(StravaApiToken model)
         {
-            _context.StravaApiTokens.Add(model);
+            var existingRecord = _context.StravaApiTokens.Where(t => t.UserId == model.UserId).First();
 
+            if (existingRecord != null)
+            {
+                existingRecord.RefreshToken = model.RefreshToken;
+                existingRecord.AuthorizationToken = model.AuthorizationToken;
+                existingRecord.ExpiresIn = model.ExpiresIn;
+                existingRecord.ExpiresAt = model.ExpiresAt;
+            }
+            else
+            {
+            _context.StravaApiTokens.Add(model);
+            }
                 return _context.SaveChanges() == 1;
         }
 

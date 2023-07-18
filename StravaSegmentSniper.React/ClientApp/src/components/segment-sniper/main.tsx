@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNonInitialEffect } from "react-cork";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import ConnectWithStrava from "./scenes/connectWithStrava/ConnectWithStrava";
+import useGetWebAppUser from "./hooks/token/useGetWebAppUser";
 
 function SegmentSniper() {
   const [userName, setUsername] = useState(null);
@@ -16,6 +17,7 @@ function SegmentSniper() {
   const [appUser, setAppUser] = useState<WebAppUser>();
   const [authToken, setAuthToken] = useState("");
   const [loading, setLoading] = useState(true);
+  const getWebAppUser = useGetWebAppUser();
 
   async function populateState() {
     const [isAuthenticated, user] = await Promise.all([
@@ -28,8 +30,11 @@ function SegmentSniper() {
     const authTokenRes = await authService
       .getAccessToken()
       .then((res) => setAuthToken(res));
-    console.log(authToken);
 
+    const appUserResponse = await getWebAppUser.fetchUser();
+    if (!(appUserResponse instanceof Error)) {
+      setAppUser(appUserResponse);
+    }
     setLoading(false);
   }
 
