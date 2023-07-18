@@ -3,17 +3,20 @@ import authService from "../../api-authorization/AuthorizeService";
 
 export const useApi = <TResponse = any>() => {
   const abortControllers: AbortController[] = [];
+  const [currentToken, setCurrentToken] = useState();
 
-  async function fetch<TResponse>(
+  async function fetch(
     requestUrl: string,
     requestOptions: RequestInit,
     abortController?: AbortController
   ): Promise<TResponse | Error> {
     const localAbortController = abortController ?? new AbortController();
     abortControllers.push(localAbortController);
+    let attempt = 0;
 
     try {
-      const response = await sendRequest(requestUrl, {
+      setCurrentToken(await authService.getAccessToken());
+      const response = await sendRequest(attempt, requestUrl, {
         ...requestOptions,
         signal: localAbortController.signal,
       });
@@ -52,21 +55,35 @@ export const useApi = <TResponse = any>() => {
   }
 
   async function sendRequest(
+    attempt: number,
     url: string,
-    requestOptions: RequestInit
+    requestOptions: RequestInit,
+    tokenToUse?: string
   ): Promise<Response | undefined> {
-    const token = await authService.getAccessToken();
-    console.log(token);
+    setAuthInHeaders(tokenToUse);
 
-    requestOptions.headers = {
-      ...requestOptions.headers,
-      Authorization: `Bearer ${token}`,
-    };
-    let response: Response | undefined = await window.fetch(
-      url,
-      requestOptions
-    );
-    return response;
+    if (attempt < 2) {
+      attempt++;
+      let response: Response | undefined = await window.fetch(
+        url,
+        requestOptions
+      );
+
+      if (response?.status === 401 || response?.status === 403) {
+        const newToken = await authService.getAccessToken();
+
+        response = await sendRequest(attempt, url, requestOptions, newToken);
+      }
+      return response;
+    }
+
+    function setAuthInHeaders(newToken?: string) {
+      requestOptions.headers = {
+        ...requestOptions.headers,
+        Authorization: `Bearer ${newToken ?? currentToken}`,
+      };
+    }
   }
+
   return { fetch };
 };

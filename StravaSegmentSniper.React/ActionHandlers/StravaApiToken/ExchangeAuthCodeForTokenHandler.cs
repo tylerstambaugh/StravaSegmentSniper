@@ -23,7 +23,6 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
             bool tokenWasAdded = false;
             ValidateContract(contract);
 
-            //call stravaToken service to get token
             var tokenData = await _stravaApiTokenService.ExchangeAuthCodeForToken(contract.AuthCode);
 
             if (tokenData != null)
@@ -36,11 +35,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
                     throw new ApplicationException("stravaAthleteId was not added", ex);
                 }
 
-            //update StravaApiTokens with tokendata
             if (stravaAthleteIdWasAdded)
                 try
                 {
-
                     {
                         var stravaTokenToAdd = new Data.Entities.Token.StravaApiToken
                         {

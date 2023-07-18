@@ -27,21 +27,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
             }
         }
 
-        //remove
-        //public WebAppUser GetLoggedInUserByStravaId(long stravaId)
-        //{
-        //    var userToReturn = _authDbContext.Users.Where(x => x.StravaAthleteId == stravaId).First();
-
-        //    if (userToReturn != null)
-        //    {
-        //        return userToReturn;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException();
-        //    }
-        //}
-
         public bool AddStravaIdToWebAppUser(string userId, long stravaId)
         {
             var userToUpdate = GetLoggedInUserById(userId);
