@@ -24,7 +24,6 @@ namespace StravaSegmentSniper.React.Controllers
         //[ActionName("GetClientId")]
         public IActionResult GetClientId()
         {
-
             return Ok(new ClientIdResponse
             {
                 ClientId = _configuration.GetSection("StravaAPICodes:ClientId").Value

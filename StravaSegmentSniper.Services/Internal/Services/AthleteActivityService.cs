@@ -13,11 +13,11 @@ namespace StravaSegmentSniper.Services.Internal.Services
     public class AthleteActivityService : IAthleteActivityService
     {
         private readonly IStravaAPIActivity _stravaAPIActivity;
-        private readonly IStravaAPISegment _stravaAPISegment;
+        private readonly IStravaApiSegment _stravaAPISegment;
         private readonly StravaSegmentSniperDbContext _context;
 
         public AthleteActivityService(IStravaAPIActivity stravaAPIActivity,
-                                      IStravaAPISegment stravaAPISegment,
+                                      IStravaApiSegment stravaAPISegment,
                                       StravaSegmentSniperDbContext context)
         {            
             _stravaAPIActivity = stravaAPIActivity;

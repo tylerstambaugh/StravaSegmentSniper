@@ -14,9 +14,9 @@ namespace StravaSegmentSniper.React.Controllers
     [ApiController]
     public class SegmentSniperController : ControllerBase
     {
-        private readonly IStravaSegmentActionHandler _stravaSegmentActionHandler;
+        private readonly ISnipeSegmentActionHandler _stravaSegmentActionHandler;
 
-        public SegmentSniperController(IStravaSegmentActionHandler stravaSegmentActionHandler)
+        public SegmentSniperController(ISnipeSegmentActionHandler stravaSegmentActionHandler)
         {
             _stravaSegmentActionHandler = stravaSegmentActionHandler;
         }

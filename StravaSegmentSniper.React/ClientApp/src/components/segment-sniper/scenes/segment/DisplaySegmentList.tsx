@@ -52,20 +52,6 @@ function DisplaySegmentList(props: displaySegmentListProps) {
         </Button>
       ),
     },
-    {
-      prop: "starButton",
-      cell: (row) => (
-        <Button
-          variant="outline-primary"
-          size="sm"
-          onClick={() => {
-            alert(`We'll star this segment`);
-          }}
-        >
-          Star
-        </Button>
-      ),
-    },
   ];
 
   function clearSegmentsList() {

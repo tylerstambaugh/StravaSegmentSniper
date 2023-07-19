@@ -3,7 +3,7 @@ using StravaSegmentSniper.Services.StravaAPI.Models.Athlete;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Models.Segment
 {
-    public class DetailedSegmentEffortAPIModel
+    public class DetailedSegmentEffortApiModel
     {
         public long id { get; set; }
         public int resource_state { get; set; }

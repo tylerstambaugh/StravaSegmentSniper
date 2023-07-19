@@ -74,7 +74,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
                 return -1;
             }           
         }
-
         public StravaApiTokenModel GetCurrentStravaApiToken(string userId)
         {
             var currentToken = _context.StravaApiTokens.Where(x => x.UserId == userId).First();

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
@@ -11,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Segment
 {
-    public class StravaAPISegment : IStravaAPISegment
+    public class StravaApiSegment : IStravaApiSegment
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly IMapper _mapper;
         private readonly IStravaTokenService _tokenService;
 
-        public StravaAPISegment(IMapper mapper, IStravaTokenService tokenService)
+        public StravaApiSegment(IMapper mapper, IStravaTokenService tokenService)
         {
             _mapper = mapper;
             _tokenService = tokenService;
@@ -42,11 +43,11 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    DetailedSegmentAPIModel apiResponseContent = await response.Content
-                        .ReadAsAsync<DetailedSegmentAPIModel>();
+                    DetailedSegmentApiModel apiResponseContent = await response.Content
+                        .ReadAsAsync<DetailedSegmentApiModel>();
 
                     DetailedSegmentModel model = _mapper
-                        .Map<DetailedSegmentAPIModel, DetailedSegmentModel>(apiResponseContent);
+                        .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
                     return model;
                 }
 
@@ -87,13 +88,13 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<DetailedSegmentEffortAPIModel> apiResponseContent = await response.Content
-                        .ReadAsAsync<List<DetailedSegmentEffortAPIModel>>();
+                    List<DetailedSegmentEffortApiModel> apiResponseContent = await response.Content
+                        .ReadAsAsync<List<DetailedSegmentEffortApiModel>>();
 
-                    foreach (DetailedSegmentEffortAPIModel daam in apiResponseContent)
+                    foreach (DetailedSegmentEffortApiModel daam in apiResponseContent)
                     {
                         DetailedSegmentEffortModel model = _mapper
-                            .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(daam);
+                            .Map<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>(daam);
                         returnList.Add(model);
                     }
                     return returnList;
@@ -132,11 +133,11 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    DetailedSegmentEffortAPIModel apiResponseContent = await response.Content
-                        .ReadAsAsync<DetailedSegmentEffortAPIModel>();
+                    DetailedSegmentEffortApiModel apiResponseContent = await response.Content
+                        .ReadAsAsync<DetailedSegmentEffortApiModel>();
 
                     DetailedSegmentEffortModel model = _mapper
-                        .Map<DetailedSegmentEffortAPIModel, DetailedSegmentEffortModel>(apiResponseContent);
+                        .Map<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>(apiResponseContent);
 
                     return model;
                 }
@@ -144,6 +145,48 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
                 {
                     throw new HttpRequestException(response.Content.ToString());
 
+                }
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<DetailedSegmentModel> StarSegment(string userId, StarSegmentModel content)
+        {
+            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            var builder = new UriBuilder()
+            {
+                Scheme = "https",
+                Host = "www.strava.com",
+                Path = $"api/v3//segments/{content.SegmentId}/starred"
+            };
+
+            _httpClient.DefaultRequestHeaders.Authorization =
+           new AuthenticationHeaderValue("Bearer", token);
+
+            var uri = builder.ToString();
+            var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.PutAsync(uri, stringContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    DetailedSegmentApiModel apiResponseContent = await response.Content
+                        .ReadAsAsync<DetailedSegmentApiModel>();
+
+                    DetailedSegmentModel model = _mapper
+                        .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
+
+                    return model;
+                }
+                else
+                {
+                    throw new HttpRequestException(response.Content.ToString());
                 }
             }
 

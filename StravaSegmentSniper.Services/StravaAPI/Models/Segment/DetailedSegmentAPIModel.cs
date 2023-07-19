@@ -3,7 +3,7 @@
 namespace StravaSegmentSniper.Services.StravaAPI.Models.Segment
 {
 
-    public class DetailedSegmentAPIModel
+    public class DetailedSegmentApiModel
     {
         public int id { get; set; }
         public int resource_state { get; set; }
