@@ -11,14 +11,14 @@ using System.Text.RegularExpressions;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
-    public class StravaSegmentActionHandler : IStravaSegmentActionHandler
+    public class SnipeSegmentActionHandler : ISnipeSegmentActionHandler
     {
         private readonly IStravaAPIActivity _stravaAPIActivity;
-        private readonly IStravaAPISegment _stravaSegment;
+        private readonly IStravaApiSegment _stravaSegment;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StravaSegmentActionHandler(IStravaAPIActivity stravaAPIActivity, IStravaAPISegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
+        public SnipeSegmentActionHandler(IStravaAPIActivity stravaAPIActivity, IStravaApiSegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
         {
             _stravaAPIActivity = stravaAPIActivity;
             _stravaSegment = stravaSegment;

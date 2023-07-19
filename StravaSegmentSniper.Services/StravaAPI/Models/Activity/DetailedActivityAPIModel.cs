@@ -63,7 +63,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Models.Activity
         public double calories { get; set; }
         public object perceived_exertion { get; set; }
         public object prefer_perceived_exertion { get; set; }
-        public List<DetailedSegmentEffortAPIModel> segment_efforts { get; set; }
+        public List<DetailedSegmentEffortApiModel> segment_efforts { get; set; }
         public List<SplitsMetricAPIModel> splits_metric { get; set; }
         public List<SplitsStandardAPIModel> splits_standard { get; set; }
         public List<LapAPIModel> laps { get; set; }

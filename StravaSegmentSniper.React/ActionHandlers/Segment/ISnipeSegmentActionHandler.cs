@@ -3,7 +3,7 @@ using StravaSegmentSniper.Services.UIModels.Segment;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
-    public interface IStravaSegmentActionHandler
+    public interface ISnipeSegmentActionHandler
     {
         List<SnipedSegmentUIModel> HandleSnipingSegments(SegmentSniperContract contract);
     }

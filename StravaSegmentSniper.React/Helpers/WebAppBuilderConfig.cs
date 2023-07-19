@@ -113,13 +113,13 @@ namespace StravaSegmentSniper.React.Helpers
             builder.Services.AddScoped<IWebAppUserService, WebAppUserService>();
             builder.Services.AddScoped<IStravaAPIAthlete, StravaAPIAthlete>();
             builder.Services.AddScoped<IStravaAPIActivity, StravaAPIActivity>();
-            builder.Services.AddScoped<IStravaAPISegment, StravaAPISegment>();
+            builder.Services.AddScoped<IStravaApiSegment, StravaApiSegment>();
             builder.Services.AddScoped<IStravaAPIToken, StravaAPIToken>();
             builder.Services.AddScoped<IActivityAdapter, ActivityAdapter>();
             builder.Services.AddScoped<ISegmentAdapter, SegmentAdapter>();
             builder.Services.AddScoped<IStravaActivityActionHandler, StravaActivityActionHandler>();
             builder.Services.AddScoped<IStravaApiTokenActionHandler, StravaApiTokenActionHandler>();
-            builder.Services.AddScoped<IStravaSegmentActionHandler, StravaSegmentActionHandler>();
+            builder.Services.AddScoped<ISnipeSegmentActionHandler, SnipeSegmentActionHandler>();
             builder.Services.AddScoped<IExchangeAuthCodeForTokenHandler, ExchangeAuthCodeForTokenHandler>();
 
             return builder;

@@ -7,18 +7,18 @@ namespace StravaSegmentSniper.React.Controllers
     [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class StravaSegmentController : ControllerBase
+    public class StarSegmentController
     {
-        public StravaSegmentController()
+        public StarSegmentController()
         {
-
+            
         }
 
-        // GET api/<Segment>/5
-        [HttpGet("{id}")]
-        public DetailedSegmentModel Get(int id)
+        [HttpPost]
+        public StarSegmentModel StarSegment(long segmentId)
         {
-            return new DetailedSegmentModel();
+            throw new NotImplementedException();
         }
+
     }
 }
