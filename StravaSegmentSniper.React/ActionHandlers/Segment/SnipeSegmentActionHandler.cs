@@ -38,7 +38,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                 List<DetailedSegmentEffortModel> segmentEfforts = detailedActivityModel.SegmentEfforts;
 
                 //limiting the list to 5 for testing to not blow up API call count
-                segmentEfforts = segmentEfforts.GetRange(0, 5);
+                segmentEfforts = segmentEfforts.GetRange(0, 10);
 
                 List<DetailedSegmentModel> segmentModels = new List<DetailedSegmentModel>();
                 List<SnipedSegmentUIModel> snipedSegments = new List<SnipedSegmentUIModel>();
@@ -56,7 +56,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
                     if(contract.UseQom) 
                     { 
-                     segementLeaderTime = xomsTime.QomTime;                    
+                         segementLeaderTime = xomsTime.QomTime;                    
                     } 
                     else
                     {
@@ -100,8 +100,6 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             {
                 throw new Exception(e.Message);
             }
-
-
         }
 
         private XomsTimes GetXomTimeFromStrings(XomsModel xoms)
@@ -140,6 +138,4 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             public int QomTime { get; set; }
         }
     }
-
- 
 }
