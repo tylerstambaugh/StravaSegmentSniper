@@ -14,6 +14,9 @@ import {
   SegmentListItem,
   SnipedSegmentListItem,
 } from "../../models/Segment/Segment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
@@ -64,10 +67,14 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            alert(`We'll star this segment`);
+            row.starred = !row.starred;
           }}
         >
-          Star
+          {row.starred ? (
+            <FontAwesomeIcon icon={regularStar} />
+          ) : (
+            <FontAwesomeIcon icon={solidStar} />
+          )}
         </Button>
       ),
     },

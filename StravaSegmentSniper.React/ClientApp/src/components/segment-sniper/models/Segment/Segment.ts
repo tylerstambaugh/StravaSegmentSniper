@@ -6,6 +6,7 @@ export interface SegmentListItem {
   athleteStats?: athleteSegmentStats;
   koms?: xomsModel;
   rank?: number;
+  starred: boolean;
 }
 
 export interface SnipedSegmentListItem {
@@ -17,7 +18,8 @@ export interface SnipedSegmentListItem {
   percentageFromLeader?: number;
   athleteStats?: athleteSegmentStats;
   koms?: xomsModel;
-  useQom?: boolean;
+  starred: boolean;
+  //useQom?: boolean;
 }
 
 export interface SegmentDetails {

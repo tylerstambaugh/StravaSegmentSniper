@@ -47,6 +47,7 @@ const useGetSnipeSegments = () => {
             : undefined,
           athleteStats: item.athleteStats,
           koms: item.koms,
+          starred: item.starred,
         };
       });
       return returnList;

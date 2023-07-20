@@ -11,6 +11,9 @@ import {
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SegmentListItem } from "../../models/Segment/Segment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 
 export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
@@ -49,6 +52,24 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           }}
         >
           Details
+        </Button>
+      ),
+    },
+    {
+      prop: "starButton",
+      cell: (row) => (
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => {
+            row.starred = !!row.starred;
+          }}
+        >
+          {row.starred ? (
+            <FontAwesomeIcon icon={solidStar} />
+          ) : (
+            <FontAwesomeIcon icon={regularStar} />
+          )}
         </Button>
       ),
     },
