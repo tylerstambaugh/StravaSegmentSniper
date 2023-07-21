@@ -8,10 +8,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ToastContainer } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as solidStar, faCircleCheck as circleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons"
 
-library.add( solidStar, regularStar)
+library.add( solidStar, regularStar, circleCheck)
 
 export default class App extends Component {
   static displayName = "Strava Segment Sniper";

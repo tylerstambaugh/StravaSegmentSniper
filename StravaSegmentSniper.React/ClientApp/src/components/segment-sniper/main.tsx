@@ -27,9 +27,9 @@ function SegmentSniper() {
     setIsAuthenticated(isAuthenticated);
 
     setUsername(user && user.name);
-    const authTokenRes = await authService
-      .getAccessToken()
-      .then((res) => setAuthToken(res));
+    // const authTokenRes = await authService
+    //   .getAccessToken()
+    //   .then((res) => setAuthToken(res));
 
     const appUserResponse = await getWebAppUser.fetchUser();
     if (!(appUserResponse instanceof Error)) {
@@ -44,31 +44,18 @@ function SegmentSniper() {
     return () => {
       authService.unsubscribe(_subscription);
     };
-  });
+  }, []);
 
-  async function fetchUser() {
-    if (isAuthenticated && authToken) {
-      const response = await fetch("/user", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
-      if (!response.ok) {
-        console.log(
-          `non initial use effect response not 'OK': ${response.json()}`
-        );
-      } else {
-        const data: Promise<WebAppUser> = response.json();
-        data
-          .then((resolvedData) => setAppUser(resolvedData))
-          .catch((error) =>
-            console.log(`There was an error fetching the data. ${error}`)
-          );
-      }
-    }
-  }
+  // async function fetchUser(){
+  //   const appUserResponse = await getWebAppUser.fetchUser();
+  //   if (!(appUserResponse instanceof Error)) {
+  //     setAppUser(appUserResponse);
+  //   }
+  // }
 
-  useNonInitialEffect(() => {
-    fetchUser();
-  }, [isAuthenticated]);
+  // useNonInitialEffect(() => {
+  //   fetchUser();
+  // }, [isAuthenticated]);
 
   return (
     <>
@@ -133,3 +120,23 @@ function SegmentSniper() {
   );
 }
 export default SegmentSniper;
+
+// async function fetchUser() {
+//   if (isAuthenticated && authToken) {
+//     const response = await fetch("/user", {
+//       headers: { Authorization: `Bearer ${authToken}` },
+//     });
+//     if (!response.ok) {
+//       console.log(
+//         `non initial use effect response not 'OK': ${response.json()}`
+//       );
+//     } else {
+//       const data: Promise<WebAppUser> = response.json();
+//       data
+//         .then((resolvedData) => setAppUser(resolvedData))
+//         .catch((error) =>
+//           console.log(`There was an error fetching the data. ${error}`)
+//         );
+//     }
+//   }
+// }

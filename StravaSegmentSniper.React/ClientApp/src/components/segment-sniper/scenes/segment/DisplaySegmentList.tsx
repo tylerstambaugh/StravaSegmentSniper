@@ -12,7 +12,10 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SegmentListItem } from "../../models/Segment/Segment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar as solidStar,
+  faCircleCheck as circleCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 
 export interface displaySegmentListProps {
@@ -62,11 +65,11 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            row.starred = !!row.starred;
+            row.starred = !row.starred;
           }}
         >
           {row.starred ? (
-            <FontAwesomeIcon icon={solidStar} />
+            <FontAwesomeIcon icon={circleCheck} />
           ) : (
             <FontAwesomeIcon icon={regularStar} />
           )}

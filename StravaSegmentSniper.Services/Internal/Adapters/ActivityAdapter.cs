@@ -19,7 +19,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 
             foreach (DetailedSegmentEffortModel segmentEffort in activity.SegmentEfforts)
             {
-                segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
+                segments.Add(_segmentAdapter.AdaptDetailedSegmentEffortToSegmentUIModel(segmentEffort));
             }
 
             ActivityListModel returnActivity = new ActivityListModel
@@ -73,7 +73,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 
             foreach (DetailedSegmentEffortModel segmentEffort in model.SegmentEfforts)
             {
-                segments.Add(_segmentAdapter.AdaptDeailtedSegmentEffortToSegmentUIModel(segmentEffort));
+                segments.Add(_segmentAdapter.AdaptDetailedSegmentEffortToSegmentUIModel(segmentEffort));
             }
             DetailedActivityUIModel returnModel = new DetailedActivityUIModel
             {

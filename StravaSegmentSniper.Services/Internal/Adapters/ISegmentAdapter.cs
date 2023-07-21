@@ -5,6 +5,6 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 {
     public interface ISegmentAdapter
     {
-        SegmentEffortUIListModel AdaptDeailtedSegmentEffortToSegmentUIModel(DetailedSegmentEffortModel model);
+        SegmentEffortUIListModel AdaptDetailedSegmentEffortToSegmentUIModel(DetailedSegmentEffortModel model);
     }
 }

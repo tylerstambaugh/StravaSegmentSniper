@@ -5,6 +5,13 @@ export const useApi = <TResponse = any>() => {
   const abortControllers: AbortController[] = [];
   const [currentToken, setCurrentToken] = useState();
 
+  useEffect(() => {
+    const fetchToken = async () => {
+      setCurrentToken(await authService.getAccessToken());
+    };
+    fetchToken();
+  }, []);
+
   async function fetch(
     requestUrl: string,
     requestOptions: RequestInit,
@@ -15,7 +22,6 @@ export const useApi = <TResponse = any>() => {
     let attempt = 0;
 
     try {
-      setCurrentToken(await authService.getAccessToken());
       const response = await sendRequest(attempt, requestUrl, {
         ...requestOptions,
         signal: localAbortController.signal,
