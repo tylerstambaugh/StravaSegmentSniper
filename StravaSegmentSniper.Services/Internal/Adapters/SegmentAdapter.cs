@@ -15,6 +15,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
                 Name = model.Name,
                 Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
                 Time = TimeSpan.FromSeconds(model.ElapsedTime).ToString(@"hh\:mm\:ss"),
+                Starred = model.Segment.Starred,
+                
                 //Rank = model.Achievements.OrderBy(r => r.Rank).First().Rank,
             };
             return returnModel;

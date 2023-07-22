@@ -39,33 +39,6 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
             return returnActivity;
         }
 
- 
-
-
-
-        //public List<ActivityListModel> AdaptSummaryActivityListtoActivityList(List<SummaryActivityModel> activities)
-        //{
-        //    List<ActivityListModel> returnList = new List<ActivityListModel>();
-
-        //    foreach (SummaryActivityModel activity in activities)
-        //    {
-        //        returnList.Add(
-        //             new ActivityListModel
-        //             {
-        //                 Id = activity.Id,
-        //                 Name = activity.Name,
-        //                 Distance = activity.Distance,
-        //                 Type = activity.Type,
-        //                 StartDate = activity.StartDate,
-        //                 ElapsedTime = activity.ElapsedTime,
-        //                 MaxSpeed = activity.MaxSpeed,
-        //                 // StravaMap = activity.Map
-        //             });
-        //    }
-
-        //    return returnList;
-        //}
-
         public DetailedActivityUIModel AdaptDetailedActivityModelToDetailedActivityUIModel(DetailedActivityModel model)
         {
 
@@ -75,6 +48,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
             {
                 segments.Add(_segmentAdapter.AdaptDetailedSegmentEffortToSegmentUIModel(segmentEffort));
             }
+
             DetailedActivityUIModel returnModel = new DetailedActivityUIModel
             {
 

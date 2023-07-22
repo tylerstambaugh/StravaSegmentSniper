@@ -1,5 +1,5 @@
 export interface SegmentListItem {
-  id: string;
+  segmentId: number;
   name: string;
   time: number;
   distance: number;
@@ -10,7 +10,7 @@ export interface SegmentListItem {
 }
 
 export interface SnipedSegmentListItem {
-  id: string;
+  segmentId: number;
   name: string;
   komTime: string;
   distance: number;
@@ -23,7 +23,7 @@ export interface SnipedSegmentListItem {
 }
 
 export interface SegmentDetails {
-  id: number;
+  segmentId: number;
   resource_state: number;
   name: string;
   activity_type: string;
