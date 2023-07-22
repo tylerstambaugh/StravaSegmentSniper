@@ -17,10 +17,14 @@ import {
   faCircleCheck as circleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import useStarSegment, {
+  starSegmentProps,
+} from "../../hooks/segment/useStarSegment";
 
 export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
   handleShowSnipeSegmentsModal: () => void;
+  handleStarSegment: (props: starSegmentProps) => void;
 }
 
 type TableRow = SegmentListItem & {
@@ -32,7 +36,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   const [listOfSegments, setListOfSegments] = useState<SegmentListItem[]>(
     props.segmentList
   );
-  //setListOfSegments(props.segmentList);
+  const starSegment = useStarSegment();
   const tableBody: TableRow[] = props.segmentList.map((item) => ({
     ...item,
     detailsButton: null,
@@ -41,7 +45,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
 
   const header: TableColumnType<TableRow>[] = [
     { title: "Name", prop: "name", isFilterable: true },
-    { title: "Id", prop: "id" },
+    { title: "Id", prop: "segmentId" },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "Time", prop: "time", isSortable: true },
     {
@@ -65,7 +69,10 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            row.starred = !row.starred;
+            props.handleStarSegment({
+              segmentId: row.segmentId,
+              starred: row.starred,
+            });
           }}
         >
           {row.starred ? (

@@ -35,7 +35,7 @@ const useGetSnipeSegments = () => {
       //map response to new SnipeSegmentListItem to return:
       let returnList: SnipedSegmentListItem[] = fetchResponse.map((item) => {
         return {
-          id: item.id,
+          segmentId: item.segmentId,
           name: item.name,
           komTime: item.komTime,
           distance: item.distance,

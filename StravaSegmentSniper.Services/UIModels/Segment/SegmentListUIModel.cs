@@ -21,6 +21,7 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
         public int EffortCount { get; set; }
         public int AthleteCount { get; set; }
         public int StarCount { get; set; }
+        public bool Starred { get; set; }
         public AthleteSegmentStatsModel AthleteSegmentStats { get; set; }
         public XomsModel Xoms { get; set; }
         public int Rank { get; set; }

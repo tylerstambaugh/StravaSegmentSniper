@@ -37,7 +37,7 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
 
   const header: TableColumnType<TabelRow>[] = [
     { title: "Name", prop: "name", isFilterable: true },
-    { title: "Id", prop: "id" },
+    { title: "Id", prop: "segmentId" },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "KOM Time", prop: "komTime", isSortable: true },
     {

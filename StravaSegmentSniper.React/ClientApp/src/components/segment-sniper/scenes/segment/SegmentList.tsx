@@ -11,6 +11,10 @@ import SnipeSegmentsModal from "./SnipeSegmentsModal";
 import { Container } from "react-bootstrap";
 import useGetSnipeSegments from "../../hooks/segment/useGetSnipeSegments";
 import SegmentDetailsModal from "./SegmentDetailsModal";
+import useStarSegment, {
+  starSegmentProps,
+} from "../../hooks/segment/useStarSegment";
+import { toast } from "react-toastify";
 
 export interface SnipeSegmentFunctionProps {
   activityId?: string;
@@ -30,9 +34,14 @@ const SegmentList = (props: SegmentListProps) => {
   const [isSnipeList, setIsSnipeList] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
+  const [segmentList, setSegmentList] = useState<SegmentListItem[]>(
+    props.activitySegmentList
+  );
   const [snipedSegmentlist, setSnipedSegmentList] = useState<
     SnipedSegmentListItem[]
   >([]);
+
+  const starSegment = useStarSegment();
 
   const [segmentDetailsModalData, setSegmentDetailsModalData] =
     useState<SegmentDetails>();
@@ -48,6 +57,23 @@ const SegmentList = (props: SegmentListProps) => {
     setIsSnipeList(false);
   }
 
+  async function handleStarSegment(props: starSegmentProps) {
+    setLoading(true);
+    const starSegmentResponse = await starSegment.starSegment({
+      segmentId: props.segmentId,
+      starred: !props.starred,
+    });
+    if (starSegmentResponse && !(starSegmentResponse instanceof Error)) {
+      const updatedSegmentList = segmentList.map((segment) => {
+        if (segment.segmentId === props.segmentId) {
+          return { ...segment, starred: starSegmentResponse.starred };
+        }
+        return segment;
+      });
+      setSegmentList(updatedSegmentList);
+    }
+  }
+
   useEffect(() => {
     if (isSnipeList) {
       setIsSnipeList(true);
@@ -55,6 +81,7 @@ const SegmentList = (props: SegmentListProps) => {
   }, [isSnipeList]);
 
   useEffect(() => {
+    setSegmentList(props.activitySegmentList);
     setIsSnipeList(false);
   }, [props.activitySegmentList]);
 
@@ -66,34 +93,17 @@ const SegmentList = (props: SegmentListProps) => {
       activityId: props.activityId,
     };
     setLoading(true);
-    try {
-      console.log(
-        `snipe segment search props ${JSON.stringify(
-          snipeSegmentsProps,
-          null,
-          4
-        )}`
-      );
-      const fetchResponse = await fetchSnipedSegments(snipeSegmentsProps!);
-      if (fetchResponse && !(fetchResponse instanceof Error)) {
-        setSnipedSegmentList(fetchResponse);
-        setIsSnipeList(true);
-      } else {
-        console.log(
-          `fetch response: ${JSON.stringify(fetchResponse, null, 4)}`
-        );
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error);
-        console.log(`caught error: ${JSON.stringify(error, null, 4)}`);
-      } else {
-        throw new Error("an unexpected error try to fetch sniped segments");
-      }
-    } finally {
-      setLoading(false);
+    const fetchResponse = await fetchSnipedSegments(snipeSegmentsProps!);
+    if (fetchResponse && !(fetchResponse instanceof Error)) {
+      setSnipedSegmentList(fetchResponse);
+      setIsSnipeList(true);
+    } else {
+      toast.error(`There was an error sniping the segemtns: ${fetchResponse}`, {
+        autoClose: 1500,
+        position: "bottom-center",
+      });
     }
-    console.log(snipedSegmentlist);
+    setLoading(false);
   }
 
   function clearSegmentsDisplay() {
@@ -117,9 +127,10 @@ const SegmentList = (props: SegmentListProps) => {
         />
         {!isSnipeList ? (
           <DisplaySegmentList
-            segmentList={props.activitySegmentList}
+            segmentList={segmentList}
             handleShowSnipeSegmentsModal={handleShowSnipeSegmentModal}
             // handleShowSegmentDetails={handleShowSegmentDetails}
+            handleStarSegment={handleStarSegment}
           />
         ) : (
           <DisplaySnipedSegmentList
