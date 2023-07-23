@@ -11,12 +11,12 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 {
     public class StravaActivityActionHandler : IStravaActivityActionHandler
     {
-        private readonly IStravaAPIActivity _stravaAPIActivity;
+        private readonly IStravaApiActivity _stravaAPIActivity;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IActivityAdapter _activityAdapter;
 
-        public StravaActivityActionHandler(IStravaAPIActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor, IActivityAdapter activityAdapter)
+        public StravaActivityActionHandler(IStravaApiActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor, IActivityAdapter activityAdapter)
         {
             _stravaAPIActivity = stravaAPIActivity;
             _webAppUserService = webAppUserService;

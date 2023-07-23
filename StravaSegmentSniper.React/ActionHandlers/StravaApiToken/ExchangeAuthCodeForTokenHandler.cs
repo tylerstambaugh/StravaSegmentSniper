@@ -5,12 +5,12 @@ namespace StravaSegmentSniper.React.ActionHandlers.StravaApiToken
 {
     public class ExchangeAuthCodeForTokenHandler : IExchangeAuthCodeForTokenHandler
     {
-        private readonly IStravaAPIToken _stravaApiTokenService;
+        private readonly IStravaApiToken _stravaApiTokenService;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IStravaTokenService _stravaTokenService;
 
-        public ExchangeAuthCodeForTokenHandler(IStravaAPIToken stravaApiTokenService, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor, IStravaTokenService stravaTokenService)
+        public ExchangeAuthCodeForTokenHandler(IStravaApiToken stravaApiTokenService, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor, IStravaTokenService stravaTokenService)
         {
             _stravaApiTokenService = stravaApiTokenService;
             _webAppUserService = webAppUserService;

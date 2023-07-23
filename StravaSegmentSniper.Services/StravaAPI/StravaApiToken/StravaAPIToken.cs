@@ -11,7 +11,7 @@ using System.Security.Policy;
 
 namespace StravaSegmentSniper.Services.StravaAPI.TokenService
 {
-    public class StravaAPIToken : IStravaAPIToken
+    public class StravaApiToken : IStravaApiToken
     {
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
@@ -19,7 +19,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.TokenService
         private readonly string _clientId;
         private readonly string _clientSecret;
 
-        public StravaAPIToken(IMapper mapper, IConfiguration configuration)
+        public StravaApiToken(IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
             _configuration = configuration;

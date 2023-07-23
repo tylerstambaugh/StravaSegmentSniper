@@ -12,11 +12,11 @@ namespace StravaSegmentSniper.React.Controllers
     public class ActivityController : ControllerBase
     {
         private readonly IAthleteActivityService _athleteActivityService;
-        private readonly IStravaAPIActivity _stravaAPIActivity;
+        private readonly IStravaApiActivity _stravaAPIActivity;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ActivityController(IAthleteActivityService athleteActivityService, IStravaAPIActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
+        public ActivityController(IAthleteActivityService athleteActivityService, IStravaApiActivity stravaAPIActivity, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
         {
             _athleteActivityService = athleteActivityService;
             _stravaAPIActivity = stravaAPIActivity;

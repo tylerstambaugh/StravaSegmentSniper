@@ -16,10 +16,10 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly StravaSegmentSniperDbContext _context;
         private readonly AuthDbContext _authDbContext;
         private readonly IMapper _mapper;
-        private readonly IStravaAPIToken _stravaAPIToken;
+        private readonly IStravaApiToken _stravaAPIToken;
 
         public StravaTokenService(StravaSegmentSniperDbContext context,
-                            IStravaAPIToken stravaAPIToken, AuthDbContext authDbContext, IMapper mapper)
+                            IStravaApiToken stravaAPIToken, AuthDbContext authDbContext, IMapper mapper)
         {
             _context = context;
             _stravaAPIToken = stravaAPIToken;
@@ -29,7 +29,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
      
 
-        public StravaApiToken GetTokenByUserId(string userId)
+        public Data.Entities.Token.StravaApiToken GetTokenByUserId(string userId)
         {
             if (TokenIsExpired(userId))
                 RefreshToken(userId);
@@ -78,12 +78,12 @@ namespace StravaSegmentSniper.Services.Internal.Services
         {
             var currentToken = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
 
-            StravaApiTokenModel model = _mapper.Map<StravaApiToken, StravaApiTokenModel>(currentToken);
+            StravaApiTokenModel model = _mapper.Map<Data.Entities.Token.StravaApiToken, StravaApiTokenModel>(currentToken);
 
             return model;
         }
 
-        public bool AddStravaApiTokenRecord(StravaApiToken model)
+        public bool AddStravaApiTokenRecord(Data.Entities.Token.StravaApiToken model)
         {
             var existingRecord = _context.StravaApiTokens.Where(t => t.UserId == model.UserId).First();
 
