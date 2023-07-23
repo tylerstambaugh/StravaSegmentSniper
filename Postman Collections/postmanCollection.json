@@ -298,7 +298,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "StarSegment",
 					"id": "875c20e2-d6d6-4944-81cf-8cb36ec13e74",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -718,7 +718,7 @@
 	],
 	"variable": [
 		{
-			"id": "87aafcd9-2d7d-4982-94df-bcce02f2f103",
+			"id": "ee7eacf1-1cf4-40df-9a84-b87c4202518c",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
