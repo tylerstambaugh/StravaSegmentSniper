@@ -752,13 +752,13 @@
 	],
 	"variable": [
 		{
-			"id": "7d5af548-8f26-44d9-80b4-3171791dbf96",
+			"id": "c56083ef-0557-42b6-baa9-2c6d3d54d88d",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		},
 		{
-			"id": "7cc9efba-b095-4d22-8c94-64f8c149cbef",
+			"id": "5100bffe-bd28-4f2c-a962-f6055203d7d9",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
