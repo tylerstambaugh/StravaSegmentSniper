@@ -296,6 +296,18 @@
 						"url": "https://www.strava.com/api/v3/segments/5289440/leaderboard"
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "875c20e2-d6d6-4944-81cf-8cb36ec13e74",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "ac90daf6-b183-4c9c-a7d9-7eb4dd28b995"
@@ -706,7 +718,7 @@
 	],
 	"variable": [
 		{
-			"id": "a2a868f0-1afd-49f4-998b-244998f81d2b",
+			"id": "87aafcd9-2d7d-4982-94df-bcce02f2f103",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
