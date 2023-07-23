@@ -13,14 +13,14 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
     public class SnipeSegmentActionHandler : ISnipeSegmentActionHandler
     {
-        private readonly IStravaAPIActivity _stravaAPIActivity;
+        private readonly IStravaApiActivity _stravaApiActivity;
         private readonly IStravaApiSegment _stravaSegment;
         private readonly IWebAppUserService _webAppUserService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public SnipeSegmentActionHandler(IStravaAPIActivity stravaAPIActivity, IStravaApiSegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
+        public SnipeSegmentActionHandler(IStravaApiActivity stravaApiActivity, IStravaApiSegment stravaSegment, IWebAppUserService webAppUserService, IHttpContextAccessor httpContextAccessor)
         {
-            _stravaAPIActivity = stravaAPIActivity;
+            _stravaApiActivity = stravaApiActivity;
             _stravaSegment = stravaSegment;
             _webAppUserService = webAppUserService;
             _httpContextAccessor = httpContextAccessor;
@@ -33,7 +33,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             //get detailed activity by Id
                 var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
                 var userId = user.Id;
-                DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.ActivityId, userId).Result;
+                DetailedActivityModel detailedActivityModel = _stravaApiActivity.GetDetailedActivityById(contract.ActivityId, userId).Result;
 
                 List<DetailedSegmentEffortModel> segmentEfforts = detailedActivityModel.SegmentEfforts;
 

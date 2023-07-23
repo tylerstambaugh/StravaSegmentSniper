@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Activity
 {
-    public class StravaAPIActivity : IStravaAPIActivity
+    public class StravaApiActivity : IStravaApiActivity
     {
         private readonly IMapper _mapper;
         private readonly IStravaTokenService _tokenService;
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public StravaAPIActivity(IMapper mapper, IStravaTokenService tokenService)
+        public StravaApiActivity(IMapper mapper, IStravaTokenService tokenService)
         {
             _mapper = mapper;
             _tokenService = tokenService;
