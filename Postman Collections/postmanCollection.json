@@ -304,8 +304,41 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "starred",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/segments/:id/starred",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"segments",
+								":id",
+								"starred"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3116883718943034424"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -718,13 +751,13 @@
 	],
 	"variable": [
 		{
-			"id": "3130e371-a000-4040-a8a0-7cf30f898339",
+			"id": "8215fc31-8a7b-4218-9fee-85c0b288ee81",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		},
 		{
-			"id": "1b7600bb-b0f1-42ce-9f49-f3416a4e1816",
+			"id": "39939ddf-6a2c-4609-8eeb-0e02cccdf1cb",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
