@@ -19,7 +19,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer fb788d5771069026032798f7f7928756b28da256",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -751,13 +751,13 @@
 	],
 	"variable": [
 		{
-			"id": "8215fc31-8a7b-4218-9fee-85c0b288ee81",
+			"id": "61c7f6b8-9375-4fb3-8eb2-1d9bac55aed2",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		},
 		{
-			"id": "39939ddf-6a2c-4609-8eeb-0e02cccdf1cb",
+			"id": "6ac98c6f-cf36-49a5-a8fd-6fb91a678d9e",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
