@@ -382,7 +382,8 @@
 							},
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": "https://localhost:44411/api/ConnectWithStrava/GetClientId"
 							},
 							"response": []
 						}
@@ -751,13 +752,13 @@
 	],
 	"variable": [
 		{
-			"id": "61c7f6b8-9375-4fb3-8eb2-1d9bac55aed2",
+			"id": "c2660f35-ab93-4d05-912e-c021553024b5",
 			"key": "access_token",
 			"value": "6160cd68586cf552754a47e4273501cb43bf35d0",
 			"type": "string"
 		},
 		{
-			"id": "6ac98c6f-cf36-49a5-a8fd-6fb91a678d9e",
+			"id": "3ed19b3e-f3c2-4302-845a-47114515c14d",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
