@@ -23,9 +23,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
             var userId = user.Id;
 
-            var starSegmentModel = new StarSegmentModel(contract.SegmentId, )
+            var model = new StarSegmentModel(contract.SegmentId, contract.StarSegment);
 
-            var result = _stravaApiSegment.StarSegment(userId, )
+            var result = _stravaApiSegment.StarSegment(userId, model);
         }
     }
 }
