@@ -10,7 +10,8 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
         {
             SegmentEffortUIListModel returnModel = new SegmentEffortUIListModel
             {
-                Id = model.Id,
+                SegmentId = model.Segment.Id,
+                SegmentEffortId = model.SegmentEffortId,
                 ActivityId = model.Activity.Id,
                 Name = model.Name,
                 Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),

@@ -86,7 +86,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
 
   const handleSegmentButtonClick = (activityId: string) => {
     props.handleShowSegments(activityId);
-    setSelectedRow(activityId); // Update the selected row when the segment button is clicked
+    setSelectedRow(activityId);
   };
 
   return (
@@ -118,7 +118,10 @@ const DisplayActivityList = (props: displayActivityListProps) => {
                   <Button
                     as="input"
                     value="Clear"
-                    onClick={(e) => props.clearSearchResults()}
+                    onClick={(e) => {
+                      props.clearSearchResults();
+                      setSelectedRow("");
+                    }}
                   ></Button>
                 </Col>
               </Row>
