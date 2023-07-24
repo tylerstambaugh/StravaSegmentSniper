@@ -61,7 +61,7 @@ const SegmentList = (props: SegmentListProps) => {
     setLoading(true);
     const starSegmentResponse = await starSegment.starSegment({
       segmentId: props.segmentId,
-      starred: !props.starred,
+      starSegment: props.starSegment,
     });
     if (starSegmentResponse && !(starSegmentResponse instanceof Error)) {
       const updatedSegmentList = segmentList.map((segment) => {

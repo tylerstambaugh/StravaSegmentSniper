@@ -14,7 +14,7 @@ const useStarSegment = () => {
 
     try {
       const requestOptions: RequestInit = {
-        method: "PUT",
+        method: "POST",
         body: JSON.stringify(props),
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const useStarSegment = () => {
       };
 
       const response: starredSegment | Error = await api.fetch(
-        "url",
+        "/api/StravaSegment/StarSegment",
         requestOptions
       );
       if (response instanceof Error) {
@@ -51,5 +51,5 @@ export default useStarSegment;
 
 export interface starSegmentProps {
   segmentId: number;
-  starred: boolean;
+  starSegment: boolean;
 }
