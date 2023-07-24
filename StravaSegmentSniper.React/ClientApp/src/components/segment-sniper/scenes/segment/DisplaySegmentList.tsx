@@ -71,7 +71,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           onClick={() => {
             props.handleStarSegment({
               segmentId: row.segmentId,
-              starred: row.starred,
+              starSegment: row.starred,
             });
           }}
         >
