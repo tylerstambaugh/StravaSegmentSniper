@@ -391,6 +391,11 @@
 					"id": "79e80fbd-326e-4ab8-b060-16b17aebc5ef"
 				},
 				{
+					"name": "New Folder",
+					"item": [],
+					"id": "e789e03f-9d1b-4652-ae6f-e63d8407ace1"
+				},
+				{
 					"name": "GET WebAppUser",
 					"id": "93e2a22e-f222-4640-868b-f9c8ba7a941b",
 					"protocolProfileBehavior": {
@@ -752,19 +757,19 @@
 	],
 	"variable": [
 		{
-			"id": "bcc5ce57-3924-4eb0-a877-8fa623453eed",
+			"id": "e1c9eaa0-aeb9-4817-bb38-4b1be47a530a",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "a4ce46cb-6316-4a5a-b7b5-aaacd6ea9a4d",
+			"id": "f581fd91-a139-46ed-a7c0-3b110cf2481f",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "3ec74e3f-f308-43b9-84d1-cee8cd149e2b",
+			"id": "94a30b3d-53ba-42a4-ae86-576235aa3df5",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
 			"type": "string"
