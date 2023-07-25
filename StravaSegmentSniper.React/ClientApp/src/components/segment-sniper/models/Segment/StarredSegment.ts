@@ -1,4 +1,4 @@
 export default interface starredSegment {
-  id: number;
+  segmentId: number;
   starred: boolean;
 }
