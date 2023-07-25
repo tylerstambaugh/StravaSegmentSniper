@@ -756,7 +756,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "442114eb-41fc-48cd-961d-ad4d3b279d33",
+				"id": "827a14ec-513d-46c6-97a8-1708e2eea3d2",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -766,7 +766,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0762a1c7-ac6a-4851-b898-0b308b2014d6",
+				"id": "a58ff7f9-2770-49a7-834a-42262e2382b6",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -776,21 +776,27 @@
 	],
 	"variable": [
 		{
-			"id": "7b16c93e-f9f7-46ea-a2ae-741548359f9e",
+			"id": "af54f582-a961-4e7e-ae43-fb6aa0920a18",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "1fd599ea-c9c8-4e97-946e-ec2998c94e10",
+			"id": "e705c51d-59f0-45d6-9138-41afeead6916",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "d096f3a2-2def-4916-ad8f-14c92ac79a07",
+			"id": "886ef4ca-eefa-40de-80f4-0f3c590ed55c",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
+			"type": "string"
+		},
+		{
+			"id": "48573db0-33ca-42f9-8f63-31947a4aacb8",
+			"key": "local_api",
+			"value": "https://localhost:44411/api/",
 			"type": "string"
 		}
 	]
