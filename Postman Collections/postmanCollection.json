@@ -420,7 +420,17 @@
 							},
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"segmentId\": 15858784,\r\n    \"starSegment\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local_api}}StravaSegment/StarSegment"
 							},
 							"response": []
 						}
@@ -776,25 +786,25 @@
 	],
 	"variable": [
 		{
-			"id": "af54f582-a961-4e7e-ae43-fb6aa0920a18",
+			"id": "e388b0d5-d62d-4223-9537-450cfe13cb58",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "e705c51d-59f0-45d6-9138-41afeead6916",
+			"id": "911928da-31a7-4ab2-9773-f00ac6a5d763",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "886ef4ca-eefa-40de-80f4-0f3c590ed55c",
+			"id": "1442aa1d-980d-49bd-8fee-bc22f8230a05",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
 			"type": "string"
 		},
 		{
-			"id": "48573db0-33ca-42f9-8f63-31947a4aacb8",
+			"id": "10c0b9a2-a5c5-4490-9e27-e8b91ac2dedd",
 			"key": "local_api",
 			"value": "https://localhost:44411/api/",
 			"type": "string"
