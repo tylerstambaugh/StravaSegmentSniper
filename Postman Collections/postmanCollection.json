@@ -757,19 +757,19 @@
 	],
 	"variable": [
 		{
-			"id": "e1c9eaa0-aeb9-4817-bb38-4b1be47a530a",
+			"id": "23046dac-e033-496b-b6e7-1fe443958739",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "f581fd91-a139-46ed-a7c0-3b110cf2481f",
+			"id": "15c4e3a4-5b53-49b0-bc79-8f586ac39627",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "94a30b3d-53ba-42a4-ae86-576235aa3df5",
+			"id": "74d9347d-3a2e-4b8d-87ec-e3a48ebfa8bd",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
 			"type": "string"
