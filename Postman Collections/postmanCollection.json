@@ -413,7 +413,7 @@
 					"name": "Segment",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "StarSegment",
 							"id": "ffd126cd-f53b-417f-a52d-7185bcb00019",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -776,19 +776,19 @@
 	],
 	"variable": [
 		{
-			"id": "880361b3-79df-4a6f-9a68-e9ab43759a00",
+			"id": "7b16c93e-f9f7-46ea-a2ae-741548359f9e",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "bbc16c25-f9f1-4cab-a2a0-1beff1c30566",
+			"id": "1fd599ea-c9c8-4e97-946e-ec2998c94e10",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "6d2af130-7d2c-44a8-abfe-e6940525ae19",
+			"id": "d096f3a2-2def-4916-ad8f-14c92ac79a07",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
 			"type": "string"
