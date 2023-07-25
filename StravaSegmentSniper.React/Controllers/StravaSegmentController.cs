@@ -25,7 +25,8 @@ namespace StravaSegmentSniper.React.Controllers
         }
 
         [HttpPost]
-        public IActionResult StarSegment([FromBody] StarSegmentActionHandlerContract contract)
+        [ActionName("StarSegment")]
+        public IActionResult StarSegment([FromBody] StarSegmentContract contract)
         {
             var response = _starSegmentActionHandler.HandleStarSegment(contract).Result;
             if (response == null)

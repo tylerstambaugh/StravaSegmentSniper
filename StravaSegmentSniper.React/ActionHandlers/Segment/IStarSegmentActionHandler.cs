@@ -1,21 +1,24 @@
-﻿using StravaSegmentSniper.Services.Internal.Models.Segment;
+﻿using Newtonsoft.Json;
+using StravaSegmentSniper.Services.Internal.Models.Segment;
 
 namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
     public interface IStarSegmentActionHandler
     {
-       Task<StarSegmentModel> HandleStarSegment(StarSegmentActionHandlerContract contract);
+       Task<StarSegmentModel> HandleStarSegment(StarSegmentContract contract);
     }
 
-    public class StarSegmentActionHandlerContract
+    public class StarSegmentContract
     {
-        public StarSegmentActionHandlerContract(long segmentId, bool starSegment)
+        public StarSegmentContract(long segmentId, bool starSegment)
         {
             SegmentId = segmentId;
             StarSegment = starSegment;
         }
 
+        [JsonProperty("segmentId")]
         public long SegmentId { get; }
+        [JsonProperty("starSegment")]
         public bool StarSegment { get; }
     }
 }

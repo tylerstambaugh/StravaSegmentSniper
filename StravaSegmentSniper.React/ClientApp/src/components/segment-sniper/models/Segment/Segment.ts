@@ -1,5 +1,6 @@
 export interface SegmentListItem {
   segmentId: number;
+  segmentEffortId: number;
   name: string;
   time: number;
   distance: number;
@@ -11,6 +12,7 @@ export interface SegmentListItem {
 
 export interface SnipedSegmentListItem {
   segmentId: number;
+  segmentEffortId: number;
   name: string;
   komTime: string;
   distance: number;
