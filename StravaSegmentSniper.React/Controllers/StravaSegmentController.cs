@@ -38,7 +38,7 @@ namespace StravaSegmentSniper.React.Controllers
             {
                 return BadRequest("null object response from handler");
             }
-            else if (response.IsStarred == request.StarSegment)
+            else if (response.IsStarred != request.StarSegment)
             {
                 return BadRequest("failed to change state of star on segment");
             }

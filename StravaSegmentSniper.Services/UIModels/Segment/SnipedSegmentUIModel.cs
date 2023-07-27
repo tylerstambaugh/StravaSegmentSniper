@@ -11,6 +11,7 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
     public class SnipedSegmentUIModel
     {
         public long Id { get; set; }
+        public long SegmentId { get; set; }
         public string Name { get; set; }
         public int LeaderboardPlace { get; set; }
         public double PercentageFromLeader { get; set; }
