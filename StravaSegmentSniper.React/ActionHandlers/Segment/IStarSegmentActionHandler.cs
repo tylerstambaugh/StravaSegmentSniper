@@ -5,7 +5,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
     public interface IStarSegmentActionHandler
     {
-       Task<StarSegmentModel> HandleStarSegment(StarSegmentRequest request);
+       Task<StarSegmentModel> HandleStarSegment(StarSegmentRequest request, string userId);
     }
 
     public class StarSegmentRequest
@@ -20,6 +20,5 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
         public long SegmentId { get; }
         [JsonProperty("starSegment")]
         public bool StarSegment { get; }   
-        public string UserId { get; set; }
     }
 }

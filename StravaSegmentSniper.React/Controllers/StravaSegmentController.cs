@@ -31,9 +31,9 @@ namespace StravaSegmentSniper.React.Controllers
         [ActionName("StarSegment")]
         public IActionResult StarSegment([FromBody] StarSegmentRequest request)
         {
-            request.UserId= HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+           var userId= HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
             
-            var response = _starSegmentActionHandler.HandleStarSegment(request).Result;
+            var response = _starSegmentActionHandler.HandleStarSegment(request, userId).Result;
             if (response == null)
             {
                 return BadRequest("null object response from handler");

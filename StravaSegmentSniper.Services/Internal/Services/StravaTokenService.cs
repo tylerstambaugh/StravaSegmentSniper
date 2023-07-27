@@ -9,16 +9,14 @@ namespace StravaSegmentSniper.Services.Internal.Services
     public class StravaTokenService : IStravaTokenService
     {
         private readonly StravaSegmentSniperDbContext _context;
-        private readonly AuthDbContext _authDbContext;
         private readonly IMapper _mapper;
         private readonly IStravaApiToken _stravaAPIToken;
 
         public StravaTokenService(StravaSegmentSniperDbContext context,
-                            IStravaApiToken stravaAPIToken, AuthDbContext authDbContext, IMapper mapper)
+                            IStravaApiToken stravaAPIToken, IMapper mapper)
         {
             _context = context;
             _stravaAPIToken = stravaAPIToken;
-            _authDbContext = authDbContext;
             _mapper = mapper;
         }
 

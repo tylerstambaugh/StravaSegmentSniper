@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Segment
 {
@@ -165,37 +167,37 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
            new AuthenticationHeaderValue("Bearer", token);
 
             var uri = builder.ToString();
-            //var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
-            var formContent = new FormUrlEncodedContent(new[]
+            var jsonSettings = new JsonSerializerSettings
             {
-                new KeyValuePair<string, string>("starred", request.IsStarred.ToString()) 
-            });
+                Converters = new List<JsonConverter> { new StringEnumConverter { CamelCaseText = false } },
+            };
+            var content = new StringContent(JsonConvert.SerializeObject(request.IsStarred, jsonSettings), Encoding.UTF8, "application/json");
 
             try
             {
-                HttpResponseMessage response = await _httpClient.PutAsync(uri, formContent);
+                HttpResponseMessage response = await _httpClient.PutAsync(uri, content);
                 if (response.IsSuccessStatusCode)
                 {
                     DetailedSegmentApiModel apiResponseContent = await response.Content
                         .ReadAsAsync<DetailedSegmentApiModel>();
 
-        DetailedSegmentModel model = _mapper
-            .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
+                    DetailedSegmentModel model = _mapper
+                        .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
 
                     return model;
                 }
                 else
                 {
                     throw new HttpRequestException(response.Content.ToString());
-}
+                }
             }
 
             catch (HttpRequestException ex)
             {
-    Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-    return null;
-}
+                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+                return null;
+            }
         }
     }
 }
