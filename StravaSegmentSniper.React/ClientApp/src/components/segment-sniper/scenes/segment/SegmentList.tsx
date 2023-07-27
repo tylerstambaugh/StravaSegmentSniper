@@ -136,6 +136,7 @@ const SegmentList = (props: SegmentListProps) => {
           <DisplaySnipedSegmentList
             snipedSegmentList={snipedSegmentlist}
             clearSnipedSegments={clearSnipedSegments}
+            handleStarSegment={handleStarSegment}
             // handleShowSegmentDetails={handleShowSegmentDetails}
           />
         )}

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.React.ActionHandlers.Segment;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
+using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.Controllers
 {
@@ -11,6 +13,7 @@ namespace StravaSegmentSniper.React.Controllers
     public class StravaSegmentController : ControllerBase
     {
         private readonly IStarSegmentActionHandler _starSegmentActionHandler;
+
 
         public StravaSegmentController(IStarSegmentActionHandler starSegmentActionHandler)
         {
@@ -26,14 +29,16 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpPost]
         [ActionName("StarSegment")]
-        public IActionResult StarSegment([FromBody] StarSegmentContract contract)
+        public IActionResult StarSegment([FromBody] StarSegmentRequest request)
         {
-            var response = _starSegmentActionHandler.HandleStarSegment(contract).Result;
+            request.UserId= HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            
+            var response = _starSegmentActionHandler.HandleStarSegment(request).Result;
             if (response == null)
             {
                 return BadRequest("null object response from handler");
             }
-            else if (response.IsStarred == contract.StarSegment)
+            else if (response.IsStarred == request.StarSegment)
             {
                 return BadRequest("failed to change state of star on segment");
             }

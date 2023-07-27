@@ -6,6 +6,7 @@ const useStarSegment = () => {
   const api = useApi();
   const [starSegmentLoading, setStarSegmentLoading] = useState(false);
   const [starSegmentError, setStarSegmentError] = useState<Error>();
+  const abortController = new AbortController();
 
   async function starSegment(
     props: starSegmentProps
@@ -19,6 +20,7 @@ const useStarSegment = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        signal: abortController.signal,
       };
 
       const response: starredSegment | Error = await api.fetch(
