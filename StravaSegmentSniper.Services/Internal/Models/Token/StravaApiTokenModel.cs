@@ -2,7 +2,6 @@
 {
     public class StravaApiTokenModel
     {
-        public int Id { get; set; }
         public int AthleteId { get; set; }
         public string? Token { get; set; }
         public string? RefreshToken { get; set; }
