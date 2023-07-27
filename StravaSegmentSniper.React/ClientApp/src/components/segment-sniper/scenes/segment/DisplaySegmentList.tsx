@@ -36,7 +36,6 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   const [listOfSegments, setListOfSegments] = useState<SegmentListItem[]>(
     props.segmentList
   );
-  const starSegment = useStarSegment();
   const tableBody: TableRow[] = props.segmentList.map((item) => ({
     ...item,
     detailsButton: null,
