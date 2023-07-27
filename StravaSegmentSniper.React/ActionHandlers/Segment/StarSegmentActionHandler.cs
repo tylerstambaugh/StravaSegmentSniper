@@ -18,12 +18,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
             _stravaApiSegment = stravaApiSegment;
         }
 
-        public async Task<StarSegmentModel> HandleStarSegment(StarSegmentRequest request)
+        public async Task<StarSegmentModel> HandleStarSegment(StarSegmentRequest request, string userId)
         {
-            //var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            //var userId = user.Id;
-
-            var model = new StarSegmentModel(request.SegmentId, request.StarSegment, request.UserId);
+            var model = new StarSegmentModel(request.SegmentId, request.StarSegment, userId);
 
             var result = await _stravaApiSegment.StarSegment(model);
 

@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI
 {
-    internal class IStravaRequestClientConfiguration
+    public interface IStravaApiRequestClientConfiguration
     {
+        string ClientId { get; }
+        string ClientSecret { get; }
+        string RefreshToken { get; }
+        string BaseUrl { get; }
+        string AccountBaseUrl { get; }
     }
 }
 
