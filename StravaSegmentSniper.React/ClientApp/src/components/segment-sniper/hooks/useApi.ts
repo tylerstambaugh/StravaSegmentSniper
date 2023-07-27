@@ -91,5 +91,13 @@ export const useApi = <TResponse = any>() => {
     }
   }
 
+  useEffect(() => {
+    return () => {
+      abortControllers.forEach((controller) => {
+        controller.abort();
+      });
+    };
+  }, []);
+
   return { fetch };
 };

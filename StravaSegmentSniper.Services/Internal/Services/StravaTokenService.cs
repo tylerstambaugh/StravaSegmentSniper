@@ -1,12 +1,7 @@
 ﻿using Authorization.Data.Data;
 using AutoMapper;
-using Microsoft.Identity.Client;
 using StravaSegmentSniper.Data;
-using StravaSegmentSniper.Data.Entities.Token;
-using StravaSegmentSniper.Services.Internal.Models.Activity;
 using StravaSegmentSniper.Services.Internal.Models.Token;
-using StravaSegmentSniper.Services.StravaAPI;
-using StravaSegmentSniper.Services.StravaAPI.Models.Activity;
 using StravaSegmentSniper.Services.StravaAPI.TokenService;
 
 namespace StravaSegmentSniper.Services.Internal.Services
@@ -26,8 +21,6 @@ namespace StravaSegmentSniper.Services.Internal.Services
             _authDbContext = authDbContext;
             _mapper = mapper;
         }
-
-     
 
         public Data.Entities.Token.StravaApiToken GetTokenByUserId(string userId)
         {
@@ -72,7 +65,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             else
             {
                 return -1;
-            }           
+            }
         }
         public StravaApiTokenModel GetCurrentStravaApiToken(string userId)
         {
@@ -96,9 +89,9 @@ namespace StravaSegmentSniper.Services.Internal.Services
             }
             else
             {
-            _context.StravaApiTokens.Add(model);
+                _context.StravaApiTokens.Add(model);
             }
-                return _context.SaveChanges() == 1;
+            return _context.SaveChanges() == 1;
         }
 
     }

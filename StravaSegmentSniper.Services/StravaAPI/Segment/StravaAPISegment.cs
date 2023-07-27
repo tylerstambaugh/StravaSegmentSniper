@@ -3,12 +3,8 @@ using Newtonsoft.Json;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Segment
 {
@@ -155,46 +151,51 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
             }
         }
 
-        public async Task<DetailedSegmentModel> StarSegment(string userId, StarSegmentModel content)
+        public async Task<DetailedSegmentModel> StarSegment(StarSegmentModel request)
         {
-            string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
+            string token = _tokenService.GetTokenByUserId(request.UserId).AuthorizationToken;
             var builder = new UriBuilder()
             {
                 Scheme = "https",
                 Host = "www.strava.com",
-                Path = $"api/v3//segments/{content.SegmentId}/starred"
+                Path = $"api/v3//segments/{request.SegmentId}/starred"
             };
 
             _httpClient.DefaultRequestHeaders.Authorization =
            new AuthenticationHeaderValue("Bearer", token);
 
             var uri = builder.ToString();
-            var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+            //var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("starred", request.IsStarred.ToString()) 
+            });
 
             try
             {
-                HttpResponseMessage response = await _httpClient.PutAsync(uri, stringContent);
+                HttpResponseMessage response = await _httpClient.PutAsync(uri, formContent);
                 if (response.IsSuccessStatusCode)
                 {
                     DetailedSegmentApiModel apiResponseContent = await response.Content
                         .ReadAsAsync<DetailedSegmentApiModel>();
 
-                    DetailedSegmentModel model = _mapper
-                        .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
+        DetailedSegmentModel model = _mapper
+            .Map<DetailedSegmentApiModel, DetailedSegmentModel>(apiResponseContent);
 
                     return model;
                 }
                 else
                 {
                     throw new HttpRequestException(response.Content.ToString());
-                }
+}
             }
 
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
-                return null;
-            }
+    Console.WriteLine($"Staus Code{ex.StatusCode}, {ex.Message}");
+    return null;
+}
         }
     }
 }

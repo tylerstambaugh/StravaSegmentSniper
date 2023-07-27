@@ -17,10 +17,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { starSegmentProps } from "../../hooks/segment/useStarSegment";
 
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
+  handleStarSegment: (props: starSegmentProps) => void;
 }
 
 type TabelRow = SnipedSegmentListItem & {
@@ -67,7 +69,10 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            row.starred = !row.starred;
+            props.handleStarSegment({
+              segmentId: row.segmentId,
+              starSegment: !!row.starred,
+            });
           }}
         >
           {row.starred ? (
