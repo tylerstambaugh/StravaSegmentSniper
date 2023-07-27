@@ -786,25 +786,25 @@
 	],
 	"variable": [
 		{
-			"id": "363313e9-a4eb-48bc-9e2f-374e10a2e5c2",
+			"id": "ed0ebd42-1e3f-4f8f-ba6d-184c873b045c",
 			"key": "access_token",
 			"value": "645d8e66cc1de0bd5e0e3e374c25f4eaa824fcfd",
 			"type": "string"
 		},
 		{
-			"id": "adeb614a-7da3-43a6-b677-f1e32c0c2db0",
+			"id": "65b3315a-e5ab-4932-8af5-29133620552d",
 			"key": "base_url",
 			"value": "https://www.strava.com/api/v3",
 			"type": "string"
 		},
 		{
-			"id": "d5ef622c-9adb-4656-b07e-c37f1689bebe",
+			"id": "a1747a45-1869-4309-bbf2-77c492bee658",
 			"key": "refresh_token",
 			"value": "1c4ab6706761145335610303083937f4852a786c",
 			"type": "string"
 		},
 		{
-			"id": "33cb65e5-00fd-49c7-ae61-6b48a7b94b18",
+			"id": "7b2349e2-18d5-4f6d-9c1d-f09ea7f715f9",
 			"key": "local_api",
 			"value": "https://localhost:44411/api/",
 			"type": "string"
