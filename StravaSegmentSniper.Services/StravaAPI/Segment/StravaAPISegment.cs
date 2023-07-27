@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using StravaSegmentSniper.Services.Internal.Models.Segment;
 using StravaSegmentSniper.Services.Internal.Services;
 using StravaSegmentSniper.Services.StravaAPI.Models.Segment;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
 
 namespace StravaSegmentSniper.Services.StravaAPI.Segment
 {
@@ -168,11 +164,10 @@ namespace StravaSegmentSniper.Services.StravaAPI.Segment
 
             var uri = builder.ToString();
 
-            var jsonSettings = new JsonSerializerSettings
+            var content = new FormUrlEncodedContent(new[]
             {
-                Converters = new List<JsonConverter> { new StringEnumConverter { CamelCaseText = false } },
-            };
-            var content = new StringContent(JsonConvert.SerializeObject(request.IsStarred, jsonSettings), Encoding.UTF8, "application/json");
+                new KeyValuePair<string, string>("starred", request.IsStarred.ToString().ToLower())
+            });
 
             try
             {
