@@ -29,28 +29,36 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     endDate?: Date | null;
     activityType?: string | null;
   }
+
   const validationSchema = yup.object().shape({
-    activityId: yup.number().nullable(),
-    //startDate: yup.date().nullable(),
-    //endDate: yup.date().nullable(),
+    activityId: yup
+      .number()
+      .nullable()
+      .test({
+        name: "activityIdOrDateRange",
+        test: function (value) {
+          const { startDate, endDate } = this.parent;
+          return !!value || (!!startDate && !!endDate);
+        },
+        message: "Please provide either Activity ID or Date Range",
+      }),
+    startDate: yup
+      .date()
+      .when("activityId", (activityId, schema) =>
+        !activityId
+          ? schema.required("Date Range or Activity ID Required")
+          : schema.nullable()
+      ),
+    endDate: yup
+      .date()
+      .nullable()
+      .when("startDate", (startDate, schema) =>
+        startDate
+          ? schema.required("End Date is required when Start Date is present")
+          : schema.nullable()
+      ),
     activityType: yup.string().required("Please select an Activity Type"),
   });
-  // .test(
-  //   "activityOrDates",
-  //   "Please provide an activity ID or both start and end dates.",
-  //   function (values) {
-  //     const { activityId, startDate, endDate } = values;
-
-  //     if (!activityId && (!startDate || !endDate)) {
-  //       return this.createError({
-  //         path: "activityId",
-  //         message:
-  //           "Please provide an activity ID or both start and end dates.",
-  //       });
-  //     }
-  //     return true;
-  //   }
-  // );
 
   const initialValues = {
     activityId: undefined,
@@ -73,8 +81,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       handleSearch(searchProps);
     },
     validationSchema,
-    validateOnBlur: true,
-    validateOnChange: true,
+    validateOnBlur: validated,
+    validateOnChange: validated,
   });
 
   const handleFormReset = () => {
@@ -102,9 +110,6 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
               onSubmit={(event) => {
                 event.preventDefault();
                 setValidated(true);
-                console.log(`formik isValid = ${formik.isValid}`);
-                console.log(`formik status = ${formik.status}`);
-                console.log(`formik errors endDate = ${formik.errors.endDate}`);
                 formik.handleSubmit(event);
               }}
             >
@@ -155,6 +160,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       onError={(err) => {
                         if (err === "disableFuture") {
                           setStartDateError("Date must be in past.");
+                        } else if (err === "invalidDate") {
+                          setStartDateError("Invalid Date");
                         } else {
                           setStartDateError(err ?? "");
                         }
@@ -174,15 +181,17 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                       label="End Date"
                       slotProps={{
                         textField: {
-                          error: !!endDateError,
+                          error: endDateError !== "",
                           helperText: <>{endDateError}</>,
                         },
                       }}
                       onError={(err) => {
                         if (err === "disableFuture") {
-                          setStartDateError("Date must be in past.");
+                          setEndDateError("Date must be in past.");
+                        } else if (err === "invalidDate") {
+                          setEndDateError("Invalid Date");
                         } else {
-                          setStartDateError(err ?? "");
+                          setEndDateError(err ?? "");
                         }
                       }}
                       defaultValue={formik.values.endDate ?? null}
@@ -198,11 +207,11 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
               </div>
               <div>
                 <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
+                  <FormLabel id="activityTypeRadioButtons">
                     Activity Type
                   </FormLabel>
                   <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
+                    //aria-labelledby="activityTypeRadioButtons"
                     defaultValue={formik.values.activityType}
                     value={formik.values.activityType}
                     name="row-radio-buttons-group"
