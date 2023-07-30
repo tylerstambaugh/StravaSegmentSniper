@@ -63,8 +63,10 @@ const Activity = () => {
 
   function handleShowSegments(activityId: string) {
     if (activityList && activityList.length > 0) {
-      const selectedActivity = activityList.find((x) => x.id === activityId);
-      setSelectedActivityId(selectedActivity?.id);
+      const selectedActivity = activityList.find(
+        (x) => x.activityId === activityId
+      );
+      setSelectedActivityId(selectedActivity?.activityId);
       if (
         selectedActivity &&
         selectedActivity.segments &&

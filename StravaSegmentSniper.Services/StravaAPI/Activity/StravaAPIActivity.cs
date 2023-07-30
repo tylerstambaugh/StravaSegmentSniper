@@ -42,7 +42,6 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
 
             try
             {
-
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode && response != null)

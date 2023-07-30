@@ -27,14 +27,21 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             //map API models to service models. 
             CreateMap<AthleteAPIModel, MetaAthleteModel>();
             CreateMap<DetailedAthleteAPIModel, DetailedAthleteModel>();
-            CreateMap<DetailedActivityAPIModel, DetailedActivityModel>();
-            CreateMap<ActivityAPIModel, ActivityModel>();
+            CreateMap<DetailedActivityAPIModel, DetailedActivityModel>()
+                .ForMember(dest => dest.ActivityId, opt => opt.MapFrom(src => src.id));
 
-            CreateMap<SummaryActivityAPIModel, SummaryActivityModel>();
+            CreateMap<ActivityAPIModel, ActivityModel>()
+                .ForMember(dest => dest.ActivityId, opt => opt.MapFrom(src => src.id));
+
+            CreateMap<SummaryActivityAPIModel, SummaryActivityModel>()
+                 .ForMember(dest => dest.ActivityId, opt => opt.MapFrom(src => src.id));
 
             CreateMap<ActivityStatsAPIModel, ActivityStatsModel>();
             CreateMap<SummarySegmentAPIModel, SummarySegmentModel>();
-            CreateMap<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>();
+
+            CreateMap<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>()
+                .ForMember(dest => dest.SegmentEffortId, opt => opt.MapFrom(src => src.id));
+
             CreateMap<DetailedSegmentApiModel, DetailedSegmentModel>();
             CreateMap<AchievementAPIModel, AchievementModel>();
             CreateMap<LocalLegendAPIModel, LocalLegendModel>();

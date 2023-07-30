@@ -11,6 +11,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
         private readonly StravaSegmentSniperDbContext _context;
         private readonly IMapper _mapper;
         private readonly IStravaApiToken _stravaAPIToken;
+        private Data.Entities.Token.StravaApiToken _token;
 
         public StravaTokenService(StravaSegmentSniperDbContext context,
                             IStravaApiToken stravaAPIToken, IMapper mapper)
@@ -22,17 +23,26 @@ namespace StravaSegmentSniper.Services.Internal.Services
 
         public Data.Entities.Token.StravaApiToken GetTokenByUserId(string userId)
         {
-            if (TokenIsExpired(userId))
+            if (_token == null)
+            {
+                _token = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
+            }
+            if (!TokenIsExpired(_token))
+            {
+                return _token;
+            }
+            else {
                 RefreshToken(userId);
+                _token = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
 
-            return _context.StravaApiTokens.Where(x => x.UserId == userId).First();
+                return _token;
+            }
         }
 
-        public bool TokenIsExpired(string userId)
+        public bool TokenIsExpired(Data.Entities.Token.StravaApiToken token)
         {
-            var tokenToCheck = _context.StravaApiTokens.Where(x => x.UserId == userId).First();
-            DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(tokenToCheck.ExpiresAt);
-
+            
+            DateTimeOffset expirationDate = DateTimeOffset.FromUnixTimeSeconds(token.ExpiresAt);
             return expirationDate < DateTimeOffset.Now;
         }
 

@@ -13,7 +13,7 @@ export interface SegmentEffort {
   resource_state: number;
   name: string;
   activity: {
-    id: number;
+    id: string;
     resource_state: number;
   };
   athlete: {

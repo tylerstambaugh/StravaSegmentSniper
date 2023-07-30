@@ -7,7 +7,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
     {
         StravaApiToken GetTokenByUserId(string userId);
         int RefreshToken(string userId);
-        bool TokenIsExpired(string userId);
+        bool TokenIsExpired(Data.Entities.Token.StravaApiToken token);
         StravaApiTokenModel GetCurrentStravaApiToken(string userId);
         bool AddStravaApiTokenRecord(StravaApiToken model);
     }
