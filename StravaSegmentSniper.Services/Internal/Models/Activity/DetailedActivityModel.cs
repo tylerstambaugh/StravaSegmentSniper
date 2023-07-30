@@ -6,7 +6,7 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
 {
     public class DetailedActivityModel
     {
-        public long Id { get; set; }
+        public string ActivityId { get; set; }
         public int ResourceState { get; set; }
         public MetaAthleteModel Athlete { get; set; }
 

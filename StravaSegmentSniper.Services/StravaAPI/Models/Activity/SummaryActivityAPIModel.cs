@@ -15,7 +15,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Models.Activity
         public string type { get; set; }
         public string sport_type { get; set; }
         public int workout_type { get; set; }
-        public object id { get; set; }
+        public string id { get; set; }
         public DateTime start_date { get; set; }
         public DateTime start_date_local { get; set; }
         public string timezone { get; set; }

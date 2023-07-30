@@ -11,7 +11,7 @@ namespace StravaSegmentSniper.Services.Internal.Models.Activity
 {
     public class ActivityListModel
     {
-        public long Id { get; set; }
+        public string ActivityId { get; set; }
         public string Name { get; set; }
         public double Distance { get; set; }
         public string Type { get; set; }

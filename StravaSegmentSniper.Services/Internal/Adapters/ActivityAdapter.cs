@@ -24,7 +24,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
 
             ActivityListModel returnActivity = new ActivityListModel
             {
-                Id = activity.Id,
+                ActivityId = activity.ActivityId,
                 Name = activity.Name,
                 Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(activity.Distance), 2),
                 Type = activity.Type,
@@ -52,7 +52,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
             DetailedActivityUIModel returnModel = new DetailedActivityUIModel
             {
 
-                Id = model.Id,
+                ActivityId = model.ActivityId,
                 DetailedAthleteId = model.DetailedAthleteId,
                 Name = model.Name,
                 Distance = CommonConversionHelpers.ConvertMetersToMiles(model.Distance),

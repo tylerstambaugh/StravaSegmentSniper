@@ -29,7 +29,9 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<DetailedAthleteAPIModel, DetailedAthleteModel>();
             CreateMap<DetailedActivityAPIModel, DetailedActivityModel>();
             CreateMap<ActivityAPIModel, ActivityModel>();
+
             CreateMap<SummaryActivityAPIModel, SummaryActivityModel>();
+
             CreateMap<ActivityStatsAPIModel, ActivityStatsModel>();
             CreateMap<SummarySegmentAPIModel, SummarySegmentModel>();
             CreateMap<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>();

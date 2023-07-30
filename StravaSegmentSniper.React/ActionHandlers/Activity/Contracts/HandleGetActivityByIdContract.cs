@@ -2,6 +2,6 @@
 {
     public class HandleGetActivityByIdContract
     {
-        public long activityId { get; set; }
+        public string activityId { get; set; }
     }
 }

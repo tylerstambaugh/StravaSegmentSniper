@@ -72,7 +72,7 @@ namespace StravaSegmentSniper.Services.StravaAPI.Activity
             }
         }
 
-        public async Task<DetailedActivityModel> GetDetailedActivityById(long activityId, string userId)
+        public async Task<DetailedActivityModel> GetDetailedActivityById(string activityId, string userId)
         {
             string token = _tokenService.GetTokenByUserId(userId).AuthorizationToken;
             var builder = new UriBuilder()

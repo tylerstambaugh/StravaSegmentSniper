@@ -37,12 +37,8 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 
 
         //make async
-        public List<ActivityListModel> HandleGetActivitListForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract)
-        {
-
-            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = user.Id;
-
+        public List<ActivityListModel> HandleGetActivitListForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract, string userId)
+       {
             var endDate = contract.EndDate.AddDays(1);
 
             var unixStartDate = ConvertToEpochTime(contract.StartDate);
@@ -63,7 +59,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 
             foreach(SummaryActivityModel activityModel in listOfSummaryActivities)
             {
-                listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.Id, userId).Result);
+                listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.ActivityId, userId).Result);
             }
 
             List<ActivityListModel> activitieList = new List<ActivityListModel>();

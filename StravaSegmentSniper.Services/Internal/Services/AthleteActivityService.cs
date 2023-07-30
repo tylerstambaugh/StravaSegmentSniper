@@ -37,7 +37,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
             //Get details of each activity in the list of SummaryActivities
             foreach (SummaryActivityModel activity in summaryActivites)
             {
-                var activityToAdd = _stravaAPIActivity.GetDetailedActivityById(activity.Id, userId).Result;
+                var activityToAdd = _stravaAPIActivity.GetDetailedActivityById(activity.ActivityId, userId).Result;
 
                 detailedActivites.Add(activityToAdd);
             }
@@ -75,7 +75,7 @@ namespace StravaSegmentSniper.Services.Internal.Services
         {
             DetailedActivity activityToSave = new DetailedActivity
             {
-                StravaActivityId = model.Id,
+                StravaActivityId = model.ActivityId,
                 DetailedAthleteId = detailedAthleteId,
                 StravaAthleteId = model.Athlete.Id,
                 Name = model.Name,

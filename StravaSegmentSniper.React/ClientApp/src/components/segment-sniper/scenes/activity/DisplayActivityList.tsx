@@ -34,6 +34,7 @@ type ArrayElementType = ActivityListItem & {
 const DisplayActivityList = (props: displayActivityListProps) => {
   const [checked, setChecked] = useState(false);
   const [selectedRow, setSelectedRow] = useState<string | null>(null);
+  const [filterValue, setFilterValue] = useState("");
   const tableBody: ArrayElementType[] = props.activityList.map((item) => ({
     ...item,
     segmentsButton: null,
