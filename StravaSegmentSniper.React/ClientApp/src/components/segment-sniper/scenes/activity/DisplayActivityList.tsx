@@ -34,7 +34,6 @@ type ArrayElementType = ActivityListItem & {
 const DisplayActivityList = (props: displayActivityListProps) => {
   const [checked, setChecked] = useState(false);
   const [selectedRow, setSelectedRow] = useState<string | null>(null);
-  const [filterValue, setFilterValue] = useState("");
   const tableBody: ArrayElementType[] = props.activityList.map((item) => ({
     ...item,
     segmentsButton: null,
@@ -43,7 +42,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
   }));
   const header: TableColumnType<ArrayElementType>[] = [
     { title: "Name", prop: "name", isFilterable: true },
-    { title: "Id", prop: "id" },
+    { title: "Id", prop: "activityId" },
     { title: "Date", prop: "startDate", isSortable: true },
     { title: "Distance", prop: "distance", isSortable: true },
     { title: "Time", prop: "elapsedTime", isSortable: true },
@@ -56,7 +55,9 @@ const DisplayActivityList = (props: displayActivityListProps) => {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            alert(`${row.id}'s achievement count is ${row.achievementCount}`);
+            alert(
+              `${row.activityId}'s achievement count is ${row.achievementCount}`
+            );
           }}
         >
           Details
@@ -71,11 +72,11 @@ const DisplayActivityList = (props: displayActivityListProps) => {
             id="toggle-check"
             type="checkbox"
             variant={checked ? "outline-primary" : "primary"}
-            checked={row.id === selectedRow}
+            checked={row.activityId === selectedRow}
             value="1"
             onChange={(e) => setChecked(e.currentTarget.checked)}
             onClick={() => {
-              handleSegmentButtonClick(row.id ?? "");
+              handleSegmentButtonClick(row.activityId ?? "");
             }}
           >
             Segments

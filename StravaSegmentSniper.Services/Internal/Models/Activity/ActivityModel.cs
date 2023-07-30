@@ -2,7 +2,7 @@
 {
     public class ActivityModel
     {
-        public long Id { get; set; }
+        public string ActivityId { get; set; }
         public int ResourceState { get; set; }
     }
 

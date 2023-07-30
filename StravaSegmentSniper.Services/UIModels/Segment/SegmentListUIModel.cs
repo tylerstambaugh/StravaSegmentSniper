@@ -12,7 +12,7 @@ namespace StravaSegmentSniper.Services.UIModels.Segment
     {
         public long SegmentEffortId { get; set; }
         public long SegmentId { get; set; }
-        public long ActivityId { get; set; }
+        public string ActivityId { get; set; }
         public string Name { get; set; }
         public string Time { get; set; }
         public string ActivityType { get; set; }

@@ -2,7 +2,7 @@ import { SegmentListItem } from "../Segment/Segment";
 
 export interface ActivityListItem {
   name?: string;
-  id?: string;
+  activityId?: string;
   type?: string;
   startDate?: Date;
   distance?: number;

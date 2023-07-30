@@ -62,14 +62,14 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
                 listOfDetailedActivities.Add(_stravaAPIActivity.GetDetailedActivityById(activityModel.ActivityId, userId).Result);
             }
 
-            List<ActivityListModel> activitieList = new List<ActivityListModel>();
+            List<ActivityListModel> activityList = new List<ActivityListModel>();
 
             foreach (var activity in listOfDetailedActivities)
             {
-                activitieList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(activity));
+                activityList.Add(_activityAdapter.AdaptDetailedActivitytoActivityList(activity));
             }
 
-            return activitieList;
+            return activityList;
         }
 
         public DetailedActivityUIModel HandleGetActivityDetailById(HandleGetActivityByIdContract contract)

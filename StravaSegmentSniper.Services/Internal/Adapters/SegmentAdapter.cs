@@ -12,7 +12,7 @@ namespace StravaSegmentSniper.Services.Internal.Adapters
             {
                 SegmentId = model.Segment.Id,
                 SegmentEffortId = model.SegmentEffortId,
-                ActivityId = model.Activity.Id,
+                ActivityId = model.Activity.ActivityId,
                 Name = model.Name,
                 Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
                 Time = TimeSpan.FromSeconds(model.ElapsedTime).ToString(@"hh\:mm\:ss"),
