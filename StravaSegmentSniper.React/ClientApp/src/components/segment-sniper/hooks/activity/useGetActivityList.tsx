@@ -31,7 +31,7 @@ const useGetActivityList = () => {
       return error;
     }
 
-    async function fetchByActivityId(activityId: number) {
+    async function fetchByActivityId(activityId: string) {
       try {
         const requestOptions: RequestInit = {
           method: "GET",

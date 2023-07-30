@@ -14,8 +14,8 @@ import { addDays } from "date-fns";
 import dayjs, { Dayjs } from "dayjs";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { ActivitySearchProps } from "./Activity";
 import ActivityTypeEnum from "../../enums/activityTypes";
+import { ActivitySearchProps } from "./Activity";
 
 function ActivityListLookup({ activityLoading, handleSearch }) {
   const [validated, setValidated] = useState(false);
@@ -24,7 +24,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
 
   //const minDate: Date = dayjs().subtract(45, "day").toDate();
   interface ActivityLookupForm {
-    activityId?: number | null;
+    activityId?: string;
     startDate?: Date | null;
     endDate?: Date | null;
     activityType?: string | null;
@@ -38,7 +38,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
         name: "activityIdOrDateRange",
         test: function (value) {
           const { startDate, endDate } = this.parent;
-          return !!value || (!!startDate && !!endDate);
+          return !!value || !!startDate;
         },
         message: "Please provide either Activity ID or Date Range",
       }),
@@ -49,6 +49,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
           ? schema.required("Date Range or Activity ID Required")
           : schema.nullable()
       ),
+
     endDate: yup
       .date()
       .nullable()
@@ -80,7 +81,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       };
       handleSearch(searchProps);
     },
-    validationSchema,
+    validationSchema: validationSchema,
     validateOnBlur: validated,
     validateOnChange: validated,
   });
@@ -108,6 +109,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
             <Form
               name="activityLookupForm"
               onSubmit={(event) => {
+                console.log(`form values: ${formik.values}`);
+
                 event.preventDefault();
                 setValidated(true);
                 formik.handleSubmit(event);
@@ -132,6 +135,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
                         formik.setFieldValue("activityId", e.target.value);
                         //formik.handleChange(e);
                       }}
+                      onBlur={formik.handleBlur}
                       InputLabelProps={{
                         shrink: true,
                       }}

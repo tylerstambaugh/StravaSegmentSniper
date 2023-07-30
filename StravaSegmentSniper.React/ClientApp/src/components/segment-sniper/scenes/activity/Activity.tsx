@@ -13,7 +13,7 @@ import SegmentList from "../segment/SegmentList";
 import { Container } from "react-bootstrap";
 
 export interface ActivitySearchProps {
-  activityId?: number | null;
+  activityId?: string;
   startDate?: Date | null;
   endDate?: Date | null;
   activityType?: ActivityTypeEnum | null;

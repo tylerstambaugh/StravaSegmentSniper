@@ -4,6 +4,7 @@ using StravaSegmentSniper.React.ActionHandlers.Activity;
 using StravaSegmentSniper.React.ActionHandlers.Activity.Contracts;
 using StravaSegmentSniper.React.Controllers.Contracts;
 using StravaSegmentSniper.Services.Internal.Models.Activity;
+using System.Security.Claims;
 using static StravaSegmentSniper.Services.Enums.ActivityTypeEnum;
 
 namespace StravaSegmentSniper.React.Controllers
@@ -25,6 +26,7 @@ namespace StravaSegmentSniper.React.Controllers
         [Consumes("application/json")]
         public List<ActivityListModel> SummaryActivityForTimeRange([FromBody] DateRangeParametersContract dateRangeParameters)
         {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
 
             ActivityType parsedActivity;
             if (Enum.TryParse<ActivityType>(dateRangeParameters.ActivityType, true, out parsedActivity));
@@ -37,7 +39,7 @@ namespace StravaSegmentSniper.React.Controllers
                 parsedActivity
             );
 
-                var returnList = _stravaActivityActionHandler.HandleGetActivitListForDateRange(contract);
+                var returnList = _stravaActivityActionHandler.HandleGetActivitListForDateRange(contract, userId);
 
                 return returnList;
             }
@@ -49,9 +51,11 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityListById")]
-        public IActionResult StravaActivityListById([FromQuery]long activityId)
+        public IActionResult StravaActivityListById([FromQuery]string activityId)
         {
-           HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+
+            HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {
                    activityId = activityId
             };
@@ -64,8 +68,10 @@ namespace StravaSegmentSniper.React.Controllers
 
         [HttpGet]
         [ActionName("ActivityDetailtById")]
-        public IActionResult StravaActivityDetailById([FromQuery] long activityId)
+        public IActionResult StravaActivityDetailById([FromQuery] string activityId)
         {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+
             HandleGetActivityByIdContract contract = new HandleGetActivityByIdContract
             {
                 activityId = activityId
