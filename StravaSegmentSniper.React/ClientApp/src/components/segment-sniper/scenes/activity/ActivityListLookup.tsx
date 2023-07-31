@@ -66,15 +66,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
       .when("startDate", (startDate, schema) =>
         startDate
           ? schema
+              .min(startDate, "End date must be greater than start date")
               .required("End date is required when start date is present")
-              .test(
-                "endDateGreater",
-                "End date must be greater than start date",
-                function (value): boolean {
-                  const { startDate } = this.parent;
-                  return value > startDate;
-                }
-              )
           : schema.nullable()
       ),
     activityType: yup.string().required("Please select an Activity Type"),
