@@ -24,7 +24,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
 
   //const minDate: Date = dayjs().subtract(45, "day").toDate();
   interface ActivityLookupForm {
-    activityId?: string;
+    activityId?: string | null;
     startDate?: Date | null;
     endDate?: Date | null;
     activityType?: string | null;
@@ -38,24 +38,43 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
         name: "activityIdOrDateRange",
         test: function (value) {
           const { startDate, endDate } = this.parent;
-          return !!value || !!startDate;
+          return !!value || (!!startDate && !!endDate);
         },
-        message: "Please provide either Activity ID or Date Range",
+        message: "Please provide either activity ID or date range",
       }),
-    startDate: yup
-      .date()
-      .when("activityId", (activityId, schema) =>
-        !activityId
-          ? schema.required("Date Range or Activity ID Required")
-          : schema.nullable()
-      ),
+
+    // startDate: yup
+    //   .date()
+    //   .when(["activityId", "endDate"], (activityId, endDate, schema) =>
+    //     !!activityId || !!endDate
+    //       ? schema
+    //           .required("Date range or activity ID required")
+    //           .test(
+    //             "startDateLessThan",
+    //             "Start date must be before end date",
+    //             function (value): boolean {
+    //               const { endDate } = this.parent;
+    //               return value < endDate;
+    //             }
+    //           )
+    //       : schema.nullable()
+    //   ),
 
     endDate: yup
       .date()
       .nullable()
       .when("startDate", (startDate, schema) =>
         startDate
-          ? schema.required("End Date is required when Start Date is present")
+          ? schema
+              .required("End date is required when start date is present")
+              .test(
+                "endDateGreater",
+                "End date must be greater than start date",
+                function (value): boolean {
+                  const { startDate } = this.parent;
+                  return value > startDate;
+                }
+              )
           : schema.nullable()
       ),
     activityType: yup.string().required("Please select an Activity Type"),
@@ -74,7 +93,7 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
     onSubmit: (values: ActivityLookupForm) => {
       setValidated(true);
       const searchProps: ActivitySearchProps = {
-        activityId: values.activityId,
+        activityId: values.activityId ?? "",
         startDate: values.startDate,
         endDate: values.endDate,
         activityType: values.activityType as unknown as ActivityTypeEnum,
@@ -109,7 +128,8 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
             <Form
               name="activityLookupForm"
               onSubmit={(event) => {
-                console.log(`form values: ${formik.values}`);
+                console.log(`activity Id: ${formik.values.activityId}`);
+                console.log(`activity Id error: ${formik.errors.activityId}`);
 
                 event.preventDefault();
                 setValidated(true);
