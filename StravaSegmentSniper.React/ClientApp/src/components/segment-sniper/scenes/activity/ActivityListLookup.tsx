@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Container, Row, Col, Button, Stack, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Stack,
+  Form,
+  Spinner,
+} from "react-bootstrap";
 import {
   FormControl,
   FormControlLabel,
@@ -10,8 +18,6 @@ import {
   TextField,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { addDays } from "date-fns";
-import dayjs, { Dayjs } from "dayjs";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import ActivityTypeEnum from "../../enums/activityTypes";
@@ -45,32 +51,24 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
 
     // startDate: yup
     //   .date()
-    //   .when(["activityId", "endDate"], (activityId, endDate, schema) =>
-    //     !!activityId || !!endDate
-    //       ? schema
+    //   .when(["activityId"], (activityId, schema) => {
+    //     return (!!activityId)
+    //       ? schema    //
     //           .required("Date range or activity ID required")
-    //           .test(
-    //             "startDateLessThan",
-    //             "Start date must be before end date",
-    //             function (value): boolean {
-    //               const { endDate } = this.parent;
-    //               return value < endDate;
-    //             }
-    //           )
+    //       : schema.nullable();
+    //   }),
+
+    // endDate: yup
+    //   .date()
+    //   .nullable()
+    //   .when("startDate", (startDate, schema) =>
+    //     startDate
+    //       ? schema
+    //           .min(startDate, "End date must be after than start date")
+    //           .required("End date is required when start date is present")
     //       : schema.nullable()
     //   ),
-
-    endDate: yup
-      .date()
-      .nullable()
-      .when("startDate", (startDate, schema) =>
-        startDate
-          ? schema
-              .min(startDate, "End date must be greater than start date")
-              .required("End date is required when start date is present")
-          : schema.nullable()
-      ),
-    activityType: yup.string().required("Please select an Activity Type"),
+    // activityType: yup.string().required("Please select an Activity Type"),
   });
 
   const initialValues = {
@@ -268,14 +266,31 @@ function ActivityListLookup({ activityLoading, handleSearch }) {
               <div className="d-flex justify-content-end">
                 <Row>
                   <Col>
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      className={"me-1"}
-                      disabled={activityLoading}
-                    >
-                      Search
-                    </Button>
+                    {activityLoading ? (
+                      <Button
+                        type="submit"
+                        variant="secondary"
+                        className={"me-1"}
+                      >
+                        <Spinner
+                          as="span"
+                          variant="light"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                          animation="border"
+                        />
+                      </Button>
+                    ) : (
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        className={"me-1"}
+                        disabled={activityLoading}
+                      >
+                        Search
+                      </Button>
+                    )}
                   </Col>
                   <Col>
                     <Button
