@@ -8,14 +8,11 @@ import {
   TableColumnType,
   TableHeader,
 } from "react-bs-datatable";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Spinner, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SegmentListItem } from "../../models/Segment/Segment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar as solidStar,
-  faCircleCheck as circleCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck as circleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import useStarSegment, {
   starSegmentProps,
@@ -25,11 +22,13 @@ export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
   handleShowSnipeSegmentsModal: () => void;
   handleStarSegment: (props: starSegmentProps) => void;
+  loading: boolean;
 }
 
 type TableRow = SegmentListItem & {
   detailsButton: any;
   starButton: any;
+  rowLoading: boolean;
 };
 
 function DisplaySegmentList(props: displaySegmentListProps) {
@@ -40,6 +39,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
     ...item,
     detailsButton: null,
     starButton: null,
+    rowLoading: false,
   }));
 
   const header: TableColumnType<TableRow>[] = [
@@ -68,13 +68,19 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            props.handleStarSegment({
-              segmentId: row.segmentId,
-              starSegment: !row.starred,
-            });
+            handleStarSegmentClick(row);
           }}
         >
-          {row.starred ? (
+          {row.rowLoading ? (
+            <Spinner
+              as="span"
+              variant="light"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              animation="border"
+            />
+          ) : row.starred ? (
             <FontAwesomeIcon icon={circleCheck} />
           ) : (
             <FontAwesomeIcon icon={regularStar} />
@@ -87,6 +93,37 @@ function DisplaySegmentList(props: displaySegmentListProps) {
   function clearSegmentsList() {
     setListOfSegments([]);
   }
+
+  const handleStarSegmentClick = async (row: TableRow) => {
+    setListOfSegments((prevList) =>
+      prevList.map((item) =>
+        item.segmentId === row.segmentId ? { ...item, rowLoading: true } : item
+      )
+    );
+
+    try {
+      await props.handleStarSegment({
+        segmentId: row.segmentId,
+        starSegment: !row.starred,
+      });
+      setListOfSegments((prevList) =>
+        prevList.map((item) =>
+          item.segmentId === row.segmentId
+            ? { ...item, rowLoading: false }
+            : item
+        )
+      );
+    } catch (error) {
+      console.error("Error occurred while starring the segment:", error);
+      setListOfSegments((prevList) =>
+        prevList.map((item) =>
+          item.segmentId === row.segmentId
+            ? { ...item, rowLoading: false }
+            : item
+        )
+      );
+    }
+  };
 
   return (
     <>
@@ -117,6 +154,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                   variant="primary"
                   value="Snipe!"
                   onClick={(e) => props.handleShowSnipeSegmentsModal()}
+                  onChange={() => console.log("blah")}
                 />
               </Col>
             </Row>

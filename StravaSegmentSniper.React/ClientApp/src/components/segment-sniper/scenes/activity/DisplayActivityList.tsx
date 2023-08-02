@@ -59,6 +59,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
               `${row.activityId}'s achievement count is ${row.achievementCount}`
             );
           }}
+          onChange={() => console.log("blah")}
         >
           Details
         </Button>
@@ -94,7 +95,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
   return (
     <>
       {props.activityList.length > 0 ? (
-        <Container className="p-2 mb-2  bg-light text-dark border rounded">
+        <Container className="p-2 mb-2 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}
@@ -118,13 +119,13 @@ const DisplayActivityList = (props: displayActivityListProps) => {
                 </Col>
                 <Col className="d-flex justify-content-end">
                   <Button
-                    as="input"
-                    value="Clear"
                     onClick={(e) => {
                       props.clearSearchResults();
                       setSelectedRow("");
                     }}
-                  ></Button>
+                  >
+                    Clear
+                  </Button>
                 </Col>
               </Row>
             </div>

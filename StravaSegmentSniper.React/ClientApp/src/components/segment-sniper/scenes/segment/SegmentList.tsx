@@ -131,12 +131,14 @@ const SegmentList = (props: SegmentListProps) => {
             handleShowSnipeSegmentsModal={handleShowSnipeSegmentModal}
             // handleShowSegmentDetails={handleShowSegmentDetails}
             handleStarSegment={handleStarSegment}
+            loading={loading}
           />
         ) : (
           <DisplaySnipedSegmentList
             snipedSegmentList={snipedSegmentlist}
             clearSnipedSegments={clearSnipedSegments}
             handleStarSegment={handleStarSegment}
+            loading={loading}
             // handleShowSegmentDetails={handleShowSegmentDetails}
           />
         )}
