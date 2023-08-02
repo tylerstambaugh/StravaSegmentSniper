@@ -68,21 +68,16 @@ const DisplayActivityList = (props: displayActivityListProps) => {
     {
       prop: "segments",
       cell: (row) => (
-        <ButtonGroup className="mb-2">
-          <ToggleButton
-            id="toggle-check"
-            type="checkbox"
-            variant={checked ? "outline-primary" : "primary"}
-            checked={row.activityId === selectedRow}
-            value="1"
-            onChange={(e) => setChecked(e.currentTarget.checked)}
-            onClick={() => {
-              handleSegmentButtonClick(row.activityId ?? "");
-            }}
-          >
-            Segments
-          </ToggleButton>
-        </ButtonGroup>
+        <Button
+          variant={
+            row.activityId === selectedRow ? "primary" : "outline-primary"
+          }
+          onClick={() => {
+            handleSegmentButtonClick(row.activityId ?? "");
+          }}
+        >
+          Segments
+        </Button>
       ),
     },
   ];
