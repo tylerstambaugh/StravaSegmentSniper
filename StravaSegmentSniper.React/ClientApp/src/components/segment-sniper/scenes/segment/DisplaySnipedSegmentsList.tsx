@@ -23,7 +23,6 @@ export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
   handleStarSegment: (props: starSegmentProps) => void;
-  loading: boolean;
 }
 
 type TableRow = SnipedSegmentListItem & {
