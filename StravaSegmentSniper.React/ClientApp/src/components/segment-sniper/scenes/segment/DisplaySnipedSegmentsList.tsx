@@ -23,21 +23,28 @@ export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
   handleStarSegment: (props: starSegmentProps) => void;
+  loading: boolean;
 }
 
-type TabelRow = SnipedSegmentListItem & {
+type TableRow = SnipedSegmentListItem & {
   detailsButton: any;
   starButton: any;
+  rowLoading: boolean;
 };
 
 function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
-  const tableBody: TabelRow[] = props.snipedSegmentList.map((item) => ({
+  const [listOfSnipedSegments, setListOfSegments] = useState<
+    SnipedSegmentListItem[]
+  >(props.snipedSegmentList);
+
+  const tableBody: TableRow[] = props.snipedSegmentList.map((item) => ({
     ...item,
     detailsButton: null,
     starButton: null,
+    rowLoading: false,
   }));
 
-  const header: TableColumnType<TabelRow>[] = [
+  const header: TableColumnType<TableRow>[] = [
     { title: "Name", prop: "name", isFilterable: true },
     { title: "Id", prop: "segmentId" },
     { title: "Distance", prop: "distance", isSortable: true },
@@ -69,10 +76,7 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
           variant="outline-primary"
           size="sm"
           onClick={() => {
-            props.handleStarSegment({
-              segmentId: row.segmentId,
-              starSegment: !row.starred,
-            });
+            handleStarSegmentClick(row);
           }}
         >
           {row.starred ? (
@@ -85,10 +89,41 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     },
   ];
 
+  const handleStarSegmentClick = async (row: TableRow) => {
+    setListOfSegments((prevList) =>
+      prevList.map((item) =>
+        item.segmentId === row.segmentId ? { ...item, rowLoading: true } : item
+      )
+    );
+
+    try {
+      await props.handleStarSegment({
+        segmentId: row.segmentId,
+        starSegment: !row.starred,
+      });
+      setListOfSegments((prevList) =>
+        prevList.map((item) =>
+          item.segmentId === row.segmentId
+            ? { ...item, rowLoading: false }
+            : item
+        )
+      );
+    } catch (error) {
+      console.error("Error occurred while starring the segment:", error);
+      setListOfSegments((prevList) =>
+        prevList.map((item) =>
+          item.segmentId === row.segmentId
+            ? { ...item, rowLoading: false }
+            : item
+        )
+      );
+    }
+  };
+
   return (
     <>
       {props.snipedSegmentList.length > 0 ? (
-        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+        <Container className="p-2 mb-1 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}
