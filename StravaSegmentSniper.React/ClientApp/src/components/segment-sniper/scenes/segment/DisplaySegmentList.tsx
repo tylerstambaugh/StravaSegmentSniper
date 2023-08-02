@@ -154,7 +154,6 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                   variant="primary"
                   value="Snipe!"
                   onClick={(e) => props.handleShowSnipeSegmentsModal()}
-                  onChange={() => console.log("blah")}
                 />
               </Col>
             </Row>

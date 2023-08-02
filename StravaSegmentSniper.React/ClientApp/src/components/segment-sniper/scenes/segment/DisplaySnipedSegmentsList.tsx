@@ -136,25 +136,23 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
           >
             <Row>
               <Col>
-                <h3>Segments</h3>
+                <h3>Sniped Segments</h3>
               </Col>
-              <Col>
+            </Row>
+            <Row className="d-flex justify-content-between">
+              <Col sm={3}>
+                <Filter />
+              </Col>
+              <Col className="d-flex justify-content-end pb-3">
                 <Button
                   as="input"
-                  value="Clear"
+                  value="Reset"
                   variant="primary"
                   onClick={(e) => props.clearSnipedSegments()}
                 />
               </Col>
             </Row>
             <Row className="mb-4">
-              <Col
-                xs={12}
-                lg={4}
-                className="d-flex flex-col justify-content-end align-items-end"
-              >
-                <Filter />
-              </Col>
               <Col
                 xs={12}
                 sm={6}
