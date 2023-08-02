@@ -22,7 +22,7 @@ export interface displaySegmentListProps {
   segmentList: SegmentListItem[];
   handleShowSnipeSegmentsModal: () => void;
   handleStarSegment: (props: starSegmentProps) => void;
-  loading: boolean;
+  snipeLoading: boolean;
 }
 
 type TableRow = SegmentListItem & {
@@ -150,11 +150,24 @@ function DisplaySegmentList(props: displaySegmentListProps) {
               </Col>
               <Col className="d-flex justify-content-end pb-3">
                 <Button
-                  as="input"
+                  className="px-5"
                   variant="primary"
                   value="Snipe!"
-                  onClick={(e) => props.handleShowSnipeSegmentsModal()}
-                />
+                  onClick={props.handleShowSnipeSegmentsModal}
+                  disabled={props.snipeLoading} // Disable the button while loading
+                >
+                  Snipe!
+                  {props.snipeLoading && ( // Conditionally render the spinner
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      animation="border"
+                    />
+                  )}
+                </Button>
               </Col>
             </Row>
             <Table>

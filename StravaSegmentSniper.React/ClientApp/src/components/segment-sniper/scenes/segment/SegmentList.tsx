@@ -33,6 +33,7 @@ const SegmentList = (props: SegmentListProps) => {
     useGetSnipeSegments();
   const [isSnipeList, setIsSnipeList] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [snipeLoading, setSnipeLoading] = useState(false);
   const [error, setError] = useState<Error>();
   const [segmentList, setSegmentList] = useState<SegmentListItem[]>(
     props.activitySegmentList
@@ -59,6 +60,7 @@ const SegmentList = (props: SegmentListProps) => {
 
   async function handleStarSegment(props: starSegmentProps) {
     setLoading(true);
+
     const starSegmentResponse = await starSegment.starSegment({
       segmentId: props.segmentId,
       starSegment: props.starSegment,
@@ -71,6 +73,7 @@ const SegmentList = (props: SegmentListProps) => {
         return segment;
       });
       setSegmentList(updatedSegmentList);
+      setLoading(false);
     }
   }
 
@@ -92,7 +95,7 @@ const SegmentList = (props: SegmentListProps) => {
       ...snipeSegmentsProps,
       activityId: props.activityId,
     };
-    setLoading(true);
+    setSnipeLoading(true);
     const fetchResponse = await fetchSnipedSegments(snipeSegmentsProps!);
     if (fetchResponse && !(fetchResponse instanceof Error)) {
       setSnipedSegmentList(fetchResponse);
@@ -103,7 +106,7 @@ const SegmentList = (props: SegmentListProps) => {
         position: "bottom-center",
       });
     }
-    setLoading(false);
+    setSnipeLoading(false);
   }
 
   function clearSegmentsDisplay() {
@@ -131,14 +134,13 @@ const SegmentList = (props: SegmentListProps) => {
             handleShowSnipeSegmentsModal={handleShowSnipeSegmentModal}
             // handleShowSegmentDetails={handleShowSegmentDetails}
             handleStarSegment={handleStarSegment}
-            loading={loading}
+            snipeLoading={snipeLoading}
           />
         ) : (
           <DisplaySnipedSegmentList
             snipedSegmentList={snipedSegmentlist}
             clearSnipedSegments={clearSnipedSegments}
             handleStarSegment={handleStarSegment}
-            loading={loading}
             // handleShowSegmentDetails={handleShowSegmentDetails}
           />
         )}
