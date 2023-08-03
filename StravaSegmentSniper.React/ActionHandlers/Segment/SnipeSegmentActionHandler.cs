@@ -70,7 +70,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
                     {
                         SegmentId = model.Id,
                         Name = model.Name,
-                        PercentageFromLeader = percentageOff,
+                        PercentageFromLeader = Math.Round(percentageOff, 0),
                         SecondsFromLeader = secondsOff,
                         ActivityType = model.ActivityType,
                         Distance = Math.Round(CommonConversionHelpers.ConvertMetersToMiles(model.Distance), 2),
