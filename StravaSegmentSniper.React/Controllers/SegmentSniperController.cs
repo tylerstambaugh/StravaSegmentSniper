@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StravaSegmentSniper.React.ActionHandlers.Segment;
 using StravaSegmentSniper.React.Controllers.Contracts;
-using StravaSegmentSniper.Services.Internal.Models.Activity;
-using StravaSegmentSniper.Services.StravaAPI.Segment;
-using StravaSegmentSniper.Services.UIModels.Segment;
+using System.Security.Claims;
 
 namespace StravaSegmentSniper.React.Controllers
 {
@@ -26,12 +24,13 @@ namespace StravaSegmentSniper.React.Controllers
         public IActionResult SnipeSegments(SegmentSniperContract contract)
         {
             //need to check API usage
-            var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract);
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            var returnList = _stravaSegmentActionHandler.HandleSnipingSegments(contract, userId);
             if (returnList != null)
                 return Ok(returnList);
             else
-                return BadRequest("Unable to snipe segments with info provided.");;
+                return BadRequest("Unable to snipe segments with info provided."); ;
         }
     }
-        
+
 }

@@ -36,7 +36,7 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     SnipedSegmentListItem[]
   >(props.snipedSegmentList);
 
-  const tableBody: TableRow[] = props.snipedSegmentList.map((item) => ({
+  const tableBody: TableRow[] = listOfSnipedSegments.map((item) => ({
     ...item,
     detailsButton: null,
     starButton: null,
@@ -144,11 +144,11 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
               </Col>
               <Col className="d-flex justify-content-end pb-3">
                 <Button
-                  as="input"
-                  value="Reset"
                   variant="primary"
                   onClick={(e) => props.clearSnipedSegments()}
-                />
+                >
+                  Reset
+                </Button>
               </Col>
             </Row>
             <Row className="mb-4">

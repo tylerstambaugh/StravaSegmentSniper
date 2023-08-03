@@ -5,6 +5,6 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 {
     public interface ISnipeSegmentActionHandler
     {
-        List<SnipedSegmentUIModel> HandleSnipingSegments(SegmentSniperContract contract);
+        List<SnipedSegmentUIModel> HandleSnipingSegments(SegmentSniperContract contract, string userId);
     }
 }
