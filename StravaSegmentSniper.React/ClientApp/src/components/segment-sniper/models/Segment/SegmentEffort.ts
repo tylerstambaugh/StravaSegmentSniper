@@ -1,7 +1,7 @@
 import { SegmentDetails } from "./Segment";
 
 export interface SegmentEffortListItem {
-  id: number;
+  segmentEffortId: string;
   activityId: number;
   elapsed_time: number;
   distance: number;
@@ -9,7 +9,7 @@ export interface SegmentEffortListItem {
 }
 
 export interface SegmentEffort {
-  id: number;
+  segmentEffortId: string;
   resource_state: number;
   name: string;
   activity: {

@@ -1,5 +1,5 @@
 export interface SegmentListItem {
-  segmentId: number;
+  segmentId: string;
   segmentEffortId: number;
   name: string;
   time: number;
@@ -11,8 +11,7 @@ export interface SegmentListItem {
 }
 
 export interface SnipedSegmentListItem {
-  segmentId: number;
-  segmentEffortId: number;
+  segmentId: string;
   name: string;
   komTime: string;
   distance: number;
@@ -25,7 +24,7 @@ export interface SnipedSegmentListItem {
 }
 
 export interface SegmentDetails {
-  segmentId: number;
+  segmentId: string;
   resource_state: number;
   name: string;
   activity_type: string;

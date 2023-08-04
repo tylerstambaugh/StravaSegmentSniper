@@ -11,14 +11,14 @@ namespace StravaSegmentSniper.Services.Internal.Models.Segment
         public StarSegmentModel()
         {
         }
-        public StarSegmentModel(long segmentId, bool isStarred, string userId)
+        public StarSegmentModel(string segmentId, bool isStarred, string userId)
         {
             SegmentId = segmentId;
             IsStarred = isStarred;
             UserId = userId;
         }
 
-        public long SegmentId { get; set; }
+        public string SegmentId { get; set; }
         public bool IsStarred { get; set; }
         public string UserId { get; set; }
     }

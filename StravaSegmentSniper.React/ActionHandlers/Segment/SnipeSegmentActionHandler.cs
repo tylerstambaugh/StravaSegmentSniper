@@ -68,7 +68,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
                     SnipedSegmentUIModel UiModel = new SnipedSegmentUIModel
                     {
-                        SegmentId = model.Id,
+                        SegmentId = model.SegmentId,
                         Name = model.Name,
                         PercentageFromLeader = Math.Round(percentageOff, 0),
                         SecondsFromLeader = secondsOff,
