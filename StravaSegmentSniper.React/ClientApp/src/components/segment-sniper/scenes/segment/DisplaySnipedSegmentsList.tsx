@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DatatableWrapper,
   Filter,
@@ -51,9 +51,8 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     {
       title: "Seconds From KOM/QOM",
       prop: "secondsFromLeader",
-      isSortable: true,
     },
-    { title: "% From KOM/QOM", prop: "percentageFromLeader", isSortable: true },
+    { title: "% From KOM/QOM", prop: "percentageFromLeader" },
     {
       prop: "detailsButton",
       cell: (row) => (
@@ -118,6 +117,10 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
       );
     }
   };
+
+  useEffect(() => {
+    setListOfSegments(props.snipedSegmentList);
+  }, [props.snipedSegmentList]);
 
   return (
     <>
