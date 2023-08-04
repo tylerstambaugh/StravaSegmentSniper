@@ -148,7 +148,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
               <Col sm={3}>
                 <Filter placeholder="Filter Segments" />
               </Col>
-              <Col className="d-flex justify-content-end pb-3">
+              <Col className="d-flex justify-content-end">
                 <Button
                   className="px-5"
                   variant="primary"
@@ -185,7 +185,7 @@ function DisplaySegmentList(props: displaySegmentListProps) {
           </DatatableWrapper>
         </Container>
       ) : (
-        <Container className="md-auto p-2 mb-1 col-12 bg-light text-dark border rounded">
+        <Container className="p-2 mb-1 col-12 bg-light text-dark border rounded">
           <DatatableWrapper
             body={tableBody}
             headers={header}

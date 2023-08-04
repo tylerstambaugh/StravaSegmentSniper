@@ -10,14 +10,14 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
     public class StarSegmentRequest
     {
-        public StarSegmentRequest(long segmentId, bool starSegment)
+        public StarSegmentRequest(string segmentId, bool starSegment)
         {
             SegmentId = segmentId;
             StarSegment = starSegment;
         }
 
         [JsonProperty("segmentId")]
-        public long SegmentId { get; }
+        public string SegmentId { get; }
         [JsonProperty("starSegment")]
         public bool StarSegment { get; }   
     }

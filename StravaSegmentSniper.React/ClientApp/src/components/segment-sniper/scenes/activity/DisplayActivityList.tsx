@@ -112,8 +112,9 @@ const DisplayActivityList = (props: displayActivityListProps) => {
                 <Col sm={3}>
                   <Filter placeholder="Filter Activities" />
                 </Col>
-                <Col className="d-flex justify-content-end">
+                <Col className="d-flex justify-content-end mx-5">
                   <Button
+                    className="px-5"
                     onClick={(e) => {
                       props.clearSearchResults();
                       setSelectedRow("");

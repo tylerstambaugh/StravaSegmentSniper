@@ -201,8 +201,8 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
             </Row>
             <Row>
               <Col>
-                <p>Try harder next time woosie</p>
-                <p>No segments to snipe!</p>
+                <h3>Try harder next time woosie</h3>
+                <p>No segments matching filter criteria</p>
               </Col>
             </Row>
           </DatatableWrapper>

@@ -52,6 +52,6 @@ const useStarSegment = () => {
 export default useStarSegment;
 
 export interface starSegmentProps {
-  segmentId: number;
+  segmentId: string;
   starSegment: boolean;
 }

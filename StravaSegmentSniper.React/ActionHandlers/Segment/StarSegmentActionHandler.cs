@@ -26,7 +26,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Segment
 
             StarSegmentModel response = new StarSegmentModel
             {
-                SegmentId = result.Id,
+                SegmentId = result.SegmentId,
                 IsStarred = result.Starred
             };
 

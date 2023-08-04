@@ -42,7 +42,9 @@ namespace StravaSegmentSniper.ConsoleUI.Helpers
             CreateMap<DetailedSegmentEffortApiModel, DetailedSegmentEffortModel>()
                 .ForMember(dest => dest.SegmentEffortId, opt => opt.MapFrom(src => src.id));
 
-            CreateMap<DetailedSegmentApiModel, DetailedSegmentModel>();
+            CreateMap<DetailedSegmentApiModel, DetailedSegmentModel>()
+            .ForMember(dest => dest.SegmentId, opt => opt.MapFrom(src => src.id));
+
             CreateMap<AchievementAPIModel, AchievementModel>();
             CreateMap<LocalLegendAPIModel, LocalLegendModel>();
             CreateMap<AthleteSegmentStatsAPIModel, AthleteSegmentStatsModel>();
