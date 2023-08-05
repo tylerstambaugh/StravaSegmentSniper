@@ -154,10 +154,10 @@ function DisplaySegmentList(props: displaySegmentListProps) {
                   variant="primary"
                   value="Snipe!"
                   onClick={props.handleShowSnipeSegmentsModal}
-                  disabled={props.snipeLoading} // Disable the button while loading
+                  disabled={props.snipeLoading}
                 >
                   Snipe!
-                  {props.snipeLoading && ( // Conditionally render the spinner
+                  {props.snipeLoading && (
                     <Spinner
                       as="span"
                       variant="light"

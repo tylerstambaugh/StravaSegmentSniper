@@ -22,7 +22,7 @@ import { starSegmentProps } from "../../hooks/segment/useStarSegment";
 export interface displaySnipedSegmentListProps {
   snipedSegmentList: SnipedSegmentListItem[];
   clearSnipedSegments: () => void;
-  handleStarSegment: (props: starSegmentProps) => void;
+  handleStarSnipedSegment: (props: starSegmentProps) => void;
 }
 
 type TableRow = SnipedSegmentListItem & {
@@ -95,7 +95,7 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
     );
 
     try {
-      await props.handleStarSegment({
+      await props.handleStarSnipedSegment({
         segmentId: row.segmentId,
         starSegment: !row.starred,
       });
@@ -197,12 +197,23 @@ function DisplaySnipedSegmentList(props: displaySnipedSegmentListProps) {
             <Row>
               <Col>
                 <h3>Segments List Results</h3>
+                <hr />
               </Col>
             </Row>
             <Row>
               <Col>
-                <h3>Try harder next time woosie</h3>
-                <p>No segments matching filter criteria</p>
+                <h4>No segments matching filter criteria</h4>
+                <p>Try harder next time woosie</p>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="d-flex justify-content-center pb-3">
+                <Button
+                  variant="primary"
+                  onClick={(e) => props.clearSnipedSegments()}
+                >
+                  Reset
+                </Button>
               </Col>
             </Row>
           </DatatableWrapper>

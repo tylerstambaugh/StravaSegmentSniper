@@ -105,6 +105,7 @@ const DisplayActivityList = (props: displayActivityListProps) => {
               <Row>
                 <Col>
                   <h3>Activity Search Results</h3>
+                  <hr />
                 </Col>
               </Row>
 
