@@ -68,11 +68,30 @@ const SegmentList = (props: SegmentListProps) => {
     if (starSegmentResponse && !(starSegmentResponse instanceof Error)) {
       const updatedSegmentList = segmentList.map((segment) => {
         if (segment.segmentId === props.segmentId) {
-          return { ...segment, starred: starSegmentResponse.starred };
+          return { ...segment, starred: starSegmentResponse.isStarred };
         }
         return segment;
       });
       setSegmentList(updatedSegmentList);
+      setLoading(false);
+    }
+  }
+
+  async function handleStarSnipedSegment(props: starSegmentProps) {
+    setLoading(true);
+
+    const starSegmentResponse = await starSegment.starSegment({
+      segmentId: props.segmentId,
+      starSegment: props.starSegment,
+    });
+    if (starSegmentResponse && !(starSegmentResponse instanceof Error)) {
+      const updatedSegmentList = snipedSegmentlist.map((segment) => {
+        if (segment.segmentId === props.segmentId) {
+          return { ...segment, starred: starSegmentResponse.isStarred };
+        }
+        return segment;
+      });
+      setSnipedSegmentList(updatedSegmentList);
       setLoading(false);
     }
   }
@@ -140,7 +159,7 @@ const SegmentList = (props: SegmentListProps) => {
           <DisplaySnipedSegmentList
             snipedSegmentList={snipedSegmentlist}
             clearSnipedSegments={clearSnipedSegments}
-            handleStarSegment={handleStarSegment}
+            handleStarSnipedSegment={handleStarSnipedSegment}
             // handleShowSegmentDetails={handleShowSegmentDetails}
           />
         )}
