@@ -59,7 +59,7 @@ namespace StravaSegmentSniper.React.Controllers
             {
                    activityId = activityId
             };
-            var returnList = _stravaActivityActionHandler.HandleGetActivityListById(contract);
+            var returnList = _stravaActivityActionHandler.HandleGetActivityListById(contract, userId);
             if (returnList != null)
                 return Ok(returnList);
             else

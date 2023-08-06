@@ -24,10 +24,9 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
             _activityAdapter = activityAdapter;
         }
 
-        public List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract)
+        public List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract, string userId)
         {
-            var user = _webAppUserService.GetLoggedInUserById(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
-            var userId = user.Id;
+            
             DetailedActivityModel detailedActivityModel = _stravaAPIActivity.GetDetailedActivityById(contract.activityId, userId).Result;
 
             List<ActivityListModel> activityList = new List<ActivityListModel>();

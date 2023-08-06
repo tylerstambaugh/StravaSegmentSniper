@@ -6,7 +6,7 @@ namespace StravaSegmentSniper.React.ActionHandlers.Activity
 {
     public interface IStravaActivityActionHandler
     {
-        List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract);
+        List<ActivityListModel> HandleGetActivityListById(HandleGetActivityByIdContract contract, string userId);
         DetailedActivityUIModel HandleGetActivityDetailById(HandleGetActivityByIdContract contract);
 
         List<ActivityListModel> HandleGetActivitListForDateRange(HandleGetSummaryActivitiesForDateRangeContract contract, string userId);
