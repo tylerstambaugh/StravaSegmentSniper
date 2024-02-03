@@ -1,3 +1,5 @@
+This has been replaced by Segment Sniper:  [Segment Sniper](https://github.com/tylerstambaugh/SegmentSniper)
+
 Strava Segment Sniper
 =======
 
